@@ -2,7 +2,8 @@
 \usepackage{geometry}
 \geometry{a4paper}
 \usepackage[parfill]{parskip}
-\usepackage{graphicx}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
 \usepackage{amsmath,amssymb,cancel}
 
 % Hebrew Stuff
@@ -11,7 +12,7 @@
 \usepackage{hebfont}
 
 % Custom commands
-\newcommand{\qed}{$$\blacksquare$$}
+\newcommand{\qed}{\R{$\blacksquare$}}
 \newcommand{\opr}[1]{\xrightarrow[\text{\R{#1}}]{}}
 \newcommand{\bidiarrow}[1]{\underset{\text{\R{#1}}}{\leftrightarrow}}
 \newcommand{\ueq}[1]{\underset{\text{\R{#1}}}{=}}
@@ -19,6 +20,10 @@
 \newcommand{\mR}{\mathbb{R}}
 \newcommand{\mN}{\mathbb{N}}
 \newcommand{\inv}[1]{#1^{-1}}
+
+% Spacing
+\titlespacing\subsubsection{0pt}{5pt}{3pt}
+\setstretch{0.1}
 
 \title{ממ"ן 21}
 \author{יונתן אוחיון}
@@ -42,24 +47,21 @@ $$\forall R \in M \opr{} RR = R^2 \opr{} R^2 = R^2 \opr{} (R, R) \in S$$
 
 \subsubsection{סימטריות}
 לפי הגדרת $S$, $(R_1, R_2) \in S$ אמם $R_1R_2 = R_2R_1$. לפיכך, $(R_2, R_1) \in S$ גם כן שכן $R_2R_1 = R_1R_2$ לפי ההגדרה.
-\clearpage
 
 \subsubsection{טרנזיטיביות}
 נראה ש$S$ אינו טרנזיטיבי באמצעות דוגמה נגדית:
 \begin{align*}
-& R_1 = \{(2, 3)\}\\
-& R_2 = \emptyset\\
-& R_3 = \{(3,2)\}\\
+& R_1 = \{(2, 3)\},\ R_2 = \emptyset,\ R_3 = \{(3,2)\}\\
 & R_1R_2 = R_2R_1 = \emptyset \opr{} (R_1, R_2) \in S\\
 & R_3R_2 = R_2R_3 = \emptyset \opr{} (R_3, R_2) \in S\\
-& R_1R_3 = \{(2, 2)\}\\
-& R_3R_1 = \{(3, 3)\}\\
+& R_1R_3 = \{(2, 2)\},\ R_3R_1 = \{(3, 3)\}\\
 & R_3R_1 \neq R_1R_3 \opr{} (R_1, R_3) \notin S
 \end{align*}
 
 לכן, $S$ אינו יחס שקילות.
 \qed
 %%%%% </Q1> %%%%%
+\clearpage
 
 %%%%% <Q2> %%%%%
 \section{שאלה 2}
@@ -76,7 +78,6 @@ $$\forall R \in M \opr{} RR = R^2 \opr{} R^2 = R^2 \opr{} (R, R) \in S$$
 \subsection{סעיף ב}
 לא נכון, מכיוון שכל $R \in Range(S)$ הינו יחס סימטרי אך היחס מוגדר על $M$ )שאיבריה אינם בהכרח יחסים סימטריים(.
 \qed
-\clearpage
 
 \subsection{סעיף ג}
 לא נכון. דוגמה נגדית:
@@ -133,5 +134,45 @@ $$\forall f \in F \opr{} f(n) = f(n) \opr{הגדרת גדול שווה} f(n) \le
 לכל $n \in \mN$ את המספר 2, לא מתקיים $(f, g) \in K$ וגם לא $(g, f) \in K$ )שכן הראשון מתקיים רק כאשר $f(n) \leq 2$ והשני כאשר $f(n) \geq 2$ אך הם אינם מוגדרים כך(. לפיכך, הגענו לסתירה להנחה ו$K$ אינו סדר מלא.
 \qed
 %%%%% </Q3> %%%%%
+\clearpage
+
+%%%%% <Q4> %%%%%
+\section{שאלה 4}
+\subsection{סעיף א}
+מכיוון שנתונים לנו שני מקרי בסיס, נרצה לבדוק את נכונות שניהם )ואז נוכל להשתמש גם ב$n = k$ וגם ב$n = k - 1$ בהוכחה(.
+
+\subsubsection{$n = 0$}
+$$2 * 3^0 + (-2)^1 = 2 * 1 - 2 = 0 = f(0)$$
+
+\subsubsection{$n = 1$}
+$$2 * 3^1 + (-2)^2 = 6 + 4 = 10 = f(1)$$
+
+כעת, נוכל להניח שהתנאי מתקיים ל$n = k$ וגם ל$n = k - 1$ ונוכיח שהוא מתקיים גם ל$n = k + 1$.
+\begin{align*}
+& f(n) = 2 * 3^n + (−2)^{n+1}\\
+& f(n-1) = 2 * 3^{n-1} + (-2)^n
+\end{align*}
+מההגדרה הרקורסיבית נובע:
+$$f(n + 1) = f(n) + 6f(n-1)$$
+עכשיו נוכל להציב את ערכי $f(n)$ ו$f(n-1)$ בפונקציה הרקורסיבית ולהוכיח:
+\begin{align*}
+f(n+1) & = 2 * 3^n + (−2)^{n+1} + 6(2 * 3^{n-1} + (-2)^n)\\
+& = 6 * 3^{n-1} + -2(-2)^n + 12 * 3^{n-1} + 6(-2)^n\\
+& = 6 * 3^{n-1} + 12 * 3^{n-1} + -2(-2)^n + 6(-2)^n\\
+& = 18 * 3^{n-1} + 4(-2)^n\\
+& = 2 * 3^{n+1} + (-2)^{n+2}
+\end{align*}
+לפי עקרון האינדוקציה השלמה, הבדיקה והמעבר, התנאי נכון לכל $n$ טבעי.\\\\\\\\\\\\\\
+\qed
+
+\subsubsection{סעיף ב}
+הפונקציה $f$ אינה על מכיוון שהיא מתאימה לכל $n$ מספר זוגי, ו$\mN$ כולל בתוכו את כל המספרים הטבעיים )ולא רק את הזוגיים(:
+\begin{align*}
+f(n) & = 2 * 3^n + (-2)^n -2\\
+& = 2 * 3^n - 2 * (-2)^n\\
+& = 2 * (3^n - (-2)^n)
+\end{align*}
+\qed
+
 
 \end{document}
