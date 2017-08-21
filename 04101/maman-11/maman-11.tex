@@ -1,0 +1,148 @@
+\documentclass[12pt, oneside]{article}
+\usepackage{geometry}
+\geometry{letterpaper}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+% Initializing graphicx
+\usepackage{graphicx}
+\graphicspath{{assets/}}
+
+% Custom Commands
+\newcommand{\img}[1] {
+	\includegraphics[scale=0.33]{#1}
+}
+
+\title{Maman 11}
+\author{Jonathan Ohayon}
+
+\begin{document}
+\maketitle
+\setcounter{section}{-1}
+
+\section{Declarations}
+\subsection{Infinite Set}
+\begin{center}
+\emph{A set of elements E is said to be infinite if the elements of a proper subset S can be put into one-to-one correspondence with the elements of E.\footnote{Taken from \url{http://mathworld.wolfram.com/InfiniteSet.html}, just for the English version of this definition.}}
+\end{center}
+
+\section{Question 1}
+\subsection{A}
+Yes. Using the following function:
+\begin{equation*}
+f(x) \rightarrow \frac{2}{x/2}
+\end{equation*}
+Then:
+\begin{equation*}
+x_1, x_2 \in A \Rightarrow
+x_1 \neq x_2 \Rightarrow
+\frac{x_1}{2} \neq \frac{x_2}{2} \Rightarrow
+\frac{2}{x_1/2} \neq \frac{2}{x_2/2}
+\end{equation*}
+$\bigotimes$
+\clearpage
+
+\subsection{B}
+No. For example, using the following function:
+\begin{equation*}
+f(x) \rightarrow \frac{2}{8}
+\end{equation*}
+Every $x \in A$ is matched to $\frac{2}{8}$, yet since $\frac{2}{8}$ is one element from \emph{B}, this isn't a one-to-one correspondence ($A \nsim B$).\\
+$\bigotimes$
+
+\subsection{C}
+Yes, using the function declared in answer A ($f(x) \rightarrow \frac{2}{x/2}$), $\frac{2}{1} \in B$ (which is 2) is matched to $2 \in A$.\\
+$\bigotimes$
+
+\subsection{D}
+Yes. Let \emph{E} be the following set:
+\begin{equation*}
+E = B\backslash\{2\}
+\end{equation*}
+We'll show that $E \sim B$ with this one-to-one correspondence:
+\begin{equation*}
+f(x) \rightarrow \frac{2}{x/2+1}
+\end{equation*}
+That way, 2 is matched to $\frac{2}{2}$, 4 to $\frac{2}{3}$ and so on and so forth.\\
+Since \emph{E} is a proper subset of \emph{B} ($E \subset B$) because it equals to \emph{B} without it's first element, and since \emph{E} has one-to-one correspondence with \emph{B} ($E \sim B$), \emph{B} is infinite.\\
+$\bigotimes$
+
+\section{Question 2}
+\begin{center}
+\begin{tabular}{ c c c }
+\img{A} & \img{B} & \img{C}\\
+A & B & C\\
+\img{D} & \img{E}\\
+D & E\\
+\end{tabular}
+\end{center}
+
+\section{Question 3}
+\subsection{A}
+Yes. Let \emph{A} and \emph{B} be the following sets:
+\begin{equation*}
+A = \{1, 2, 3, 4\}, B = \{1, 2\}
+\end{equation*}
+Then:
+\begin{equation*}
+A \cup B = \{1, 2, 3, 4\}\Rightarrow
+A \backslash B = \{3, 4\}\Rightarrow
+A \cup B \neq A \backslash B
+\end{equation*}
+Therefore, \emph{B} has to be $\emptyset$.\\
+$\bigotimes$
+
+\subsection{B}
+No. Let \emph{A} and \emph{B} be the following sets:
+\begin{equation*}
+A = \mathbb{N}, B = \{2, 4, 6, \ldots\}
+\end{equation*}
+Then $A \cup B \sim A \backslash B$, using the following function:
+\begin{equation*}
+f(x) \rightarrow 2x
+\end{equation*}
+Every $x \in A$ has one arrow sent from it to $2x \in B$, and every $y \in B$ has an arrow from $\frac{1}{2}y \in A$.\\
+Therefore, \emph{B} doesn't have to be $\emptyset$.\\
+$\bigotimes$
+
+\subsection{C}
+Yes. Let \emph{A}, \emph{B}, \emph{C} and \emph{D} be the following sets:
+\begin{equation*}
+\begin{split}
+& A = \{1, 2, 3, 4, 5\}\\
+& B = \{3, 4, 5\}\\
+& C = A \cup B = \{1, 2, 3, 4, 5\}\\
+& D = A \backslash B = \{1, 2\}
+\end{split}
+\end{equation*}
+Then $D \nsim C$ because no there is no one-to-one correspondence between \emph{D} and \emph{C}, since the number of elements in \emph{D} is smaller than the number of elements in \emph{C}.\\
+Therefore, \emph{B} has to be $\emptyset$.\\
+$\bigotimes$
+\clearpage
+
+\section{Question 4}
+\subsection{A}
+No. Let \emph{A} and \emph{B} be the following sets:
+\begin{equation*}
+A = \{2, 3, 4, 5\}, B = \{5, 6, 7, 8\}
+\end{equation*}
+Then $B = A\backslash\{1\}$ and $A \sim B$ (with this function: $f(x) \rightarrow x + 3$), yet \emph{A} is finite (since it has 4 elements, and 4 isn't infinity).\\
+Therefore, \emph{A} doesn't have to be infinite.\\
+$\bigotimes$
+
+\subsection{B}
+Yes. \emph{B} is a proper subset of \emph{A} ($B \subset A$, since $A \neq B$), and according to the question's declarations, \emph{A} has one-to-one correspondence to \emph{B} ($A \sim B$).\\
+Therefore, \emph{A} has to be infinite.\\
+$\bigotimes$
+
+\subsection{C}
+No. Let \emph{A} and \emph{B} be the following sets:
+\begin{equation*}
+A = \{3, 4, 5\}, B = \{6, 7, 8\}
+\end{equation*}
+Then $A\backslash\{2\} \sim B$ and $B = A\backslash\{1\}$ yet \emph{A} is finite (since $B \not\subset A$).\\
+Therefore, \emph{A} doesn't have to be infinite.\\
+$\bigotimes$
+
+\end{document}

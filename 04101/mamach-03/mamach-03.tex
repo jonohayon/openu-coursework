@@ -1,0 +1,67 @@
+\documentclass[12pt, oneside]{article}
+\usepackage{geometry}
+\geometry{letterpaper}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+% Initializing graphicx
+\usepackage{graphicx}
+\graphicspath{{assets/}}
+
+% Custom Commands
+\newcommand{\img}[1] {
+	\includegraphics[scale=0.33]{#1}
+}
+
+% For simple questions
+\newcounter{questions}
+\setcounter{questions}{1}
+\newcommand{\q}[1] {
+	\item{Q\thequestions\;=\;\MakeUppercase{#1}}
+	\stepcounter{questions}
+}
+\newenvironment{qs}{\begin{itemize}}{\end{itemize}}
+
+\title{Mamach 3}
+\author{Jonathan Ohayon}
+% No date cuz I'm living on the 3dge
+
+\begin{document}
+\maketitle
+
+Legend:\par
+A $\rightarrow$ Option 1 is true\par
+B $\rightarrow$ Option 2 is true\par
+C $\rightarrow$ Both options are true\par
+D $\rightarrow$ Both options are false\\
+
+Answers:
+\begin{qs}
+\q a
+\q b
+\q c
+\q d
+\q c
+\q d
+\q b
+\q c
+\q b
+\q b
+\q b
+\q b
+\q a
+\q b
+\q c
+\q c
+\q c
+\q c
+\q b
+\q a
+\q b
+\q c
+\q a
+\q d
+\end{qs}
+
+\end{document}

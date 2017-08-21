@@ -1,0 +1,216 @@
+\documentclass[12pt, oneside]{article}
+\usepackage{geometry}
+\geometry{letterpaper}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+
+% Initializing graphicx
+\usepackage{graphicx}
+\graphicspath{{assets/}}
+
+% Custom Commands
+\newcommand{\img}[1] {
+	\includegraphics[scale=0.33]{#1}
+}
+
+\title{Maman 14}
+\author{Jonathan Ohayon}
+% No date cuz I'm living on the 3dge
+
+\begin{document}
+\maketitle
+
+\section{Question 1}
+\setcounter{subsection}{-1}
+\subsection{Declarations}
+Let $A$ and $B$ be the following sets:
+\begin{equation*}
+A = \{a, b\}, B = \{1, 2, 3\}
+\end{equation*}
+
+\subsection{A}
+\begin{itemize}
+\item $f(\{a, b\}) = \{1, 2\}$ - Injective
+\item $f(\{a, b\}) = \{1, 3\}$ - Injective
+\item $f(\{a, b\}) = \{2, 1\}$ - Injective
+\item $f(\{a, b\}) = \{2, 3\}$ - Injective
+\item $f(\{a, b\}) = \{3, 1\}$ - Injective
+\item $f(\{a, b\}) = \{3, 2\}$ - Injective
+\item $f(\{a, b\}) = \{1, 1\}$ - Not injective
+\item $f(\{a, b\}) = \{2, 2\}$ - Not injective
+\item $f(\{a, b\}) = \{3, 3\}$ - Not injective
+\end{itemize}
+\clearpage
+
+\subsection{B}
+\begin{itemize}
+\item $f(\{1, 2, 3\}) = \{a, a, a\}$ - Not surjective
+\item $f(\{1, 2, 3\}) = \{b, b, b\}$ - Not surjective
+\item $f(\{1, 2, 3\}) = \{a, a, b\}$ - Surjective
+\item $f(\{1, 2, 3\}) = \{a, b, b\}$ - Surjective
+\item $f(\{1, 2, 3\}) = \{a, b, a\}$ - Surjective
+\item $f(\{1, 2, 3\}) = \{b, b, a\}$ - Surjective
+\item $f(\{1, 2, 3\}) = \{b, a, b\}$ - Surjective
+\item $f(\{1, 2, 3\}) = \{b, a, a\}$ - Surjective
+\end{itemize}
+
+\subsection{C}
+There isn't any $g \circ f$ that's inverse because in order for a function to be inverse it needs to be subjective and there isn't an $f$ that's subjective.
+\clearpage
+
+\section{Question 2}
+\setcounter{subsection}{-1}
+\subsection{Declarations}
+Let $f: A \rightarrow B$ and $C, D \subseteq A$ so that $C \neq D$.
+
+\subsection{A}
+We can show a counter example where $f(C) \neq f(D)$ and $C \neq D$ and $f$ isn't injective.
+\begin{eqnarray*}
+& A = \{1, 2, 3, 4\}\\
+& B = \{5, 6, 7\}\\
+& f = 
+	\begin{cases}
+		1 & 5\\
+		2 & 6\\
+		3 & 6\\
+		4 & 7
+	\end{cases}\\
+& C = \{1, 2\}\\
+& D = \{3, 4\}
+\end{eqnarray*}
+
+\subsection{B}
+Let $f$ be an injective function.
+We can show that $f(C) \neq f(D)$ by assuming falsely that $f(C) = f(D)$ and showing that because of the declaration that $f$ is an injective function, $C = D$ and then we'll have a contradiction to the declaration that says that $C \neq D$. Therefore, if $f$ is an injective function then $f(C) \neq f(D)$.
+
+\subsection{C}
+Example:
+\begin{eqnarray*}
+& A = \{4\}, B = \{5\}, C = \{4\}, D = \emptyset\\
+& f = 
+	\begin{cases}
+	1 & 2
+	\end{cases}\\
+& \framebox{$f(C) = f(C) \cup f(D) = \{1\} \cup \emptyset = \{1\}$}
+\end{eqnarray*}
+
+\clearpage
+
+\section{Question 3}
+\setcounter{subsection}{-1}
+\subsection{Declarations}
+Let $f$ and $g$ be the following functions:
+\begin{eqnarray*}
+& f, g: \mathbb{N} \rightarrow \mathbb{N}\\
+& f(n) = 
+  \begin{cases}
+  	n - 1 & \text{Even numbers}\\
+		\dfrac{n + 1}{2} & \text{Odd numbers}
+  \end{cases}\\
+& g(n) = 2n - 1
+\end{eqnarray*}
+
+\subsection{A}
+In order to show that $f$ is not an injective function, we would need to show $x, y \in \mathbb{N}$ that are $f(x) = f(y)$. If we'll substitute 1 and 2, we can see that $f(1) = 1$ and $f(2) = 1$. Therefore, $f$ is not an injective function.
+
+\subsection{B}
+Let $a, b \in \mathbb{N}$.
+We can show that $g$ is an injective function by assuming that $g(a) = g(b)$ and showing that $a = b$.
+\begin{equation*}
+g(a) = g(b) \Rightarrow
+2a - \cancel{1} = 2b - \cancel{1} \Rightarrow
+\cancel{2}a = \cancel{2}b \Rightarrow
+\framebox{$a = b$}
+\end{equation*}
+
+\subsection{C}
+We can show that $f$ is a surjective function by showing that for every $y \in \mathbb{N}$, there's $x \in \mathbb{N}$ of which $f(x) = y$. In this case though, we will need to check that twice - one time for even numbers, and one time for odd numbers.\\
+Even numbers:
+\begin{equation*}
+x, y \in \mathbb{N} \Rightarrow
+y = x - 1 \Rightarrow
+x = y + 1 \Rightarrow
+y = y + \cancel{1 - 1} \Rightarrow
+\framebox{$y = y$}
+\end{equation*}
+Odd numbers:
+\begin{equation*}
+x, y \in \mathbb{N} \Rightarrow
+y = \dfrac{x + 1}{2} \Rightarrow
+2y = x + 1 \Rightarrow
+x = 2y - 1 \Rightarrow
+y = \dfrac{\cancel{2}y \cancel{- 1 + 1}}{\cancel{2}} \Rightarrow
+\framebox{$y = y$}
+\end{equation*}
+Therefore, $f$ is surjective.
+\clearpage
+
+\subsection{D}
+We can use a counter example to show that $g$ isn't surjective.
+\begin{equation*}
+x, y \in \mathbb{N} \Rightarrow
+f(x) = y = 2 \Rightarrow
+2 = 2x - 1 \Rightarrow
+2x = 3 \Rightarrow
+x = 1.5 \Rightarrow
+\framebox{$x \not\in \mathbb{N}$}
+\end{equation*}
+Therefore, $g$ isn't surjective.
+
+\subsection{E}
+We can show that $f \circ g = id_\mathbb{N}$ in the following proof (we need only one this time because 2 times something minus 1 is always an odd number):\\
+\begin{eqnarray*}
+& x \in \mathbb{N}\\
+& (f \circ g)(x) = f(g(x))\\
+& f(g(x)) = \dfrac{\cancel{2}x \cancel{- 1 + 1}}{\cancel{2}}\\
+& \framebox{$f(g(x)) = x$}
+\end{eqnarray*}
+Therefore, $f \circ g = id_\mathbb{N}$.
+
+\subsection{F}
+We can show that $g \circ f \neq id_\mathbb{N}$ using the following counter example:
+\begin{eqnarray*}
+& 6 \in \mathbb{N}\\
+& (g \circ f)(x) = g(f(x))\\
+& g(f(x)) = 2(6 - 1) - 1 \neq 2
+\end{eqnarray*}
+Therefore, $g \circ f \neq id_\mathbb{N}$.
+\clearpage
+
+\section{Question 4}
+\subsection{A}
+Let $h, g, f$ be function from $A$ to $A$, $f$ is subjective and $g \circ f = h \circ f$.
+We can show that $g = h$ with the following proof:
+\begin{eqnarray*}
+& x, y \in A \\
+& f(x) = y \\
+& (g \circ f)(x) = g(f(x)) = g(y)\\
+& (h \circ f)(x) = h(f(x)) = h(y)\\
+& g \circ f = h \circ f\\
+& g(y) = h(y)\\
+& \framebox{$g = y$}
+\end{eqnarray*}
+Therefore, $g = h$.
+
+\subsection{B}
+Example:
+\begin{eqnarray*}
+& f(n) = 2n - 1\\
+& g(n) = 
+	\begin{cases}
+	1& \text{Odd numbers}\\
+	3& \text{Even numbers}\\
+	\end{cases}\\
+& h(n) = 
+	\begin{cases}
+	1& \text{Odd numbers}\\
+	2& \text{Even numbers}\\
+	\end{cases}\\
+& g \circ f = 1\\
+& h \circ f = 1\\
+& \framebox{$g \circ f = h \circ f$ and $g \neq h$}
+\end{eqnarray*}
+
+\end{document}

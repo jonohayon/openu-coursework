@@ -1,0 +1,196 @@
+\documentclass[12pt, oneside]{article}
+\usepackage{geometry}
+\geometry{letterpaper}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+
+% Initializing graphicx
+\usepackage{graphicx}
+\graphicspath{{assets/}}
+
+% Custom Commands
+\newcommand{\img}[1] {
+	\includegraphics[scale=0.33]{#1}
+}
+
+\title{Maman 13}
+\author{Jonathan Ohayon}
+% No date cuz I'm living on the 3dge
+
+\begin{document}
+\maketitle
+
+\section{Question 1}
+\setcounter{subsection}{-1}
+\subsection{Declarations}
+Let \emph{A} be a set with a binary operation \emph{*} which implements closure and reduction rules over it, and $e \in A$ so that for every $x \in A$, $x * e = x$.
+
+\subsection{A}
+This following table of an example of $(A, *)$ shows that it is, in fact, possible that $e$ won't be a neutral element in the declared $A$.
+\begin{center}
+\begin{tabular}{c | c | c | c | c}
+* & a & b & c & e\\
+\hline
+a & b & c & e & a \\
+\hline
+b & a & e & c & b \\
+\hline
+c & e & a & b & c \\
+\hline
+e & c & b & a & e \\
+\end{tabular}
+\end{center}
+
+\subsection{B}
+As declared in the question, $x * e = x$, so in order to show that $e$ is a neutral element in $A$, we need to show that $x * e = e * x = x$. Since we're told that in this section of the question that $(A, *)$ has the associative property, we can show that $e * x = x$ using the following explanation:
+\begin{equation*}
+e, x, y \in A \Rightarrow
+x * (e * b) = (x * e) * b \Rightarrow
+\cancel{x} * (e * b) = \cancel{x} * b \Rightarrow
+e * b = b \Rightarrow
+\framebox{$b * e = e * b = b$}
+\end{equation*}
+
+\clearpage
+
+\section{Question 2}
+\setcounter{subsection}{-1}
+\subsection{Declarations}
+Let $*$ be a binary over group $G$:
+\begin{eqnarray*}
+& G = \{e, a, b, c\}\\
+& e \neq a \neq b \neq c\\
+& (a * a) * a = b\\
+& e\;\text{is the neutral element in}\;G
+\end{eqnarray*}
+
+\subsection{A}
+We can proof every one of these statements by using a contradiction to the $(a * a) * a = b$ statement which was defined in this question's declarations.
+
+\begin{center}
+\begin{tabular}{c | c}
+a * a = e & a * a = b\\
+e * a = b & b * a = b\\
+\framebox{$e * a = e \neq b$} & \framebox{$e \neq a$, therefore $b * a \neq b$}\\
+\hline
+a * a = a & \\
+a * a = b & \\
+\framebox{$a * a = a \neq b$}
+\end{tabular}
+\end{center}
+
+\subsection{B}
+According to section $A$, $a * a \neq a, b, e$. According to the group's closure property, $a * a = a, b, c, e$. Therefore, $a * a = c$. Also, according to the question's declarations, $(a * a) * a = b$. Therefore, $c * a = (a * a) * a = b$.
+
+\subsection{C}
+According to sections $A$ and $B$, $e * e = a, c * a = b$ and $a * a = c$. Therefore, according to the reduction laws $b * a = e$. Therefore $b * a \neq a, b * a \neq b$ and $b * a \neq c$.
+\clearpage
+
+\subsection{D}
+The operation table:
+\begin{center}
+\begin{tabular}{c | c | c | c | c}
+* & a & b & c & e\\
+\hline
+a & c & e & b & a\\
+\hline
+b & e & c & a & b\\
+\hline
+c & b & a & e & c\\
+\hline
+e & a & b & c & e\\
+\end{tabular}
+\end{center}
+$e$'s line has been completed as it's the neutral element in $(G, *)$ and $a$'s line has been completed according to the results of section C. All of the other squares has been completed according to the reduction laws ("the sudoko property").
+
+\section{Question 3}
+\subsection{A}
+\setcounter{subsubsection}{-1}
+\subsubsection{Declarations}
+Let $(A, *)$ be the following set and binary operation:
+\begin{eqnarray*}
+& A = \{2n\;|\;n \in \mathbb{Z}\}\\
+& \text{For every}\;a,b \in A, a * b = a + b - ab
+\end{eqnarray*}
+
+\subsubsection{Closure}
+In order to show that $(A, *)$ operation implements closure, we need to show that it’s results belong to the A set. Since multiplication, addition and subtraction of even numbers is always even, everything we will assign to $a$ or $b$ will always return a value that belongs to $\mathbb{Z}$.
+
+\subsubsection{Associative Property}
+In order to show that the * operation has the associative property over A, we need to show that the results of $a * (b * c)$ and $(a * b) * c$ are equal. We can show that using the following explanation:
+\begin{eqnarray*}
+& a, b, c \in A\\
+& a * (b * c) = a * (b + c - bc) = a + (b + c - bc) - a(b + c - bc)\\
+& (a * b) * c = (a + b - ab) * c = (a + b - ab) + c - (a + b - ab)c\\
+& a + (b + c - bc) - a(b + c - bc) = (a + b - ab) + c - (a + b - ab)c\\
+& \cancel{a} + \cancel{b} + \cancel{c} - \cancel{bc} - \cancel{ab} - \cancel{ac} + \cancel{abc} = \cancel{a} + \cancel{b} - \cancel{ab} + \cancel{c} - \cancel{ac} - \cancel{bc} + \cancel{abc}\\
+& \framebox{$0 = 0$}
+\end{eqnarray*}
+
+\subsubsection{Neutral Element}
+In order to show that there's a neutral element in $(A, *)$, we need to show an element of $A$ that, when being used under the * operation, returns the other element of $A$ (aka $x * e = e * x = x$ for every $x \in A$). In this context, 0 is the neutral element in $A$, and we can show that using the following explanation:
+\begin{equation*}
+a, 0 \in A \Rightarrow
+a * 0 = a + 0 - 0 = a \Rightarrow
+0 * a = 0 + a - 0 = a \Rightarrow
+\framebox{$a * 0 = 0 * a = a$}
+\end{equation*}
+
+\subsubsection{Inverse Element}
+In order to show that there's an inverse element in $(A, *)$, we need to show an element of $A$ that, when being used under the * operation, returns the neutral element (aka $a * b = e$). We can show that there \emph{isn't} an inverse element in $A$ using the following counter-example:
+\begin{eqnarray*}
+& 8, b, 0 \in A\\
+& 8 * b = 0 \Rightarrow\\
+& 8 + b - 8b = 0 \Rightarrow\\
+& 8 - 7b = 0 \Rightarrow\\
+& 7b = 8\;/\;:7 \Rightarrow\\
+& \framebox{$b = \dfrac{8}{7} \not\in A$}
+\end{eqnarray*}
+
+\subsection{B}
+\setcounter{subsubsection}{-1}
+\subsubsection{Declarations}
+Let $(A, *)$ be the following set and binary operation:
+\begin{eqnarray*}
+& A = \mathbb{Q}\backslash\{1\}\\
+& \text{For every}\;a, b \in A, a * b = a + b - ab
+\end{eqnarray*}
+
+\subsubsection{Closure}
+In order to show that $(A, *)$ operation implements closure, we need to show that it’s results belong to the A set. In order for $(A, *)$ to \emph{not} show closure, we need to find $a, b \in \mathbb{Q}\backslash\{1\}$ that when they are being used under the $*$ operation, they will result in the number 1 (as it's the only rational number that is excluded from $A$). Since there aren't any two numbers that their sum is bigger than their multiplication without the number 1, we can show that there is, in fact, closure in $(A, *)$.
+
+\subsubsection{Associative Property}
+\framebox{Same explanation as in 3.1.2}
+
+\subsubsection{Neutral Element}
+\framebox{Same explanation as in 3.1.3}
+
+\subsubsection{Inverse Element}
+In order to show that there's an inverse element in $(A, *)$, we need to show an element of $A$ that, when being used under the * operation, returns the neutral element (aka $a * b = e$). We can show that there is an inverse element in $A$ using a proof by contradiction (should find $a, b, 0 \in A$ that $a * b \neq 0$).:
+\begin{eqnarray*}
+& 4, 1\frac{1}{3}, 0 \in A\\
+& 4 * 1\frac{1}{3} = 0\\
+& 4 + 1\frac{1}{3} - 5\frac{1}{3} = 0\\
+\end{eqnarray*}
+Therefore, if we will assign the values of $(4, 1\frac{1}{3})$ to $(a, b)$ then there will be a contradiction. Therefore, there is an inverse element in $(A, *)$.
+
+\section{Question 4}
+\setcounter{subsection}{-1}
+\subsection{Declarations}
+Let $(G, *)$ be a group and a binary operation.
+
+\subsection{A}
+\begin{eqnarray*}
+& a, a^{-1} \in G\\
+& (a * a^{-1}) * b = a * (a^{-1} * b)\;\text{- because of the associative property} \Rightarrow\\
+& a * (a^{-1} * b) = b\\
+& x = (a^{-1} * b) \in G\;\text{- because of closure}
+\end{eqnarray*}
+Therefore, $a * x = b$: for every $a, b \in G$ there's an element $x \in G$ so that $x = a^{-1} * b$, implying that $a * x = b$.
+
+\subsection{B}
+According to section A, we can say that $(a * b) * x = b * a$ (assigning $a * b$ and $b * a$). Therefore, because of the associative property, $a * (b * x) = b * a$ and according to the declarations then $b = b * x$. Therefore $x = e$ (the neutral element). Therefore $a * b = b * a$ because $(a * b) * x = b * a$ and the set implements commutativity.
+
+\end{document}

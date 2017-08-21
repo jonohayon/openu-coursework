@@ -1,0 +1,132 @@
+\documentclass[12pt, oneside]{article}
+\usepackage{geometry}
+\geometry{letterpaper}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+
+% Initializing graphicx
+\usepackage{graphicx}
+\graphicspath{{assets/}}
+
+% Custom Commands
+\newcommand{\img}[1] {
+	\includegraphics[scale=0.33]{#1}
+}
+
+\title{Maman 15}
+\author{Jonathan Ohayon}
+% No date cuz I'm living on the 3dge
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\framebox{\vbox{\textbf{WARNING:} I used some Hebrew terms in free translation to English (such as fixed points for "nekudot shevet") because I wasn't able to find their actual translation in the internet.}}
+\end{center}
+
+\section{Question 1}
+
+\setcounter{subsection}{-1}
+\subsection{Declarations}
+Let $f:\mathbb{Q} \rightarrow \mathbb{Q}\backslash\{-1\}$ and $g$ be the following function:
+\begin{equation*}
+\text{For every}\;x \in \mathbb{Q},\;g(x) = \dfrac{f(x)}{f(x) + 1}
+\end{equation*}
+
+\subsection{A}
+The $g$ function is defined from $\mathbb{Q}$ to $\mathbb{Q}\backslash\{1\}$ ($g: \mathbb{Q} \rightarrow \mathbb{Q}\backslash\{1\}$) because of the fact that in order to produce the number 1 using a fraction, both the numerator and the denominator \emph{have} to be equal. But, according to the declaration of $g$, the denominator always equals to the numerator plus 1. Therefore, $g: \mathbb{Q} \rightarrow \mathbb{Q}\backslash\{1\}$.
+
+\subsection{B}
+In order to show that $g$ is injective, we'll presume that $g(a) = g(b)$ and show that $a = b$.
+\begin{eqnarray*}
+& \frac{f(a)}{f(a) + 1} = \frac{f(b)}{f(b) + 1}\\
+& f(a) \cdot (f(b) + 1) = f(b) \cdot (f(a) + 1)\\
+& \cancel{f(a)f(b)} + f(a) = \cancel{f(b)f(a)} + f(b)\\
+& f(a) = f(b)\\
+& \text{Because $f$ is injective, }\framebox{$a = b$}
+\end{eqnarray*}
+Therefore, if $f$ is injective, $g$ is injective as well.
+\clearpage
+
+\subsection{C}
+\setcounter{subsubsection}{-1}
+\subsubsection{Declarations}
+Let $f$ be a surjective function and $y \in \mathbb{Q}\backslash\{1\}$.
+
+\subsubsection{Objective}
+In order to show that $g$ is a surjective function as well, we need to show that there is $x \in \mathbb{Q}$ that exists so that $g(x) = y$.
+
+\subsubsection{Actual Proof}
+Since we are looking for $x \in \mathbb{Q}$, we can assume (according to the question's declarations) that $y = \frac{f(x)}{f(x) + 1}$, or in other words that $f(x) = y(f(x) + 1) \Rightarrow y = (y  - 1)f(x) \Rightarrow f(x) = \frac{y}{1 - y}$, which means that $x \in \mathbb{Q}$ only exists if $\frac{y}{1 - y}$ is in $\mathbb{Q}\backslash\{-1\}$. First we'll show that if $y \in \mathbb{Q}\backslash\{1\}$, then $\frac{y}{1 - y} \in \mathbb{Q}\backslash\{-1\}$. Because $y$ is a rational number that is different than 1 and $\frac{y}{1 - y}$ is a rational number too. If we'll assume that $\frac{y}{1 - y} = -1$, we'll see that $y = y - 1$, which is a contradiction to the question's declaration - which means that $\frac{y}{1 - y} \in \mathbb{Q}\backslash\{-1\}$. That means that it's inside of $f$'s range. Because $f$ is a surjective function, $x \in \mathbb{Q}$ exists so that $f(x) = \frac{y}{1 - y}$. If we'll try to separate $y$ from the equation we'll find that $y = (y - 1)f(x) \Rightarrow f(x) = y(1 + f(x))$. Because $f(x) \neq -1$ (according to the declaration), we'll see that $y = \frac{f(x)}{f(x) + 1}$. Therefore, $g(x) = y$.
+
+\subsubsection{Conclusion}
+In conclusion, we showed that for every $x \in \mathbb{Q}$ there is a $y \in \mathbb{Q}\backslash\{1\}$ so that $g(x) = y$, which means that $g$ is surjective.
+
+\subsection{D}
+If $f$ is inverse it is bijective as well, which means (according to sections B and C of the question) that $g$ is bijective as well - which means that it's inverse as well.\\
+We can show that by using the following proof:\\
+Let $y \in \mathbb{Q}\backslash\{1\}$. Since $g$ is surjective, there is $x \in \mathbb{Q}$ so that $g(x) = y$, and because it's injective as well, $x$ is the only element of $\mathbb{Q}$ of which $g(x) = y$. Because of the declaration of $g$, $y = \frac{f(x)}{f(x) + 1} \Rightarrow f(x) = \frac{y}{1 - y}$. Because $f$ is inverse, $x = f^{-1}(\frac{y}{1 - y})$. Therefore, $g^{-1}(y) = f^{-1}(\frac{y}{1 - y})$.
+\clearpage
+
+\section{Question 2}
+\setcounter{subsection}{-1}
+\subsection{Declarations}
+Let $T$ be a set of the points on a circle named $O$ (excluding the surface of $O$). Let $f$ be an isometry so that $T$ is a constant set over it. Let $A, B \in T; d(A, B) = 2R$ aka $A, B$ are edges of a diameter of $O$.
+
+\subsection{A}
+Because $T$ is a constant set over $f$, $f(A), f(B) \in T$. Also, because $f$ is an isometry, $d(A, B) = d(f(A), f(B))$. Therefore, $d(f(A), f(B)) = 2R$ because $d(A, B) = 2R$.
+
+\subsection{B}
+$O$ is the middle of $AB$ and the middle of $f(A)f(B)$ is $f(O)$. Because $AB = f(A)f(B)$, $Af(O) = f(O)B = AO = BO$. Therefore, $f(O) = O$.
+
+\subsection{C}
+\begin{itemize}
+\item $f$ is not a translation nor a translated reflection since it has more than 0 fixed points.
+\item $f$ is not a rotation since it has more than 1 fixed points.
+\item $f$ is not the id function because of the question's declaration.
+\item \framebox{$f$ is a reflection.}
+\end{itemize}
+Therefore, $f$ is a reflection of which the reflection line is $AB$.
+
+\subsection{D}
+Let $E$ be the set of all of the points in the surface of circle $O$. For every $X \in E$, let $Y \in AB$ be a point on $AB$ in front of $X$. Because $f$ is an isometry, $d(X, Y) = d(f(X), f(Y))$. But since $Y \in AB$, $f(Y) = Y$, which means $d(X, Y) = d(f(X), f(Y)) = d(f(X), Y)$. Therefore, $f(X) \in E$ and $E$ is a constant set.
+\clearpage
+
+\section{Question 3}
+\setcounter{subsection}{-1}
+\subsection{Declarations}
+Let $f, g$ be isometries of a given surface and $A, B$ different points on that surface. It is known that $A, B$ are fixed points of the isometry $f \circ g$.
+
+\subsection{A}
+If $g$ is a reflection and $f$ is the id function (or vise versa), then $f \circ g$ doesn't have to be the id function.
+
+\subsection{B}
+Because of the fact that it is stated in the question that both $f$ and $g$ don't keep the "triangle trend"\footnote{My free translation to the phrase "megamat meshulashim" since I wasn't able to find an actual one anywhere.}, they cannot be either the id function, a rotation nor a translation. Therefore, they are either regular reflections or translated reflections.
+
+\begin{itemize}
+\item Since there are more than 0 fixed points, both $f$ and $g$ have to be the same thing (if not - $f \circ g$ couldn't be the id function nor a reflection).
+\item If both of them are reflections, they are inverted because they are on the same line (they have 2 fixed points).
+\item If both of them are translated reflections, the have to be inverted because if they weren't there would have not been any fixed points.
+\end{itemize}
+
+\subsection{C}
+Because $f$ and $g$ don't keep the "triangle trend"\footnote{Again, same translation.} they can be either a translated reflection or a regular reflection. However, since $f$ has a fixed point, $f$ is a regular reflection. Also, because $f \circ g$ is either the id function or a reflection, $g$ has to be either the id function itself or a reflection. Since the id function is not an option in this case, $g$ has to be a reflection and $f = g$.
+\clearpage
+
+\section{Question 4}
+\setcounter{subsection}{-1}
+\subsection{Declarations}
+Let $l_1, l_2, l_3$ be three lines, of which $l_2, l_3$ are parallel to each other and they are both vertical to $l_1$. Also, $f = S_{l_3} \circ S_{l_2} \circ S_{l_1}$.
+
+\subsection{A}
+We'll mark the point where $l_2$ intersects with $l_1$ using the letter $O$. Because $l_2$ is vertical to $l_1$, the angle between them equals $90^{\circ}$ and $S_{l_1} \circ S_{l_2}$ is a rotation of $180^{\circ}$ on $O$ in the direction from $l_1$ to $l_2$. In the same way, $S_{l_2} \circ S_{l_1}$ is a rotation of $180^{\circ}$ on $O$ in the direction from $l_2$ to $l_1$. But because they unite, $S_{l_2} \circ S_{l_1} = S_{l_1} \circ S_{l_2}$. We can show that $S_{l_1} \circ S_{l_3} = S_{l_3} \circ S_{l_1}$ in the same way, just by replacing $S_{l_2}$ with $S_{l_3}$.
+
+\subsection{B}
+The isometry $f \circ f$ is $(S_{l_3} \circ S_{l_2} \circ S_{l_1}) \circ (S_{l_3} \circ S_{l_2} \circ S_{l_1})$. $S_{l_3} \circ S_{l_2}$ moves in $2d$ (the distance between $l_2$ to $l_3$) in the direction from $l_2$ to $l_3$, which means that $S_{l_3} \circ S_{l_2} \circ S_{l_1}$ is $S_{l_1}$ moved to the right in $2d$ and after it's done twice it's cancelled because when something is reflected twice it goes back to its original place, and in total it is moved in $4d$ to the right.
+
+\subsection{C}
+A translated reflection isometry is constructed from 3 reflections so that 2 are parallel to each other and the third one intersects with them. Section B of the question is a great example of that, where we have shown that $f \circ f$ was a translation isometry because when you assemble a translated reflection with itself, the reflection gets cancelled (because it was done twice) and the extra translation is added to the other ones which were already done. In conclusion, an assembly of a translated reflection with itself is a regular translation because the reflection gets cancelled after it's done twice.
+
+\end{document}

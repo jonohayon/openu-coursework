@@ -1,0 +1,253 @@
+\documentclass[12pt, oneside]{article}
+\usepackage{geometry}
+\geometry{letterpaper}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+% Initializing graphicx
+\usepackage{graphicx}
+\graphicspath{{assets/}}
+
+% Custom Commands
+\newcommand{\img}[1] {
+	\includegraphics[scale=0.33]{#1}
+}
+
+\title{Maman 12}
+\author{Jonathan Ohayon}
+\date{November 27, 2016}
+
+\begin{document}
+\maketitle
+
+\section{Question 1}
+\setcounter{subsection}{-1}
+\subsection{Declarations}
+Let \emph{A} and \emph{B} be the following sets:
+\begin{equation*}
+A = \{1, \{2\}, \emptyset\}, B = \{1, 2\}
+\end{equation*}
+
+\subsection{A}
+Answer:
+\begin{equation*}
+\begin{split}
+& P(A) = \{\emptyset, \{1\}, \{\{2\}\}, \{\emptyset\}, \{1, \{2\}\}, \{\{2\}, \emptyset\}, \{1, \emptyset\}, A\}\\
+& P(B) = \{\emptyset, \{1\}, \{2\}, B\}
+\end{split}
+\end{equation*}
+
+\subsection{B}
+Answer:
+\begin{equation*}
+\begin{split}
+& P(A) \backslash P(B) = \{\{\{2\}\}, \{\emptyset\}, \{1, \{2\}\}, \{\{2\}, \emptyset\}, \{1, \emptyset\}, A\}\\
+& P(B) \backslash ֿP(A) = \{\{2\}, B\}
+\end{split}
+\end{equation*}
+\clearpage
+
+\subsection{C}
+Let $P(\emptyset)$ and $P(P(\emptyset))$ be the following sets:
+\begin{equation*}
+\begin{split}
+& P(\emptyset) = \{\emptyset\}\\
+& P(P(\emptyset)) = \{\emptyset, \{\emptyset\}\}
+\end{split}
+\end{equation*}
+The number of elements in $P(\emptyset)$ is 1 ($2^0$, since there are no elements in $\emptyset$), and the number of elements in $P(P(\emptyset))$ is 2 ($2^1$, since the number of elements in $P(\emptyset)$ is 1).\\
+Therefore, there cannot be a one to one correspondence between $P(\emptyset)$ and $P(P(\emptyset))$ ($P(\emptyset) \not\sim P(P(\emptyset))$).
+
+\section{Question 2}
+\subsection{A}
+Let \emph{D} and \emph{E} be the following sets and \emph{x}:
+\begin{equation*}
+D = (A \cup B) \cap (C \backslash A), E = (B \backslash A) \cap C, x \in D
+\end{equation*}
+Let's assume that $D \neq E$, in order to prove this using contradiction.\\
+If $x \in D$, then:
+\begin{equation*}
+\begin{split}
+& x \in A \cup B\;\text{and}\;x \in C \backslash A \Rightarrow \\
+& x \in A\;\text{or}\;B\;\text{and}\;x \in C\;\text{but}\;x \not\in A \Rightarrow \\
+& x \in B, C\;\text{and}\; x \not\in A\Rightarrow \\
+& x \in B \backslash A, \Rightarrow \\
+& x \in (B \backslash A) \cap C
+\end{split}
+\end{equation*}
+Therefore, $D \subseteq E$.\\
+If $x \in E$:
+\begin{equation*}
+\begin{split}
+& x \in B \backslash A\;\text{and}\;x \in C \Rightarrow \\
+& x \in B, C\;\text{and}\;x \not\in A \Rightarrow \\
+& x \in A \cup B\;\text{and}\;x \in C \Rightarrow \\
+& x \in (A \cup B) \cap (C \backslash A)
+\end{split}
+\end{equation*}
+Therefore, $E \subseteq D$.\\
+According to the results, $E \subseteq D$ and $D \subseteq E$. Therefore there's a contradiction between our assumption and the question's constants, and therefore $D = E$.
+
+\subsection{B}
+Yes. Let every $x \in (A \cup B) \backslash C$. Therefore:
+\begin{equation*}
+x \in A \backslash B \Rightarrow
+x \in A\;\text{and}\;x \not\in B \Rightarrow
+x \not\in C \Rightarrow
+x \in A \backslash C \Rightarrow
+(A \backslash C) \cap B = \emptyset
+\end{equation*}
+Therefore, $(A \backslash C) \cap B = \emptyset$.
+
+\subsection{C}
+Yes. We'll show that $A = B \cap C$. Let \emph{E} be a subset of \emph{A}, and \emph{I} a subset of $B \cap C$. In order to show equality between \emph{A} and $B \cap C$, we'll show a two way substitution:
+\begin{equation*}
+\begin{split}
+& E \in P(A) \Rightarrow E \subseteq B \cap C \Rightarrow E \in P(B) \cap P(C) \Rightarrow A \subseteq B \cap C\\
+& I \in P(A) \cap P(B) \Rightarrow I \in P(A) \Rightarrow I \subseteq A \Rightarrow B \cup C \subseteq A
+\end{split}
+\end{equation*}
+Therefore, $A = B \cap C$.
+
+\subsection{D}
+Yes. In order to show that $P(A \backslash B) = P(A) \backslash P(B)$, we'll show a two way substitution.
+For every $E \in P(A \backslash B)$:
+\begin{equation*}
+E \in P(A \backslash B) \Rightarrow E \in P(A)\;\text{and}\;E \not\in P(B) \Rightarrow E \in P(A) \backslash P(B)
+\end{equation*}
+Therefore, $P(A \backslash B) \subseteq P(A) \backslash P(B)$.\\
+\hfill\newline
+For every $K \in P(A) \backslash P(B)$:
+\begin{equation*}
+K \in P(A) \backslash P(B) \Rightarrow K \in P(A)\;\text{and}\;E \not\in P(B) \Rightarrow K \in P(A \backslash B)
+\end{equation*}
+Therefore, $P(A) \backslash P(B) \subseteq P(A \backslash B)$.\\
+\hfill\newline
+In conclusion, because there's a two way substitution between $P(A) \backslash P(B)$ and $P(A \backslash B)$, $P(A \backslash B)$ equals to $P(A) \backslash P(B)$.
+\clearpage
+
+\section{Question 3}
+\subsection{A}
+\setcounter{subsubsection}{-1}
+\subsubsection{Declarations}
+Let \emph{A} be a set with at least 2 elements that belong to it, and a binary operation * over it defined like so:
+\begin{center}
+For every $a, b \in A\;,\;a * b = b$.
+\end{center}
+
+\subsubsection{Closure}
+In order to show that the * operation implements closure over \emph{A}, we need to show that it's results belong to the \emph{A} set. Therefore, we can use the sentence which we used to define the operation to show that:
+\begin{center}
+For every $a, b \in A\;,\;a * b = b$
+\end{center}
+Since the result of $a * b$ is \emph{b}, which belongs to \emph{A}, the operation does implement closure.
+
+\subsubsection{Associative property}
+In order to show that the * operation has the associative property over \emph{A}, we need to show that the results of $a * (b * c)$ and $(a * b) * c$ are equal. We can show that using the following explanation:
+\begin{equation*}
+\begin{split}
+& a, b, c \in A\\
+& a * (b * c) = a * c = c\\
+& (a * b) * c = b * c = c\\
+\end{split}
+\end{equation*}
+Since both $a * (b * c)$ and $(a * b) * c$ equal \emph{c}, the operation has the associative property.
+\clearpage
+
+\subsubsection{Commutativity}
+In order to show that the * operation implements commutativity over \emph{A}, we need to show that the results of $a * b$ and $b * a$ are equal for every $a, b \in A$. We can show that doesn't happen over \emph{A} using the following counter example:
+\begin{equation*}
+\begin{split}
+& A = \mathbb{N}\\
+& 1 * 2 = 2\\
+& 2 * 1 = 1\\
+& 2 \neq 1
+\end{split}
+\end{equation*}
+Since $2 \neq 1$, the * operation does not implement commutativity.
+
+\subsubsection{Neutral element}
+In order to show that there's a neutral element in \emph{A} under the * operation, we need to show an element of \emph{A} that, when being used in the * operation, returns the other element of \emph{A} (aka $x * e = e * x = x$ for every $x \in A$). We can show that \emph{A} doesn't have a neutral element inside of it using the following counter example:
+\begin{center}
+$A = \{1, 2, 3\}$\\
+\hfill\break
+\begin{tabular}{c|c|c|c}
+* & 1 & 2 & 3\\
+\hline
+1 & 1 & 2 & 3\\
+\hline
+2 & 1 & 2 & 3\\
+\hline
+3 & 1 & 2 & 3
+\end{tabular}
+\end{center}
+Since the * operation returns the number to the right of the operator by definition, there isn't any element in the given \emph{A} set that can be used on every other element and return the latter.
+\clearpage
+
+\subsection{B}
+\setcounter{subsubsection}{-1}
+\subsubsection{Declarations}
+Let \emph{A} be a set that's not empty, and a binary operation * over it defined like so:
+\begin{center}
+For every $X, Y \in P(A)\;,\;X * Y = X \cup Y$.
+\end{center}
+
+\subsubsection{Closure}
+In order to show that the * operation implements closure over \emph{P(A)}, we need to show that it's results belong to the \emph{A} set. Therefore, we can use the declaration of $X, Y \in P(A)$ in order to show that $X * Y \in P(A)$:
+\begin{equation*}
+X \subseteq A\;\text{and}\;Y \subseteq A \Rightarrow
+X \cup Y \subseteq A \Rightarrow
+X \cup Y \in P(A) \Rightarrow
+X * Y \in P(A)
+\end{equation*}
+
+\subsubsection{Associative property}
+In order to show that the * operation has the associative property over \emph{P(A)}, we need to show that the results of $X * (Y * Z)$ and $(X * Y) * Z$ are equal. We can show that using the following explanation:
+\begin{equation*}
+\begin{split}
+& X, Y, Z \in P(A)\\
+& X * (Y * Z) = X * Y \cup Z = X \cup Y \cup Z\\
+& (X * Y) * Z = X \cup Y * Z = X \cup Y \cup Z\\
+\end{split}
+\end{equation*}
+
+\subsubsection{Commutativity}
+In order to show that the * operation implements commutativity over \emph{P(A)}, we need to show that the results of $K * L$ and $L * K$ are equal for every $K, L \in P(A)$. We can show that using the following examples:
+\begin{equation*}
+\begin{split}
+& \text{For every}\;K, L, M \in P(A)\\
+& K * L = K \cup L = L \cup K = L * K\\
+& K * M = K \cup M = M \cup K = M * K\\
+\end{split}
+\end{equation*}
+\clearpage
+
+\subsubsection{Neutral element}
+In order to show that there's a neutral element in \emph{P(A)} under the * operation, we need to show an element of \emph{P(A)} that, when being used in the * operation, returns the other element of \emph{P(A)} (aka $X * I = I * X = X$ for every $X \in P(A)$). We can show that \emph{P(A)} has a neutral element inside of it using the following example:
+\begin{equation*}
+\begin{split}
+& \emptyset, X \in P(A)\\
+& \emptyset * X = X * \emptyset = X \cup \emptyset = X
+\end{split}
+\end{equation*}
+
+\subsubsection{Inverse element}
+There isn't an inverse element in \emph{P(A)} under the * operation. We can show that using the following counter example:
+\begin{center}
+$A = \{1, 2\}, P(A) = \{\emptyset, \{1\}, \{2\}, A\}$\\
+\hfill\break
+\begin{tabular}{c|c|c|c|c}
+* & $\emptyset$ & \{1\} & \{2\} & A\\
+\hline
+$\emptyset$ & $\emptyset$ & \{1\} & \{2\} & A\\
+\hline
+\{1\} & \{1\} & \{1\} & A & A\\
+\hline
+\{2\} & \{2\} & A & \{2\} & A\\
+\hline
+A & A & A & A & A
+\end{tabular}
+\end{center}
+
+\end{document}
