@@ -1,0 +1,112 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{\R{#1}}]{}}
+\newcommand{\bidiarrow}[1]{\underset{\text{\R{#1}}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{\R{#1}}}{=}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{שאלה #3#2.#1}
+\newcommand{\m}[3]{משפט #3#2.#1}
+\newcommand{\h}[3]{הגדרה #3#2.#1}
+\newcommand{\ms}[3]{מסקנה #3#2.#1}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom commands for this document
+\newcommand{\rvec}[3]{\begin{bmatrix}#1 & #2 & #3\end{bmatrix}}
+\newcommand{\cvec}[3]{\begin{bmatrix}#1 \br #2 \br #3\end{bmatrix}}
+
+% Spacing
+\titlespacing\subsubsection{0pt}{5pt}{3pt}
+\setstretch{0.1}
+
+\title{ממן 21}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+
+%%%%% <Q1> %%%%%
+\section{שאלה 1}
+\setcounter{subsection}{-1}
+\subsection{טענת עזר}
+ראשית, נוכיח טענת עזר $A^kB = B^kA$ לכל $AB = BA$ באינדוקציה:
+\subsubsection{$n = 1$}
+$$A^1B = BA^1 \opr{} AB = BA$$
+נכון לפי הנתון.
+\subsubsection{נניח שנכון ל$n = k$ ונוכיח ל$n = k + 1$}
+$$A^{k + 1}B \ueq{\h{3}{6}{5.}} A^kAB \ueq{הנתון} A^kBA \ueq{הנחת האינדוקציה} BA^kA \ueq{\h{3}{6}{5.}} BA^{k + 1}$$
+
+עכשיו נוכל להשתמש בטענת העזר על מנת להוכיח את הטענה בשאלה.
+\subsection{הוכחה באינדוקציה}
+\subsubsection{$n = 1$}
+$$(AB)^1 = A^1B^1 \opr{} AB = AB$$
+
+\subsubsection{נניח שנכון ל$n = k$ ונוכיח ל$n = k + 1$}
+$$(AB)^{k + 1} \ueq{\h{3}{6}{5.}} AB(AB)^k \ueq{הנחת האינדוקציה} ABA^kB^k \ueq{טענת העזר} AA^kB^kB \ueq{\h{3}{6}{5.}} A^{k + 1}B^{k + 1}$$
+
+לכן, לכל $AB = BA$ מתקיים $(AB)^k = A^kB^k$.
+\br\qed
+\clearpage
+%%%%% </Q1> %%%%%
+
+%%%%% <Q2> %%%%%
+\section{שאלה 2}
+נניח ש$A$ הפיכה ומתקיים $A = \inv{A}$. לפיכך, $A^2 = I$, כלומר נצטרך למצוא את ערכי $k$  שבהם $A^2 = I$. ראשית, נכפיל את המטריצה $A$ בעצמה:
+\begin{align*}
+& [A^2]_{11} = \rvec{k}{0}{1}\cvec{k}{0}{-1} = k^2 - 1\\
+& [A^2]_{12} = \rvec{k}{0}{1}\cvec{0}{1}{0} = 0\\
+& [A^2]_{13} = \rvec{k}{0}{1}\cvec{1}{0}{-k} = 0\\
+& [A^2]_{21} = \rvec{0}{1}{0}\cvec{k}{0}{-1} = 0\\
+& [A^2]_{22} = \rvec{0}{1}{0}\cvec{0}{1}{0} = 1\\
+& [A^2]_{23} = \rvec{0}{1}{0}\cvec{1}{0}{-k} = 0\\
+& [A^2]_{31} = \rvec{-1}{0}{-k}\cvec{k}{0}{-1} = 0\\
+& [A^2]_{32} = \rvec{-1}{0}{-k}\cvec{0}{1}{0} = 0\\
+& [A^2]_{33} = \rvec{-1}{0}{-k}\cvec{1}{0}{-k} = k^2 - 1\\
+& A^2 = \begin{bmatrix}
+k^2 - 1 & 0 & 0\br
+0 & 1 & 0\br
+0 & 0 & k^2 - 1
+\end{bmatrix}
+\end{align*}
+כלומר, נצטרך למצוא את ערכי ה$k$ הפותרים את המשוואה $k^2 - 1 = 1 \opr{} k^2 = 2$. מכיוון שהמטריצה מעל השדה הסופי $\mZ_7$ נצטרך לבדוק את הריבוע של כל איבר בשדה. לאחר הבדיקה נמצא כי $k \in \{3, 4\}$. לפיכך, כאשר $k \in \{3, 4\}$, המטריצה $A$ הפיכה ומתקיים $\inv{A} = A$.
+\br\qed
+\clearpage
+%%%%% </Q2> %%%%%
+
+%%%%% <Q3> %%%%%
+\section{שאלה 3}
+\subsection{סעיף א}
+הוכחה:
+\begin{align*}
+& A^2 + AB + I = 0\\
+& AB = -A^2 - I\\
+& \inv{A} \cdot/ \cancel{A}B = \cancel{A}(-A - \inv{A})\\
+& B = -A - \inv{A}\\
+& B = (-A^2 - I)\cancel{\inv{A}}\;/\cdot A\\
+& BA = -A^2 - I\\
+& A^2 + BA + I = 0
+\end{align*}
+כעת, מכיוון ששתי המשוואות שוות ל$0$ נוכל להשוות אותם ולהגיע ל$AB = BA$:
+$$\cancel{A^2} + BA + \cancel{I} = \cancel{A^2} + AB + \cancel{I} \opr{} BA = AB$$
+\qed
+\clearpage
+%%%%% </Q3> %%%%%
+
+\end{document}
