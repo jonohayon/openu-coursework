@@ -118,8 +118,15 @@ $$AB \ueq{\R{לפי הנתון}} -BA \opr{} |AB| = |-BA| \opr{\m{4}{5}{1.}} (|A|
 
 %%%%% <Q4> %%%%%
 \section{שאלה 4}
-נניח ש$AB$ הפיכה ונגיע לסתירה.
-ראשית, ניווכח בעובדה ש$A$ הינה מסדר $m \times n$ כאשר $n < m$. לפיכך, נוכל לבצע מספר סופי של פעולות אלמנטריות ולקבל שורת אפסים. אם $AB$ הפיכה, אזי גם מטריצה מהצורה $A \cdot \varphi_k(I) \cdot \ldots \cdot \varphi_1(I) \cdot B$ הפיכה, אך יש בה שורת אפסים ולכן הגענו לסתירה להנחה ו$AB$ לא הפיכה.
+הוכחה:\br
+מכיוון שב$A$ יש יותר שורות מעמודות, ניתן להפוך אותה למטריצה עם שורת אפסים לאחר מספר של פעולות אלמנטריות:
+$$\exists\!\!\!\!\!\!\underbrace{\varphi_1, ..., \varphi_k}_{\text{\R{מטריצות אלמנטריות}}} \opr{} \underbrace{A \cdot \varphi_1 \cdot ... \cdot \varphi_k}_{\text{\R{מטריצה עם שורת אפסים}}}$$
+לפיכך, מתקיים ש:
+\begin{equation*}
+AB = A \cdot \underbrace{(\varphi_1 \cdot ... \cdot \varphi_k \cdot \inv{\varphi_k} \cdot ... \cdot \inv{\varphi_1})}_I \cdot B
+\ueq{\R{אסוציאטיביות}} \underbrace{(A \cdot \varphi_1 \cdot ... \cdot \varphi_k)}_{\text{\R{מטריצה עם שורת אפסים}}} \cdot (\inv{\varphi_k} \cdot ... \cdot \inv{\varphi_1} \cdot B)
+\end{equation*}
+מאחר ויש במטריצה זו שורת אפסים היא אינה הפיכה.
 \br\qed
 %%%%% </Q4> %%%%%
 
@@ -175,6 +182,7 @@ b + 2 & 1 & a - 2
 = 2
 \end{align*}
 לפיכך, $M_{32} = 2$ ו$\det{B} = -4$.
+
 \subsection{$\det{\inv{2B}}$}
 נחשב:
 \begin{align*}
