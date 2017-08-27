@@ -107,11 +107,10 @@ k^2 - 1 & 0 & 0\br
 $$\cancel{A^2} + BA + \cancel{I} = \cancel{A^2} + AB + \cancel{I} \opr{} BA = AB$$
 \qed
 
-\subsubsection{סעיף ב}
-נניח ש$A, B$ רגולריות ונגיע לסתירה.
+\subsection{סעיף ב}
+הוכחה:
 $$AB \ueq{\R{לפי הנתון}} -BA \opr{} |AB| = |-BA| \opr{\m{4}{5}{1.}} (|A||B| = \overbrace{-|B||A|}^{(*)} \bidiarrow{} |A| = 0 \lor |B| = 0)$$
-מכיוון שאנו מניחים ששתי המטריצות רגולריות, $|A| \neq 0 \land |B| \neq 0$ והגענו לסתירה.
-לפיכך, בהכרח לפחות אחת משתי המטריצות $A, B$ הינה סינגולרית.
+מכיוון שלפחות אחת מהמטריצות סינגולרית, $|A| = 0 \lor |B| = 0$ והתנאי תמיד מתקיים.
 יש לציין שב$(*)$ הסימן של הדטרמיננטה תמיד שווה למינוס, שכן הגורם המשותף $(-1)^n$ תמיד בחזקה אי זוגית )לפי הנתון בשאלה(.
 \br\qed
 \clearpage
@@ -119,8 +118,9 @@ $$AB \ueq{\R{לפי הנתון}} -BA \opr{} |AB| = |-BA| \opr{\m{4}{5}{1.}} (|A|
 
 %%%%% <Q4> %%%%%
 \section{שאלה 4}
-\L{TODO}
-\clearpage
+נניח ש$AB$ הפיכה ונגיע לסתירה.
+ראשית, ניווכח בעובדה ש$A$ הינה מסדר $m \times n$ כאשר $n < m$. לפיכך, נוכל לבצע מספר סופי של פעולות אלמנטריות ולקבל שורת אפסים. אם $AB$ הפיכה, אזי גם מטריצה מהצורה $A \cdot \varphi_k(I) \cdot \ldots \cdot \varphi_1(I) \cdot B$ הפיכה, אך יש בה שורת אפסים ולכן הגענו לסתירה להנחה ו$AB$ לא הפיכה.
+\br\qed
 %%%%% </Q4> %%%%%
 
 %%%%% <Q5> %%%%%
@@ -128,12 +128,12 @@ $$AB \ueq{\R{לפי הנתון}} -BA \opr{} |AB| = |-BA| \opr{\m{4}{5}{1.}} (|A|
 \subsection{$\det{B}$}
 ראשית, נפתח את הדטרמיננטה של $B$ בעזרת $R_3$:
 \begin{align*}
-|B| & = -a_{31}M_{31} + a_{32}M_{32} - a_{33}M_{33} + a_{34}M_{34}\\
-& = -0M_{31} + 2M{32} - 0M_{33} + 0M_{34}\\
-& = 0 + 2M_{32} + 0 + 0\\
-& = 2M_{32}
+|B| & = a_{31}M_{31} - a_{32}M_{32} + a_{33}M_{33} - a_{34}M_{34}\\
+& = 0M_{31} - 2M{32} + 0M_{33} - 0M_{34}\\
+& = 0 - 2M_{32} + 0 - 0\\
+& = -2M_{32}
 \end{align*}
-לפיכך, נצטרך רק לחשב את המינור $M_{32}$ ולהכפילו ב$2$ ע"מ לקבל את הדטרמיננטה של $B$.\br
+לפיכך, נצטרך רק לחשב את המינור $M_{32}$ ולהכפילו ב$-2$ ע"מ לקבל את הדטרמיננטה של $B$.\br
 כעת, נחשב את $M_{32}$:
 \begin{align*}
 M_{32} & = \begin{vmatrix}
@@ -145,7 +145,7 @@ M_{32} & = \begin{vmatrix}
 1 & 4 & 1\br
 2(a + 3) & 2(a - 1) & 2(b + 2)\br
 3 - 3b & -6 - 3b & 6 - 3a
-\end{vmatrix}\br
+\end{vmatrix}\\
 & \ueq{\m{4}{3}{3.}} 2\begin{vmatrix}
 1 & 4 & 1\br
 a + 3 & a - 1 & b + 2\br
@@ -155,7 +155,7 @@ a + 3 & a - 1 & b + 2\br
 1 & 4 & 1\br
 a + 3 & a - 1 & b + 2\br
 -3(b - 1) & -3(b + 2) & -3(a - 2)
-\end{vmatrix}\br
+\end{vmatrix}\\
 & \ueq{\m{4}{3}{3.}} -6\begin{vmatrix}
 1 & 4 & 1\br
 a + 3 & a - 1 & b + 2\br
@@ -165,7 +165,7 @@ b - 1 & b + 2 & a - 2
 a + 3 & a - 1 & b + 2\br
 1 & 4 & 1\br
 b - 1 & b + 2 & a - 2
-\end{vmatrix}\br
+\end{vmatrix}\\
 & \ueq{\m{4}{3}{1.}} 6\begin{vmatrix}
 a + 3 & 1 & b - 1\br
 a - 1 & 4 & b + 2\br
@@ -183,5 +183,53 @@ b + 2 & 1 & a - 2
 לכן, $\det{\inv{2B}} = \det{B} = -4$.
 \br\qed
 %%%%% </Q5> %%%%%
+
+%%%%% <Q6> %%%%%
+\section{שאלה 6}
+נחשב את הדטרמיננטה של $D$:
+\begin{align*}
+& D = \begin{vmatrix}
+0 & n & n & \dots & n\br
+n & 0 & n & \dots & n\br
+n & n & 0 & \dots & n\br
+\vdots & \vdots & \vdots & \ddots & \vdots\br
+n & n & n & \dots & 0
+\end{vmatrix}
+\underset{\substack{%
+	\forall 2 \leq i \leq n,\\\\ R_1 \opr{} R_1 + R_i
+}}{=} \begin{vmatrix}
+n(n-1) & n(n - 1) & n(n - 1) & \dots & n(n - 1)\br
+n & 0 & n & \dots & n\br
+n & n & 0 & \dots & n\br
+\vdots & \vdots & \vdots & \ddots & \vdots\br
+n & n & n & \dots & 0
+\end{vmatrix}\\
+& \ueq{\m{4}{3}{3.}} n(n - 1)\begin{vmatrix}
+1 & 1 & 1 & \dots & 1\br
+n & 0 & n & \dots & n\br
+n & n & 0 & \dots & n\br
+\vdots & \vdots & \vdots & \ddots & \vdots\br
+n & n & n & \dots & 0
+\end{vmatrix}
+\ueq{\m{4}{3}{3.}} n^{n-1} \cdot n(n - 1)\begin{vmatrix}
+1 & 1 & 1 & \dots & 1\br
+1 & 0 & 1 & \dots & 1\br
+1 & 1 & 0 & \dots & 1\br
+\vdots & \vdots & \vdots & \ddots & \vdots\br
+1 & 1 & 1 & \dots & 0
+\end{vmatrix}\\
+& \underset{\substack{%
+	\forall 2 \leq i \leq n,\\\\ R_i \opr{} R_i - R_1
+}}{=} n^n(n - 1)\begin{vmatrix}
+1 & 1 & 1 & \dots & 1\br
+0 & -1 & 0 & \dots & 0\br
+0 & 0 & -1 & \dots & 0\br
+\vdots & \vdots & \vdots & \ddots & \vdots\br
+0 & 0 & 0 & \dots & -1
+\end{vmatrix}
+\ueq{\m{4}{3}{8.}} n^n(n-1)(-1)^{n-1}
+\end{align*}
+\qed
+%%%%% </Q6> %%%%%
 
 \end{document}
