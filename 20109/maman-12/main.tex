@@ -17,16 +17,17 @@
 \newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
 \newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
 \newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
 
 % Custom text commands (for Hebrew)
 \newcommand{\q}[3]{\R{שאלה #3#2.#1}}
 \newcommand{\m}[3]{\R{משפט #3#2.#1}}
 \newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
 \newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
-\newcommand{\mR}{\mathbb{R}}
-\newcommand{\mN}{\mathbb{N}}
-\newcommand{\mZ}{\mathbb{Z}}
-\newcommand{\inv}[1]{#1^{-1}}
 
 % Custom commands for this document
 \newcommand{\rvec}[3]{\begin{bmatrix}#1 & #2 & #3\end{bmatrix}}
@@ -126,7 +127,12 @@ $$\exists\!\!\!\!\!\!\underbrace{\varphi_1, ..., \varphi_k}_{\text{\R{מטריצ
 AB = A \cdot \underbrace{(\varphi_1 \cdot ... \cdot \varphi_k \cdot \inv{\varphi_k} \cdot ... \cdot \inv{\varphi_1})}_I \cdot B
 \ueq{\R{אסוציאטיביות}} \underbrace{(A \cdot \varphi_1 \cdot ... \cdot \varphi_k)}_{\text{\R{מטריצה עם שורת אפסים}}} \cdot (\inv{\varphi_k} \cdot ... \cdot \inv{\varphi_1} \cdot B)
 \end{equation*}
-מאחר ויש במטריצה זו שורת אפסים היא אינה הפיכה.
+מאחר ויש במטריצה זו שורת אפסים היא אינה הפיכה\footnotemark.
+\footnotetext{%
+	\R{%
+מטריצה בעלת שורת אפסים אינה הפיכה מכיוון שלא קיימת מטריצה $B$ המקיימת $AB = I$. הוכחה לכך תהיה: נניח $[A]^r_k$ שורת אפסים. לפי הגדרת כפל מטריצות, $[AB]_{kj} = [A]^r_k [B]^c_j = 0 \cdot [B]^c_j = 0$, כלומר כל השורה ה$k$-ית של $AB$ תהיה שווה ל$0$. לפיכך, $AB \neq I$ בהכרח והיא אינה יכולה להיות הפיכה.
+	}
+}
 \br\qed
 %%%%% </Q4> %%%%%
 
@@ -183,12 +189,12 @@ b + 2 & 1 & a - 2
 \end{align*}
 לפיכך, $M_{32} = 2$ ו$\det{B} = -4$.
 
-\subsection{$\det{\inv{2B}}$}
+\subsection{$\det{\inv{-2B}}$}
 נחשב:
 \begin{align*}
-|\inv{2B}| \ueq{\m{4}{3}{3.}} 2^4|\inv{B}| = 16|\inv{B}| \ueq{$|\inv{A}| = \frac{1}{|A|}$} \frac{16}{|B|} = \frac{16}{-4} = -4
+|\inv{-2B}| \ueq{\m{4}{3}{3.}} (-2)^4|\inv{B}| = 16|\inv{B}| \ueq{$|\inv{A}| = \frac{1}{|A|}$} \frac{16}{|B|} = \frac{16}{-4} = -4
 \end{align*}
-לכן, $\det{\inv{2B}} = \det{B} = -4$.
+לכן, $\det{\inv{-2B}} = \det{B} = -4$.
 \br\qed
 %%%%% </Q5> %%%%%
 
@@ -239,5 +245,13 @@ n & n & n & \dots & 0
 \end{align*}
 \qed
 %%%%% </Q6> %%%%%
+
+%%%%% <Q7> %%%%%
+\section{שאלה 7}
+נניח שהמטריצה לא הפיכה ב$\mQ$ ונגיע לסתירה לנתון.
+
+לפי ההנחה ולפי \m{3}{01}{ז6.}, למערכת המשוואות $Ax = 0$ קיים פתרון לא טריוויאלי. מכיוון ש$x \in \mQ^n \land \mQ^n \subset \mR^n$, מתקיים $x \in \mR^n$ והוא פתרון לא טריוויאלי למשוואה כאשר היא מעל $\mR$. לפיכך, קיים פתרון לא טריוויאלי ל$Ax = 0$ מעל $\mR$ והגענו לסתירה לנתון. לפיכך, אם המטריצה הפיכה ב$\mQ$ היא הפיכה גם ב$\mR$.
+\br\qed
+%%%%% </Q7> %%%%%
 
 \end{document}
