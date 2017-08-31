@@ -35,6 +35,7 @@
 \newcommand{\Sp}[1]{\mathop{\operator@font Sp}#1}
 \makeatother
 \newcommand{\tot}[4]{\begin{bmatrix}#1 & #2\br#3 & #4\end{bmatrix}}
+\newcommand{\poreset}[2]{\item{הקבוצה הפורשת של $#1$: $#2$}}
 
 % Spacing
 \titlespacing\subsubsection{0pt}{5pt}{3pt}
@@ -79,14 +80,14 @@ z_2 = -2\cis{\frac{3\pi}{8}} \quad&\quad z_3 = -2\cis{\frac{7\pi}{8}}
 \section{שאלה 2}
 \subsection{סעיף א}
 \subsubsection{$K$}
-הוכחה ש$K$ הינו מרחב לינארי:
+כל איברי $K$ שייכים למרחב הלינארי $M^\mR_{2\times2}$ )לפי \q{7}{1}{3.}(. נוכיח ש$K$ הינו תת-מרחב לינארי של $M^\mR_{2\times2}$:
 \begin{align*}
 K & = \left\{\tot{a - 2c}{c + a}{b}{-c} \mid a,b,c \in \mR\right\}\\
 & = \left\{\tot{a}{a}{0}{0} + \tot{-2c}{c}{0}{c} + \tot{0}{0}{b}{0} \mid a,b,c \in \mR \right\}\\
 & = \left\{a\tot{1}{1}{0}{0} + c\tot{-2}{1}{0}{1} + b\tot{0}{0}{1}{0} \mid a,b,c \in \mR\right\}\\
 & = \Sp\left\{\tot{1}{1}{0}{0}, \tot{-2}{1}{0}{1}, \tot{0}{0}{1}{0}\right\}
 \end{align*}
-לפיכך, מצאנו קבוצה פורשת ל$K$. לפי \m{7}{5}{1.}, מכיוון שהצלחנו למצוא ל$K$ קבוצה פורשת הוא מרחב לינארי.
+לפיכך, מצאנו קבוצה פורשת ל$K$. לפי \m{7}{5}{1.}, מכיוון שהצלחנו למצוא ל$K$ קבוצה פורשת הוא תת-מרחב לינארי.
 \subsubsection{$L$}
 ראשית, נגיע לביטוי של $L$ בעזרת $x_2, x_3$:
 \begin{eqnarray*}
@@ -101,6 +102,69 @@ K & = \left\{\tot{a - 2c}{c + a}{b}{-c} \mid a,b,c \in \mR\right\}\\
 & = (4(t + x) + 10, t + x, s + y)\\
 \end{align*}
 מכיוון ש$4(t + x) + 10$ אינו ביטוי מהצורה $4x + 5$, הפעולה $+_L$ אינה סגורה ביחס ל$L$ והוא אינו מרחב לינארי.
+\subsubsection{$M$}
+כל איברי $M$ שייכים למרחב הלינארי $\mR_4[x]$ )לפי \q{7}{1}{9.}(. נוכיח ש$M$ הינו תת-מרחב לינארי של $\mR_4[x]$.
+\br
+לפי סימון 4.7.6 ולפי הגדרת $M$, ניתן לרשום את $p(x)$ בצורה הבאה:
+$$p(x) = a_0 + a_1x + a_2x^2 + a_3x^3$$
+כעת, נציב $x = 0$ ונקבל $p(0) = a_0$. באופן דומה, נוכל להציב $x = 1$ ו$x = -1$ ולקבל את המערכת הלינארית הבאה )לפי הגדרת $M$(:
+\begin{eqnarray*}
+\begin{matrix}
+\cancel{a_0} + a_1 + a_2 + a_3 = \cancel{a_0}\br
+\cancel{a_0} - a_1 + a_2 - a_3 = \cancel{a_0}
+\end{matrix}
+\opr{}
+\begin{matrix}
+0a_0 + a_1 + a_2 + a_3 = 0\br
+0a_0 - a_1 + a_2 - a_3 = 0
+\end{matrix}
+\end{eqnarray*}
+\clearpage
+כעת, נוכל לדרג אותה עד להגעה למטריצת מדרגות קנונית ולקבל את הצורה הכללית של איבר ב$M$:
+\begin{align*}
+& \begin{bmatrix}
+0 & 1 & 1 & 1\br
+0 & -1 & 1 & -1
+\end{bmatrix}
+\opr{$R_2 \opr{} R_2 + R_1$}
+\begin{bmatrix}
+0 & 1 & 1 & 1\br
+0 & 0 & 2 & 0
+\end{bmatrix}
+\opr{$R_2 \opr{} \frac{1}{2}R_2$}\br
+& \begin{bmatrix}
+0 & 1 & 1 & 1\br
+0 & 0 & 1 & 0
+\end{bmatrix}
+\opr{$R_1 \opr{} R_1 - R_2$}
+\begin{bmatrix}
+0 & 1 & 0 & 1\br
+0 & 0 & 1 & 0
+\end{bmatrix}
+\opr{}
+\begin{matrix}
+& a_0 = 0\br
+& a_1 = -a_3\br
+& a_2 = t
+\end{matrix}
+\end{align*}
+לכן, כל $p(x) \in M$ הינו מהצורה $0a_0 + a_1x + a_2x^2 - a_1x^3$. נוכל לסמן את $M$ כך כעת:
+\begin{align*}
+M
+& = \left\{p(x) \in \mR_4[x] \mid p(x) = 0a_0 + a_1x + a_2x^2 - a_1x^3 \right\}\\
+& = \left\{p(x) \in \mR_4[x] \mid p(x) = 0a_0 + a_1(x - x^3) + a_2x^2 \right\}\\
+& = \Sp\left\{0, x - x^3, x^2\right\}
+\end{align*}
+לפיכך, מצאנו קבוצה פורשת ל$M$. לפי \m{7}{5}{1.}, מכיוון שהצלחנו למצוא ל$M$ קבוצה פורשת הוא תת-מרחב לינארי.
+\br\qed
+
+\subsection{סעיף ב}
+לפי תוצאות סעיף א, נוכל לראות שמצאנו ש$K$ ו$M$ הינם מרחבים לינארים )ובפרט תת-מרחבים של $M^\mR_{2\times2}$ ושל $R_4[x]$, בהתאמה(, בעזרת מציאת קבוצות הפורשות אותם. לפיכך הקבוצות הפורשות הן:
+\begin{itemize}
+\poreset{K}{\left\{\tot{1}{1}{0}{0}, \tot{-2}{1}{0}{1}, \tot{0}{0}{1}{0}\right\}}
+\poreset{M}{\left\{0, x - x^3, x^2\right\}}
+\end{itemize}
+\qed
 %%%%% </Q2> %%%%%
 
 \end{document}
