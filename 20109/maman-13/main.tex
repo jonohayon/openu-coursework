@@ -1,0 +1,106 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+
+% Custom commands for this document
+\makeatletter
+\newcommand{\cis}[1]{\mathop{\operator@font cis}#1}
+\newcommand{\Sp}[1]{\mathop{\operator@font Sp}#1}
+\makeatother
+\newcommand{\tot}[4]{\begin{bmatrix}#1 & #2\br#3 & #4\end{bmatrix}}
+
+% Spacing
+\titlespacing\subsubsection{0pt}{5pt}{3pt}
+\setstretch{0.1}
+
+\title{ממן 31}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+
+%%%%% <Q1> %%%%%
+\section{שאלה 1}
+ראשית, נפתח את הסוגריים ונגיע לערכו של $z^4$:
+\begin{align*}
+z^4 & = (1 + i)^6 - (1 - i)^6\\
+& = ((1 + i)(1 + i)^2)^2 - ((1 - i)(1 - i)^2)^2\\
+& = ((1 + i)(\cancel{1} + 2i - \cancel{1}))^2 - ((1 - i)(\cancel{1} - 2i - \cancel{1}))^2\\
+& = (2i - 2)^2 - (2i + 2)^2\\
+& = \cancel{-4} - 8i + \cancel{4} - (\cancel{4} + 8i - \cancel{4})\\
+& = -8i - 8i\\
+& = -16i
+\end{align*}
+\def\AT{\frac{3\pi}{2}}
+לפיכך, $z^4 = -16i$. כעת נסתכל על מיקום הנקודה $0 - 16i$ על מישור המספרים המרוכבים ונגלה שהיא נמצאת $-16$ יחידות על ציר המרוכבים ו$0$ יחידות על ציר הממשיים, כלומר ההצגה הקוטבית שלה הינה $16\cis{\AT}$ )שכן $\cis{\AT} = \cos{\AT}+i\sin{\AT} = 0 - i = -i$(. כעת, נוכל למצוא את השורשים של $z^4$ בעזרת הנוסחה בעמוד 78:
+\begin{align*}
+z & = \sqrt[4]{16}(\cis{\frac{\alpha + 2 \pi k}{4}})\\
+& = 2\cis{\frac{\AT + 2 \pi k}{4}}\\
+& = 2\cis{\frac{3 \pi + 2 \pi k}{8}}
+\end{align*}
+כעת, נציב $k \in \{0, 1, 2, 3\}$:
+\begin{align*}
+z_0 = 2\cis{\frac{3\pi}{8}} \quad&\quad z_1 = 2\cis{\frac{7\pi}{8}}\\\\
+z_2 = -2\cis{\frac{3\pi}{8}} \quad&\quad z_3 = -2\cis{\frac{7\pi}{8}}
+\end{align*}
+ואלו הם ערכי $z$.
+\br\qed
+%%%%% </Q1> %%%%%
+\clearpage
+
+%%%%% <Q2> %%%%%
+\section{שאלה 2}
+\subsection{סעיף א}
+\subsubsection{$K$}
+הוכחה ש$K$ הינו מרחב לינארי:
+\begin{align*}
+K & = \left\{\tot{a - 2c}{c + a}{b}{-c} \mid a,b,c \in \mR\right\}\\
+& = \left\{\tot{a}{a}{0}{0} + \tot{-2c}{c}{0}{c} + \tot{0}{0}{b}{0} \mid a,b,c \in \mR \right\}\\
+& = \left\{a\tot{1}{1}{0}{0} + c\tot{-2}{1}{0}{1} + b\tot{0}{0}{1}{0} \mid a,b,c \in \mR\right\}\\
+& = \Sp\left\{\tot{1}{1}{0}{0}, \tot{-2}{1}{0}{1}, \tot{0}{0}{1}{0}\right\}
+\end{align*}
+לפיכך, מצאנו קבוצה פורשת ל$K$. לפי \m{7}{5}{1.}, מכיוון שהצלחנו למצוא ל$K$ קבוצה פורשת הוא מרחב לינארי.
+\subsubsection{$L$}
+ראשית, נגיע לביטוי של $L$ בעזרת $x_2, x_3$:
+\begin{eqnarray*}
+& x_1 = 2x_1 - 4x_2 - 5 \opr{} -x_1 = -4x_2 - 5 \opr{} x_1 = 4x_2 + 5\\
+& \downarrow\\
+& L = \left\{(4x_2 + 5, x_2, x_3) \mid x_2,x_3 \in \mR \right\}
+\end{eqnarray*}
+נניח בשלילה ש$L$ מרחב לינארי. ננסה להוכיח סגירות של הפעולה $+_L$ )שהיא חיבור $n$-יות( ונגיע לסתירה:
+\begin{align*}
+(4t + 5, t, s) +_L (4x + 5, x, y)
+& = (4t + 4x + 10, t + x, s + y)\\
+& = (4(t + x) + 10, t + x, s + y)\\
+\end{align*}
+מכיוון ש$4(t + x) + 10$ אינו ביטוי מהצורה $4x + 5$, הפעולה $+_L$ אינה סגורה ביחס ל$L$ והוא אינו מרחב לינארי.
+%%%%% </Q2> %%%%%
+
+\end{document}
