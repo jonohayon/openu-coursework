@@ -1,0 +1,101 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+\newcommand{\at}[1]{\;\text{\R{)לפי סעיף #1(}}}
+\newcommand{\prev}{\;\text{\R{)לפי הסעיף הקודם(}}}
+
+% Custom commands for this document
+
+% Spacing
+\titlespacing\subsubsection{0pt}{5pt}{3pt}
+\setstretch{0.1}
+
+\title{ממן 31}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+
+%%%%% <Q1> %%%%%
+\section{שאלה 1}
+\subsection{הקבוצות}
+\begin{align*}
+& A = [-1, 1]\\
+& B = [0, 2]\\
+& A - B = [-1, 0)\\
+& A \oplus B = \{ x \in \mR \mid x \in [-1, 2] \;\land\; x \not\in (0, 1) \}\\
+& A \cup B = [-1, 2]
+\end{align*}
+
+\subsection{עוצמת הקבוצות}
+לפי \m{4}{5}{}, ניתן להסיק כי העוצמה של קטעים פתוחים וסגורים הינה $C$. לפיכך, כל הקבוצות $A, B, A - B, A \oplus B, A \cup B$ הינם שוות-עוצמה ועוצמתן הינה $C$.
+\subsection{שונות הקבוצות}
+א. נראה ש$A$ שונה משאר הקבוצות:
+\begin{align*}
+& -1 \in A \land -1 \not\in B \opr{} A \neq B\\
+& 0 \in A \land 0 \not\in A - B \opr{} A \neq A - B\\
+& 0.5 \in A \land 0.5 \not\in A \oplus B \opr{} A \neq A \oplus B\\
+& 2 \not\in A \land 2 \in A \cup B \opr{} A \neq A \cup B
+\end{align*}
+ב. נראה ש$B$ שונה משאר הקבוצות:
+\begin{align*}
+& A \neq B \at{א}\\
+& 0 \in B \land 0 \not\in A - B \opr{} B \neq A - B\\
+& 0.5 \in B \land 0.5 \not\in A \oplus B \opr{} B \neq A \oplus B\\
+& -1 \not\in B \land -1 \in A \cup B \opr{} B \neq A \cup B
+\end{align*}
+\clearpage
+
+ג. נראה ש$A - B$ שונה משאר הקבוצות:
+\begin{align*}
+& A \neq A - B \at{א}\\
+& B \neq A - B \at{ב}\\
+& 2 \not\in A - B \land 2 \in A \oplus B \opr{} A - B \neq A \oplus B\\
+& 2 \not\in A - B \land 2 \in A \cup B \opr{} A - B \neq A \cup B\\
+\end{align*}
+ד. נראה ש$A \oplus B$ שונה משאר הקבוצות:
+\begin{align*}
+& A \neq A \oplus B \at{א}\\
+& B \neq A \oplus B \at{ב}\\
+& A - B \neq A \oplus B \at{ג}\\
+& 0.5 \not\in A \oplus B \land 0.5 \in A \cup B \opr{} A \oplus B \neq A \cup B
+\end{align*}
+ה. נראה ש$A \cup B$ שונה משאר הקבוצות:
+\begin{align*}
+& A \neq A \cup B \at{א}\\
+& B \neq A \cup B \at{ב}\\
+& A - B \neq A \cup B \at{ג}\\
+& A - B \neq A \cup B \at{ד}\\
+\end{align*}
+לפיכך, הצלחנו למצוא קבוצות $A, B, A - B, A \oplus B, A \cup B$ כך שעוצמותיהן שוות אך הן שונות אחת מהשנייה.
+\br\qed
+%%%%% </Q1> %%%%%
+
+\end{document}
