@@ -120,7 +120,7 @@ $$M = \bigcup^\infty_{0 \le i \le n} T_i$$
 \subsection{סעיף ג}
 תהי $L$ קבוצת תת הקבוצות האינסופיות של $\mN$. נניח בשלילה ש$|L| = \aleph_0$ ונגיע לסתירה:
 
-י$\mathcal{P}(\mN)$ היא קבוצת כל תת הקבוצות של $\mN$. לפיכך, $\mathcal{P}(\mN) = M \cup L$. לפיכך,
+$\mathcal{P}(\mN)$ היא קבוצת כל תת הקבוצות של $\mN$. לפיכך, $\mathcal{P}(\mN) = M \cup L$. לפיכך,
 $$|M| + |L| = |\mathcal{P}(\mN)| \opr{\at{ב}} \aleph_0 + \aleph_0 = C$$
 והגענו לסתירה. לפיכך, $L$ היא אינה בת מנייה.
 \br\qed
@@ -131,7 +131,7 @@ $$|M| + |L| = |\mathcal{P}(\mN)| \opr{\at{ב}} \aleph_0 + \aleph_0 = C$$
 
 \subsection{סעיף ה}
 \subsubsection{$i$}
-$$\aleph_0 = |\{\emptyset\} \cup \left\{\left\{X \in \mathcal{P}(\mN) \mid |X| = i \right\} \mid i \in \mN \land i > 0 \right\}|$$
+$$\aleph_0 = |\{\emptyset\} \cup \left\{X \in \mathcal{P}(\mN) \mid i \in \mN \land i > 0 \land |X| = i \right\}|$$
 \qed
 
 \subsubsection{$ii$}
@@ -141,14 +141,37 @@ $$C = |\left\{X \in \mathcal{P}(\mN) \mid |X| = \aleph_0 \right\}|$$
 
 %%%%% <Q3> %%%%%
 \section{שאלה 3}
-דוגמה נגדית:
+לפי הגדרת הפעולה בשאלה, העוצמות $k, m$ אינן שונות אחת מהשנייה בהכרח, וכאשר נבצע את הפעולה $\oplus$ פעמיים על עוצמות שוות נצפה לקבל את אותה תוצאה. נראה דוגמה נגדית שבה אין זה המצב:
+\subsubsection{דוגמה א}
 \begin{align*}
-& A = \{1, 2, 3\},\ B = \{2, 3\},\ A \oplus B = \{1\}\\
-& |A| = 3,\ |B| = 2,\ |A \oplus B| = 1\\
-& |A| \oplus |B| = (|A| - |B|) + (|B| - |A|) = 1 - 1 = 0\\
-& |A| \oplus |B| \neq |A \oplus B|
+& A = \{2\},\ B = \{3\},\ A \oplus B = \{2, 3\}\\
+& |A| = |B| = 1,\ |A| \oplus |B| = 1 \oplus 1 = 2
 \end{align*}
-\qed
+
+\subsubsection{דוגמה ב}
+\begin{align*}
+& A = B = \{2\},\ A \oplus B = \emptyset\\
+& |A| = |B| = 1,\ |A| \oplus |B| = 1 \oplus 1 = 0
+\end{align*}
+לפיכך, הגדרת הפעולה אינה תקינה.
+\br\qed
+\clearpage
 %%%%% </Q3> %%%%%
+
+%%%%% <Q4> %%%%%
+\section{שאלה 4}
+\subsection{סעיף א}
+יהיו $A_2, B_2$ קבוצות כאשר $|A_2| = k_2, |B_2| = m_2$. לפי \q{5}{1}{א}, קיימת $A_1 \subseteq A_2$ כך ש$|A_1| = k_1$ ו$B_1 \subseteq B_2$ כך ש$|B_1| = m_1$. מהגדרת כפל עוצמות נקבל
+$$k_1m_1 = |A_1 \times B_1|,\ k_2m_2 = |A_2 \times B_2|$$
+מהגדרת מכפלה קרטזית נקבל $A_1 \times B_1 \subseteq A_2 \times B_2$. לפיכך ולפי \q{5}{1}{ב}, נקבל ש$k_1m_1 \le k_2m_2$.
+\subsection{סעיף ב}
+מצד אחד מתקיים $\aleph_0 \le C \opr{} \aleph_0 \cdot C \le C \cdot C$ ומצד שני מתקיים $1 \le \aleph_0 \opr{} C = 1 \cdot C \le \aleph_0 \cdot C$.
+
+לכן, לפי משפט קנטור-שרדר-ברנשטיין נובע ש$\aleph_0 \cdot C = C$.
+\subsection{סעיף ג}
+הוכחה:
+$$C^C \ueq{\m{5}{62}{}} 2^{\aleph_0 \cdot C} \ueq{\at{ב}} 2^C$$
+\qed
+%%%%% </Q4> %%%%%
 
 \end{document}
