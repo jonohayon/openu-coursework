@@ -15,6 +15,7 @@
 \newcommand{\qed}{\R{$\blacksquare$}}
 \newcommand{\br}{\\\\\\\\\\\\\\}
 \newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\oprm}[1]{\underset{\substack{#1}}{\longrightarrow}}
 \newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
 \newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
 \newcommand{\mR}{\mathbb{R}}
@@ -35,6 +36,7 @@
 \newcommand{\Sp}[1]{\mathop{\operator@font Sp}#1}
 \makeatother
 \newcommand{\tot}[4]{\begin{bmatrix}#1 & #2\br#3 & #4\end{bmatrix}}
+\newcommand{\fcol}[4]{\begin{bmatrix}#1 \br #2\br#3 \br #4\end{bmatrix}}
 \newcommand{\poreset}[2]{\item{הקבוצה הפורשת של $#1$: $#2$}}
 
 % Spacing
@@ -131,7 +133,7 @@ $$p(x) = a_0 + a_1x + a_2x^2 + a_3x^3$$
 0 & 1 & 1 & 1\br
 0 & 0 & 2 & 0
 \end{bmatrix}
-\opr{$R_2 \opr{} \frac{1}{2}R_2$}\br
+\opr{$R_2 \opr{} \frac{1}{2}R_2$}\\
 & \begin{bmatrix}
 0 & 1 & 1 & 1\br
 0 & 0 & 1 & 0
@@ -153,7 +155,7 @@ $$p(x) = a_0 + a_1x + a_2x^2 + a_3x^3$$
 M
 & = \left\{p(x) \in \mR_4[x] \mid p(x) = 0a_0 + a_1x + a_2x^2 - a_1x^3 \right\}\\
 & = \left\{p(x) \in \mR_4[x] \mid p(x) = 0a_0 + a_1(x - x^3) + a_2x^2 \right\}\\
-& = \Sp\left\{0, x - x^3, x^2\right\}
+& = \Sp\left\{x - x^3, x^2\right\}
 \end{align*}
 לפיכך, מצאנו קבוצה פורשת ל$M$. לפי \m{7}{5}{1.}, מכיוון שהצלחנו למצוא ל$M$ קבוצה פורשת הוא תת-מרחב לינארי.
 \br\qed
@@ -162,9 +164,335 @@ M
 לפי תוצאות סעיף א, נוכל לראות שמצאנו ש$K$ ו$M$ הינם מרחבים לינארים )ובפרט תת-מרחבים של $M^\mR_{2\times2}$ ושל $\mR_4[x]$, בהתאמה(, בעזרת מציאת קבוצות הפורשות אותם. לפיכך הקבוצות הפורשות הן:
 \begin{itemize}
 \poreset{K}{\left\{\tot{1}{1}{0}{0}, \tot{-2}{1}{0}{1}, \tot{0}{0}{1}{0}\right\}}
-\poreset{M}{\left\{0, x - x^3, x^2\right\}}
+\poreset{M}{\left\{x - x^3, x^2\right\}}
 \end{itemize}
 \qed
+\clearpage
 %%%%% </Q2> %%%%%
+
+%%%%% <Q3> %%%%%
+\section{שאלה 3}
+\subsection{סעיף א}
+יהי $U$ תת מרחב לינארי של $\mZ^4_5$ מעל $\mZ_5$ הנפרש ע"י קבוצה $P$:
+\begin{align*}
+& P = \left\{(1, 2, 1, 2), (2, 3, 1, 4), (3, 1, 2, 1)\right\}\\
+& U = \Sp{P}
+\end{align*}
+נרצה להוכיח ש$P$ הינה בסיס של $U$, כלומר פורשת את $U$ ובת"ל בו. מכיוון שנתון ש$P$ פורשת את $U$, נוכיח ש$P$ הינה בת"ל ב$U$:
+\begin{align*}
+& Px = 0 \opr{} \begin{bmatrix}
+1 & 2 & 3 & | & 0\br
+2 & 3 & 1 & | & 0\br
+1 & 1 & 2 & | & 0\br
+2 & 4 & 1 & | & 0
+\end{bmatrix}
+\oprm{%
+R_2 \bidiarrow{} R_3\\
+R_2 \opr{} R_2 - R_1\\
+R_3 \opr{} R_3 - 2R_1\\
+R_4 \opr{} R_4 - 2R_1
+}
+\begin{bmatrix}
+1 & 2 & 3 & | & 0\br
+0 & 4 & 4 & | & 0\br
+0 & 4 & 0 & | & 0\br
+0 & 0 & -5 & | & 0
+\end{bmatrix}\\
+& \oprm{%
+R_2 \bidiarrow{} R_3\\
+R_2 \opr{} \frac{1}{4} R_2\\
+R_3 \opr{} \frac{1}{4} R_3
+}
+\begin{bmatrix}
+1 & 2 & 3 & | & 0\br
+0 & 1 & 0 & | & 0\br
+0 & 1 & 1 & | & 0\br
+0 & 0 & -5 & | & 0
+\end{bmatrix}
+\oprm{%
+R_1 \opr{} R_1 - 2R_2\\
+R_3 \opr{} R_3 - R_2\\
+R_1 \opr{} R_1 - 3R_3\\
+R_4 \opr{} R_4 + 5R_3
+}
+\begin{bmatrix}
+1 & 0 & 0 & | & 0\br
+0 & 1 & 0 & | & 0\br
+0 & 0 & 1 & | & 0\br
+0 & 0 & 0 & | & 0
+\end{bmatrix}
+\end{align*}
+מכיוון שהפתרון למערכת הלינארית $Px = 0$ הינו הפתרון הטריוויאלי, $P$ הינה בת"ל. לפיכך, $P$ בסיס של $U$ ולפי \h{8}{3}{3.} מתקיים
+$$\dim{U} = |P| = 3$$
+כנדרש.
+\br\qed
+\clearpage
+%%%%% </Q3> %%%%%
+
+%%%%% <Q4> %%%%%
+\section{שאלה 4}
+\subsection{סעיף א}
+\setcounter{subsubsection}{-1}
+\subsubsection{הגדרות}
+יהי $E$ הבסיס הסטנדרטי של $M^\mR_{2x2}$:
+$$E = \left\{
+\tot{1}{0}{0}{0},
+\tot{0}{1}{0}{0},
+\tot{0}{0}{1}{0},
+\tot{0}{0}{0}{1}
+\right\}$$
+
+\subsubsection{בסיס ל$U$}
+תהי $K$ קבוצה פורשת של $U$:
+$$K = \left\{
+k_1 = \tot{1}{1}{0}{2},
+k_2 = \tot{2}{1}{1}{1},
+k_3 = \tot{1}{-1}{0}{2},
+k_4 = \tot{1}{-3}{1}{-1}
+\right\}$$
+נעבור להצגת קואורדינטות בעזרת הבסיס הסטנדרטי $E$:
+\begin{center}
+\begin{tabular}{c c}
+$[k_1]_E = \fcol{1}{1}{0}{2}$ & $[k_2]_E = \fcol{2}{1}{1}{1}$\br
+$[k_3]_E = \fcol{1}{-1}{0}{2}$ & $[k_2]_E = \fcol{1}{-3}{1}{-1}$\br
+\end{tabular}
+\end{center}
+נעבור להצגה מטריציונית ונדרג:
+\begin{align*}
+& \begin{bmatrix}
+1 & 1 & 0 & 2\br
+2 & 1 & 1 & 1\br
+1 & -1 & 0 & 2\br
+1 & -3 & 1 & -1
+\end{bmatrix}
+\oprm{%
+R_2 \opr{} R_2 - 2R_1\\
+R_3 \opr{} R_3 - R_1\\
+R_4 \opr{} R_4 - R_1
+}
+\begin{bmatrix}
+1 & 1 & 0 & 2\br
+0 & -1 & 1 & -3\br
+0 & -2 & 0 & 0\br
+0 & -4 & 1 & -3
+\end{bmatrix}
+\oprm{%
+R_2 \opr{} -R_2\\
+R_3 \opr{} R_3 + 2R_2\\
+R_4 \opr{} R_4 + 4R_2
+}
+\begin{bmatrix}
+1 & 1 & 0 & 2\br
+0 & 1 & -1 & 3\br
+0 & 0 & -2 & 6\br
+0 & 0 & -3 & 9
+\end{bmatrix}\\
+& \oprm{%
+R_3 \opr{} \frac{1}{2} R_3\\
+R_4 \opr{} \frac{1}{4} R_4\\
+R_4 \opr{} R_4 - R_3
+}
+\begin{bmatrix}
+1 & 1 & 0 & 2\br
+0 & 1 & -1 & 3\br
+0 & 0 & -1 & 3\br
+0 & 0 & 0 & 0
+\end{bmatrix}
+\oprm{%
+R_3 \opr{} -R_3\\
+R_2 \opr{} R_2 + R_3\\
+R_1 \opr{} R_1 - R_2
+}
+\begin{bmatrix}
+1 & 0 & 0 & 2\br
+0 & 1 & 0 & 0\br
+0 & 0 & 1 & -3\br
+0 & 0 & 0 & 0
+\end{bmatrix}
+\end{align*}
+נבחר את שורות המטריצה המדורגת השונות מ$0$ ונקבל את הבסיס ל$U$:
+$$B_U = \left(\tot{1}{0}{0}{2},\tot{0}{1}{0}{0},\tot{0}{0}{1}{-3}\right)$$
+\qed
+\clearpage
+
+\subsubsection{בסיס ל$W$}
+תהי $G$ קבוצה פורשת של $W$:
+$$G = \left\{
+g_1 = \tot{4}{2}{1}{0},
+g_2 = \tot{2}{1}{0}{-1}
+\right\}$$
+לפי \q{8}{2}{5.}, נוכל להכפיל את איברי הקבוצה הפורשת במשתנים $\alpha, \beta \in \mR$, לייצג כמערכת משוואות ולדרג:
+\begin{eqnarray*}
+& \alpha\tot{4}{2}{1}{0} + \beta\tot{2}{1}{0}{-1} = \tot{0}{0}{0}{0} \opr{}
+\tot{4\alpha + 2\beta}{2\alpha + 1\beta}{1\alpha+ 0\beta}{0\alpha + (-1)\beta} = \tot{0}{0}{0}{0}\\
+& \downarrow\\
+& \begin{matrix}
+4\alpha + 2\beta = 0\br
+2\alpha + 1\beta = 0\br
+(*)\ 1\alpha+ 0\beta = 0\br
+(*)\ 0\alpha + (-1)\beta = 0
+\end{matrix} \opr{}
+\begin{matrix}
+\alpha = 0\br
+-\beta = 0
+\end{matrix} \opr{}
+\alpha = \beta = 0
+\end{eqnarray*}
+לפיכך, הפתרון היחידי למערכת המשוואות הינו הפתרון הטריוויאלי והווקטורים בת"ל. מכיוון ש$G$ פורשת את $W$ ובת"ל, היא גם בסיס שלו, כלומר
+$$B_W = G = \left(\tot{4}{2}{1}{0}, \tot{2}{1}{0}{-1}\right)$$
+\qed
+
+\subsubsection{בסיס ל$U + W$}
+לפי \q{7}{6}{5.}, מתקיים $U + W = \Sp B_U \cup B_W$, כלומר הקבוצה
+$$Y = \left\{
+y_1 = \tot{1}{0}{0}{2},
+y_2 = \tot{0}{1}{0}{0},
+y_3 = \tot{0}{0}{1}{-3},
+y_4 = \tot{4}{2}{1}{0},
+y_5 = \tot{2}{1}{0}{-1}
+\right\}$$
+פורשת את $U + W$. נעבור להצגת קואורדינטות בעזרת הבסיס הסטנדרטי $E$:
+\begin{center}
+\begin{tabular}{c c c}
+$[y_1]_E = \fcol{1}{0}{0}{2}$ & $[y_2]_E = \fcol{0}{1}{0}{0}$ & $[y_3]_E = \fcol{0}{0}{1}{-3}$\br
+$[y_4]_E = \fcol{4}{2}{1}{0}$ & & $[y_5]_E = \fcol{2}{1}{0}{-1}$
+\end{tabular}
+\end{center}
+בעמוד הבא נעבור להצגה מטריציונית ונדרג.
+\clearpage
+\setcounter{subsubsection}{2}
+\subsubsection{בסיס ל$U + W$ )המשך(}
+נעבור להצגה מטריציונית ונדרג:
+\begin{align*}
+& \begin{bmatrix}
+1 & 0 & 0 & 2\br
+0 & 1 & 0 & 0\br
+0 & 0 & 1 & -3\br
+4 & 2 & 1 & 0\br
+2 & 1 & 0 & -1
+\end{bmatrix}
+\oprm{%
+R_3 \opr{} -R_3\\
+R_4 \opr{} R_4 - 4R_1\\
+R_5 \opr{} R_5 - 2R_1
+}
+\begin{bmatrix}
+1 & 0 & 0 & 2\br
+0 & 1 & 0 & 0\br
+0 & 0 & -1 & 3\br
+0 & 2 & 1 & -8\br
+0 & 1 & 0 & -5
+\end{bmatrix}
+\oprm{%
+R_4 \opr{} R_4 - 2R_2\\
+R_5 \opr{} R_5 - R_2
+}
+\begin{bmatrix}
+1 & 0 & 0 & 2\br
+0 & 1 & 0 & 0\br
+0 & 0 & -1 & 3\br
+0 & 0 & 1 & -8\br
+0 & 0 & 0 & -5
+\end{bmatrix}\\
+& \oprm{%
+R_3 \opr{} R_3 + R_4\\
+R_3 \opr{} R_3 - R_5\\
+R_5 \opr{} \frac{1}{5} R_5
+}
+\begin{bmatrix}
+1 & 0 & 0 & 2\br
+0 & 1 & 0 & 0\br
+0 & 0 & 0 & 0\br
+0 & 0 & 1 & -8\br
+0 & 0 & 0 & 1
+\end{bmatrix}
+\oprm{%
+R_3 \bidiarrow{} R_4\\
+R_4 \bidiarrow{} R_5\\
+R_4 \opr{} R_4 + 8R_5\\
+R_1 \opr{} R_1 -2R_5
+}
+\begin{bmatrix}
+1 & 0 & 0 & 0\br
+0 & 1 & 0 & 0\br
+0 & 0 & 1 & 0\br
+0 & 0 & 0 & 1\br
+0 & 0 & 0 & 0
+\end{bmatrix}
+\end{align*}
+נבחר את שורות המטריצה המדורגת השונות מ$0$ ונקבל את הבסיס ל$U + W$:
+$$B_{U + W} = \left(\tot{1}{0}{0}{0}, \tot{0}{1}{0}{0}, \tot{0}{0}{1}{0}, \tot{0}{0}{0}{1}\right) = E$$
+\qed
+
+\subsection{סעיף ב -- בסיס ל$U \cap W$}
+ראשית, נחשב את המימד של החיתוך:
+\begin{align*}
+\dim{U \cap W}
+& = \dim{U} + \dim{W} - \dim{U + W}\\
+& = 3 + 2 - 4\\
+& = 1
+\end{align*}
+לפיכך, קיים רק ווקטור אחד בבסיס החיתוך. ידוע לנו שאיברי החיתוך שייכים גם ל$U$ וגם ל$W$, ולכן בסיס האיחוד הינו צירוף לינארי של בסיסי $U$ ו$W$, כלומר מתקיים:
+\begin{eqnarray*}
+& \alpha\tot{1}{0}{0}{2} + \beta\tot{0}{1}{0}{0} + \gamma\tot{0}{0}{1}{-3} = \delta\tot{4}{2}{1}{0} + \lambda\tot{2}{1}{0}{-1}\\
+& \downarrow\\
+& \alpha\fcol{1}{0}{0}{2} + \beta\fcol{0}{1}{0}{0} + \gamma\fcol{0}{0}{1}{-3} + \delta\fcol{-4}{-2}{-1}{0} + \lambda\fcol{-2}{-1}{0}{1} = 0\\
+\end{eqnarray*}
+בעמוד הבא נעביר להצגה מטריציונית ונדרג.
+\clearpage
+\setcounter{subsection}{1}
+\subsection{סעיף ב )המשך(}
+נעבור להצגה מטריציונית ונדרג:
+\begin{eqnarray*}
+& \begin{bmatrix}
+1 & 0 & 0 & -4 & -2\br
+0 & 1 & 0 & -2 & -1\br
+0 & 0 & 1 & -1 & 0\br
+2 & 0 & -3 & 0 & 1
+\end{bmatrix}
+\oprm{%
+R_4 \opr{} R_4 - 2R_1\\
+R_4 \opr{} R_4 + 3R_3\\
+R_4 \opr{} \frac{1}{5}R_4
+}
+\begin{bmatrix}
+1 & 0 & 0 & -4 & -2\br
+0 & 1 & 0 & -2 & -1\br
+0 & 0 & 1 & -1 & 0\br
+0 & 0 & 0 & 1 & 1
+\end{bmatrix}
+\oprm{%
+R_1 \opr{} R_1 + 4R_4\\
+R_2 \opr{} R_2 + 2R_4\\
+R_3 \opr{} R_3 + R_4
+}
+\begin{bmatrix}
+1 & 0 & 0 & 0 & 2\br
+0 & 1 & 0 & 0 & 1\br
+0 & 0 & 1 & 0 & 1\br
+0 & 0 & 0 & 1 & 1
+\end{bmatrix}\\
+& \downarrow\\
+& \begin{matrix}
+\alpha = -2\lambda\\\\\\
+\beta = -\lambda\\\\\\
+\gamma = -\lambda\\\\\\
+\delta = -\lambda\\\\\\
+\lambda = t
+\end{matrix}
+\end{eqnarray*}
+על מנת להגיע לווקטור הבסיס, נציב $\lambda = 1$:
+\begin{eqnarray*}
+& -2\tot{1}{0}{0}{2} - \tot{0}{1}{0}{0} - \tot{0}{0}{1}{-3} = -\tot{4}{2}{1}{0} + \tot{2}{1}{0}{-1}\\\\
+& \downarrow\\\\
+& \tot{-2}{0}{0}{-4} + \tot{0}{-1}{0}{0} + \tot{0}{0}{-1}{3} = \tot{-4}{-2}{-1}{0} + \tot{2}{1}{0}{-1}\\\\
+& \downarrow\\\\
+& \tot{-2}{-1}{-1}{-1} = \tot{-2}{-1}{-1}{-1}
+\end{eqnarray*}
+לפיכך, הבסיס לחיתוך הוא
+$$B_{U \cap W} = \left(\tot{-2}{-1}{-1}{-1}\right)$$
+כנדרש.
+\br\qed
+%%%%% </Q4> %%%%%
 
 \end{document}
