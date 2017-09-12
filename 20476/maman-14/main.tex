@@ -1,0 +1,171 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+
+% Custom commands for this document
+
+% Spacing
+\titlespacing\section{0pt}{5pt}{3pt}
+\titlespacing\subsection{0pt}{5pt}{3pt}
+\titlespacing\subsubsection{0pt}{5pt}{3pt}
+\setstretch{0.1}
+
+\title{ממן 41}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+
+%%%%% <Q1> %%%%%
+\section{שאלה 1}
+\subsection{סעיף א}
+נציב בנוסחאת הבינום:
+\[
+(3 - 2)^n = (3 + (-2))^n = \sum^k_{i = 0}{n \choose i}3^n \cdot (-2)^{n - i} = 1
+\]
+נבדוק ל$n = 4$:
+\begin{eqnarray*}
+& {4 \choose 0}(-2)^4 + {4 \choose 1}3^1 \cdot (-2)^3 + {4 \choose 2}3^2 \cdot (-2)^2 + {4 \choose 3}3^3  \cdot (-2)^1 + {4 \choose 4}3^3 = 1\\
+& (-2)^4 + 12(-2)^3 + 54(-2)^2 + 108(-2)^1 + 81 = 1\\
+& 16 - 96 + \cancel{216} - \cancel{216} + 81 = 1 \opr{} 81 - 80 = 1 \opr{} 1 = 1\\
+\end{eqnarray*}
+כנדרש.
+\br\qed
+
+\subsection{סעיף ב}
+על מנת להציב $k$ כדורים ב$7$ תאים שונים נוכל להשתמש ב$D(7, k)$ ועל מנת להציב $p$ כדורים ב$3$ תאים שונים נוכל להשתמש ב$D(3, p)$. מכיוון שאנו רוצים להציב כמות מסויימת $k$ של כדורים )מתוך סך כללי של $m$ כדורים( ב$7$ תאים ואת השאר ב$3$ תאים, נוכל להשתמש ב$D(7, k) \cdot D(3, m - k)$. לפיכך, הגענו לזהות הבאה:
+\[
+D(10, k) = \sum^k_{i = 0}D(7, i) \cdot D(3, k - i)
+\]
+נחשב ל$k = 3$:
+\begin{eqnarray*}
+& D(10, 3) = 220 = D(7, 0) \cdot D(3, 3) + D(7, 1) \cdot D(3, 2) + D(7, 2) \cdot D(3, 1) + D(7, 3) \cdot D(3, 0)\\
+& 220 = {5 \choose 3} + {7 \choose 1}{4 \choose 2} + {8 \choose 2}{5 \choose 3}\\
+& 220 = 52 + 84 + 84\\
+& 220 = 220
+\end{eqnarray*}
+כנדרש.
+\br\qed
+\clearpage
+%%%%% </Q1> %%%%%
+
+%%%%% <Q2> %%%%%
+\section{שאלה 2}
+תהי $U$ קבוצת הדרכים לסדר את המחרוזת כולה. לפיכך, $|U| = \frac{9!}{3!2!2!2!} = 7560$. כעת, נסמן ב$Q_0$ את קבוצת הדרכים לסדר את המחרוזת עם הרצף $AAA$, ב$Q_1$ את קבוצת הדרכים לסדר אותה עם הרצף $BB$, ב$Q_2$ את קבוצת הדרכים לסדר אותה עם הרצף $CC$ וב$Q_3$ את קבוצת הדרכים לסדר אותה עם הרצף $DD$. כעת, נחשב את עוצמותיהן:
+\begin{align*}
+& |Q_0| = \frac{(9 - 2)!}{1!2!2!2!} = \frac{7!}{2! \cdot 3} = 840\\
+& |Q_1| = \frac{(9 - 1)!}{3!1!2!2!} = \frac{8!}{3!2!2!} = 1680
+\end{align*}
+נשים לב שהסידורים של המחרוזות ללא הרצפים $BB$, $CC$, $DD$ שווים, שכן בכולן יש סידורים של 8 רצפים שונים. לפיכך, $|Q_1| = |Q_2| = |Q_3| = 1680$. כעת, נחשב את איברי נוסחת ההכלה וההפרדה:
+\begin{align*}
+& \forall i \in \{1, 2, 3\} \opr{} |Q_0 \cap Q_i| = \frac{6!\footnotemark[1]}{2!2!} = 180\\
+& \forall i, j \in \{1, 2, 3\} \land i \neq j \opr{} |Q_i \cap Q_j| = \frac{7!\footnotemark[2]}{3!1!1!2!} = 420\\
+& \forall i, j \in \{1, 2, 3\} \land i \neq j \opr{} |Q_0 \cap Q_i \cap Q_j| = \frac{5!\footnotemark[3]}{1!1!2!1!} = 60\\
+& |Q_1 \cap Q_2 \cap Q_3| = \frac{6!\footnotemark[4]}{3!1!1!1!} = 120\\
+& |Q_1 \cap Q_2 \cap Q_3 \cap Q_4| = \frac{4!\footnotemark[5]}{1!1!1!1!} = 24
+\end{align*}
+כעת, נרצה למצוא את מספר הסידורים אשר אינם ב$Q_0, Q_1, Q_2, Q_3$, כלומר $|U - Q_0 \cup Q_1 \cup Q_2 \cup Q_3|$. ראשית, נמצא את הקבוצה:
+\[
+U - Q_0 \cup Q_1 \cup Q_2 \cup Q_3 \ueq{\R{הגדרת המשלים}}
+(Q_0 \cup Q_1 \cup Q_2 \cup Q_3)' \ueq{\R{דה מורגן}}
+Q_0' \cap Q_1' \cap Q_2' \cap Q_3'
+\]
+כעת, נסמן את הקבוצה הזו ב$K$. נמצא את עוצמת הקבוצה לפי נוסחת ההכלה וההדחה:
+\begin{align*}
+|K|
+& = |U| - \sum^3_{i = 0}|Q_i| + \sum_{0 \le i < j \le 3}|Q_i \cap Q_j| - \sum_{0 \le i < j < k \le 3}|Q_i \cap Q_j \cap Q_k| + |Q_0 \cap Q_1 \cap Q_2 \cap Q_3|\\
+& = 7560 - 3(1890) + 3(600) - 3(100) + 24\\
+& = 3414
+\end{align*}
+
+לפיכך, ניתן לסדר את המחרוזת $AAABBCCDD$ ללא הרצפים $AAA, BB, CC, DD$ ב$3414$ סידורים שונים.
+\\\\\\\\\qed
+
+% Footnotes (explanations)
+\footnotetext[1]{
+$\forall k, l, m \in \{B, C, D\} \land k \neq l \neq m \opr{} 6 = 1 \times AAA + 1 \times kk + 2 \times m + 2 \times l$
+}
+
+\footnotetext[2]{
+$\forall k, l, m \in \{B, C, D\} \land k \neq l \neq m \opr{} 6 = 3 \times A + 1 \times kk + 1 \times mm + 2 \times l$
+}
+
+\footnotetext[3]{
+$\forall k, l, m \in \{B, C, D\} \land k \neq l \neq m \opr{} 5 = 1 \times AAA + 1 \times kk + 1 \times mm + 2 \times l$
+}
+
+\footnotetext[4]{
+$6 = 3 \times A + 1 \times BB + 1 \times CC + 1 \times DD$
+}
+\footnotetext[5]{
+$4 = 1 \times AAA + 1 \times BB + 1 \times CC + 1 \times DD$
+}
+\clearpage
+%%%%% </Q2> %%%%%
+
+%%%%% <Q3> %%%%%
+\section{שאלה 3}
+נסמן את קבוצת החלוקות של כל האוכל למשפחות ללא הגבלה כלשהי ב$U$ ונסמן את קבוצת החלוקות שבה כל משפחה מקבלת משהו ב$K$. נמצא את $|U|$:
+\begin{align*}
+& D(4, 8)\footnotemark[1] = {11 \choose 3} = 165\\
+& D(4, 10)\footnotemark[2] = {13 \choose 3} = 286\\
+& D(4, 8) \cdot D(4, 10) = 165 \cdot 286 = 47190 = |U|
+\end{align*}
+נסמן ב$Q_i$ סידור בו משפחה $i$ לא מקבלת אף פריט אוכל. לפיכך,
+\begin{align*}
+\forall i \in \{0, 1, 2, 3\} \opr{} &\ |Q_i| = D(3, 8) \cdot D(3, 10) = {12 \choose 2}{10 \choose 2} = 2970\\
+\forall i, j \in \{0, 1, 2, 3\} \land i \neq j \opr{} &\ |Q_i \cap Q_j| = D(2, 8) \cdot D(2, 10) = {11 \choose 1}{9 \choose 1} = 99\\
+\forall i, j, k \in \{0, 1, 2, 3\} \land i \neq j \neq k \opr{} &\ |Q_i \cap Q_j \cap Q_k| = D(1, 8) \cdot D(1, 10) = {10 \choose 0}{8 \choose 0} = 1\\
+\end{align*}
+יש לציין שקיים תנאי בשאלה שעלינו לחלק את כל האוכל, ולכן אין ייצוג לחיתוך של ארבעת הקבוצות, שכן כל משפחה חייבת לקבל משהו. נציב בנוסחת ההכלה וההפרדה:
+\begin{align*}
+|K|
+& = |Q_0' \cap Q_1' \cap Q_2' \cap Q_3'|\\
+& = |U| - \sum^3_{i = 0}|Q_i| + \sum_{0 \le i < j \le 3}|Q_i \cap Q_j| - \sum_{0 \le i < j < k \le 3}|Q_i \cap Q_j \cap Q_k|\\
+& = 47190 - 4 \cdot 2970 + 6 \cdot 99 - 4 \cdot 1\\
+& = 35900
+\end{align*}
+
+לפיכך, ניתן לחלק את כל האוכל כך שכל משפחה מקבלת פריט אוכל אחד לפחות ב$35900$ צירופים שונים.
+\br\qed
+
+\footnotetext[1]{מספר סידורי הסטייקים.}
+\footnotetext[2]{מספר סידורי השיפודים.}
+%%%%% </Q3> %%%%%
+
+%%%%% <Q4> %%%%%
+\section{שאלה 4}
+המספר הקטן ביותר הניתן ליצור מהמספרים של דינה הוא $10$, והגדול ביותר הינו
+\[\sum^8_{i = 1}36-i = 36 + 35 + 34 + 33 + 32 + 31 + 30 + 29 = 260\]
+לפיכך, קיימות בסך הכל $260 - 10 + 1 = 251$ תשובות שונות, אך מספר הקבוצות האפשריות הינו $2^8 - 1 = 255$ )מחסרים את הקבוצה הריקה(. מכיוון שיש יותר קבוצות שונות מאשר סכומים, קיימות שתי קבוצות בעלות אותו הסכום. מהן נוכל להסיר את האיברים המשותפים ונקבל שתי קבוצות זרות של מספרים בעלות אותו הסכום.
+\br\qed
+%%%%% </Q4> %%%%%
+
+\end{document}
