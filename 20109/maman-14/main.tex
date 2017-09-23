@@ -1,0 +1,407 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\oprm}[1]{\underset{\substack{#1}}{\longrightarrow}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+
+% Custom commands for this document
+\DeclareMathOperator{\Sp}{Sp}
+\DeclareMathOperator{\Ima}{Im}
+\newcommand{\fiv}[4]{\begin{bmatrix}#1 \br #2 \br #3 \br #4\end{bmatrix}}
+\newcommand{\fir}[4]{\begin{bmatrix}#1 & #2 & #3 & #4\end{bmatrix}}
+\newcommand{\fim}[4]{\begin{bmatrix}#1 & #2 \br #3 & #4\end{bmatrix}}
+\newcommand{\tiv}[3]{\begin{bmatrix}#1 \br #2 \br #3\end{bmatrix}}
+\newcommand{\tir}[3]{\begin{bmatrix}#1 & #2 & #3\end{bmatrix}}
+
+% Spacing
+\titlespacing\subsubsection{0pt}{5pt}{3pt}
+\setstretch{0.1}
+
+\title{ממן 41}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+
+%%%%% <Q1> %%%%%
+\section{שאלה 1}
+\subsection{סעיף א}
+ראשית, נחשב את הצורה הכללית של $(x + 1)(p'(x))$:
+\begin{align*}
+(x + 1)(p'(x))
+& = x \cdot p'(x) + p'(x)\\
+& = (1a_1x^0 + 2a_2x^1 + 3a_3x^2 + \dots) + x \cdot (1a_1x^0 + 2a_2x^1 + 3a_3x^2 + \dots)\\
+& = (1a_1x^0 + 2a_2x^1 + 3a_3x^2 + \dots) + (1a_1x^1 + 2a_2x^2 + 3a_3x^3 + \dots)\\
+& = 1a_1x^0 + 1a_1x^1 + 2a_2x^1 + 2a_2x^2 + 3a_3x^2 + \dots\\
+& = a_1 + (a_1 + 2a_2)x + (2a_2 + 3a_3)x^2 + \dots + ((n - 1)a_{n - 1} + na_n)x^{n - 1}
+\end{align*}
+נעבור להצגת קואורדינטות בעזרת הבסיס הסטנדרטי $E$:
+\[
+[(x + 1)(p'(x))]_E =
+\left[\sum^n_{i=0}((i - 1)a_{i - 1} + ia_i)x^{i - 1}\right]_E =
+\begin{bmatrix}
+0\br
+a_1\br
+a_1 + 2a_2\br
+\vdots\br
+((n - 1)a_{n - 1} + na_n)x^{n - 1}
+\end{bmatrix}
+\]
+
+לפיכך, נוכל לייצג את ההעתקה הלינארית $T: \mR_n[x] \opr{} \mR_n[x]$ בעזרת העתקת הקואורדינטות $S: \mR^n \opr{} \mR^n$ המוגדרת כך:
+\[
+S\left(\begin{bmatrix}
+a_0\br
+a_1\br
+\vdots\br
+a_n
+\end{bmatrix}\right)
+=
+\begin{bmatrix}
+0\br
+a_1\br
+a_1 + 2a_2\br
+\vdots\br
+(n - 1)a_{n - 1} + na_n
+\end{bmatrix}
+\]
+כעת נוכל להוכיח ש$S$ הינה העתקה לינארית )ועקב כך גם $T$( אם מתקיים
+\[
+S(\alpha [p(x)]_E + \beta [q(x)]_E) = \alpha S([p(x)]_E) + \beta S([q(x)]_E)
+\]
+ לכל $\alpha, \beta \in \mR$ ו$p(x), q(x) \in \mR_n[x]$. נוכיח בעמוד הבא.
+\clearpage
+
+\setcounter{subsection}{0}
+\subsection{סעיף א )המשך(}
+הוכחה:
+\begin{align*}
+S\left(\alpha \begin{bmatrix}
+a_0\br
+\vdots\br
+a_n
+\end{bmatrix} + \beta \begin{bmatrix}
+b_0\br
+\vdots\br
+b_n
+\end{bmatrix}\right)
+& = S\left(\begin{bmatrix}
+\alpha a_0 + \beta b_0\br
+\vdots\br
+\alpha a_n + \beta a_n
+\end{bmatrix}\right)\\
+& = \begin{bmatrix}
+0\br
+\alpha a_1 + \beta b_1\br
+\alpha a_1 + \beta b_1 + 2(\alpha a_2 + \beta b_2)\br
+\vdots\br
+\alpha (n - 1)a_{n - 1} + \beta (n - 1)b_{n - 1} + n(\alpha a_n + \beta b_n)
+\end{bmatrix}\\
+& = \begin{bmatrix}
+0\br
+\alpha a_1 + \beta b_1\br
+\alpha (a_1 + 2a_2) + \beta (b_1 + 2b_2)\br
+\vdots\br
+\alpha ((n-1)a_{n-1} + na_n) + \beta ((n-1)b_n + nb_n)
+\end{bmatrix}\\
+& = \alpha \begin{bmatrix}
+0\br
+a_1\br
+a_1 + 2a_2\br
+\vdots\br
+(n - 1)a_{n - 1} + na_n
+\end{bmatrix} + \beta \begin{bmatrix}
+0\br
+b_1\br
+b_1 + 2b_2\br
+\vdots\br
+(n - 1)b_{n - 1} + nb_n
+\end{bmatrix}\\
+& = \alpha S\left(\begin{bmatrix}
+a_0\br
+\vdots\br
+a_n
+\end{bmatrix}\right) + \beta S\left(\begin{bmatrix}
+b_0\br
+\vdots\br
+b_n
+\end{bmatrix}\right)
+\end{align*}
+ו$S$ העתקה לינארית. מכיוון ש$S$ פועלת על ווקטורי הקואורדינטות של $\mR_n[x]$, נוכל להסיק מהעובדה שהיא העתקה לינארית ש$T$ הינה העתקה לינארית גם היא כנדרש.
+\br\qed
+\clearpage
+
+\subsection{סעיף ב}
+נראה ש$T$ אינה טרנספורמציה לינארית ע"י דוגמה נגדית לכפל בסקלר:
+\begin{align*}
+x = y = &\ 1,\ \alpha = -1\\
+\alpha T(x, y) & \overset{?}{=} T(\alpha x, \alpha y)\\
+\alpha (2x - y, 3|x|, y) & \overset{?}{=} (2\alpha x - \alpha y, 3|\alpha x|, \alpha y)\\
+-1 (2 - 1, 3, 1) & \overset{?}{=} (-2 + 1, 3, -1)\\
+(-1, -3, -1) & \neq (-1, 3, -1)
+\end{align*}
+לפיכך, ההעתקה $T$ אינה מקיימת את תכונת הכפל בסקלר והיא אינה ט"ל.
+\br\qed
+
+\subsection{סעיף ג}
+נראה ש$T$ אינה טרנספורמציה לינארית ע"י דוגמה נגדית לחיבור:
+\begin{eqnarray*}
+& X = \begin{bmatrix}
+0 & 1 & 1\br
+1 & 0 & 1\br
+1 & 1 & 0
+\end{bmatrix},\ Y = \begin{bmatrix}
+1 & 0 & 0\br
+0 & 3 & 3\br
+0 & 0 & 1
+\end{bmatrix}\\
+& XY = \begin{bmatrix}
+0 & 3 & 4\br
+1 & 0 & 1\br
+1 & 3 & 3
+\end{bmatrix},\ YX = \begin{bmatrix}
+0 & 1 & 1\br
+6 & 3 & 3\br
+1 & 1 & 0
+\end{bmatrix}\\
+& T(X) + T(Y) \overset{?}{=} T(X + Y)\\
+& \cancel{X^2} - \cancel{X} + \cancel{Y^2} - \cancel{Y} \overset{?}{=} \cancel{X^2} + XY + YX + \cancel{Y^2} - \cancel{X} - \cancel{Y}\\
+& XY + YX \overset{?}{=} 0\\
+& \begin{bmatrix}
+0 & 4 & 5\br
+7 & 3 & 4\br
+2 & 4 & 3
+\end{bmatrix} \neq 0
+\end{eqnarray*}
+לפיכך, ההעתקה $T$ לא מקיימת את תכונת החיבור והיא אינה ט"ל.
+\br\qed
+\clearpage
+%%%%% </Q1> %%%%%
+
+%%%%% <Q2> %%%%%
+\section{שאלה 2}
+\subsection{מציאת בסיסים ל$\ker T$ ול$\Ima T$}
+\subsubsection{$\ker T$}
+ראשית, נמצא העתקה $S$ המתאימה ל$T$ בעזרת הצגת הקואורדינטות לפי הבסיס הסטנדרטי $(e_1, e_2, e_3, e_4)$ של $M^\mR_{2 \times 2}$:
+\begin{eqnarray*}
+& A = \begin{bmatrix}
+a & b\br
+c & d
+\end{bmatrix}\\
+& T: M^\mR_{2 \times 2} \opr{} \mR_n[x],\ T(A) = (a - d)x^2 + (b + c)x + 5(a - d)\\
+& \downarrow\\
+& S: \mR^4 \opr{} \mR^3,\ S([A]_E) = S\left(\fiv{a}{b}{c}{d}\right) = \tiv{a - d}{b + c}{5(a - d)} = [T(A)]_E
+\end{eqnarray*}
+לפיכך, נוכל למצוא את גרעין ההעתקה $S$:
+\begin{align*}
+\ker S
+& = \left\{v \mid v \in \mR^4 \land S(v) = 0\right\}\\
+& = \left\{[A]_E \mid A \in M^\mR_{2 \times 2} \land [T(A)]_E = 0\right\}\\
+& = \left\{v = \fir{a}{b}{c}{d}^t \mid a, b, c, d \in \mR \land S(v) = 0\right\}\\
+& = \left\{v = \fir{a}{b}{c}{d}^t \mid \tir{a - d}{b + c}{5(a - d)}^t = 0\right\}\\
+\end{align*}
+כעת, נוכל לדרג את המערכת הבאה ולקבל את הצורה הכללית של איבר ב$\ker S$:
+\begin{align*}
+\begin{matrix}
+a + 0b + 0c + (-1)d = 0\br
+0a + b + c + 0d = 0\br
+5a + 0b + 0c + (-5)d = 0
+\end{matrix}
+\opr{}
+\begin{bmatrix}
+1 & 0 & 0 & -1\br
+0 & 1 & 1 & 0\br
+5 & 0 & 0 & -5
+\end{bmatrix}
+\oprm{%
+R_3 \opr{} R_3 - 5R_1
+}
+\begin{bmatrix}
+1 & 0 & 0 & -1\br
+0 & 1 & 1 & 0\br
+0 & 0 & 0 & 0
+\end{bmatrix}
+\opr{}
+\begin{matrix}
+a = d\br
+b = -c\br
+c = \alpha\br
+d = \beta
+\end{matrix}
+\end{align*}
+כלומר, $\ker S = \left\{\fir{\beta}{-\alpha}{\alpha}{\beta} \mid \alpha, \beta \in \mR\right\}$.
+
+נעבור מקואורדינטות בעזרת הבסיס הסטנדרטי:
+\begin{align*}
+\ker T
+& = \left\{\fim{\beta}{-\alpha}{\alpha}{\beta} \mid \alpha, \beta \in \mR\right\}\\
+& = \left\{\alpha\fim{0}{-1}{1}{0} + \beta\fim{1}{0}{0}{1} \mid \alpha, \beta \in \mR \right\}\\
+& = \Sp\underbrace{\left\{\fim{0}{-1}{1}{0}, \fim{1}{0}{0}{1}\right\}}_P
+\end{align*}
+
+כעת, הווקטורים בקבוצה $P$ הפורשת את $\ker{T}$ אינם פרופורציוניים ולכן בלתי תלויים. לפיכך, $P$ הינה פורשת ובת"ל ב$\ker{T}$ ולפיכך הינה בסיס שלו.
+\br\qed
+\clearpage
+
+\subsubsection{$\Ima{T}$}
+נוכל למצוא את $\Ima{T}$:
+\[
+\Ima{T} = \left\{(a - d)x^2 + (b + c)x  + 5(a- d) \mid a, b, c, d \in \mR\right\}
+\]
+כעת נעבור להצגת קואורדינטות בעזרת הבסיס הסטנדרטי ונגיע ל$\Ima{S}$ )כאשר $S$ הינה הט"ל אשר מצאנו בסעיף הקודם(:
+\begin{align*}
+\Ima{S}
+& = \left\{\tiv{a - d}{b + c}{5(a - d} \mid a, b, c, d \in \mR\right\}\\
+& = \left\{a\tiv{1}{0}{5} + b\tiv{0}{1}{0} + c\tiv{0}{1}{0} + d\tiv{-1}{0}{-5} \mid a, b, c, d \in \mR\right\}\\
+& = \Sp\left\{\tiv{1}{0}{5}, \tiv{0}{1}{0}, \cancel{\tiv{0}{1}{0}}, \tiv{-1}{0}{-5}\right\}\\
+& = \Sp\underbrace{\left\{p_1 = \tiv{1}{0}{5}, p_2 = \tiv{0}{1}{0}, p_3 = -\tiv{1}{0}{5}\right\}}_P
+\end{align*}
+כעת, קיבלנו קבוצה $P$ הפורשת את $\Ima{S}$. מכיוון ש$p_3 = -p_1$ והם פרופורציוניים, נצטרך להוציא את $p_3$ מ$P$ על מנת שהיא תהיה בת"ל:
+\[
+\Ima{S} = \Sp\left\{\tiv{1}{0}{5}, \tiv{0}{1}{0}\right\}
+\]
+מכיוון שקבוצה זו גם פורשת וגם בת"ל, היא בסיס של $\Ima{S}$. כעת נעבור מהצגת קואורדינטות בעזרת הבסיס הסטנדרטי ונמצא את הבסיס המתאים ל$\Ima{T}$:
+\begin{align*}
+B_{\Ima{T}}
+& = \left(x^2 + 0x + 5, 0x^2 + x + 0\right)\\
+& = \left(x^2 + 5, x\right)
+\end{align*}
+כנדרש.
+\br\qed
+
+\subsection{סעיף ב}
+אף אחד מהתנאים לא מתקיים, שכן $\Ima{T} \subseteq \mR_n[x]$ ו$\ker{T} \subseteq M^\mR_{2 \times 2}$, וכמובן ש$\mR_n[x] \not\subseteq M^\mR_{2 \times 2}$ ולכן לא יכולה להתקיים הכלה דו כיוונית ע"מ שוויון המרחבים.
+
+לפיכך, $\ker{T} + \Ima{T} \neq M^\mR_{2 \times 2} \land \ker{T} \oplus \Ima{T} \neq M^\mR_{2 \times 2}$ כנדרש.
+\br\qed
+\clearpage
+
+\subsection{סעיף ג}
+\subsubsection{$i$}
+ראשית, אנו יודעים שאיברי $\ker{T}$ הינם מטריצות, כלומר
+\[
+\exists a, b, c, d \in \mR \opr{} A = \fim{a}{b}{c}{d} \in \ker{T}
+\]
+כעת, די לחשב את $A^2$ ולבדוק אם אכן מתקיים $T(A^2) = 0$. ראשית, נחשב את $A^2$:
+\[
+A^2 =
+A \cdot A =
+\fim{a}{b}{c}{d} \cdot \fim{a}{b}{c}{d} =
+\fim{a^2 + bc}{ab + bd}{ca + cd}{cb + d^2} =
+\fim{a^2 + bc}{b(a + d)}{c(a + d)}{d^2 + bc}
+\]
+כעת נציב ב$T(A^2) = 0$:
+\begin{align*}
+T(A^2)
+& = (a^2 + \cancel{bc} - (d^2 + \cancel{bc}))x^2 + (b(a + d) + c(a + d))x + 5(a^2 + \cancel{bc} - (d^2 + \cancel{bc}))\\
+& = (a + d)(a - d)x^2 + (a + d)(b + c)x + 5(a + d)(a - d)\\
+& = (a + d)[(a - d)x^2 + (b + c)x + 5(a - d)]\\
+& = (a + d) \cdot T(A) \ueq{$T(A) \in \ker{T}$} 0 \cdot (a + d)\\
+& = 0
+\end{align*}
+כלומר, מתקיים $T(A^2) = 0$ ולפיכך $A^2 \in \ker{T}$ גם הוא.
+\br\qed
+
+\subsubsection{$ii$}
+הצורה הכללית של פולינום $p(x) \in \Ima{T}$ הינה $(a-d)x^2 + (b+c)x + 5(a-d)$. לפיכך, אם נצרף לו את הפולינום $r(x) = 3x^2 + 2x + 5$ נקבל את $q(x)$ הבא:
+\[
+q(x) = r(x) + p(x) = (a-d+3)x^2 + (b+c+2)x + 5(a-d+1)
+\]
+נניח ש$q(x) \in \Ima{T}$ ונביא דוגמה נגדית לפולינום אשר עבורו $q(x) \not\in \Ima{T}$:
+\begin{align*}
+\begin{matrix}
+a = 1 & b = 2\br
+c = 3 & d = 4
+\end{matrix}\;
+& \opr{}
+p(x) = -3x^2 + 3x - 15\\\\
+q(x)
+& = (-3 + 3)x^2 + (3 + 2)x + 5(-3+1)\\
+& = 0x^2 + 5x - 10
+\end{align*}
+כלומר, מתקיים
+\begin{align*}
+\begin{matrix}
+a - d + 3 = 0\br
+a - d + 1 = -10
+\end{matrix}
+\opr{}
+\begin{matrix}
+a - d = -3\br
+a - d = -11
+\end{matrix}
+\opr{}
+-3 \neq -11
+\end{align*}
+וסתירה להנחה. לפיכך, לא לכל $p(x) \in \Ima{T}$ מתקיים $q(x) \in \Ima{T}$.
+\br\qed
+\clearpage
+%%%%% </Q2> %%%%%
+
+%%%%% <Q3> %%%%%
+\section{שאלה 3}
+\subsection{סעיף א}
+ראשית, נראה ש$\Ima{T} \subseteq \ker{T}$: לפי הגדרת גרעין ההעתקה, $\ker{T} = \{v \mid T(v) = 0\}$ ולפי הגדרת תמונת ההעתקה, $\Ima{T} = \{T(v) \mid v \in V\}$. לפי הגדרת $T$ מתקיים $T^2 = 0$, כלומר $T(T(v)) = 0$ לכל $v \in V$. כעת, לפי הגדרת הגרעין, $x = T(v) \in \ker{T}$ לכל $v \in V$ )שכן מתקיים $T(x) = 0$(. כעת, כל $m \in \Ima{T}$ שייך גם ל$\ker{T}$ ולכן $\Ima{T} \subseteq \ker{T}$.
+
+כעת, לפי \m{8}{3}{4.},‎ מתקיים $\dim{\Ima{T}} \le \dim{\ker{T}}$, כלומר קיים $\epsilon \in \mN$ כך ש
+\[
+\dim{\Ima{T}} = \dim{\ker{T}} -‎ \epsilon
+\]
+לפי \m{9}{6}{1.}, מתקיים
+\begin{align*}
+& \dim{\ker{T}} + \dim{\Ima{T}} = n\\
+& \dim{\ker{T}} + \dim{\ker{T}} - \epsilon = n\\
+& 2\dim{\ker{T}} = n + \epsilon\;/:2\\
+& \dim{\ker{T}} = \frac{n + \epsilon}{2}
+\end{align*}
+ומכיוון ש$\epsilon \ge 0$, מתקיים
+\[
+\dim{\ker{T}} \ge \frac{n}{2}
+\]
+כנדרש.
+\br\qed
+
+\subsection{סעיף ב}
+ראשית, לפי סעיף א אנו יודעים ש$\dim{\ker{T}} \ge \frac{n}{2}$, כלומר $\dim{\ker{T}} \ge 1.5$. נוכל להיווכח ש$2 \le \dim{\ker{T}} < n = 3$, ומכיוון שמימד של מרחב ווקטורי הינו מספר טבעי מתקיים $\dim{\ker{T}} = 2$. נסמן את הבסיס לגרעין כך:
+\[
+k_1, k_2 \in \ker{T} \opr{} B_{\ker{T}} = (k_1, k_2)
+\]
+כעת, על מנת להשלים את $B_{\ker{T}}$ לבסיס של $V$ נצטרך למצוא $v \in V$ אשר אינו בגרעין ההעתקה, כלומר שמתקיים $T(v) \neq 0$. לפי הנתון, $T \neq 0$ ולכן קיים $v \in V$ כך ש$T(v) \neq 0$. לכן, מתקיים
+\begin{eqnarray*}
+& B_V = (v, k_1, k_2)\\
+& \downarrow\\
+& [T(k_1)]_{B_V} = \tir{0}{0}{0}^t \opr{} T(k_1) = 0v + 0k_1 + 0k_2 = 0\\
+& [T(k_2)]_{B_V} = \tir{0}{0}{0}^t \opr{} T(k_2) = 0v + 0k_1 + 0k_2 = 0\\
+& [T(v)]_{B_V} = \tir{1}{0}{0}^t \opr{} T(v) = 1v + 0k_1 + 0k_2 = v
+\end{eqnarray*}
+כנדרש.
+\br\qed
+%%%%% </Q3> %%%%%
+
+\end{document}

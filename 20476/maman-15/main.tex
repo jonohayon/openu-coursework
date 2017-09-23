@@ -1,0 +1,146 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+
+% Custom commands for this document
+
+% Spacing
+\titlespacing\subsubsection{0pt}{5pt}{3pt}
+\setstretch{0.1}
+
+\title{ממן 51}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+
+%%%%% <Q1> %%%%%
+\section{שאלה 1}
+\subsection{סעיף א}
+ראשית, נחשב את $a_0, a_1, a_2$.
+כמות המחרוזות באורך $0$ המקיימות את התנאי הינה $1$ )המחרוזת הריקה(. לפיכך, $a_0 = 1$.
+כמות המחרוזות באורך $1$ המקיימות את התנאי הינה $3$ )שכן $|\{0, 1, 2\}| = 3$( ולכן $a_1 = 3$.
+כמות המחרוזות באורך $2$ המקיימות את התנאי הינה $7$ )שכן כמות המחרוזות באורך $2$ הינה $|A \times A| = 3^2 = 9$, אך יש $2$ מחרוזות באורך $2$ שאינן מקיימות את התנאי ו$9 - 2 = 7$(.
+
+אם מחרוזת באורך $n$ מתחילה ב$0$, אזי היא תהיה חייבת להתחיל ב$02$ והמשך הסדרה הינו באורך $n - 2$.
+אם מחרוזת באורך $n$ מתחילה ב$1$ או ב$2$, אזי המשך הסדרה הינו באורך $n - 1$.
+לפיכך, זהו יחס הנסיגה:
+\[
+a_n = 2a_{n - 1} + a_{n - 2}
+\]
+נראה שהיחס נכון ע"י הצבה של $n = 2$:
+\[
+7 = a_2 = 2a_1 + a_0 = 2 \cdot 3 + 1 = 7
+\]
+כנדרש.
+\br\qed
+
+\subsection{סעיף ב}
+המשוואה האופיינית של הסדרה הינה
+\begin{align*}
+& \lambda^n = 2\lambda^{n-1} + \lambda^{n-2}\;/:\lambda^{n-2}\\
+& \lambda^2 = 2\lambda + 1\\
+& \lambda^2 - 2\lambda - 1 = 0
+\end{align*}
+נפתור:
+\[
+\lambda = \frac{2 \pm \sqrt{4 + 4}}{2} = \frac{2 \pm 2\sqrt{2}}{2} = 1 \pm \sqrt{2}
+\]
+כלומר $a_n = A(1 + \sqrt{2})^n + B(1 - \sqrt{2})^n$. בעמוד הבא נחשב את ערכי $A$ ו$B$.
+\clearpage
+
+\setcounter{subsection}{0}
+\subsection{סעיף א )המשך(}
+כעת, נציב את תנאי ההתחלה ונקבל:
+\begin{align*}
+1 & = a_0 = A + B\\
+3
+& = a_1\\
+& = A(1 + \sqrt{2}) + B(1 - \sqrt{2})\\
+& = A + \sqrt{2}A + B - \sqrt{2}B\\
+& = A + B + \sqrt{2}(A - B)\\
+2 & = \sqrt{2}(A - B)\;/:\sqrt{2}\\
+\sqrt{2} & = A - B
+\end{align*}
+כעת, נוכל למצוא את ערכי $A$ ו$B$ באופן הבא:
+\begin{align*}
+& A + B + (A - B) = 1 + \sqrt{2}\\
+& 2A = 1 + \sqrt{2}\;/:2\\
+& A = \frac{1}{2}(1 + \sqrt{2})\\
+& A + B - (A - B) = 1 - \sqrt{2}\\
+& 2B = 1 - \sqrt{2}\;/:2\\
+& B = \frac{1}{2}(1 - \sqrt{2})
+\end{align*}
+כעת, נוכל להציב בנוסחה שמצאנו לאיברי הסדרה ולקבל את הנוסחה המפורשת ל$a_n$:
+\begin{align*}
+a_n
+& = A(1 + \sqrt{2})^n + B(1 - \sqrt{2})^n\\
+& = \frac{1}{2}(1 + \sqrt{2})(1 + \sqrt{2})^n + \frac{1}{2}(1 - \sqrt{2})(1 - \sqrt{2})^n\\
+& = \frac{1}{2}(1 + \sqrt{2})^{n + 1} + \frac{1}{2}(1 - \sqrt{2})^{n + 1}\\
+& = \frac{1}{2}((1 + \sqrt{2})^{n + 1} + (1 - \sqrt{2})^{n + 1})
+\end{align*}
+לפיכך, $a_n = \frac{1}{2}((1 + \sqrt{2})^{n + 1} + (1 - \sqrt{2})^{n + 1})$ כנדרש.
+\br\qed
+\clearpage
+%%%%% </Q1> %%%%%
+
+%%%%% <Q2> %%%%%
+\section{שאלה 2}
+מכיוון שערכי כל המשתנים גדולים מ$1$, נוכל לסמנם ב$x_n = y_n + 2$, כלומר המשוואה הינה
+\begin{align*}
+& y_1 + y_2 + y_3 + y_4 + y_5 + 10 = 24\\
+& y_1 + y_2 + y_3 + y_4 + y_5 = 14
+\end{align*}
+כעת, שלושה משתנים הינם זוגיים ושניים הינם אי-זוגיים, ויש ${5 \choose 3} = 10$ דרכים לבחור את המשתנים הזוגיים מתוך כלל המשתנים. כעת, נשער בה"כ ששני המשתנים הראשונים הינם אי-זוגיים והשאר זוגיים ונסמן
+\[
+y_i = \begin{cases}
+2z_i + 1, & i \le 2\\\\
+2z_i, & \text{\R{אחרת}}
+\end{cases}
+\]
+כעת, נציב ונראה מה המשוואה:
+\begin{align*}
+& 2z_1 + 1 + 2z_2 + 1 + 2z_3 + 2z_4 + 2z_5 = 14\\
+& 2z_1 + 2z_2 + 2z_3 + 2z_4 + 2z_5 = 12\\
+& z_1 + z_2 + z_3 + z_4 + z_5 = 6
+\end{align*}
+וכעת אין שום הגבלה על המשתנים ונוכל לבדוק כמה דרכים לבחור אותם יש. בעיה זו הינה אותה בעיה כמו לזרוק $6$ כדורים ל$5$ תאים, כלומר מספר הדרכים הינו
+\[
+D(5, 6) = {5 + 6 - 1 \choose 4} = {10 \choose 4}
+\]
+נכפיל את מספר זה במספר הדרכים לבחור את המשתנים הזוגיים ונקבל
+\[
+{10 \choose 4} \cdot {5 \choose 3} = 210 \cdot 10 = 2100
+\]
+לכן, יש $2100$ פתרונות אפשריים למשוואה.
+\br\qed
+%%%%% </Q2> %%%%%
+
+\end{document}
