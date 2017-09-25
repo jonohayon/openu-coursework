@@ -18,6 +18,7 @@
 \newcommand{\oprm}[1]{\underset{\substack{#1}}{\longrightarrow}}
 \newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
 \newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\ueqm}[1]{\underset{\substack{#1}}{=}}
 \newcommand{\mR}{\mathbb{R}}
 \newcommand{\mN}{\mathbb{N}}
 \newcommand{\mZ}{\mathbb{Z}}
@@ -208,7 +209,7 @@ x = y = &\ 1,\ \alpha = -1\\
 \section{שאלה 2}
 \subsection{מציאת בסיסים ל$\ker T$ ול$\Ima T$}
 \subsubsection{$\ker T$}
-ראשית, נמצא העתקה $S$ המתאימה ל$T$ בעזרת הצגת הקואורדינטות לפי הבסיס הסטנדרטי $(e_1, e_2, e_3, e_4)$ של $M^\mR_{2 \times 2}$:
+ראשית, נמצא העתקה $S$ המתאימה ל$T$ בעזרת הצגת הקואורדינטות לפי הבסיס הסטנדרטי של $M^\mR_{2 \times 2}$:
 \begin{eqnarray*}
 & A = \begin{bmatrix}
 a & b\br
@@ -333,7 +334,7 @@ T(A^2)
 \[
 q(x) = r(x) + p(x) = (a-d+3)x^2 + (b+c+2)x + 5(a-d+1)
 \]
-נניח ש$q(x) \in \Ima{T}$ ונביא דוגמה נגדית לפולינום אשר עבורו $q(x) \not\in \Ima{T}$:
+נניח ש$q(x) \in \Ima{T}$ לכל $p(x) \in \Ima{T}$ ונראה דוגמה נגדית לפולינום אשר עבורו $q(x) \not\in \Ima{T}$:
 \begin{align*}
 \begin{matrix}
 a = 1 & b = 2\br
@@ -367,7 +368,7 @@ a - d = -11
 %%%%% <Q3> %%%%%
 \section{שאלה 3}
 \subsection{סעיף א}
-ראשית, נראה ש$\Ima{T} \subseteq \ker{T}$: לפי הגדרת גרעין ההעתקה, $\ker{T} = \{v \mid T(v) = 0\}$ ולפי הגדרת תמונת ההעתקה, $\Ima{T} = \{T(v) \mid v \in V\}$. לפי הגדרת $T$ מתקיים $T^2 = 0$, כלומר $T(T(v)) = 0$ לכל $v \in V$. כעת, לפי הגדרת הגרעין, $x = T(v) \in \ker{T}$ לכל $v \in V$ )שכן מתקיים $T(x) = 0$(. כעת, כל $m \in \Ima{T}$ שייך גם ל$\ker{T}$ ולכן $\Ima{T} \subseteq \ker{T}$.
+ראשית, נראה ש$\Ima{T} \subseteq \ker{T}$: לפי הגדרת גרעין ההעתקה, $\ker{T} = \{v \mid T(v) = 0\}$ ולפי הגדרת תמונת ההעתקה, $\Ima{T} = \{T(v) \mid v \in V\}$. לפי הגדרת $T$ מתקיים $T^2 = 0$, כלומר $T(T(v)) = 0$ לכל $v \in V$. כעת, לפי הגדרת הגרעין, $x = T(v) \in \ker{T}$ לכל $v \in V$ )שכן מתקיים $T(x) = 0$(. כעת, כל $x \in \Ima{T}$ שייך גם ל$\ker{T}$ ולכן $\Ima{T} \subseteq \ker{T}$.
 
 כעת, לפי \m{8}{3}{4.},‎ מתקיים $\dim{\Ima{T}} \le \dim{\ker{T}}$, כלומר קיים $\epsilon \in \mN$ כך ש
 \[
@@ -392,7 +393,7 @@ a - d = -11
 \[
 k_1, k_2 \in \ker{T} \opr{} B_{\ker{T}} = (k_1, k_2)
 \]
-כעת, על מנת להשלים את $B_{\ker{T}}$ לבסיס של $V$ נצטרך למצוא $v \in V$ אשר אינו בגרעין ההעתקה, כלומר שמתקיים $T(v) \neq 0$. לפי הנתון, $T \neq 0$ ולכן קיים $v \in V$ כך ש$T(v) \neq 0$. לכן, מתקיים
+כעת, על מנת להשלים את $B_{\ker{T}}$ לבסיס של $V$ נצטרך למצוא $v \in V$ אשר אינו בגרעין ההעתקה, כלומר שמתקיים $T(v) \neq 0$ ולצרפו ל$B_{\ker{T}}$. לפי הנתון, $T \neq 0$ ולכן קיים $v \in V$ כך ש$T(v) \neq 0$. לכן, מתקיים
 \begin{eqnarray*}
 & B_V = (v, k_1, k_2)\\
 & \downarrow\\
@@ -402,6 +403,273 @@ k_1, k_2 \in \ker{T} \opr{} B_{\ker{T}} = (k_1, k_2)
 \end{eqnarray*}
 כנדרש.
 \br\qed
+\clearpage
 %%%%% </Q3> %%%%%
+
+%%%%% <Q4> %%%%%
+\section{שאלה 4}
+\setcounter{subsection}{-1}
+\subsection{סימון מטריצת מעבר מ$B'$ ל$B$}
+נסמן את מטריצת המעבר מבסיס $B'$ לבסיס $B$ בעזרת $M^{B}_{B'}$.
+\subsection{סעיף א}
+ראשית, נשלים את הקבוצה הפורשת את $\ker{T}$ לבסיס של $\mR_4[x]$:
+\begin{align*}
+& b_1 = 1 - x,\ b_2 = x - x^3\\
+& [b_1]_E = \fir{0}{0}{-1}{1},\ [b_2]_E = \fir{-1}{0}{1}{0}\\\\
+& \begin{bmatrix}
+0 & 0 & -1 & 1\br
+-1 & 0 & 1 & 0
+\end{bmatrix}
+\opr{\text{\R{השלמה לבסיס בעזרת $x^2, 1$}}}
+\begin{bmatrix}
+0 & 0 & -1 & 1\br
+-1 & 0 & 1 & 0\br
+0 & 1 & 0 & 0\br
+0 & 0 & 0 & 1
+\end{bmatrix}
+\oprm{%
+R_1 \opr{} R_1 - R_4\\
+R_2 \opr{} R_2 + R_1\\
+R_1 \opr{} -R_1\\
+R_2 \opr{} -R_2
+}
+\begin{bmatrix}
+0 & 0 & 1 & 0\br
+1 & 0 & 0 & 0\br
+0 & 1 & 0 & 0\br
+0 & 0 & 0 & 1
+\end{bmatrix}
+\end{align*}
+לפיכך, הקבוצה פורשת ובת"ל ב$\mR_4[x]$ ולכן $B$ בסיס כאשר
+\[
+B = (b_1 = 1 - x, b_2 = x - x^3, b_3 = x^2, b_4 = 1)
+\]
+כעת, על מנת להגדיר את ההעתקה די להגדיר אותה על איברי הבסיס, שכן איברי המרחב הינם צירוף לינארי שלהם. בנוסף, אנו יודעים שהקבוצה $\{1 - x, x - x^3\}$ פורשת את גרעין ההעתקה ולכן חייב להתקיים $T(1 - x) = T(x - x^3) = 0$. ניקח לדוגמה את ההעתקה $T: \mR_4[x] \opr{} \mR_4[x]$ הבאה:
+\[
+\begin{matrix}
+T(1 - x) = 0 & T(x - x^3) = 0\br
+T(x^2) = 1 - x & T(1) = x - x^3
+\end{matrix} \opr{}
+\begin{matrix}
+T(1 - x) = \fir{0}{0}{0}{0}^t & T(x - x^3) = \fir{0}{0}{0}{0}^t\br
+T(x^2) = \fir{1}{0}{0}{0}^t & T(1) = \fir{0}{1}{0}{0}^t
+\end{matrix}
+\]
+מכיוון שההעתקה לינארית, נוכל לייצג את $T(ax^3 + bx^2 + cx + d)$ כך:
+\[
+(*)\quad T(ax^3 + bx^2 + cx + d) = aT(x^3) + bT(x^2) + cT(x) + dT(1)
+\]
+כעת, לפי \m{01}{6}{1.} מתקיים $[T]_E = M^{E}_{B} \cdot [T]_B \cdot M^{B}_{E} = M^{E}_{B} \cdot [T]_B \cdot (M^{E}_{B})^{-1}$. לפיכך, על מנת למצוא את הנוסחה המפורשת ל$T$ נצטרך למצוא את מטריצת הייצוג שלה בבסיס $B$, מטריצת המעבר מ$E$ ל$B$ והמטריצה ההופכית לה.
+
+ראשית, נמצא את מטריצת הייצוג של ההעתקה:
+\[
+[T]_B = \fir{[T(1 - x)]_B}{[T(x - x^3)]_B}{[T(x^2)]_B}{[T(1)]_B} = \begin{bmatrix}
+0 & 0 & 1 & 0\br
+0 & 0 & 0 & 1\br
+0 & 0 & 0 & 0\br
+0 & 0 & 0 & 0
+\end{bmatrix}
+\]
+בעמוד הבא נמצא את $M^{E}_{B}$ ואת ההופכית לה.
+\clearpage
+\setcounter{subsection}{0}
+\subsection{סעיף א )המשך(}
+על מנת למצוא את מטריצת המעבר, ראשית נמצא את הצירופים הלינארים של איברי $E$ בעזרת איברי $B$:
+\[
+\begin{matrix}
+e_1 = -b_1 - b_2 + 0b_3 + b_4 & e_2 = 0b_1 + 0b_2 + b_3 + 0b_4\br
+e_3 = -b_1 + 0b_2 + 0b_3 + b_4 & e_4 = 0b_1 + 0b_2 + 0b_3 + b_4
+\end{matrix}
+\]
+כעת, נמצא את מטריצת המעבר:
+\[
+M^{E}_{B} = \fir{[e_1]_B}{[e_2]_B}{[e_3]_B}{[e_4]_B} = \begin{bmatrix}
+-1 & 0 & -1 & 0\br
+-1 & 0 & 0 & 0\brי
+0 & 1 & 0 & 0\br
+1 & 0 & 1 & 1
+\end{bmatrix}
+\]
+כעת, נמצא את המטריצה ההופכית לה ע"י דירוג $[M^{E}_{B} \mid I_4]$ עד להגעה ל$[I_4 \mid (M^{E}_{B})^{-1}]$:
+\begin{align*}
+& \begin{bmatrix}
+-1 & 0 & -1 & 0 & \mid & 1 & 0 & 0 & 0\\
+-1 & 0 & 0 & 0 & \mid & 0 & 1 & 0 & 0\\
+0 & 1 & 0 & 0 & \mid & 0 & 0 & 1 & 0\\
+1 & 0 & 1 & 1 & \mid & 0 & 0 & 0 & 1
+\end{bmatrix}
+\oprm{%
+R_2 \opr{} -R_2\\
+R_2 \bidiarrow{} R_1\\
+R_2 \opr{} R_2 + R_1\\
+R_4 \opr{} R_4 - R_1
+}
+\begin{bmatrix}
+1 & 0 & 0 & 0 & \mid & 0 & -1 & 0 & 0\\
+0 & 0 & -1 & 0 & \mid & 1 & -1 & 0 & 0\\
+0 & 1 & 0 & 0 & \mid & 0 & 0 & 1 & 0\\
+0 & 0 & 1 & 1 & \mid & 0 & 1 & 0 & 1
+\end{bmatrix}\\
+& \oprm{%
+R_4 \opr{} R_4 + R_2\\
+R_2 \opr{} -R_2\\
+R_2 \bidiarrow{} R_3
+}
+\begin{bmatrix}
+1 & 0 & 0 & 0 & \mid & 0 & -1 & 0 & 0\\
+0 & 1 & 0 & 0 & \mid & 0 & 0 & 1 & 0\\
+0 & 0 & 1 & 0 & \mid & -1 & 1 & 0 & 0\\
+0 & 0 & 0 & 1 & \mid & 1 & 0 & 0 & 1
+\end{bmatrix}
+\opr{}
+M^{B}_{E} = \begin{bmatrix}
+0 & -1 & 0 & 0\br
+0 & 0 & 1 & 0\br
+-1 & 1 & 0 & 0\br
+1 & 0 & 0 & 1
+\end{bmatrix}
+\end{align*}
+כעת, נכפול את המטריצות ונגיע למטריצת הייצוג של ההעתקה בעזרת הבסיס הסטנדרטי:
+\begin{align*}
+& A = M^{B}_{E} \cdot [T]_B = \begin{bmatrix}
+0 & -1 & 0 & 0\br
+0 & 0 & 1 & 0\br
+-1 & 1 & 0 & 0\br
+1 & 0 & 0 & 1
+\end{bmatrix} \cdot
+\begin{bmatrix}
+0 & 0 & 1 & 0\br
+0 & 0 & 0 & 1\br
+0 & 0 & 0 & 0\br
+0 & 0 & 0 & 0
+\end{bmatrix}
+= \begin{bmatrix}
+0 & 0 & 0 & -1\br
+0 & 0 & 0 & 0\br
+0 & 0 & -1 & 1\br
+0 & 0 & 1 & 0
+\end{bmatrix}\\
+& A \cdot M^{E}_{B} = \begin{bmatrix}
+0 & 0 & 0 & -1\br
+0 & 0 & 0 & 0\br
+0 & 0 & -1 & 1\br
+0 & 0 & 1 & 0
+\end{bmatrix} \cdot \begin{bmatrix}
+-1 & 0 & -1 & 0\br
+-1 & 0 & 0 & 0\brי
+0 & 1 & 0 & 0\br
+1 & 0 & 1 & 1
+\end{bmatrix} = \begin{bmatrix}
+1 & -1 & 0 & 0\br
+1 & -1 & 0 & 0\br
+1 & 0 & 0 & 1\br
+-1 & 1 & 0 & 0
+\end{bmatrix}
+\end{align*}
+כעת, נמצא את $T(e_i)$ לפי הקואורדינטות $[T(e_i)]_E$:
+\[
+\begin{matrix}
+T(e_1) = T(x^3) = -x^3 + x & T(e_2) = T(x^2) = -x + 1\br
+T(e_3) = T(x) = 0 & T(e_4) = T(1) = -x^3 + x
+\end{matrix}
+\]
+ונוכל למצוא את הנוסחה המפורשת לפי $(*)$:
+\[
+T(ax^3 + bx^2 + cx + d) = aT(x^3) + bT(x^2) + cT(x) + dT(1) = (-a-d)x^3 + (a - b + d)x + b
+\]
+כנדרש.
+\br\qed
+\clearpage
+%%%%% </Q4> %%%%%
+
+%%%%% <Q5> %%%%%
+\section{שאלה 5}
+\subsection{סעיף א}
+ראשית, נמצא את ערכו של $a$. לפי הנתון, ההעתקה לא הפיכה ולפיכך המטריצה המייצגת אותה אינה הפיכה גם היא, כלומר -- הדטרמיננטה שלה שווה ל$0$. כעת, נחשב את הדטרמיננטה של המטריצה המייצגת וכך נגיע לערך $a$:
+\begin{align*}
+0 = \begin{vmatrix}
+1 & 0 & 1\br
+1 & a & 2a\br
+a & 1 & 2a
+\end{vmatrix}
+\ueqm{%
+C_3 \opr{} C_3 - C_1\\
+R_2 \opr{} R_2 - R_1\\
+R_3 \opr{} R_3 - aR_1
+}
+\begin{vmatrix}
+1 & 0 & 0\br
+0 & a & 2a - 1\br
+0 & 1 & 2a
+\end{vmatrix}
+\ueq{\R{פיתוח לפי $C_1, R_1$}}
+a^2 - (2a - 1) \opr{} a^2 - 2a + 1
+\end{align*}
+כעת, לפי נוסחאת הכפל המקוצר: $(a - 1)^2 = 0$, ולכן $a = 1$. כעת, נמצא את מטריצת המעבר מבסיס $E$ לבסיס $B$ בעזרת מציאת הצירופים הלינארים של $e_i$ בעזרת $b_i$:
+\begin{eqnarray*}
+& \begin{matrix}
+e_1 = 0.5b_1 + 0.5b_2 + 0.5b_3 & e_2 = 0.5b_1 + 0.5b_2 - 0.5b_3\br
+e_3 = 0.5b_1 - 0.5b_2 - 0.5b_3
+\end{matrix}\\\\
+& \downarrow\\\\
+& M^{E}_{B} = \tir{[e_1]_B}{[e_2]_B}{[e_3]_B} = \begin{bmatrix}
+0.5 & 0.5 & 0.5\br
+0.5 & 0.5 & -0.5\br
+0.5 & -0.5 & -0.5
+\end{bmatrix}
+\end{eqnarray*}
+כעת, נוכל לייצג את $T(\alpha, \beta, \gamma)$ כך:
+\[
+T(\alpha, \beta, \gamma) = T(\alpha e_1 + \beta e_2 + \gamma e_3) = \alpha T(e_1) + \beta T(e_2) + \gamma T(e_3)
+\]
+נמצא את $T(e_i)$ בעזרת המטריצה המייצגת את ההעתקה בבסיס $E$. נמצא את $M^{B}_{E} = (M^{E}_{B})^-1$ ע"י דירוג $[M^{E}_{B} \mid I_4]$ עד להגעה ל$[I_4 \mid (M^{E}_{B})^{-1}]$:
+\begin{align*}
+& \begin{bmatrix}
+0.5 & 0.5 & 0.5 & \mid & 1 & 0 & 0\\
+0.5 & 0.5 & -0.5 & \mid & 0 & 1 & 0\\
+0.5 & -0.5 & -0.5 & \mid & 0 & 0 & 1\\
+\end{bmatrix}
+\oprm{%
+R_i \opr{} 2R_i\\
+R_2 \opr{} R_2 - R_1\\
+R_3 \opr{} R_3 - R_1
+}
+\begin{bmatrix}
+1 & 1 & 1 & \mid & 2 & 0 & 0\\
+0 & 0 & -2 & \mid & -2 & 2 & 0\\
+0 & -2 & -2 & \mid & -2 & 0 & 2\\
+\end{bmatrix}
+\oprm{%
+R_2 \opr{} -0.5R_2\\
+R_3 \opr{} -0.5R_3\\
+}\\
+& \begin{bmatrix}
+1 & 1 & 1 & \mid & 2 & 0 & 0\\
+0 & 0 & 1 & \mid & 1 & -1 & 0\\
+0 & 1 & 1 & \mid & 1 & 0 & -1\\
+\end{bmatrix}
+\oprm{%
+R_2 \bidiarrow{} R_3\\
+R_1 \opr{} R_1 - R_2\\
+R_2 \opr{} R_2 - R_3
+}
+\begin{bmatrix}
+1 & 0 & 0 & \mid & 1 & 0 & 1\\
+0 & 1 & 0 & \mid & 0 & 1 & -1\\
+0 & 0 & 1 & \mid & 1 & -1 & 0\\
+\end{bmatrix}
+\opr{}
+M^{B}_{E} = \begin{bmatrix}
+1 & 0 & 1\br
+0 & 1 & -1\br
+1 & -1 & 0
+\end{bmatrix}
+\end{align*}
+בעמוד הבא נחשב את $[T]_E$.
+\clearpage
+\setcounter{subsection}{0}
+\subsection{סעיף א )המשך(}
+
+%%%%% </Q5> %%%%%
 
 \end{document}
