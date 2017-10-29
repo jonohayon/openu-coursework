@@ -1,0 +1,318 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\oprm}[2][]{\overset{\substack{#1}}{\underset{\substack{#2}}{\longrightarrow}}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\ueqm}[2][]{\overset{\substack{#1}}{\underset{\substack{#2}}{=}}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+
+% Custom commands for this document
+\newcommand{\tiv}[3]{\begin{bmatrix}#1 \br #2 \br #3\end{bmatrix}}
+\newcommand{\tir}[3]{\begin{bmatrix}#1 & #2 & #3\end{bmatrix}}
+\newcommand{\detf}[4]{\begin{vmatrix}#1 & #2\br #3 & #4\end{vmatrix}}
+
+% Spacing
+\titlespacing\subsubsection{0pt}{5pt}{3pt}
+\setstretch{0.1}
+
+\title{ממן 51}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+
+\setcounter{section}{-1}
+\section{סימונים}
+\subsection{ריבוי גיאומטרי ואלגברי}
+נסמן את הריבוי הגיאומטרי של הערך העצמי $\lambda$ כך: $g_\lambda$ ואת הריבוי האלגברי שלו כך: $a_\lambda$.
+
+%%%%% <Q1> %%%%%
+\section{שאלה 1}
+\subsection{סעיף א}
+\subsubsection{בדיקת לכסינות}
+ראשית, נמצא את הפולינום האופייני של מטריצה $A$:
+\begin{align*}
+P_A(\lambda)
+& = |\lambda I - A| = \begin{vmatrix}
+\lambda - 3 & 0 & -4\br
+1 & \lambda - 1 & -2\br
+2 & 0 & \lambda - 1
+\end{vmatrix}
+\ueq{$R_3 \opr{} R_3 + R_1$} \begin{vmatrix}
+\lambda - 3 & 0 & -4\br
+1 & \lambda - 1 & -2\br
+\lambda - 1 & 0 & \lambda - 1
+\end{vmatrix}\\
+& \ueq{\R{הוצאת גורם משותף מ$C_1, R_3$}} (\lambda - 1)^2 \begin{vmatrix}
+\lambda - 3 & 0 & -4\br
+1 & 1 & -2\br
+1 & 0 & 1
+\end{vmatrix} \ueqm[%
+  C_1 \opr{} C_1 - C_2
+]{%
+  C_1 \opr{} C_1 - C_3\\
+  R_1 \bidiarrow{} R_3
+}
+(\lambda - 1)^2 \begin{vmatrix}
+0 & 0 & 1\br
+\lambda + 1 & 0 & -4\br
+-2 & 1 & -2
+\end{vmatrix}\\
+& \ueq{\R{פיתוח לפי $R_1$}} (\lambda - 1)^2 \cdot \left[
+\cancel{0\detf{1}{-2}{0}{-4}} - \cancel{0\detf{-2}{-2}{\lambda + 1}{-4}} + 1\detf{-2}{1}{\lambda + 1}{0}
+\right]\\
+& = -(\lambda - 1)^2(\lambda + 1)
+\end{align*}
+לפי \m{11}{4}{1.}, נוכל להשוות את הפולינום ל$0$ ולקבל את הערכים העצמיים $\lambda = \pm 1$. מכיוון שהפולינום מתפרק לגורמים לינאריים נוכל להמשיך ולבדוק את הריבוי האלגברי והגיאומטרי של כל ע"ע. ראשית, נוכל לראות ש$a_{-1} = 1$, ולפי \q{11}{5}{5.}ב מתקיים $g_{-1} = a_{-1} = 1$. כעת, נוכל לראות שמתקיים $a_1 = 2$. נבדוק מהו ערכו של $g_1$:
+\[
+g_1 = n - \rho(\lambda I - A) = 3 - 1 = 2
+\]
+כעת, מכיוון שמתקיים $g_1 = a_1 = 2$, $A$ לכסינה. בעמוד הבא נמצא את המטריצה $P$ המלכסנת אותה ואת המטריצה האלכסונית $B$ הדומה לה.
+\clearpage
+\subsubsection{מציאת המטריצה המלכסנת}
+ראשית, נמצא את הו"ע לכל הע"ע של המטריצה $A$. עבור $\lambda = -1$:
+\begin{eqnarray*}
+& (A + I)v_1 = 0 \opr{}
+\begin{bmatrix}
+4 & 0 & -4 & \mid & 0\\
+1 & 2 & -2 & \mid & 0\\
+2 & 0 & -2 & \mid & 0
+\end{bmatrix} \oprm[%
+  R_1 \opr{} \frac{1}{4}R_1
+]{%
+  R_2 \opr{} \frac{1}{2}R_2
+}
+\begin{bmatrix}
+1 & 0 & -1 & \mid & 0\\
+1 & 2 & -2 & \mid & 0\\
+1 & 0 & -1 & \mid & 0
+\end{bmatrix} \oprm[%
+  R_3 \opr{} R_3 - R_1
+]{%
+  R_2 \opr{} R_2 - R_1\\
+  R_2 \opr{} \frac{1}{2}R_2
+}
+\begin{bmatrix}
+1 & 0 & -1 & \mid & 0\\
+0 & 1 & -\frac{1}{2} & \mid & 0\\
+0 & 0 & 0 & \mid & 0
+\end{bmatrix}\\
+& \downarrow\\
+& \begin{matrix}
+x = z\br
+y = \frac{1}{2}z\br
+z = 2t
+\end{matrix} \opr{} \begin{matrix}
+x = 2t\br
+y = t\br
+\end{matrix} \opr{} t(2, 1, 2)\ \text{\R{הפתרון הכללי:}} \opr{} v_1 = \tiv{2}{1}{2}
+\end{eqnarray*}
+כעת, נחפש את הווקטורים העצמיים עבור $\lambda = 1$:
+\begin{eqnarray*}
+& (A - I)v = 0 \opr{} \begin{bmatrix}
+2 & 0 & -4 & \mid & 0\\
+1 & 0 & -2 & \mid & 0\\
+2 & 0 & -4 & \mid & 0
+\end{bmatrix} \oprm[%
+  R_3 \opr{} R_3 - R_1
+]{%
+  R_2 \bidiarrow{} R_1\\
+  R_2 \opr{} R_2 - 2R_1
+}
+\begin{bmatrix}
+1 & 0 & -2 & \mid & 0\\
+0 & 0 & 0 & \mid & 0\\
+0 & 0 & 0 & \mid & 0
+\end{bmatrix}\\
+& \downarrow\\
+& \begin{matrix}
+x = 2z\br
+y = t\br
+z = s
+\end{matrix} \opr{} s(2, 0, 1) + t(0, 1, 0)\ \text{\R{הפתרון הכללי:}} \opr{} v_2 = \tiv{2}{0}{1},\ v_3 = \tiv{0}{1}{0}
+\end{eqnarray*}
+לכן, המטריצה המלכסנת $P$ הינה
+\[
+P = \begin{bmatrix}
+\mid & \mid & \mid\br
+v_1 & v_2 & v_3\br
+\mid & \mid & \mid
+\end{bmatrix} = \begin{bmatrix}
+2 & 2 & 0\br
+1 & 0 & 1\br
+2 & 1 & 0
+\end{bmatrix}
+\]
+כנדרש.
+\subsubsection{מציאת המטריצה האלכסונית הדומה ל$A$}
+ראשית, נמצא את $P^{-1}$:
+\begin{align*}
+& \begin{bmatrix}
+2 & 2 & 0 & \mid & 1 & 0 & 0\\
+1 & 0 & 1 & \mid & 0 & 1 & 0\\
+2 & 1 & 0 & \mid & 0 & 0 & 1
+\end{bmatrix} \oprm[%
+  R_1 \opr{} \frac{1}{2}R_1
+]{%
+  R_3 \opr{} \frac{1}{2}R_3
+}
+\begin{bmatrix}
+1 & 1 & 0 & \mid & \frac{1}{2} & 0 & 0\\\\
+1 & 0 & 1 & \mid & 0 & 1 & 0\\\\
+1 & \frac{1}{2} & 0 & \mid & 0 & 0 & \frac{1}{2}
+\end{bmatrix} \oprm[%
+  R_2 \opr{} R_2 - R_1
+]{%
+  R_3 \opr{} R_3 - R_1
+}
+\begin{bmatrix}
+1 & 1 & 0 & \mid & \frac{1}{2} & 0 & 0\\\\
+0 & -1 & 1 & \mid & -\frac{1}{2} & 1 & 0\\\\
+0 & -\frac{1}{2} & 0 & \mid & -\frac{1}{2} & 0 & \frac{1}{2}
+\end{bmatrix}\\
+& \oprm[%
+  R_3 \opr{} -2R_3\\
+  R_3 \bidiarrow{} R_2
+]{%
+  R_3 \opr{} R_3 + R_2\\
+  R_1 \opr{} R_1 - R_2
+} \begin{bmatrix}
+1 & 0 & 0 & \mid & \frac{1}{2} & 0 & 1\\\\
+0 & 1 & 0 & \mid & 1 & 1 & -1\\\\
+0 & 0 & 1 & \mid & \frac{1}{2} & 1 & -1
+\end{bmatrix} \opr{}
+P^{-1} = \begin{bmatrix}
+\frac{1}{2} & 0 & 1\\\\
+1 & 1 & -1\\\\
+\frac{1}{2} & 1 & -1
+\end{bmatrix}
+\end{align*}
+בדף הבא נמצא את המטריצה האלכסונית $B$ הדומה ל$A$.
+\clearpage
+\setcounter{subsubsection}{2}
+\subsubsection{מציאת המטריצה האלכסונית הדומה ל$A$ )המשך(}
+לפי \h{11}{3}{4.}, מתקיים $B = P^{-1}AP$. כעת, נכפיל את המטריצות על מנת להגיע למטריצה האלכסונית $B$:
+\begin{align*}
+& M =
+P^{-1} \cdot A =
+\begin{bmatrix}
+\frac{1}{2} & 0 & 1\br
+1 & 1 & -1\br
+\frac{1}{2} & 1 & -1
+\end{bmatrix} \cdot \begin{bmatrix}
+3 & 0 & -4\br
+1 & 1 & -2\br
+2 & 0 & 1
+\end{bmatrix} =
+\begin{bmatrix}
+\frac{1}{2} & 0 & -1\br
+1 & 0 & -1\br
+\frac{1}{2} & 1 & -1
+\end{bmatrix}\\
+& M \cdot P =
+\begin{bmatrix}
+\frac{1}{2} & 0 & -1\br
+1 & 0 & -1\br
+\frac{1}{2} & 1 & -1
+\end{bmatrix} \cdot \begin{bmatrix}
+2 & 2 & 0\br
+1 & 0 & 1\br
+2 & 1 & 0
+\end{bmatrix} =
+\begin{bmatrix}
+-1 & 0 & 0\br
+0 & 1 & 0\br
+0 & 0 & 1
+\end{bmatrix}
+\end{align*}
+לפיכך, מצאנו את המטריצה האלכסונית הדומה ל$A$ והיא הינה
+\[
+B = \begin{bmatrix}
+-1 & 0 & 0\br
+0 & 1 & 0\br
+0 & 0 & 1
+\end{bmatrix}
+\]
+כנדרש.
+\br\qed
+
+\subsection{סעיף ב}
+\subsubsection{טענת עזר}
+ראשית, נוכיח טענת עזר על מנת להעלות מטריצות לכסינות בחזקה בקלות. לפי \h{11}{3}{4.}, מתקיים
+\begin{eqnarray*}
+& B = P^{-1}AP \opr{\R{כפל מימין ב$P^{-1}$}}
+BP^{-1} = P^{-1}A \opr{\R{כפל משמאל ב$P$}}
+PBP^{-1} = A\\
+& \text{\R{העלה בחזקה ב$k$}}\downarrow\\
+& A^k = (PBP^{-1})^k = \underbrace{PB\cancel{P^{-1}} \cdot \cancel{P}B\cancel{P^{-1}} \cdot \ldots \cdot \cancel{P}B\cancel{P^{-1}} \cdot \cancel{P}BP^{-1}}_{\text{\R{$k$ פעמים}}} = PB^{k}P^{-1}
+\end{eqnarray*}
+לפיכך, $A^k = PB^{k}P^{-1}$.
+\subsubsection{הוכחה}
+ראשית, נחשב את המטריצה המייצגת את ההעתקה $T$ לפי הבסיס הסטנדרטי:
+\begin{eqnarray*}
+& \begin{matrix}
+T(e_1) = (3, 1, 2) & T(e_2) = (0, 1, 0)\br
+T(e_3) = (-4, -2, -3)
+\end{matrix}\\
+& \downarrow\\
+& [T]_E = \begin{bmatrix}
+\mid & \mid & \mid\br
+{[T(e_1)]_E} & {[T(e_2)]_E} & {[T(e_3)]_E}\br
+\mid & \mid & \mid
+\end{bmatrix} = \begin{bmatrix}
+3 & 0 & -4\br
+1 & 1 & -2\br
+2 & 0 & 1
+\end{bmatrix} = A\\
+\end{eqnarray*}
+כעת, מכיוון שהמטריצה המייצגת של $T$ שווה ל$A$ היא לכסינה. בעמוד הבא נחשב את $T^{2020}$ בעזרת טענת העזר.
+\clearpage
+
+\setcounter{subsubsection}{1}
+\subsubsection{הוכחה )המשך(}
+לפי \m{01}{4}{1.}, מתקיים $[T^2]_E = [T]_E \cdot [T]_E$, כלומר $[T^2]_E = A^2$. כעת, נוכל לפרק את $[T^{2020}]_E$ ל$\underbrace{[T^2]_E \cdot \ldots \cdot [T^2]_E}_{\text{\R{$1010$ פעמים}}}$. לפי טענת העזר שהוכחנו, נוכל לראות שמתקיים
+\begin{align*}
+A^2
+& = PB^{2}P^{-1}\\\\
+& = P \cdot \cancel{\begin{bmatrix}
+-1 & 0 & 0\br
+0 & 1 & 0\br
+0 & 0 & 1
+\end{bmatrix} \cdot \begin{bmatrix}
+-1 & 0 & 0\br
+0 & 1 & 0\br
+0 & 0 & 1
+\end{bmatrix}} \cdot P^{-1}\\
+& = PP^{-1}\\
+& = I
+\end{align*}
+לפיכך, $[T^{2020}]_E = I$ ומתקיים $T^{2020}(x, y, z) = (x, y, z)$ כנדרש.
+\br\qed
+%%%%% </Q1> %%%%%
+
+\end{document}

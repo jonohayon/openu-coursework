@@ -1,0 +1,155 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel,commath,mathtools}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\logr}[1]{\xRightarrow[\text{#1}]{}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+\newcommand{\ta}[3]{\R{טענה #3#2.#1}}
+
+% Custom commands for this document
+
+% Spacing
+\titlespacing\subsubsection{0pt}{5pt}{3pt}
+\setstretch{0.1}
+
+\title{ממן 11}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+
+%%%%% <Q1> %%%%%
+\section{שאלה 1}
+\subsection{סעיף א}
+נניח ש$a$ רציונלי ונגיע לסתירה. ראשית, מכיוון שמתקיים $\mN \subset \mQ$, גם $k$ ו$l$ רציונליים. כעת,
+\[
+(*)\qquad a = k + l\sqrt{2} \opr{$() - k$} a - k = l\sqrt{2}
+\]
+מכיוון ש$a, k \in \mQ \land a - k = a + (-k)$ ופעולת החיבור מעל הרציונליים הינה פעולה סגורה, מתקיים גם $a - k \in \mQ$. לפיכך, נוכל לייצגו בעזרת $\alpha, \beta \in \mZ \land \beta \neq 0$ כך: $a - k = \frac{\alpha}{\beta}$ ונוכל להניח שהצגה זו הינה ההצגה המצומצמת ביותר של מספר זה )כלומר, הגורם המשותף היחידי בין $\alpha$ ו$\beta$ הוא $1$(. לכן לפי $(*)$ מתקיים
+\[
+\frac{\alpha}{\beta} = l\sqrt{2} \opr{$()^2$}
+\frac{\alpha^2}{\beta^2} = 2l^2 \opr{$() * \beta^2$}
+\alpha^2 = 2l^2\beta^2
+\]
+מכיוון ש$2 \mid 2l^2\beta^2$ מתקיים $2 \mid \alpha^2$, ומכיוון שריבוע של מספר אי-זוגי הינו מספר אי-זוגי מתקיים גם $2 \mid \alpha$, כלומר קיים $m \in \mN$ כך ש$\alpha = 2m$. לכן
+\[
+4m^2 = 2l^2\beta^2 \opr{$\frac{()}{2}$}
+l^2\beta^2 = 2m^2 \opr{$\frac{()}{l^2}$}
+\beta^2 = 2 \cdot \frac{m^2}{l^2}
+\]
+לכן $2 \mid \beta^2$ ומכיוון שריבוע של מספר אי-זוגי הינו מספר אי-זוגי, מתקיים גם $2 \mid \beta$ והגענו לסתירה להנחה שהגורם המשותף היחידי בין $\alpha$ ו$\beta$ הינו $1$. לפיכך, $a = k + l\sqrt{2}$ הינו מספר אי-רציונלי כנדרש.
+\br\qed
+
+\clearpage
+\setcounter{section}{0}
+\section{שאלה 1 )המשך(}
+\subsection{סעיף ב}
+נוכיח את הטענה באינדוקציה עבור $1 \le n \in \mN$. מקרה הבסיס הוא כמובן $n = 1$, כלומר
+\[
+a = (1 + \sqrt{2})^1 = 1 + \sqrt{2}
+\]
+מספר זה הינו מהצורה $a = k + l\sqrt{2}$ )עבור $k = l = 1$( ולפי סעיף א של השאלה אנו יודעים שזהו מספר אי רציונלי. כעת, נניח נכונות עבור $n = k$ ונוכיח עבור $n = k + 1$:
+\begin{align*}
+a
+&= (1 + \sqrt{2})^{k + 1}\\
+&= (1 + \sqrt{2}) \cdot (1 + \sqrt{2})^k\\
+&= (1 + \sqrt{2})^k + \sqrt{2}(1 + \sqrt{2})^k
+\end{align*}
+לפי הנחת האינדוקציה $(1 + \sqrt{2})^k$ הינו מספר אי רציונלי, אך לפי \q{1}{16}{}ד נוכל לראות שמכפלת מספרים אי רציונליים אינה בהכרח מספר אי רציונלי בעצמה ולכן $\sqrt{2}(1 + \sqrt{2})^k$ אינו בהכרח אי רציונלי. לפיכך, נוכל לחלק את הביטוי לשני מקרים:
+\subsubsection{מקרה א -- $\sqrt{2}(1 + \sqrt{2})^k \in \mQ$}
+לפי הנחת האינדוקציה $(1 + \sqrt{2})^k$ מספר אי רציונלי. לפי \q{1}{16}{}א נוכל לראות שסכום מספר אי רציונלי ומספר רציונלי הינו מספר אי רציונלי בעצמו ולכן $a \not\in \mQ$ כנדרש.
+\subsubsection{מקרה ב -- $\sqrt{2}(1 + \sqrt{2})^k \not\in \mQ$}
+
+\clearpage
+%%%%% </Q1> %%%%%
+
+%%%%% <Q2> %%%%%
+\section{שאלה 2}
+\setcounter{subsection}{-1}
+\subsection{טענת עזר}
+ראשית, נוכיח טענת עזר אשר אומרת שעבור כל $1 \le x, n \in \mR, $ מתקיים $\frac{x}{n} \le x$. לפי \ta{1}{24}{2.}, לכל $1 \le n \in \mR$ מתקיים $\frac{1}{n} \le 1$. נכפיל את שני האגפים ב$x$ ונקבל $\frac{x}{n} \le x$ כנדרש.
+\br\qed
+
+\subsection{סעיף א}
+ראשית, נוכיח ש$|a| + 1 > 0$ בה"כ. לפי תכונות הערך המוחלט, $|a| \ge 0$. אם $|a| > 0$, בהכרח גם $|a| + 1 > 0$ )שכן $1 > 0$( וסיימנו. אם $|a| = 0$ אזי $|a| + 1 = 1 > 0$ כנדרש. לפיכך, $|a| + 1, |b| + 1 > 0$ ונוכל להשתמש בנוסחה הנתונה במטלה על מנת לפשט מעט את הביטוי:
+\begin{align*}
+\abs{\sqrt{|a| + 1} - \sqrt{|b| + 1}}
+&= \abs{\frac{(\sqrt{|a| + 1} + \sqrt{|b| + 1})(\sqrt{|a| + 1} - \sqrt{|b| + 1})}{\sqrt{|a| + 1} + \sqrt{|b| + 1}}}\\
+\text{\R{נוסחאות הכפל המקוצר}} \to &= \abs{\frac{|a| + \not1 - |b| - \not1}{\sqrt{|a| + 1} + \sqrt{|b| + 1}}}\\
+\text{\R{חיסור}} \to &= \abs{\frac{|a| - |b|}{\sqrt{|a| + 1} + \sqrt{|b| + 1}}}\\
+\text{\R{מתכונות הערך המוחלט}} \to &= \frac{\abs{|a| - |b|}}{\abs{\sqrt{|a| + 1} + \sqrt{|b| + 1}}}
+\end{align*}
+כעת, לפי טענת העזר שהוכחנו מתקיים
+\[
+\abs{\sqrt{|a| + 1} - \sqrt{|b| + 1}} = \frac{\abs{|a| - |b|}}{\abs{\sqrt{|a| + 1} + \sqrt{|b| + 1}}} \le \abs{|a| - |b|}
+\]
+וגם
+\[
+\frac{\abs{a - b}}{2} \le \abs{a - b}
+\]
+לפי אי-שוויון המשולש מתקיים $\abs{|a| - |b|} \le \abs{a - b}$ ולכן גם
+\[
+\abs{\sqrt{|a| + 1} - \sqrt{|b| + 1}} \le \abs{|a| - |b|} \le \frac{\abs{a - b}}{2} \le \abs{a - b} \logr{\R{טרנזיטיביות}} \abs{\sqrt{|a| + 1} - \sqrt{|b| + 1}} \le \frac{\abs{a - b}}{2}
+\]
+כנדרש.
+\br\qed
+\clearpage
+
+\setcounter{section}{1}
+\section{שאלה 2 )המשך(}
+\setcounter{subsection}{1}
+\subsection{סעיף ב}
+נחלק את הביטוי לשלושה תתי מקרים:
+\subsubsection{מקרה א -- $a = 0$}
+לפי תכונות הערך המוחלט, $|a| = 0$. לפיכך,
+\[
+\left(\frac{a + |a|}{2}\right)^2 = \left(\frac{a - |a|}{2}\right)^2 = a^2 = 0
+\]
+כנדרש.
+\subsubsection{מקרה ב -- $a > 0$}
+לפי תכונות הערך המוחלט, עבור $a > 0$ מתקיים $|a| = a$. לפיכך,
+\[
+\left(\frac{a + |a|}{2}\right)^2 + \left(\frac{a - |a|}{2}\right)^2
+= \left(\frac{\cancel{2}a}{\cancel{2}}\right)^2 + \left(\frac{0}{2}\right)^2
+= a^2 + 0
+= a^2
+\]
+כנדרש.
+\subsection{מקרה ג -- $a < 0$}
+לפי תכונות הערך המוחלט עבור $a < 0$ )כלומר קיים $m \in \mR$ כך ש$a = -m$( מתקיים $|a| = -a = m$. לפיכך,
+\begin{align*}
+\left(\frac{a + |a|}{2}\right)^2 + \left(\frac{a - |a|}{2}\right)^2
+&= \left(\frac{\cancel{-m + m}}{2}\right)^2 + \left(\frac{-m - m}{2}\right)^2\\
+&= \left(\frac{0}{2}\right)^2 + \left(\frac{-\cancel{2}m}{\cancel{2}}\right)^2\\
+&= (-m)^2 = a^2\\
+\end{align*}
+כנדרש.
+\br\qed
+%%%%% </Q2> %%%%%
+
+\end{document}
