@@ -12,7 +12,7 @@ Stuff with [F] in their title are future courses that I'm signed up to.
 ## Included coursework
  - [x] Ashnav (04101), 2017a ![DONE](https://img.shields.io/badge/stage-DONE-brightgreen.svg)
  - [ ] Introduction to computer science and the Java programming language (20441), 2017b ![DONE](https://img.shields.io/badge/stage-DONE-brightgreen.svg)
- - [x] Linear Algebra 1 (20109), 2017c ![TESTED](https://img.shields.io/badge/stage-TESTED-red.svg)
+ - [x] Linear Algebra 1 (20109), 2017c ![TESTED](https://img.shields.io/badge/stage-TESTED-yellow.svg)
  - [x] Discrete Math (20476), 2017c ![WIP](https://img.shields.io/badge/stage-WIP-orange.svg)
  - [x] Infinitesimal Calculus 1 (20474), 2018a ![WIP](https://img.shields.io/badge/stage-WIP-orange.svg)
  - [x] Linear Algebra 2 (20229), 2018a ![WIP](https://img.shields.io/badge/stage-WIP-orange.svg)
