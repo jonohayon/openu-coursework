@@ -1,0 +1,135 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel,commath}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\mC}{\mathbb{C}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+
+% Custom commands for this document
+\DeclareMathOperator{\Sp}{Sp}
+\newcommand{\mtf}[4]{\begin{bmatrix}#1 & #2\\ #3 & #4\end{bmatrix}}
+\newcommand{\ip}[2]{\langle #1, #2 \rangle}
+
+% Spacing
+\titlespacing\section{0pt}{0pt}{0pt}
+\titlespacing\subsection{0pt}{4pt}{0pt}
+
+\title{אוסף שאלות )8102א(}
+\author{אילון בן שמואל}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{שאלה 1}
+\subsection{סעיף א}
+יהי $V$ מרחב \underline{אוקלידי} ויהיו $\vec{u}, \vec{v} \in V$. נסמן ב$\ip{}{}$ מכפלה פנימית ב$V$. הוכח או הפרך:
+\begin{enumerate}
+\item $\ip{\vec{u}}{\vec{v}} = \frac{1}{4}(\norm{\vec{u} + \vec{v}}^2 - \norm{\vec{u} - \vec{v}}^2)$
+\item אם $\norm{\vec{u} + \vec{v}} = \norm{\vec{u} - \vec{v}}$ אז $\vec{u} \bot \vec{v}$
+\item אם $\vec{u} + \vec{v} \bot \vec{u} - \vec{v}$ אז $\norm{\vec{u}} = \norm{\vec{v}}$
+\end{enumerate}
+
+\subsection{סעיף ב}
+חזור על סעיף א3, אך התייחס ל$V$ כמרחב \underline{אוניטרי}.
+
+\subsection{סעיף ג}
+יהי $V$ מרחב \underline{אוניטרי} ויהיו $\vec{u}, \vec{v} \in V$. נסמן ב$\ip{}{}$ מכפלה פנימית ב$V$. הוכח או הפרך:\\
+הפונקציה $f(\vec{u}, \vec{v}) = Re \ip{\vec{u}}{\vec{v}}$ מהווה מכפלה פנימית במרחב $V$ מעל $\mR$.
+
+\section{שאלה 2}
+תהי $\{\vec{g_1}, \dots, \vec{g_n}\} \subseteq \mR^n$. הוכח שלכל $\lambda_1, \dots, \lambda_n \in \mR$ מתקיים
+\[
+\norm{\sum^{n}_{i = 1} \lambda_i \vec{g_i}} \le
+\sqrt{\sum^{n}_{i = 1} \abs{\lambda_i}^2}
+\sqrt{\sum^{n}_{i = 1} \norm{\vec{g_i}}^2}
+\]
+כאשר הנורמות מחושבות לפי המכפלה הפנימית הסטנדרטית ב$\mR^n$.
+\clearpage
+
+\section{שאלה 3}
+תהי $f: \mR^n \to \mR$ פונקציה:
+\[
+f(\vec{v}) = \frac{(v_1 + v^2_2 + \dots + v^n_n)^2}{v^2_1 + v^2_2 + \dots + v^2_n}
+\]
+לכל $\vec{v} = (v_1, \dots, v_n)$ ב$\mR^n$
+\subsection{סעיף א}
+מצא סקלר $0 < m \in \mR$ \underline{מינימלי} כך ש$f(\vec{u}) \le m$ לכל $\vec{u} \neq \vec0$.
+\subsection{סעיף ב}
+מצא ווקטור $\vec{v} \neq \vec0$ כך ש$f(\vec{v}) = m$ )שאלה זו פתורה במפגשי "אופק"(.
+
+\section{שאלה 4}
+נניח ש$V$ מרחב מכפלה פנימית נוצר סופית מעל $F = \mR$ או $F = \mC$. יהי $B = \{\vec{v_1}, \dots, \vec{v_n}\}$ בסיס של $V$. הוכח ש$B$ בסיס \underline{אורתונורמלי} אם ורק אם לכל $\alpha_1, \dots, \alpha_n \in F$ מתקיים
+\[
+\norm{\sum^{n}_{k = 1} \alpha_k \vec{v_k}}^2 = \sum^{n}_{k = 1} \abs{\alpha_k}^2
+\]
+
+\section{שאלה 5}
+נניח ש$V$ מרחב מכפלה פנימית נוצר סופית מעל $F = \mR$ או $F = \mC$ ויהי $B$ בסיס אורתונורמלי $B = \{\vec{v_1}, \dots, \vec{v_n}\} \subseteq V$. נסמן ב$\ip{}{}$ את המכפלה הפנימית במרחב $V$ ונסמן ב$\cdot$ את המכפלה הפנימית הסטנדרטית במרחב $F^n$ מעל $F$. הוכח שלכל $\vec{u}, \vec{w} \in V$ מתקיים
+\[
+\ip{\vec{u}}{\vec{w}} = [\vec{u}]_B \cdot [\vec{w}]_B
+\]
+
+\section{שאלה 6}
+האם קיימת מכפלה פנימית במרחב $\mR_3[x]$ מעל $\mR$ כך שהקבוצה הבאה מהווה קבוצה אורתוגונלית?
+\begin{enumerate}
+\item $\{1 - x, 1 + x + x^2, x^2\}$
+\item $\{1, 1 - x^2\}$
+\item $\{1 + x, 2 + x, 3 + 2x\}$
+\end{enumerate}
+\clearpage
+\section{שאלה 7}
+יהי $V = \mR^4$ עם המכפלה הפנימית הסטנדרטית ויהי $\vec{v} = (1, 2, 3, 4)$. האם קיים תת מרחב של $V$ כך שאורך ההיטל האורתוגונלי של $\vec{v}$ עליו הוא $6$?
+
+\section{שאלה 8}
+יהי $V$ מרחב מכפלה פנימית, ויהי $\vec{v} \in V$. יהי $\alpha \in \mR$ כך ש$0 \le \alpha \le \norm{\vec{v}}$. האם קיים תת מרחב של $V$ כך שאורך ההיטל האורתוגונלי של $\vec{v}$ עליו הוא בדיוק $\alpha$?
+\section{שאלה 9}
+המכפלות הפנימיות בשאלה זו הן המכפלות הפנימיות הסטנדרטיות במרחבים המתאימים.
+\begin{enumerate}
+\item יהיו $\vec{u} = (1, 2, i, 1, i), \vec{v} = (3 + i, -1, 1 - i, 1, -i)$. האם $\vec{u} \bot \vec{v}$? חשב את המרחק בין $\vec{u}$ ל$\vec{v}$.
+\item מהו המרחק בין $\vec{w} = (1, 1, 3)$ לבין תת המרחב $U = \Sp\{(1, 0, 0), (1, 1, 0)\}$ של $\mR^3$?
+\item האם המרחק בין $\mtf{1}{2}{3}{4}$ לבין תת המרחב $\Sp\left\{\mtf{1}{2}{0}{0}, \mtf{-2}{-4}{6}{8}\right\}$ הוא $\sqrt{243}$? אם כן, הוכח. אם לא, חשב מהו המרחק.
+\end{enumerate}
+
+\section{שאלה 01}
+יהי $V = \mR_4[x]$, $F = \mR$, $p, q \in V$. האם הנוסחה הבאה מהווה מכפלה פנימית?
+\[
+\ip{p}{q} = \sum^{2}_{i = 0} p(i)q(i)
+\]
+
+\section{שאלה 11}
+יהי $V = M^{\mR}_{2\times2}$, $F = \mR$, $A, B \in V$. האם הנוסחה $\ip{A}{B} = tr(BA)$ מהווה מכפלה פנימית?
+\section{שאלה 21}
+יהיו $\vec{u} = (x_1, x_2)$ ו$\vec{v} = (y_1, y_2)$ ווקטורים ב$\mR^2$ כמרחב ווקטורי מעל $\mR$. קבע לגבי כל אחת מהנוסחאות הבאות האם היא מהווה מכפלה פנימית ב$\mR^2$:
+\begin{enumerate}
+\item $\ip{\vec{u}}{\vec{v}} = x_1y_1^2 + x_2y_2$
+\item $\ip{\vec{u}}{\vec{v}} = 2x_1y_1 + x_1y_2 + x_2y_1 + x_2y_2$
+\item $\ip{\vec{u}}{\vec{v}} = x_1y_1 + 3x_1y_2 + 3x_2y_1 + 9x_2y_2$
+\end{enumerate}
+
+\end{document}
