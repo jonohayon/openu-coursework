@@ -1,0 +1,110 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel,commath}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+
+% Custom commands for this document
+
+% Spacing
+\titlespacing\subsubsection{0pt}{5pt}{3pt}
+\setstretch{0.1}
+
+\title{סיכום שיעור}
+\author{יונתן אוחיון}
+\date{8102.11.1}
+
+\begin{document}
+\maketitle
+
+\section{סדרות}
+סדרה היא קבוצה של מספרים )ממשיים(, המסודרים לפי $\mN$:
+\[
+a_1, a_2, a_3, \dots \opr{} (a_n)^\infty_{n = 1}, (a_n)
+\]
+
+\subsubsection{דוגמאות}
+\begin{itemize}
+\item $a_n = 17\quad(17, 17, 17, \dots)$ -- סדרה קבועה
+\item $a_n = n\quad(1, 2, 3, \dots)$
+\item $a_n = \frac{1}{n}\quad(1, \frac{1}{2}, \frac{1}{3}, \dots)$ -- הסדרה ההרמונית, שואפת לאפס
+\item $a_n = (-1)^n\quad(-1, 1, -1, \dots)$
+\end{itemize}
+
+\section{גבול של סדרה )הגדרה בלשון $\epsilon, N$(}
+בהינתן סדרה $(a_n)$, $L$ ייקרא הגבול של הסדרה אם לכל $0 < \epsilon$ קיים $N \in \mN$ כך שלכל $N < n$ מתקיים $\abs{a_n - L} < \epsilon$. הגבול מסומן כך:
+\[
+\lim_{n \to \infty} a_n = L
+\]
+
+\subsection{כתיב כמתים}
+\[
+(\exists L \in \mR) \forall 0 < \epsilon, \exists N \in \mN, \forall N < n, \abs{a_n - L} < \epsilon
+\]
+
+\subsection{שלילה}
+\[
+(\forall L \in \mR) \exists 0 < \epsilon, \forall N \in \mN, \exists N < n, \abs{a_n - L} \ge \epsilon
+\]
+שלילה זו למעשעה מראה ש$L$ נתון אינו גבול של הסדרה, ולא שהסדרה מתבדרת. על מנת להראות שהיא מתבדרת יש להראות שלילה זו עבור כל $L \in \mR$.
+\subsection{דוגמאות}
+תהי $(a_n)$ הסדרה $a_n = \frac{1}{n}$. נוכיח ש$\lim_{n \to \infty} a_n = 0$. צריך להראות שמתקיים
+\[
+\abs{\frac{1}{n} - 0} = \frac{1}{n} < \epsilon
+\]
+החל ממקום מסויים. לפי תכונת ארכימדס, קיים $N \in \mN$ כך ש$\frac{1}{\epsilon} < N$. לכן, עבור כל $N < n$ מתקיים
+\[
+\abs{a_n} = \frac{1}{n} < \frac{1}{N} < \epsilon
+\]
+כנדרש.
+
+תהי $(a_n)$ הסדרה $a_n = \frac{1 + (-1)^n}{2n}$. נחשב את $\lim_{n \to \infty} a_n$ ונוכיח בלשון $\epsilon, N$. יהי $0 < \epsilon$. נוכיח ש$\lim_{n \to \infty} a_n = 0$ )כלומר $\abs{a_n} < \epsilon$(. מתכונת ארכימדס קיים $N \in \mN$ כך ש$\frac{1}{N} < \epsilon$. לכן לכל $N < n$ מתקיים
+\[
+0 \le \abs{a_n} \le \frac{1}{n} < \frac{1}{N} < \epsilon
+\]
+כנדרש.
+
+\subsection{משפט חשוב )משפט הסנדוויץ'(}
+יהיו שלוש סדרות $(a_n), (b_n), (c_n)$ כך ש$a_n \le b_n \le c_n$ כמעט לכל $n$ וגם
+\[
+\lim_{n \to \infty} a_n = \lim_{n \to \infty} c_n = L
+\]
+אזי גם $(b_n)$ מתכנסת ו$\lim_{n \to \infty} b_n = L$.
+
+\subsection{סדרה חסומה}
+סדרה $(a_n)$ תיקרא חסומה אם קיים $0 < M$ כך ש$\abs{a_n} < M$ לכל $n$, או $-M < a_n < M$. תנאי זה הוא תנאי הכרחי להתכנסות, כלומר כל סדרה מתכנסת הינה סדרה חסומה )או בשלילה, אם סדרה אינה חסומה היא אינה מתכנסת(. יש לציין שלא כל הסדרות החסומות מתכנסות גם כן.
+\subsection{סדרה אפסה}
+סדרה $(a_n)$ תיקרא אפסה אם $\lim_{n \to \infty} a_n = 0$.
+\subsection{אריתמטיקה של גבולות}
+יהיו $(a_n), (b_n)$ סדרות מתכנסות. אזי:
+\begin{align*}
+& (1) \lim_{n \to \infty} (a_n + b_n) = \lim_{n \to \infty} a_n + \lim_{n \to \infty} b_n\\
+& (2) \lim_{n \to \infty} (a_n \cdot b_n) = \lim_{n \to \infty} a_n \cdot \lim_{n \to \infty} b_n
+\end{align*}
+מכללים אלו נוסעים חוקי החזקה ושאר החוקים הנמצאים בספר.
+\end{document}
