@@ -1,0 +1,130 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{mathtools,amsmath,amssymb,cancel}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mC}{\mathbb{C}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+
+% Custom commands for this document
+\newcommand{\ip}[2]{\langle #1,\;#2 \rangle}
+\newcommand{\conjm}[1]{#1^{*}}
+\newcommand{\ctrans}[2]{\conjm{#1}_{P}(#2)}
+\DeclarePairedDelimiter\parens{\lparen}{\rparen}
+\DeclareMathOperator{\trnp}{tr}
+\newcommand{\tr}[1]{\trnp\parens*{#1}}
+\newcommand{\mf}[4]{\begin{bmatrix}#1 & #2\br #3 & #4\end{bmatrix}}
+
+% Spacing
+\titlespacing\subsubsection{0pt}{5pt}{3pt}
+\setstretch{0.1}
+
+\title{ממן 11}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+
+%%%%% <Q1> %%%%%
+\section*{שאלה 1}
+\subsection*{סעיף א}
+ראשית נוכיח טענת עזר אשר מראה שעבור כל $A, B, C, D \in M^{F}_{n \times n}$ מתקיים $\tr{ABCD} = \tr{DABC}$ באופן הבא:
+\begin{align*}
+\tr{ABCD}
+&= \tr{A(BCD)}\\
+\tr{AB} = \tr{BA} \to &= \tr{BCDA}\\
+&= \tr{(BC)(DA)}\\
+\tr{AB} = \tr{BA} \to &= \tr{DABC}\\
+\end{align*}
+נחפש את ההעתקה הצמודה $\conjm{T_{P}}: V \opr{} V$ המקיימת לכל $X, Y \in V$:
+\[
+\ip{T(X)}{Y} = \ip{X}{\ctrans{T}{Y}}
+\]
+כלומר לפי הגדרת המכפלה הפנימית הסטנדרטית ב$M^{\mC}_{n \times n}$ ולפי הנתון,
+\begin{align*}
+\tr{\conjm{(\ctrans{T}{Y})} \cdot X}
+&= \tr{\conjm{Y} \cdot T(X)}\\
+\text{\R{נתון}} \to &= \tr{\conjm{Y} \cdot \inv{P} \cdot X \cdot P}\\
+\text{\R{טענת העזר}} \to &= \tr{P \cdot \conjm{Y} \cdot \inv{P} \cdot X}
+\end{align*}
+כלומר, ההעתקה הצמודה מקיימת $\conjm{(\ctrans{T}{Y})} = P \cdot \conjm{Y} \cdot \inv{P}$, והיא ההעתקה הבאה:
+\begin{align*}
+\conjm{(\ctrans{T}{X})} &= P \cdot \conjm{X} \cdot \inv{P}\\
+\ctrans{T}{X}
+&= \conjm{(P \cdot \conjm{X} \cdot \inv{P})}\\
+&= \overline{(P \cdot \conjm{X} \cdot \inv{P})^{t}}\\
+&= \overline{(\inv{P})^{t} \cdot (\conjm{X})^{t} \cdot P^{t}}\\
+&= \overline{(\inv{P})^{t}} \cdot \overline{(\conjm{X})^{t}} \cdot \overline{P^{t}}\\
+&= \conjm{(\inv{P})} \cdot \conjm{(\conjm{X})} \cdot \conjm{P}\\
+&= \inv{(\conjm{P})} \cdot X \cdot \conjm{P} \ueq{\text{\R{נתון}}} T_{\conjm{P}}
+\end{align*}
+ולכן $\ctrans{T}{X} = T_{\conjm{P}}(X)$ כנדרש.
+\br\qed
+
+\clearpage
+\section*{שאלה 1 )המשך(}
+\subsection*{סעיף ב}
+לפי סעיף א של השאלה, נוכל להיווכח שמתקיים $\ctrans{T}{X} = T_{\conjm{P}}(X)$, כלומר על מנת שנמצא את צירופי הבסיס הסטנדרטי כל מה שעלינו לעשות הוא לחשב את $\conjm{P}, \inv{(\conjm{P})}$ ואת הצורה הכללית של $T_{\conjm{P}}(X)$ ולחשב. נעשה זאת:
+\[
+\conjm{P} = \overline{P^{t}} = \mf{-i}{-1}{1}{i}, \inv{(\conjm{P})} = \conjm{(\inv{P})} = \frac{1}{2}\mf{i}{1}{-1}{-i}
+\]
+כעת, נחשב את הצורה הכללית של $T_{\conjm{P}}(X)$:
+\begin{align*}
+T_{\conjm{P}}(X) =
+T_{\conjm{P}}\left(\mf{a}{b}{c}{d}\right) &=
+\frac{1}{2} \cdot \mf{-i}{-1}{1}{i} \cdot \mf{a}{b}{c}{d} \cdot \mf{i}{1}{-1}{-i}\\
+&= \frac{1}{2} \mf{ib+d+i(-ia-c)}{-ia-c-i(-ib-d)}{-b-id+i(a+ic)}{a+ic-i(b+id)}
+\end{align*}
+נזכיר מהו הבסיס הסטנדרטי של $M^{\mC}_{2 \times 2}$:
+\[
+E = \left\{\vec{e_{1}} = \mf{1}{0}{0}{0}, \vec{e_{2}} = \mf{0}{1}{0}{0}, \vec{e_{3}} = \mf{0}{0}{1}{0}, \vec{e_{4}} = \mf{0}{0}{0}{1}\right\}
+\]
+נציב ונחשב את ערכי ההעתקה על הבסיס:
+\begin{align*}
+T_{\conjm{P}}(\vec{e_{1}}) = \mf{\frac{1}{2}}{-\frac{i}{2}}{\frac{i}{2}}{\frac{1}{2}} =
+\frac{1}{2}\vec{e_{1}} - \frac{i}{2}\vec{e_{2}} + \frac{i}{2}\vec{e_{3}} + \frac{1}{2}\vec{e_{4}}\quad&\quad
+T_{\conjm{P}}(\vec{e_{2}}) = \mf{\frac{i}{2}}{-\frac{1}{2}}{-\frac{1}{2}}{-\frac{i}{2}} =
+\frac{i}{2}\vec{e_{1}} - \frac{1}{2}\vec{e_{2}} - \frac{1}{2}\vec{e_{3}} - \frac{i}{2}\vec{e_{4}}\\
+T_{\conjm{P}}(\vec{e_{3}}) = \mf{-\frac{i}{2}}{-\frac{1}{2}}{-\frac{1}{2}}{\frac{i}{2}} =
+-\frac{i}{2}\vec{e_{1}} - \frac{1}{2}\vec{e_{2}} - \frac{1}{2}\vec{e_{3}} + \frac{i}{2}\vec{e_{4}}\quad&\quad
+T_{\conjm{P}}(\vec{e_{4}}) = \mf{\frac{1}{2}}{\frac{i}{2}}{-\frac{i}{2}}{\frac{1}{2}} =
+\frac{1}{2}\vec{e_{1}} + \frac{i}{2}\vec{e_{2}} - \frac{i}{2}\vec{e_{3}} + \frac{1}{2}\vec{e_{4}}
+\end{align*}
+לפיכך, מצאנו את צירופי הבסיס הסטנדרטי של הפעלת ההעתקה על הבסיס וכעת נוכל להרכיב את המטריצה המייצגת של ההעתקה:
+\[
+[\conjm{T_{P}}]_{E} = [T_{\conjm{P}}]_{E} = \frac{1}{2}\begin{bmatrix}
+1 & i & -i & 1\br
+-i & -1 & -1 & i\br
+i & -1 & -1 & -i\br
+1 & -i & i & 1
+\end{bmatrix}
+\]
+ומצאנו את המטריצה המייצגת את $\conjm{T_{P}}$ לפי הבסיס הסטנדרטי של $M^{\mC}_{2 \times 2}$ כנדרש.
+\br\qed
+%%%%% </Q1> %%%%%
+
+\end{document}
