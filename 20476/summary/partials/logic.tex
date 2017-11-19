@@ -1,0 +1,115 @@
+\documentclass[../main.tex]{subfiles}
+
+\section*{לוגיקה}
+\subsection*{הגדרות}
+\begin{itemize}
+\item \definition{הצרנה}{תרגום משפה טבעית לשפה פורמלית}
+\item \definition{טאוטולוגיה}{פסוק המקבל ארך אמת ללא תלות בערך האמת של הפסוקים האטומים שלו}
+\item \definition{סתירה}{פסוק המקבל ערך שקרי ללא תלות בערכי האמת של הפסוקים האטומים שלו}
+\item \definition{שקילות )טאוטולוגית(}{שני פסוקים בעלי אותה טבלת אמת ייקראו שקולים או שקולים טאוטולוגית}
+\end{itemize}
+\bigskip
+
+\begin{center}
+\textit{טבלה 1 -- הקשרים והכמתים הלוגיים וסימונם}\par
+\begin{tabular}{| c | c |}
+\hline
+\R{הסימן} & \R{שם בעברית}\\
+\hline
+$\neg$ & \R{שלילה}\\
+$\land$ & \R{וגם}\\
+$\lor$ & \R{או}\\
+$\opr{}, \rightarrow$ & \R{גרירה}\\
+$\bidiarrow{}, \leftrightarrow$ & \R{אממ}\\
+$\forall$ & \R{לכל}\\
+$\exists$ & \R{קיים}\\
+$\equiv$ & \R{שקילות לוגית}\\
+\hline
+\end{tabular}
+\end{center}\bigskip
+
+\begin{center}
+\textit{טבלה 2 -- טבלת האמת עבור הקשרים}\par
+\begin{tabular}{| c | c | c | c | c | c | c |}
+\hline
+$\alpha$ & $\beta$ & $\neg \alpha$ & $\alpha \land \beta$ & $\alpha \lor \beta$ & $\alpha \opr{} \beta$ & $\alpha \bidiarrow{} \beta$\\
+\hline
+$T$ & $T$ & $F$ & $T$ & $T$ & $T$ & $T$\\
+\hline
+$T$ & $F$ & $F$ & $F$ & $T$ & $F$ & $F$\\
+\hline
+$F$ & $T$ & $T$ & $F$ & $T$ & $T$ & $F$\\
+\hline
+$F$ & $F$ & $T$ & $F$ & $F$ & $T$ & $T$\\
+\hline
+\end{tabular}
+\end{center}\bigskip
+
+\section*{לוגיקה -- המשך}
+\subsection*{שקילויות לוגיות}
+\subsubsection*{חוק החילוף )קומוטטיביות(}
+\begin{itemize}
+\item $a \lor b \equiv b \lor a$
+\item $a \land b \equiv b \land a$
+\item $a \bidiarrow{} b \equiv b \bidiarrow{} a$
+\end{itemize}
+
+\subsubsection*{חוק הקיבוץ )אסוציאטיביות(}
+\begin{itemize}
+\item $a \lor (b \lor c) \equiv (a \lor b) \lor c$
+\item $a \land (b \land c) \equiv (a \land b) \land c$
+\end{itemize}
+
+\subsubsection*{חוק הפילוג )דיסטריבוטיביות(}
+\begin{itemize}
+\item $a \land (b \lor c) \equiv (a \land b) \lor (a \land c)$
+\item $a \lor (b \land c) \equiv (a \lor b) \land (a \lor c)$
+\end{itemize}
+
+\subsubsection*{חוקי דה-מורגן}
+\begin{itemize}
+\item $\neg (a \land b) \equiv \neg a \lor \neg b$
+\item $\neg (a \lor b) \equiv \neg a \land \neg b$
+\end{itemize}
+
+\subsubsection*{גרירה}
+\begin{itemize}
+\item $(a \lor b) \opr{} c \equiv (a \opr{} c) \land (b \opr{} c)$
+\item $a \opr{} (b \land c) \equiv (a \opr{} b) \land (a \opr{} c)$
+\end{itemize}
+
+\subsubsection*{כללים נוספים}
+\begin{itemize}
+\item $\neg (\neg a) \equiv a$
+\item $a \opr{} b \equiv \neg b \opr{} \neg a$
+\item $a \bidiarrow{} b \equiv b \bidiarrow{} a$
+\item $a \opr{} b \equiv (\neg a) \lor b$
+\item $a \lor (a \land b) \equiv a \equiv a \land (a \lor b)$
+\end{itemize}
+\bigskip
+
+\definition{נביעה לוגית}{טענה $b$ נובעת מטענות $a_{1}, a_{2}, \dots , a_{k}$ אם $b$ נכונה בכל פירוש שבו $a_{1}, \dots, a_{k}$ נכונות}
+\definition{קבוצה שלמה}{קבוצת קשרים נקראת שלמה אם ניתן לבטא בעזרתה כל פסוק}
+\clearpage
+
+\section*{לוגיקה -- המשך}
+\subsection*{כמתים}
+כשמוכיחים נכונות של פסוק עם $\exists$ )קיים( מתחילים ב -- נבחר $\dots x$\\
+כשמוכיחים נכונות של פסוק עם $\forall$ )לכל( מתחילים ב -- יהי $\dots x$
+\subsubsection*{שלילת פסוק}
+\begin{itemize}
+\item $\neg (\forall a, P) \equiv \exists a, \neg P$
+\item $\neg (\exists a, P) \equiv \forall a, \neg P$
+\end{itemize}
+
+\subsubsection*{שקילויות}
+\begin{itemize}
+\item $\forall a, (P \land Q) \equiv (\forall a, P) \land (\forall a, Q)$
+\item $\exists a, (P \lor Q) \equiv (\exists a, P) \lor (\exists a, Q)$
+\end{itemize}
+
+\subsubsection*{החלפת סדר}
+\begin{itemize}
+\item $\forall a \forall b, P \equiv \forall b \forall a, P \equiv \forall (a, b), P$
+\item $\exists a \exists b, P \equiv \exists b \exists a, P \equiv \exists (a, b), P$
+\end{itemize}

@@ -1,0 +1,76 @@
+\documentclass[../main.tex]{subfiles}
+
+\section*{פונקציות )העתקות(}
+\subsection*{הגדרה}
+פונקציה $f$ )העתקה( מקבוצה $A$ לקבוצה $B$ )מסומנת כך: $f: A \to B$( היא רלציה מ$A$ ל$B$ המקיימת 
+\[
+\forall \alpha \in A,\;\beta, \gamma \in B,\;((\alpha, \beta) \in f \land (\alpha, \gamma) \in f \opr{} \beta = \gamma)
+\]
+
+\subsection*{תחום ותמונה של פונקציה}
+תהי $f: A \to B$. אזי התחום של $f$ מוגדר כך:
+\[
+\domain{f} = \left\{\alpha \in A \mid \exists \beta \in B, f(\alpha) = \beta\right\}
+\]
+התמונה של $f$ הינה קבוצת האיברים ב$B$ אשר עבורם קיים איבר ב$A$ כך שהם שניהם נמצאים ב$f$, או פורמלית:
+\[
+\image{f} = \left\{f(\alpha) \mid \alpha \in A\right\}
+\]
+
+\subsection*{פונקציות חח``''ע ועל}
+תהי $f: A \to B$. הפונקציה $f$ תיקרא חד חד ערכית )בקיצור -- חח``''ע( אם ורק אם מתקיים
+\[
+\forall \lambda_{1}, \lambda_{2} \in A, (f(\lambda_{1}) = f(\lambda_{2}) \opr{} \lambda_{1} = \lambda_{2})
+\]
+הפונקציה $f$ תיקרא על אם ורק אם מתקיים
+\[
+B = \image{f} \equiv \forall \beta \in B \exists \alpha \in A, \beta = f(\alpha)
+\]
+פונקציה חח``''ע ועל נקראת פונקציית שקילות.
+
+\subsection*{הרכבת / מכפלת פונקציות}
+יהיו $f: A \to B, g: B \to C$ פונקציות ונניח ש$\image{f} \subseteq \domain{g}$. אזי ההרכבה של $f, g$ מוגדרת כך:
+\[
+g \circ f = \left\{(\alpha, \gamma) \mid \exists \beta \in B, \beta = f(\alpha) \land g(\beta) = \gamma\right\} \opr{} (g \circ f)(x) = g(f(x))
+\]
+תכונות ההרכבה:
+\begin{itemize}
+\item \definition{אי קומוטטיביות}{בדרך כלל, הרכבת פונקציות אינה קומוטטיבית, כלומר $f \circ g \neq g \circ f$}
+\item \definition{אסוציאטיביות}{$(f \circ g) \circ h = f \circ (g \circ h)$}
+\item \definition{איבר ניטרלי}{בהינתן העתקות זהות $id_{A}: A \to A, id_{B}: B \to B$ מתקיים\\\
+$f \circ id_{A} = id_{B} \circ f = f$}
+\end{itemize}
+
+\clearpage
+\section*{פונקציות -- המשך}
+\subsection*{פונקציה הופכית}
+תהי $f: A \to B$ פונקציה חח``''ע. אזי הפונקציה $\inv{f}: B \to A$ קיימת, ומתקיים
+\[
+\forall \alpha \in A, \beta = f(\alpha) \in B, (\inv{f}(\beta) = \alpha) \equiv f \circ \inv{f} = \inv{f} \circ f = id_{A}
+\]
+בנוסף, בדומה לרלציות ורלציות הופכיות מתקיימות גם התכונות הבאות:
+\begin{itemize}
+\item $\inv{(\inv{f})} = f$
+\item $\inv{(f \circ g)} = \inv{g} \circ \inv{f}$
+\end{itemize}
+
+\subsection*{איזומורפיזם בין קבוצות}
+יהיו $(A, \le_{A}), (B, \le_{B})$ שתי קבוצות סדורות חלקית ויחסיהן בהתאמה. $A$ ו$B$ ייקראו איזומורפיות אחת לשנייה אם קיימת העתקה חד חד ערכית $f: A \to B$ כך שמתקיים
+\[
+\forall \lambda_{1}, \lambda_{2} \in A,\;(\lambda_{1} \le_{A} \lambda_{2} \opr{} f(\lambda_{1}) \le_{B} f(\lambda_{2}))
+\]
+
+\subsection*{פונקציות מיוחדות}
+\begin{itemize}
+\item \definition{פונקצית הזהות}{$id: A \to A, \forall x \in A, id(x) = x$}
+\item \definition{פונקציה קבועה}{$f: A \to \{k\}, \forall x \in A, f(x) = k$}
+\item \definition{פונקציה אופיינית של $A$}{בהינתן קבוצת עולם $U$ ותת קבוצה שלה $A \subseteq U$,
+\[
+\forall x \in U, \varphi_{A}(x) = \begin{cases*}
+1 & $x \in A$\\
+0 & $x \in A'$
+\end{cases*}
+\]
+פונקציה זו נקראת הפונקציה האופיינית של $A$}
+\item \definition{סדרות}{סדרה היא פונקציה שתחומה הוא $\mN$ או $\mN^{+}$}
+\end{itemize}

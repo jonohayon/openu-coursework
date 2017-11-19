@@ -1,0 +1,50 @@
+\documentclass[../main.tex]{subfiles}
+
+\section*{תורת הקבוצות}
+\subsection*{הגדרות}
+\begin{itemize}
+\item \definition{קבוצה}{אוסף של עצמים )המהווה עצם בעצמה(. אין חשיבות לסדר האיסרים בקבוצה ואין חשיבות למספר המופעים של איבר בייצוג הקבוצה}
+\item \definition{שייכות לקבוצה}{תהי $A$ קבוצה ו$x$ איבר בה. אזי $x$ ייקרא שייך ל$A$ ויסומן כך: $x \in A$}
+\item \definition{הכלה}{קבוצה $A$ תיקרא מוכלת בקבוצה $B$ אם כל איבר של $A$ שייך גם ל$B$. פורמלית:\\
+$A \subseteq B \bidiarrow{} \forall x, (x \in A \Rightarrow x \in B)$\\
+הכלה הינה טרנזיטיבית, כלומר $\forall A, B, C ((A \subseteq B) \land (B \subseteq C) \opr{} A \subseteq C)$}
+\item \definition{הכלה ממש}{קבוצה $A$ תיקרא מוכלת ממש בקבוצה $B$ אם היא מוכלת ב$B$ אך אינה שווה לה. פורמלית:\\
+$A \subset B \bidiarrow{} (A \subseteq B) \land (A \neq B)$}
+\item \definition{שוויון קבוצות}{קבוצה $A$ תיקרא שווה ל$B$ )או $B$ שווה ל$A$( אמ``''מ מתקיימת הכלה דו כיוונית ביניהן, כלומר $A \subseteq B \land B \subseteq A$}
+\item \definition{הקבוצה הריקה}{הקבוצה הריקה הנה קבוצה שאין בה איברים והיא מסומנת ב$\emptyset$. הגדרה פורמלית:
+$\forall x, x \not\in \emptyset$. יש לציין שהקבוצה הריקה מוכלת בתוך כל קבוצה $A$ )כלומר $\forall A, \emptyset \subseteq A$(}
+\item \definition{קבוצת החזקה}{
+תהי $A$ קבוצה. קבוצת החזקה של $A$ )המסומנת כך: $\mathcal{P}(A)$( היא קבוצת תת-הקבוצות של $A$: $\mathcal{P}(A) = \left\{X \mid X \subseteq A\right\}$. עוצמת קבוצה זו הינה $\abs{\mathcal{P}(A)} = 2^{|A|}$}
+\end{itemize}
+
+\subsection*{פעולות יסודיות על קבוצות}
+\begin{itemize}
+\item \definition{איחוד קבוצות -- $A \cup B$}{$\forall x, x \in A \cup B \bidiarrow{} x \in A \lor x \in B$}
+\item \definition{חיתוך קבוצות -- $A \cap B$}{$\forall x, x \in A \cap B \bidiarrow{} x \in A \land x \in B$}
+\item \definition{הפרש קבוצות -- $A - B, A \setminus B$}{$\forall x, x \in A - B \bidiarrow{} x \in A \land x \not\in B$}
+\item \definition{הפרש סימטרי של קבוצות -- $A \oplus B$}{$A \oplus B = (A - B) \cup (B - A) = (A \cup B) - (A \cap B )$}
+\end{itemize}
+
+
+\subsubsection*{תכונות הפעולות}
+\begin{itemize}
+\item \definition{קומוטטיביות}{$A \cup B = B \cup A, A \cap B = B \cap A$}
+\item \definition{אסוציאטיביות}{$A \cup (B \cup C) = (A \cup B) \cup C, (A \cap B) \cap C = A \cap (B \cap C)$}
+\item \definition{דיסטריבוטיביות 1}{$A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$}
+\item \definition{דיסטריבוטיביות 2}{$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$}
+\end{itemize}
+\clearpage
+
+\section*{תורת הקבוצות -- המשך}
+\subsection*{המשלים}
+תהי $A$ קבוצה המוכלת בקבוצת עולם $U$. אזי נגדיר את המשלים של $A$ כך: $\overline{A} = A' = U - A$
+
+\subsection*{חיתוך ואיחוד קבוצות מוכללים}
+איחוד:
+\[
+\bigcup_{i \in \mN} A_{i} = \bigcup^{\infty}_{i = 0} A_{i} = \bigcup \left\{{A_{i} \mid i \in \mN}\right\}
+\]
+חיתוך:
+\[
+\bigcap_{i \in \mN} A_{i} = \bigcap^{\infty}_{i = 0} A_{i} = \bigcap \left\{{A_{i} \mid i \in \mN}\right\}
+\]
