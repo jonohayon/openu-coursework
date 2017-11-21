@@ -3,7 +3,9 @@
 \geometry{a4paper}
 \usepackage[parfill]{parskip}
 \usepackage[nodisplayskipstretch]{setspace}
-\usepackage{graphicx,titlesec}
+\usepackage{graphicx,titlesec,subfiles,adjustbox}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
 \usepackage{mathtools,amsmath,amssymb,cancel,commath,nicefrac}
 
 % Hebrew Stuff
@@ -31,6 +33,7 @@
 
 % Custom commands for this document
 \newcommand{\definition}[2]{\textbf{#1}: #2.}
+\newcommand{\defnop}[2]{\textbf{#1}: #2}
 \DeclarePairedDelimiter\parens{\lparen}{\rparen}
 \DeclareMathOperator{\dnp}{Domain}
 \newcommand{\domain}[1]{\dnp\parens*{#1}}
@@ -38,6 +41,10 @@
 \newcommand{\range}[1]{\rnp\parens*{#1}}
 \DeclareMathOperator{\imnp}{Im}
 \newcommand{\image}[1]{\imnp\parens*{#1}}
+\DeclareMathOperator{\distnp}{dist}
+\newcommand{\dist}[1]{\distnp_{G}\parens*{#1}}
+\DeclareMathOperator{\card}{card}
+\newcommand{\jbox}[1]{\centering{\marginbox{0pt 8pt}{\vbox{#1}}}}
 
 % Spacing
 \titlespacing\section{0pt}{0pt}{0pt}
@@ -50,383 +57,54 @@
 \begin{document}
 \maketitle
 
-\section*{לוגיקה}
-\subsection*{הגדרות}
-\begin{itemize}
-\item \definition{הצרנה}{תרגום משפה טבעית לשפה פורמלית}
-\item \definition{טאוטולוגיה}{פסוק המקבל ארך אמת ללא תלות בערך האמת של הפסוקים האטומים שלו}
-\item \definition{סתירה}{פסוק המקבל ערך שקרי ללא תלות בערכי האמת של הפסוקים האטומים שלו}
-\item \definition{שקילות )טאוטולוגית(}{שני פסוקים בעלי אותה טבלת אמת ייקראו שקולים או שקולים טאוטולוגית}
-\end{itemize}
-\bigskip
-
-\begin{center}
-\textit{טבלה 1 -- הקשרים והכמתים הלוגיים וסימונם}\par
-\begin{tabular}{| c | c |}
-\hline
-\R{הסימן} & \R{שם בעברית}\\
-\hline
-$\neg$ & \R{שלילה}\\
-$\land$ & \R{וגם}\\
-$\lor$ & \R{או}\\
-$\opr{}, \rightarrow$ & \R{גרירה}\\
-$\bidiarrow{}, \leftrightarrow$ & \R{אממ}\\
-$\forall$ & \R{לכל}\\
-$\exists$ & \R{קיים}\\
-$\equiv$ & \R{שקילות לוגית}\\
-\hline
-\end{tabular}
-\end{center}\bigskip
-
-\begin{center}
-\textit{טבלה 2 -- טבלת האמת עבור הקשרים}\par
-\begin{tabular}{| c | c | c | c | c | c | c |}
-\hline
-$\alpha$ & $\beta$ & $\neg \alpha$ & $\alpha \land \beta$ & $\alpha \lor \beta$ & $\alpha \opr{} \beta$ & $\alpha \bidiarrow{} \beta$\\
-\hline
-$T$ & $T$ & $F$ & $T$ & $T$ & $T$ & $T$\\
-\hline
-$T$ & $F$ & $F$ & $F$ & $T$ & $F$ & $F$\\
-\hline
-$F$ & $T$ & $T$ & $F$ & $T$ & $T$ & $F$\\
-\hline
-$F$ & $F$ & $T$ & $F$ & $F$ & $T$ & $T$\\
-\hline
-\end{tabular}
-\end{center}\bigskip
-
-\section*{לוגיקה -- המשך}
-\subsection*{שקילויות לוגיות}
-\subsubsection*{חוק החילוף )קומוטטיביות(}
-\begin{itemize}
-\item $a \lor b \equiv b \lor a$
-\item $a \land b \equiv b \land a$
-\item $a \bidiarrow{} b \equiv b \bidiarrow{} a$
-\end{itemize}
-
-\subsubsection*{חוק הקיבוץ )אסוציאטיביות(}
-\begin{itemize}
-\item $a \lor (b \lor c) \equiv (a \lor b) \lor c$
-\item $a \land (b \land c) \equiv (a \land b) \land c$
-\end{itemize}
-
-\subsubsection*{חוק הפילוג )דיסטריבוטיביות(}
-\begin{itemize}
-\item $a \land (b \lor c) \equiv (a \land b) \lor (a \land c)$
-\item $a \lor (b \land c) \equiv (a \lor b) \land (a \lor c)$
-\end{itemize}
-
-\subsubsection*{חוקי דה-מורגן}
-\begin{itemize}
-\item $\neg (a \land b) \equiv \neg a \lor \neg b$
-\item $\neg (a \lor b) \equiv \neg a \land \neg b$
-\end{itemize}
-
-\subsubsection*{גרירה}
-\begin{itemize}
-\item $(a \lor b) \opr{} c \equiv (a \opr{} c) \land (b \opr{} c)$
-\item $a \opr{} (b \land c) \equiv (a \opr{} b) \land (a \opr{} c)$
-\end{itemize}
-
-\subsubsection*{כללים נוספים}
-\begin{itemize}
-\item $\neg (\neg a) \equiv a$
-\item $a \opr{} b \equiv \neg b \opr{} \neg a$
-\item $a \bidiarrow{} b \equiv b \bidiarrow{} a$
-\item $a \opr{} b \equiv (\neg a) \lor b$
-\item $a \lor (a \land b) \equiv a \equiv a \land (a \lor b)$
-\end{itemize}
-\bigskip
-
-\definition{נביעה לוגית}{טענה $b$ נובעת מטענות $a_{1}, a_{2}, \dots , a_{k}$ אם $b$ נכונה בכל פירוש שבו $a_{1}, \dots, a_{k}$ נכונות}
-\definition{קבוצה שלמה}{קבוצת קשרים נקראת שלמה אם ניתן לבטא בעזרתה כל פסוק}
+% Logic - intro
+\subfile{partials/logic}
 \clearpage
 
-\section*{לוגיקה -- המשך}
-\subsection*{כמתים}
-כשמוכיחים נכונות של פסוק עם $\exists$ )קיים( מתחילים ב -- נבחר $\dots x$\\
-כשמוכיחים נכונות של פסוק עם $\forall$ )לכל( מתחילים ב -- יהי $\dots x$
-\subsubsection*{שלילת פסוק}
-\begin{itemize}
-\item $\neg (\forall a, P) \equiv \exists a, \neg P$
-\item $\neg (\exists a, P) \equiv \forall a, \neg P$
-\end{itemize}
+% Set theory - intro
+\subfile{partials/sets}
 
-\subsubsection*{שקילויות}
-\begin{itemize}
-\item $\forall a, (P \land Q) \equiv (\forall a, P) \land (\forall a, Q)$
-\item $\exists a, (P \lor Q) \equiv (\exists a, P) \lor (\exists a, Q)$
-\end{itemize}
-
-\subsubsection*{החלפת סדר}
-\begin{itemize}
-\item $\forall a \forall b, P \equiv \forall b \forall a, P \equiv \forall (a, b), P$
-\item $\exists a \exists b, P \equiv \exists b \exists a, P \equiv \exists (a, b), P$
-\end{itemize}
+% Set theory - relations
+\subfile{partials/relations}
 \clearpage
 
-\section*{תורת הקבוצות}
-\subsection*{הגדרות}
-\begin{itemize}
-\item \definition{קבוצה}{אוסף של עצמים )המהווה עצם בעצמה(. אין חשיבות לסדר האיסרים בקבוצה ואין חשיבות למספר המופעים של איבר בייצוג הקבוצה}
-\item \definition{שייכות לקבוצה}{תהי $A$ קבוצה ו$x$ איבר בה. אזי $x$ ייקרא שייך ל$A$ ויסומן כך: $x \in A$}
-\item \definition{הכלה}{קבוצה $A$ תיקרא מוכלת בקבוצה $B$ אם כל איבר של $A$ שייך גם ל$B$. פורמלית:\\
-$A \subseteq B \bidiarrow{} \forall x, (x \in A \Rightarrow x \in B)$\\
-הכלה הינה טרנזיטיבית, כלומר $\forall A, B, C ((A \subseteq B) \land (B \subseteq C) \opr{} A \subseteq C)$}
-\item \definition{הכלה ממש}{קבוצה $A$ תיקרא מוכלת ממש בקבוצה $B$ אם היא מוכלת ב$B$ אך אינה שווה לה. פורמלית:\\
-$A \subset B \bidiarrow{} (A \subseteq B) \land (A \neq B)$}
-\item \definition{שוויון קבוצות}{קבוצה $A$ תיקרא שווה ל$B$ )או $B$ שווה ל$A$( אמ``''מ מתקיימת הכלה דו כיוונית ביניהן, כלומר $A \subseteq B \land B \subseteq A$}
-\item \definition{הקבוצה הריקה}{הקבוצה הריקה הנה קבוצה שאין בה איברים והיא מסומנת ב$\emptyset$. הגדרה פורמלית:
-$\forall x, x \not\in \emptyset$. יש לציין שהקבוצה הריקה מוכלת בתוך כל קבוצה $A$ )כלומר $\forall A, \emptyset \subseteq A$(}
-\item \definition{קבוצת החזקה}{
-תהי $A$ קבוצה. קבוצת החזקה של $A$ )המסומנת כך: $\mathcal{P}(A)$( היא קבוצת תת-הקבוצות של $A$: $\mathcal{P}(A) = \left\{X \mid X \subseteq A\right\}$. עוצמת קבוצה זו הינה $\abs{\mathcal{P}(A)} = 2^{|A|}$}
-\end{itemize}
-
-\subsection*{פעולות יסודיות על קבוצות}
-\begin{itemize}
-\item \definition{איחוד קבוצות -- $A \cup B$}{$\forall x, x \in A \cup B \bidiarrow{} x \in A \lor x \in B$}
-\item \definition{חיתוך קבוצות -- $A \cap B$}{$\forall x, x \in A \cap B \bidiarrow{} x \in A \land x \in B$}
-\item \definition{הפרש קבוצות -- $A - B, A \setminus B$}{$\forall x, x \in A - B \bidiarrow{} x \in A \land x \not\in B$}
-\item \definition{הפרש סימטרי של קבוצות -- $A \oplus B$}{$A \oplus B = (A - B) \cup (B - A) = (A \cup B) - (A \cap B )$}
-\end{itemize}
-
-
-\subsubsection*{תכונות הפעולות}
-\begin{itemize}
-\item \definition{קומוטטיביות}{$A \cup B = B \cup A, A \cap B = B \cap A$}
-\item \definition{אסוציאטיביות}{$A \cup (B \cup C) = (A \cup B) \cup C, (A \cap B) \cap C = A \cap (B \cap C)$}
-\item \definition{דיסטריבוטיביות 1}{$A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$}
-\item \definition{דיסטריבוטיביות 2}{$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$}
-\end{itemize}
+% Set theory - partitions
+\subfile{partials/partitions}
 \clearpage
 
-\section*{תורת הקבוצות -- המשך}
-\subsection*{המשלים}
-תהי $A$ קבוצה המוכלת בקבוצת עולם $U$. אזי נגדיר את המשלים של $A$ כך: $\overline{A} = A' = U - A$
-
-\subsection*{חיתוך ואיחוד קבוצות מוכללים}
-איחוד:
-\[
-\bigcup_{i \in \mN} A_{i} = \bigcup^{\infty}_{i = 0} A_{i} = \bigcup \left\{{A_{i} \mid i \in \mN}\right\}
-\]
-חיתוך:
-\[
-\bigcap_{i \in \mN} A_{i} = \bigcap^{\infty}_{i = 0} A_{i} = \bigcap \left\{{A_{i} \mid i \in \mN}\right\}
-\]
-
-\section*{רלציות )יחסים( -- הקדמה}
-\subsection*{זוגות סדורים}
-אוסף של שני איברים אשר אחד מהם נקבע כאיבר הראשון והשני כאיבר השני: $(\alpha, \beta)$. במקרה זה, $\alpha$ הוא האיבר הראשון ו$\beta$ הוא השני. שני זוגות סדורים $(\alpha, \beta), (\gamma, \delta)$ שווים זה לזה אמ``''מ $\alpha = \gamma \land \beta = \delta$. ניתן להכליל מושג זה למושג $n$-יה, שהיא אוסף של איברים המסודרים לפי $\mN$:
-\[
-(\lambda_{1}, \lambda_{2}, \dots, \lambda_{n})
-\]
-כאשר $\lambda_{1}$ האיבר הראשון ו$\lambda_{n}$ האחרון. שוויון הזוגות הסדורים פועל גם פה: בהינתן שתי $n$-יות $(\alpha_{1}, \dots, \alpha_{n}), (\beta_{1}, \dots, \beta_{n})$, הן ייקראו שוות זו לזו אמ``''מ
-\[
-\forall i \in \mN, 1 \le i \le n, (\alpha_{i} = \beta_{i})
-\]
-
-\subsection*{מכפלה קרטזית}
-יהיו $A, B$ קבוצות. המכפלה הקרטזית של $A$ ו$B$ מוגדרת בתור קבוצת כל הזוגות הסדורים של איברי $A, B$ ומסומנת כך:
-\[
-A \times B = \left\{(\alpha, \beta) \mid \alpha \in A, \beta \in B \right\}
-\]
-פעולה זו אינה אסוציאטיבית ואם $A \neq B$ היא אינה קומוטטיבית. בנוסף, ניתן לבצע את הפעולה ככל שנרצה ולקבל $n$-יות בגדלים שונים:
-\[
-A_{1} \times A_{2} \times \dots \times A_{n} = \left\{(\lambda_{1}, \dots, \lambda_{n}) \mid \lambda_{i} \in A_{i}\right\}
-\]
-כתיבה אחרת היא ``''חזקה``'' של קבוצה והיא נראית כך:
-\[
-A^{n} = \underbrace{A \times \dots \times A}_{\text{\R{ פעמים}} n} = \left\{(\lambda_{1}, \dots, \lambda_{n}) \mid \lambda_{i} \in A\right\}
-\]
-
+% Set theory - functions
+\subfile{partials/functions}
 \clearpage
 
-\section*{רלציות )יחסים(}
-רלציה )יחס( בינארית $R$ מהקבוצה $A$ לקבוצה $B$ הינה תת-קבוצה של $A \times B$ )כלומר $R \in \mathcal{P}(A \times B)$(. נסמן זוג סדור השייך לרלציה $R$ באופנים הבאים: $(\alpha, \beta) \in R \iff \alpha R \beta$. ניתן לתאר רלציות כקבוצות, גרף מכוון )דיגרף( או טבלה. אם $A = B$ אזי הרלציה מעל הקבוצה $A$.
-
-\subsection*{תחום וטווח}
-תהי $R$ רלציה מ$A$ ל$B$. אזי התחום של $R$ )מסומן $\domain{R}$( הינו תת-קבוצה של $A$ אשר בתוכה נמצאים כל האיברים של $A$ שמיוחסים לאיבר/ים כלשהם ב$B$, והוא מוגדרת כך:
-\[
-\domain{R} = \left\{\alpha \in A \mid \exists \beta \in B, (\alpha, \beta) \in R\right\}
-\]
-בדומה, הטווח של $R$ )מסומן $\range{R}$( הינו תת-קבוצה של $B$ אשר בתוכה נמצאים כל האיברים של $B$ אשר מיוחסים לאיבר/ים כלשהם ב$A$, והוא מוגדרת כך:
-\[
-\range{R} = \left\{\beta \in B \mid \exists \alpha \in A, (\alpha, \beta) \in R\right\}
-\]
-
-\subsection*{הרלציה ההופכית}
-תהי $R$ רלציה מ$A$ ל$B$. אזי קיימת רלציה $\inv{R}$ מ$B$ ל$A$ כך שלכל $\alpha R \beta$ מתקיים $\beta \inv{R} \alpha$ והיא מוגדרת כך:
-\[
-\inv{R} = \left\{(\beta, \alpha) \mid (\alpha, \beta) \in R\right\}
-\]
-
-\subsection*{הרכבת / כפל רלציות}
-יהיו $S, R$ רלציות, כאשר $R$ מהקבוצה $A$ לקבוצה $B$ ו$S$ מהקבוצה $B$ לקבוצה $C$. אזי מכפלת הרלציות )נקראת גם הרכבת הרלציות( מסומנת $R \circ S$ או $RS$ ומוגדרת כך:
-\[
-RS = R \circ S = \left\{(\alpha, \gamma) \mid \exists \beta \in B, (\alpha, \beta) \in R \land (\beta, \gamma) \in S\right\}
-\]
-כפל רלציות הוא אסוציאטיבי, כלומר עבור שלוש רלציות $R, S, T$ )כאשר כמובן מוגדרות המכפלות ביניהן( מתקיים $R(ST) = (RS)T$. בנוסף, הרלציה ההופכית של מכפלת רלציות נראית כך:
-\[
-\inv{(RS)} = \inv{S}\inv{R}
-\]
-
-\subsection*{רלציית הזהות}
-יחס הזהות על קבוצה $A$ יסומן ב$I_{A}$ ומוגדר כך:
-\[
-I_{A} = \left\{(\lambda, \lambda) \mid \lambda \in A\right\} \equiv \forall \alpha, \beta \in A, (\alpha, \beta) \in I_{A} \iff \alpha = \beta
-\]
+% Set theory - cardinal numbers
+\subfile{partials/cardinals}
 \clearpage
 
-\section*{רלציות -- המשך}
-
-\subsection*{תכונות של רלציות}
-\begin{itemize}
-\item \definition{רפלקסיביות}{$\forall a \in A,\;(aRa) \equiv I_{A} \subseteq R$}
-\item \definition{סימטריות}{$\forall a, b \in A,\;(aRb \bidiarrow{} bRa) \equiv R = \inv{R}$}
-\item \definition{אנטי-סימטריות}{$\forall a, b \in A,\;(aRb \land bRa \opr{} a = b)$}
-\item \definition{טרנזיטיביות}{$\forall a, b, c \in A,\;(aRb \land bRc \opr{} aRc) \equiv R^{2} \subseteq R$}
-\end{itemize}
-
-\subsection*{סגור של רלציה ביחס לתכונה מסויימת}
-תהי $R$ רלציה מעל $A$. הסגור של $R$ ביחס לתכונה מסויימת הוא רלציה $S$ מעל $A$ המקיימת את התכונה הזאת, מכילה את $R$ ומוכלת בכל רלציה מעל $A$ המקיימת את התכונה ומכילה את $R$. הסגור הטרנזיטיבי של רלציה $R$ הוא:
-\[
-S = R \cup R^{2} \cup R^{3} \cup \dots = \bigcup^{\infty}_{1 \le i \in \mN} R^{i}
-\]
-
-\subsection*{סוגים שונים של רלציות}
-\begin{itemize}
-\item \definition{רלציית שקילות}{רלציה רפלקסיבית, טרנזיטיבית וסימטרית}
-\item \definition{רלציית קומפטיביליות}{רלציה רפלקסיבית וסימטרית}
-\item \definition{רלציית סדר חלקי}{רלציה רפלקסיבית, טרנזיטיבית ואנטיסימטרית. קבוצה עם רלציית סדר חלקי מעליה נקראת קבוצה סדורה חלקית. מסומנת לרוב ב$\le$}
-\item \definition{רלציית סדר מלא}{סדר מלא הינו סדר חלקי אשר פועל על כל זוג איברים בקבוצה, כלומר אין איברים בה שאינם ניתנים להשוואה}
-\end{itemize}
-קבוצה עם סדר חלקי מעליה נקראת קבוצה סדורה חלקית.
-
-\subsection*{איברים מינימליים ומקסימליים, האיבר הקטן ביותר והגדול ביותר}
-תהי קבוצה $A$ עם רלציית סדר חלקי מעליה המסומנת ב$\le$. האיבר $\alpha \in A$ ייקרא
-\begin{itemize}
-\item \definition{איבר מינימלי של $A$}{אם מתקיים $\forall \lambda \in A,\;(\lambda \le \alpha \opr{} \lambda = \alpha)$}
-\item \definition{איבר מקסימלי של $A$}{אם מתקיים $\forall \lambda \in A,\;(\alpha \le \lambda \opr{} \lambda = \alpha)$}
-\item \definition{האיבר הקטן ביותר ב$A$}{אם $\alpha$ קיים ואם מתקיים $\forall \lambda \in A,\;(\alpha \le \lambda)$}
-\item \definition{האיבר הגדול ביותר ב$A$}{אם $\alpha$ קיים ואם מתקיים $\forall \lambda \in A,\;(\lambda \le \alpha)$}
-\end{itemize}
-בקבוצה סדורה חלקית סופית קיימים איבר מינימלי אחד לפחות ואיבר מקסימלי אחד לפחות. בנוסף, בקבוצה סדורה חלקית יכולים להיות לכל היותר איבר קטן ביותר אחד ואיבר גדול ביותר אחד.
-
+% Combinatorics - intro + Newton's binomial + pigeonhole principle
+\subfile{partials/combinatorics/intro}
 \clearpage
-\section*{חלוקות}
-\subsection*{חלוקה}
-תהי $A$ קבוצה. $\pi \subseteq \mathcal{P}(A) - \{\emptyset\}$ תיקרא חלוקה של $A$ אם איבריה הינן תת-קבוצות זרות זו לזו של $A$ אשר איחודן הוא $A$, או:
-\[
-\pi = \left\{X \subseteq A \mid \forall Y \in \pi, X \cap Y \neq \emptyset \iff X = Y\right\}
-\]
-איברי החלוקה $\pi$ )אשר הינן תת-קבוצות של $A$( נקראים המחלקות או הבלוקים של החלוקה. בנוסף, בהינתן $n$ מחלקות של $\pi$ מתקיים $\bigcup^{n}_{i = 1}Q_{i} = A$.
 
-\subsubsection*{מחלקת שקילות וקבוצת מנה}
-תהי $E$ רלציית שקילות מעל $A$. אזי מחלקת השקילות של $\alpha \in A$ הינה קבוצת כל האיברים של $A$ הנמצאים ביחס עם $\alpha$, מסומנת ב$\overline{\alpha}$ ומוגדרת כך:
-\[
-\overline{\alpha} = \left\{\beta \in A \mid \alpha R \beta\right\}
-\]
-בנוסף, קבוצת מחלקות השקילות של $E$ נקראת קבוצת המנה של $A$ מעל $E$ ומסומנת כך:
-\[
-\nicefrac{A}{E} = \left\{\overline{\alpha} \mid \alpha \in A\right\}
-\]
-
-\subsubsection*{משפט}
-כל חלוקה $\pi$ של קבוצה $A$ משרה רלציית שקילות $E$ מעל $A$ המוגדרת כך:
-\[
-E = \left\{(\alpha, \beta) \mid \exists Q \in \pi, (\alpha, \beta \in Q)\right\}
-\]
-משפט זה מתקיים גם בכיוון ההפוך, כלומר כל רלציית שקילות $E$ מעל $A$ משרה חלוקה $\pi$ של $A$ למחלקות שקילות.
-
-\subsubsection*{עידון של חלוקה}
-יהיו $\pi_{1}, \pi_{2}$ חלוקות של $A$. החלוקה $\pi_{2}$ תיקרא עידון של $\pi_{1}$ אם מתקיים
-\[
-\forall Q \in \pi_{2}\;\exists G \in \pi_{1},\;Q \subseteq G
-\]
-כלומר שעבור כל מחלקה של $\pi_{2}$ קיימת מחלקה של $\pi_{1}$ אשר היא מוכלת בה.
-
-\subsubsection*{מחלקת קומפטיביליות, מחלקת קומפטיביליות מקסימלית}
-תהי $R$ רלציית קומפטיביליות מעל $A$. אזי נגדיר תת-קבוצה $Q \subseteq A$ להיות מחלקת קומפטיביליות אם כל שניים מאיבריה נמצאים ב$R$, או פורמלית $\forall \alpha, \beta \in Q, \alpha R \beta$. מחלקת קומפטיביליות תיקרא מחלקת קומפטיביליות מקסימלית אם אין אף מחלקת קומפטיביליות אחרת שמכילה אותה באופן אמיתי\footnotemark.
-
-\footnotetext[1]{ככה כתוב בספר. אין לי מושג מה זה אומר ``''הכלה באופן שאינו אמיתי``''.}
-
+% Combinatorics - formulas + inclusion-exclusion principle
+\subfile{partials/combinatorics/formulas}
 \clearpage
-\section*{פונקציות )העתקות(}
-\subsection*{הגדרה}
-פונקציה $f$ )העתקה( מקבוצה $A$ לקבוצה $B$ )מסומנת כך: $f: A \to B$( היא רלציה מ$A$ ל$B$ המקיימת 
-\[
-\forall \alpha \in A,\;\beta, \gamma \in B,\;((\alpha, \beta) \in f \land (\alpha, \gamma) \in f \opr{} \beta = \gamma)
-\]
 
-\subsection*{תחום ותמונה של פונקציה}
-תהי $f: A \to B$. אזי התחום של $f$ מוגדר כך:
-\[
-\domain{f} = \left\{\alpha \in A \mid \exists \beta \in B, f(\alpha) = \beta\right\}
-\]
-התמונה של $f$ הינה קבוצת האיברים ב$B$ אשר עבורם קיים איבר ב$A$ כך שהם שניהם נמצאים ב$f$, או פורמלית:
-\[
-\image{f} = \left\{f(\alpha) \mid \alpha \in A\right\}
-\]
-
-\subsection*{פונקציות חח``''ע ועל}
-תהי $f: A \to B$. הפונקציה $f$ תיקרא חד חד ערכית )בקיצור -- חח``''ע( אם ורק אם מתקיים
-\[
-\forall \lambda_{1}, \lambda_{2} \in A, (f(\lambda_{1}) = f(\lambda_{2}) \opr{} \lambda_{1} = \lambda_{2})
-\]
-הפונקציה $f$ תיקרא על אם ורק אם מתקיים
-\[
-B = \image{f} \equiv \forall \beta \in B \exists \alpha \in A, \beta = f(\alpha)
-\]
-פונקציה חח``''ע ועל נקראת פונקציית שקילות.
-
-\subsection*{הרכבת / מכפלת פונקציות}
-יהיו $f: A \to B, g: B \to C$ פונקציות ונניח ש$\image{f} \subseteq \domain{g}$. אזי ההרכבה של $f, g$ מוגדרת כך:
-\[
-g \circ f = \left\{(\alpha, \gamma) \mid \exists \beta \in B, \beta = f(\alpha) \land g(\beta) = \gamma\right\} \opr{} (g \circ f)(x) = g(f(x))
-\]
-תכונות ההרכבה:
-\begin{itemize}
-\item \definition{אי קומוטטיביות}{בדרך כלל, הרכבת פונקציות אינה קומוטטיבית, כלומר $f \circ g \neq g \circ f$}
-\item \definition{אסוציאטיביות}{$(f \circ g) \circ h = f \circ (g \circ h)$}
-\item \definition{איבר ניטרלי}{בהינתן העתקות זהות $id_{A}: A \to A, id_{B}: B \to B$ מתקיים\\\
-$f \circ id_{A} = id_{B} \circ f = f$}
-\end{itemize}
-
+% Combinatorics - generating functions + other
+\subfile{partials/combinatorics/other}
 \clearpage
-\section*{פונקציות -- המשך}
-\subsection*{פונקציה הופכית}
-תהי $f: A \to B$ פונקציה חח``''ע. אזי הפונקציה $\inv{f}: B \to A$ קיימת, ומתקיים
-\[
-\forall \alpha \in A, \beta = f(\alpha) \in B, (\inv{f}(\beta) = \alpha) \equiv f \circ \inv{f} = \inv{f} \circ f = id_{A}
-\]
-בנוסף, בדומה לרלציות ורלציות הופכיות מתקיימות גם התכונות הבאות:
-\begin{itemize}
-\item $\inv{(\inv{f})} = f$
-\item $\inv{(f \circ g)} = \inv{g} \circ \inv{f}$
-\end{itemize}
 
-\subsection*{איזומורפיזם בין קבוצות}
-יהיו $(A, \le_{A}), (B, \le_{B})$ שתי קבוצות סדורות חלקית ויחסיהן בהתאמה. $A$ ו$B$ ייקראו איזומורפיות אחת לשנייה אם קיימת העתקה חד חד ערכית $f: A \to B$ כך שמתקיים
-\[
-\forall \lambda_{1}, \lambda_{2} \in A,\;(\lambda_{1} \le_{A} \lambda_{2} \opr{} f(\lambda_{1}) \le_{B} f(\lambda_{2}))
-\]
-
-\subsection*{פונקציות מיוחדות}
-\begin{itemize}
-\item \definition{פונקצית הזהות}{$id: A \to A, \forall x \in A, id(x) = x$}
-\item \definition{פונקציה קבועה}{$f: A \to \{k\}, \forall x \in A, f(x) = k$}
-\item \definition{פונקציה אופיינית של $A$}{בהינתן קבוצת עולם $U$ ותת קבוצה שלה $A \subseteq U$,
-\[
-\forall x \in U, \varphi_{A}(x) = \begin{cases*}
-1 & $x \in A$\\
-0 & $x \in A'$
-\end{cases*}
-\]
-פונקציה זו נקראת הפונקציה האופיינית של $A$}
-\item \definition{סדרות}{סדרה היא פונקציה שתחומה הוא $\mN$ או $\mN^{+}$}
-\end{itemize}
-
+% Graph theory - intro, important definitions
+\subfile{partials/graphs/part1}
 \clearpage
-\section*{עוצמות}
+
+% Graph theory - tagged graph, sub-graphs, trees
+\subfile{partials/graphs/part2}
+\clearpage
+
+% Graph theory - isomorphism, Cayley theorem, Prüfer series, Euler and Hamilton circles, theorems
+\subfile{partials/graphs/part3}
+\clearpage
+
+% Graph theory - planar graph, graph coloring, Brooks theorem
+\subfile{partials/graphs/part4}
 
 \end{document}

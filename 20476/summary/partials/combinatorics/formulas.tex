@@ -1,0 +1,96 @@
+\documentclass[../../main.tex]{subfiles}
+
+\section*{קומבינטוריקה -- נוסחאות חשובות}
+\subsection*{תמורות, חליפות וצירופים}
+\bigskip
+\centerline{
+  \begin{tabular}{| p{5.2cm} | p{5.2cm} | p{5.2cm} | p{2.75cm} |}
+    % Table header
+    \hline
+      {
+	      	\vspace{0.1mm}
+				\centering
+				\textbf{\R{צירוף בלי חשיבות לסדר}\\
+				        \L{Combination}}\\
+			} &
+      {
+	      	\vspace{0.1mm}
+				\centering
+				\textbf{\R{חליפה עם חשיבות לסדר}\\
+				        \L{Permutation}}\\
+				        \R{בחירת} $k$ \R{איברים מתוך} $n$
+				\vspace{3mm}
+			} &
+      {
+	      	\vspace{0.1mm}
+				\centering
+				\textbf{\R{תמורה עם חשיבות לסדר}\\
+				        \L{Permutation}}\\
+				        \R{סידור} $n$ \R{איברים מתוך} $n$ \R{בשורה}
+				\vspace{3mm}
+			} & \R{}\\
+    \hline
+    % First line
+    { % Combination column
+      \vspace{0.1mm}
+      \R{בחירת} $k$ \R{איברים מתוך} $n$ \R{סוגים שונים של איברים:}\newline
+      \jbox{$D(n, k) = \binom{n+k-1}{k} = \binom{n+k-1}{n-1}$}\newline
+      \R{שקול למספר הפתרונות בטבעיים של המשוואה} $x_{1} + \dots + x_{n} = k$ \R{או לפיזור} $k$ \R{איברים זהים לתוך} $n$ \R{תאים שונים.}
+      \vspace{2.1mm}
+    } &
+    { % Permutation 2 column
+      \vspace{6mm}
+      \[n^{k}\]
+      \R{גם מספר הפונקציות מקבוצה} $A$ \R{שעוצמתה} $k$ \R{לקבוצה} $B$ \R{שעוצמתה $n$.}
+    } &
+    { % Permutation 1 column
+      \begin{align*}
+        P(n; k_{1}, \dots, k_{m})\\ = \frac{n!}{k_{1}! * \dots * k_{m}!}
+      \end{align*}
+      \R{כאשר} $k_{1} + \ldots + k_{m} = n$ \R{והאיברים} $k_{1}, \ldots, k_{m}$ \R{זהים.}
+    } &
+    { % Title column
+      \vspace{12mm}
+      \textbf{\R{עם חזרות}}\newline
+              \R{)איבר יכול להיבחר עד $k$ פעמים(}
+    }\\
+    \hline
+    % Second line
+    { % Combination column
+    	\vspace{4mm}
+    	\R{בחירת} $k$ \R{איברים מתוך} $n$:
+			\jbox{$C(n, k) = \binom{n}{k} = \frac{n!}{k!(n-k)!}$}
+    } &
+    { % Permutation 2 column
+	    \vspace{6mm}
+			\[P(n, k) = \frac{n!}{(n - k)!}\]
+    } &
+    { % Permutation 1 column
+    	\[P(n, n) = P(n) = n!\]
+			\R{סידור} $n$ \R{איברים שונים במעגל:}\newline
+			\jbox{$(n - 1)!$}
+    } &
+    { % Title column
+    	\vspace{2mm}
+    	\textbf{\R{בלי חזרות}}\newline
+	            \R{)איבר יכול להיבחר עד פעם אחת(}\newline
+	            \centering{\R{מגבלה: $k \le n$}}
+    }\\
+    \hline
+  \end{tabular}
+}
+\bigskip
+
+\subsection*{עקרון ההכלה וההפרדה}
+תהי $U$ קבוצת עולם, $A_{1}, \ldots, A_{n} \subseteq U$ קבוצות סופיות. נסמן:
+\[
+S_{i} = \sum^{i}_{1 \le k_{1} \le \ldots \le k_{n} \le n} |\bigcap^{n}_{i=1} A_{i}|
+\]
+כלומר $S_{1} = \sum |A_{i}|, S_{2} = \sum_{1 \le i \le j} |A_{i} \cap A_{j}|$ וכו'. אזי לפי עקרון ההכלה וההפרדה נוכל לחשב את עוצמת איחודן של $A_{i}$ באופן הבא:
+\[
+|A_{1} \cup \ldots \cup A_{n}| = |\bigcup^{n}_{i=1} A_{i}| = \sum^{n}_{i=1} (-1)^{i-1} S_{i} = S_{1} - S_{2} + S_{3} - S_{4} + \ldots + (-1)^{n-1}S_{n}
+\]
+צורת רישום אחרת )מציאת עוצמת חיתוך המשלימים של $A_{i}$ לפי $U$(:
+\[
+|A_{i}' \cap \ldots \cap A_{n}'| = |U| - \sum^{n}_{i=1} (-1)^{i-1} S_{i}
+\]
