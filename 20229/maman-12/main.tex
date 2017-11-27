@@ -1,0 +1,81 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\oprm}[1]{\underset{\substack{#1}}{\longrightarrow}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mC}{\mathbb{C}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+
+% Custom commands for this document
+\newcommand{\conj}[1]{#1^{*}}
+\newcommand{\mfr}[4]{\begin{bmatrix}#1 & #2\br #3 & #4\end{bmatrix}}
+\newcommand{\mfd}[4]{\begin{vmatrix}#1 & #2\br #3 & #4\end{vmatrix}}
+
+% Spacing
+\titlespacing\subsubsection{0pt}{5pt}{3pt}
+\setstretch{0.1}
+
+\title{ממן 21}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+
+%%%%% <Q1> %%%%%
+\section*{שאלה 1}
+\subsection*{סעיף א}
+\subsubsection*{מטריצה $A_{1}$}
+ראשית, נחשב את $\conj{A_{1}} = \overline{A^{t}}$:
+\[
+A_{1} = \mfr{0}{i}{-i}{0}
+\opr{} A^{t} = \mfr{0}{-i}{i}{0}
+\opr{} \conj{A_{1}} = \mfr{0}{i}{-i}{0}
+\]
+נוכל לראות שמתקיים $A_{1} = \conj{A_{1}}$. לפיכך, $A_{1}\conj{A_{1}} = \conj{A_{1}}A_{1} = A^{2}_{1}$ ולכן $A_{1}$ מטריצה נורמלית. נמצא מטריצה אוניטרית המלכסנת אותה. ראשית, נמצא את הערכים העצמיים של $A_{1}$:
+\[
+P_{A_{1}}(\lambda) = \mfd{\lambda}{i}{-i}{\lambda} = \lambda^{2} + 1 = (\lambda - 1)(\lambda + 1)
+\]
+והערכים העצמיים שמצאנו הינם $\lambda_{1} = 1, \lambda_{2} = -1$. נמצא את הווקטורים העצמיים לכל ע``''ע:
+\[
+(A_{1} - \lambda_{1}I)\vec{v} = \vec{0} \equiv \mfr{-1}{i}{-i}{-1}
+\oprm{R_{1} \to -R_{1}\\R_{2} \to iR_{2}} \mfr{1}{-i}{1}{-i}
+\oprm{R_{2} \to R_{2} - R_{1}} \mfr{1}{-i}{0}{0}
+\]
+ומצאנו את הו``''ע $\vec{v_{1}} = (1, -i)$. נמצא את הווקטור העצמי המשוייך ל$\lambda_{2}$:
+\[
+(A_{1} - \lambda_{2}I)\vec{v} = \vec{0} \equiv \mfr{1}{i}{-i}{1}
+\oprm{R_{2} \to iR_{2}\\R_{2} \to R_{2} - R_{1}} \mfr{1}{i}{0}{0}
+\]
+ומצאנו את הו``''ע $\vec{v_{2}} = (1, i)$. כעת, ננרמל את שני הווקטורים:
+\[
+\norm
+\]
+
+%%%%% </Q1> %%%%%
+
+\end{document}

@@ -1,0 +1,211 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel,mathtools}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\logr}[1]{\underset{\text{#1}}{\Rightarrow}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #2.#1#3}}
+\renewcommand{\d}[3]{\R{דוגמה #2.#1#3}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+
+% Custom commands for this document
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\quo{\langle}{\rangle}
+
+% Spacing
+\titlespacing\subsubsection{0pt}{5pt}{3pt}
+\setstretch{0.1}
+
+\title{ממ``''ן 31}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+
+%%%%% <Q1> %%%%%
+\section*{שאלה 1}
+ראשית, נוכיח שהסדרה $(a_{n})$ מוגדרת לכל $n$. נוכל לראות שהסדרה מוגדרת אמ``''מ
+\[
+4(1 - a_{n}) \neq 0
+\logr{} 4 - 4a_{n} \neq 0
+\logr{} 4a_{n} \neq 4
+\logr{} a_{n} \neq 1
+\]
+$(*)$ נוכיח באינדוקציה שמתקיים $0 \le a_{n} < \frac{1}{2}$ לכל $n$. עבור מקרה הבסיס $n = 1$ אי-שוויון זה ברור מהגדרת הסדרה )שכן $a_{1} = 0$(. כעת, נניח נכונות עבור $n = k$ ונוכיח עבור $n = k + 1$:
+\begin{align*}
+0 \le a_{k} < \frac{1}{2}
+& \logr{} -\frac{1}{2} < -a_{k} \le 0\\
+& \logr{} \frac{1}{2} < 1 - a_{k} \le 1\\
+& \logr{} 1 \le \frac{1}{1 - a_{k}} < 2\\
+& \logr{} \frac{1}{4} \le \frac{1}{4(1 - a_{k})} < \frac{1}{2} \logr{} 0 \le a_{k + 1} < \frac{1}{2}
+\end{align*}
+לפיכך ולפי הגדרת הסדרה מתקיים $a_{n} \neq 1$ ולכן היא מוגדרת לכל $n$. כעת, נוכיח באינדוקציה שהסדרה מונוטונית עולה. עבור מקרה הבסיס $n = 1$, נחשב ונראה שאי-השוויון מתקיים:
+\[
+a_{1} = 0, a_{2} = \frac{1}{4 - a_{1}} = \frac{1}{4} \logr{} a_{1} < a_{2}
+\]
+כעת,  נניח נכונות עבור $n = k$ ונוכיח עבור $n = k + 1$:
+\begin{align*}
+a_{k} < a_{k + 1}
+& \logr{} 1 - a_{k} > 1 - a_{k + 1}\\
+& \logr{} \frac{1}{1 - a_{k}} < \frac{1}{1 - a_{k + 1}}\\
+& \logr{} \frac{1}{4(1 - a_{k})} < \frac{1}{4(1 - a_{k + 1})}\\
+& \logr{} a_{k + 1} < \frac{1}{4(1 - a_{k + 1})} \logr{} a_{k + 1} < a_{k + 2}
+\end{align*}
+לכן הסדרה מונוטונית עולה. לפיכך ולפי $(*)$ הסדרה מונוטונית וחסומה, ולכן לפי \m{3}{61}{} היא מתכנסת. בעמוד הבא נחשב את גבולה.
+\clearpage
+\section*{שאלה 1 -- המשך}
+
+כעת, נחשב את גבול הסדרה. נסמן $\lim_{n \to \infty} a_{n} = L$. לפי \m{2}{92}{} מתקיים
+\begin{align*}
+L = \lim_{n \to \infty} a_{n}
+& = \lim_{n \to \infty} a_{n + 1}\\
+& = \lim_{n \to \infty} \frac{1}{4 - 4a_{n}}\\
+& = \frac{1}{4 - 4\lim_{n \to \infty} a_{n}}\\
+& = \frac{1}{4 - 4L}
+\end{align*}
+נכפול את שני הצדדים ב$4 - 4L$ ונקבל:
+\begin{align*}
+-4L^{2} + 4L = 1
+& \logr{} -4L^{2} + 4L - 1 = 0\\
+& \logr{} 4L^{2} - 4L + 1 = 0\\
+& \logr{} (2L - 1)^{2} = 0\\
+& \logr{} L = \frac{1}{2}
+\end{align*}
+וזהו גבול הסדרה כנדרש.
+\br\qed
+\clearpage
+%%%%% </Q1> %%%%%
+
+%%%%% <Q2> %%%%%
+\section*{שאלה 2}
+\subsection*{סעיף א}
+נחשב את הגבול:
+\begin{align*}
+\lim_{n \to \infty} \frac{(-5)^{n} + 2(-3)^{n} + 3}{(-4)^{n} + 2(-2)^{n} + 3}
+& = \lim_{n \to \infty} \frac{\cancel{(-4)^{n}}((\frac{5}{4})^{n} + 2(\frac{3}{4})^{n} + \frac{3}{(-4)^{n}})}{\cancel{(-4)^{n}}(1 + 2(\frac{2}{4})^{n} + \frac{3}{(-4)^{n}})}\\
+& = \frac{\lim_{n \to \infty} ((\frac{5}{4})^{n} + 2(\frac{3}{4})^{n} + \frac{3}{(-4)^{n}})}{\lim_{n \to \infty} (1 + 2(\frac{2}{4})^{n} + \frac{3}{(-4)^{n}})}\\
+& = \frac{\infty + 2 \cdot 0 +0}{1 + 2 \cdot 0 + 0} = \infty
+\end{align*}
+וחישבנו את הגבול כנדרש.
+\br\qed
+
+\subsection*{סעיף ב}
+ראשית, נסמן
+\[
+a_{n} = \frac{(-5)^{n} + 2(-3)^{n} + 3}{(-4)^{n} + 2(-2)^{n} + 3},\;b_{n} = \frac{(-4)^{n} + 2(-2)^{n} + 3}{(-5)^{n} + 2(-3)^{n} + 3}
+\]
+נוכל לשים לב ש$a_{n} = \frac{1}{b_{n}}$. לפיכך ולפי סעיף א, מתקיים 
+\[
+\lim_{n \to \infty} b_{n} = \frac{1}{\lim_{n \to \infty} a_{n}} \ueq{\m{2}{34}{ה}} 0
+\]
+כנדרש.
+\br\qed
+\clearpage
+
+\section*{שאלה 2 -- המשך}
+\subsection*{סעיף ג}
+\subsubsection*{טענת עזר -- $\lim_{n \to \infty} (1 - \frac{1}{n})^{n} = \frac{1}{e}$:}
+ראשית, נוכיח ש$\lim_{n \to \infty} (1 - \frac{1}{n})^{n} = \frac{1}{e}$. נגדיר את הסדרה $b_{n} = (1 + \frac{1}{n})^{n} = (\frac{n + 1}{n})^{n}$. אזי $\lim_{n \to \infty} b_{n} = e$. נשים לב שלמעשה מתקיים
+\begin{align*}
+b_{n} = \left(\frac{n + 1}{n}\right)^{n}
+\logr{} b_{n - 1}
+& = \left(\frac{n}{n - 1}\right)^{n - 1}\\
+& = \left(\frac{n}{n - 1}\right)^{-1}\left(\frac{n}{n - 1}\right)^{n}\\
+& = \left(\frac{n - 1}{n}\right)\left(\frac{n}{n - 1}\right)^{n}\\
+& = \left(1 - \frac{1}{n}\right)\left(\frac{n}{n - 1}\right)^{n}
+\end{align*}
+לפי \m{2}{92}{} מתקיים $\lim_{n \to \infty} b_{n} = \lim_{n \to \infty} b_{n - 1}$. נחשב את הגבול ונקבל:
+\begin{align*}
+e = \lim_{n \to \infty} \left(1 - \frac{1}{n}\right)\left(\frac{n}{n - 1}\right)^{n}
+& = \lim_{n \to \infty} \left(1 - \frac{1}{n}\right) \cdot \lim_{n \to \infty}\left(\frac{n}{n - 1}\right)^{n}\\
+& = \left(\lim_{n \to \infty} 1 - \lim_{n \to \infty} \frac{1}{n}\right) \cdot \lim_{n \to \infty}\left(\frac{n}{n - 1}\right)^{n}\\
+& = \lim_{n \to \infty} \left(\frac{n}{n - 1}\right)^{n}
+\end{align*}
+ולכן $\lim_{n \to \infty} \left(\frac{n}{n - 1}\right)^{n} = e$. כעת, נוכל לראות שמתקיים
+\[
+\left(1 - \frac{1}{n}\right)^{n}
+= \left(\frac{n - 1}{n}\right)^{n}
+= \left(\left(\frac{n}{n - 1}\right)^{n}\right)^{-1}
+\]
+ולכן מתקיים
+\begin{align*}
+\lim_{n \to \infty} \left(1 - \frac{1}{n}\right)^{n}
+& = \lim_{n \to \infty} \left(\left(\frac{n}{n - 1}\right)^{n}\right)^{-1}\\
+& = \left(\lim_{n \to \infty} \left(\frac{n}{n - 1}\right)^{n}\right)^{-1}\\
+& = e^{-1} = \frac{1}{e}
+\end{align*}
+כנדרש.
+\br\qed
+\clearpage
+
+\section*{שאלה 2 -- המשך}
+\subsection*{סעיף ג -- המשך}
+כעת נחשב את גבול הסדרה. ראשית, נפשט את הביטוי:
+\[
+a_{n}
+= \left(\frac{1}{n} - 1\right)^{n}
+= (-1)^{n}\left(1 - \frac{1}{n}\right)^{n}
+\]
+נניח בשלילה ש$(a_{n})$ מתכנסת לגבול $L$. לכן, לפי \m{3}{52}{} כל הגבולות החלקיים שלה שווים ל$L$. נסתכל על שתי תת-סדרות של $(a_{n})$:
+\begin{eqnarray*}
+& a_{2n} = (-1)^{2n}\left(1 - \frac{1}{2n}\right)^{2n}, a_{2n - 1} = (-1)^{2n - 1}\left(1 - \frac{1}{2n - 1}\right)^{2n - 1}\\
+& \Downarrow\\
+& a_{2n} = \left(1 - \frac{1}{2n}\right)^{2n}, a_{2n - 1} = -\left(1 - \frac{1}{2n - 1}\right)^{2n - 1}\\
+\end{eqnarray*}
+נשים לב שמתקיים $a_{2n} = b_{2n}$ ולכן היא תת-סדרה של הסדרה $b_{n}$ )סדרה זו הוגדרה בטענת העזר(. הסדרה $b_{n}$ מתכנסת, ולכן לפי \m{3}{52}{} כל הגבולות החלקיים שלה שווים לגבול שלה. לפיכך, $\lim_{n \to \infty} a_{2n} = \frac{1}{e}$.
+
+בנוסף, נוכל לשים לב שמתקיים $a_{2n - 1} = -b_{2n - 1}$ ולכן היא תת-סדרה של $-b_{n}$. מכיוון שהיא מתכנסת, לפי \m{3}{52}{} כל הגבולות החלקיים שלה שווים לגבול שלה ולכן $\lim_{n \to \infty} a_{2n - 1} = -\frac{1}{e}$.
+לסיכום:
+\[
+\lim_{n \to \infty} a_{2n} = \frac{1}{e},\;\lim_{n \to \infty} a_{2n - 1} = -\frac{1}{e}
+\]
+
+כמובן ש$\frac{1}{e} \neq -\frac{1}{e}$, ולכן מצאנו שני גבולות חלקיים שונים של $(a_{n})$ בסתירה להנחה. לפיכך, הסדרה $(a_{n})$ לא מתכנסת. כעת, נסמן ב$\hat{L}$ את קבוצת הגבולות החלקיים של $(a_{n})$ ונמצא קבוצה זו:
+
+לפי ממצאינו, $\left\{\frac{1}{e}, -\frac{1}{e}\right\} \subseteq \hat{L}$. נוכיח כעת ששני הגבולות החלקיים הללו הינם הגבולות החלקיים היחידים של הסדרה. נוכל לראות ששתי תת-סדרות אלו מכסות את הסדרה $(a_{n})$, ולכן לפי \m{3}{03}{}, מתקיים $\hat{L} = \left\{\frac{1}{e}, -\frac{1}{e}\right\}$ ומצאנו את כל הגבולות החלקיים של $(a_{n})$ כנדרש.
+\\\\\\\\\\\qed
+\subsection*{סעיף ד}
+נתון ש$(a_{n})$ סדרה עולה ממש של מספרים שלמים. לפיכך, החל ממקום מסוים $N$, לכל $n > N$ מתקיים $a_{n} > 0$. מכיוון שהסדרה הינה סדרה עולה ממש של מספרים שלמים, ובמקרה זה -- גם חיוביים, היא תת סדרה של הסדרה $b_{n} = n$. לפיכך, הסדרה $c_{n} = (1 + \frac{1}{a_{n}})^{a_{n}}$ תת-סדרה של הסדרה $d_{n} = (1 + \frac{1}{n})^{n}$, ולכן גבולן שווה. לפי \d{3}{5}{}, מתקיים $\lim_{n \to \infty} d_{n} = e$, ומכיוון שכל הגבולות החלקיים של סדרה מתכנסת שווים ובפרט שווים לגבולה של הסדרה, גם $\lim_{n \to \infty} c_{n} = e$ כנדרש.
+\\\\\\\\\\\qed
+%%%%% </Q2> %%%%%
+
+\clearpage
+%%%%% <Q3> %%%%%
+\section*{שאלה 3}
+\subsection*{סעיף א}
+נוכיח כי $0 \le a_{n} \le 1$ לכל $n$. מתכונות הערך השלם נובע כי
+\begin{align*}
+\floor{\sqrt{n}} \le \sqrt{n} < \floor{\sqrt{n}} + 1
+& \logr{} \floor{\sqrt{n}} - \floor{\sqrt{n}} \le \sqrt{n} - \floor{\sqrt{n}} < \floor{\sqrt{n}} + 1 - \floor{\sqrt{n}}\\
+& \logr{} 0 \le \sqrt{n} - \floor{\sqrt{n}} < 1\\
+& \logr{} 0 \le \quo{\sqrt{n}} < 1 \logr{} 0 \le a_{n} < 1
+\end{align*}
+לפיכך, הסדרה $(a_{n})$ חסומה כנדרש.
+\br\qed
+%%%%% </Q3> %%%%%
+
+\end{document}
