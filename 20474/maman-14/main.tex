@@ -81,7 +81,9 @@ f(g(a)) = f(g(b)) \equiv (f \circ g)(a) = (f \circ g)(b) \logr{$(f \circ g) = id
 \]
 בסתירה להנחה. לפיכך, $g$ חחע כנדרש.
 \br\qed
+\clearpage
 
+\section*{שאלה 1 -- המשך}
 \subsection*{סעיף ג + ד}
 לא נכון. יהיו $f, g: \mR \to \mR$ מוגדרות באופן הבא: $f(x) = g(x) = \finv{x}$. שתי הפונקציות לא מוגדרות בנקודה $x = 0$, ולכן $\Ima{f} \neq \mR \land \Ima{g} \neq \mR$ ולכן לא על. נשים לב ש$(f \circ g) = id$:
 \[
@@ -89,9 +91,7 @@ f(g(a)) = f(g(b)) \equiv (f \circ g)(a) = (f \circ g)(b) \logr{$(f \circ g) = id
 \]
 נוכל לשים לב שהדוגמה הזאת עובדת גם עבור המקרה הנדרש בסעיף ד, שכן גם $g(x)$ לא על במקרה זה. לפיכך, אם $(f \circ g) = id$, לא $f$ ולא $g$ בהכרח על כנדרש.
 \br\qed
-\clearpage
 
-\section*{שאלה 1 -- המשך}
 \subsection*{סעיף ה}
 לא נכון. ניתן בתור דוגמה נגדית את אותה הדוגמה מסעיף א. ראשית, נגדיר את פונקציית ההרכבה $k \circ h$:
 \[
@@ -149,15 +149,47 @@ x > M_{2}
 %%%%% <Q3> %%%%%
 \section*{שאלה 3}
 \subsection*{סעיף א1}
-נכתוב את ההגדרה בכתיב כמתים:
-\[
-p = \exists L \in \mR\-\forall 0 < \varepsilon\-\exists M \in \mR\-\forall M < x,\ \abs{f(x) - L} < \varepsilon
-\]
-נשלול:
-\[
-\neg p = \forall L \in \mR\-\exists 0 < \varepsilon\-\forall M \in \mR\-\exists M < x,\ \abs{f(x) - L} \ge \varepsilon
-\]
-ובעברית: לכל $L \in \mR$, קיים $0 < \varepsilon$ כך שלכל $M \in \mR$ קיים $x > M$ כך ש$\abs{f(x) - L} \ge \varepsilon$.
+ההגדרה: נגיד כי $\lim_{x \to \infty} f(x) = L$ אם קיים $L \in \mR$ כך שלכל $0 < \varepsilon$ קיים $M \in \mR$ כך שלכל $x > M$ מתקיים $\abs{f(x) - L} < \varepsilon$.
+
+נשלול: נגיד כי ל$f(x)$ לא קיים גבול ממשי כש$x \to \infty$ אם לכל $L \in \mR$, קיים $0 < \varepsilon$ כך שלכל $M \in \mR$ קיים $x > M$ כך ש$\abs{f(x) - L} \ge \varepsilon$. שללנו את ההגדרה כנדרש.
+\br\qed
+
+\subsection*{סעיף ב1}
+יהיו $L, M \in \mR$. נבחר $\varepsilon = \tfrac{1}{6}$ ונניח כי $x > M$. ידוע לנו ש$-1 \le \cos{x} \le 1$ עבור כל $x \in \mR$ ולכן מתקיים
+\begin{align*}
+4 \le 5 + \cos{x} \le 6
+& \logr{} \frac{1}{6} \le \frac{1}{5 + \cos{x}}\\
+\forall x \in \mR, \abs{x} \ge 0 \text{\R{נימוק: }}& \logr{} \frac{1}{6} \le \frac{\abs{4 - 5L - L\cos{x}}}{6} \le \frac{\abs{4 - 5L - L\cos{x}}}{5 + \cos{x}} = \abs*{\frac{4 - L(5 + \cos{x})}{5 + \cos{x}}}\\
+& \;\qquad = \abs*{\frac{4}{5 + \cos{x}} - L} = \abs*{f(x) - L}
+\logr{} \abs{f(x) - L} \ge \frac{1}{6}
+\end{align*}
+ומצאנו $\varepsilon$ כך ש$\abs{f(x) - L} \ge \varepsilon$ לכל $L \in \mR$ ולכן לא קיים ל$f(x)$ גבול ממשי לפי סעיף א1 כנדרש.
+\br\qed
+
+\clearpage
+
+\section*{שאלה 3 -- המשך}
+\subsection*{סעיף א2}
+ההגדרה: נגיד כי $\lim_{x \to \infty} f(x) = L$ אם לכל סדרה $(x_{n})^{\infty}_{n = 1}$ המקיימת $\lim_{n \to \infty}  x_{n} = \infty$, מתקיים $\lim_{n \to \infty} f(x_{n}) = L$.
+
+נשלול: נגיד כי ל$f(x)$ לא קיים גבול ממשי כש$x \to \infty$ אם קיימת סדרה $(x_{n})^{\infty}_{n = 1}$ כך שהסדרה $\left(f(x_{n})\right)^{\infty}_{n = 1}$ מתבדרת. שללנו את ההגדרה כנדרש.
+\br\qed
+
+\subsection*{סעיף ב2}
+תהי $(x_{n})$ סדרה המוגדרת כך: $x_{n} = n\pi$. לפיכך לפי \m{2}{34}{}ד, $\lim_{n \to \infty} x_{n} = \infty$.
+ממחזוריות פונקציית הקוסינוס ניתן לראות כי מתקיים
+\begin{align*}
+& \cos{x_{2n}} = \cos{2\pi n} = 1\\
+& \cos{x_{2n-1}} = \cos{(2n-1)\pi} = -1
+\end{align*}
+נסמן: $a_{n} = f(x_{n})$. נבחר שתי תת-סדרות מכסות של $(a_{n})$: הסדרה $a_{2n}$ והסדרה $a_{2n-1}$. נוכל לראות ששתי סדרות אלו הינן סדרות קבועות:
+\begin{align*}
+& a_{2n} = \frac{4}{5 + \cos{2\pi n}} = \frac{4}{6} = \frac{2}{3} \logr{} \lim_{n \to \infty} a_{2n} = \frac{2}{3}\\
+& a_{2n - 1} = \frac{4}{5 + \cos{(2n - 1)\pi}} = \frac{4}{4} = 1 \logr{} \lim_{n \to \infty} a_{2n - 1} = 1\\
+\end{align*}
+מכיוון ששתי תת-סדרות אלו הינן תת-סדרות מכסות וגבולותיהן שונים זה מזה, לפי \m{3}{13}{} הסדרה $a_{n} = f(x_{n})$ מתבדרת. לכן לפי ההגדרה בסעיף א2 ל$f(x)$ לא קיים גבול ממשי כנדרש.
+\br\qed
+
 \clearpage
 %%%%% </Q3> %%%%%
 
@@ -202,11 +234,14 @@ p = \exists L \in \mR\-\forall 0 < \varepsilon\-\exists M \in \mR\-\forall M < x
 \lim_{x \to x_{0}} \frac{\sin^{4}{x}}{x^{7}}
 & = \lim_{x \to x_{0}} \frac{\sin^{4}{x}}{x^{4}} \cdot \lim_{x \to x_{0}} \frac{1}{x^{3}}\\
 & = \left(\lim_{x \to x_{0}} \frac{\sin{x}}{x}\right)^{4} \cdot \left(\lim_{x \to x_{0}} \frac{1}{x}\right)^{3}\\
+\text{\R{\m{4}{84}{}}} & = \left(\lim_{x \to x_{0}} \frac{1}{x}\right)^{3}\\
 \end{align*}
-לכן, לפי משפטים 54.4, 84.4, 53.4ג וטענת העזר מתקיים
+לפיכך:
 \[
-\left(\lim_{x \to 0^{+}} \frac{\sin{x}}{x}\right)^{4} \cdot \left(\lim_{x \to 0^{+}} \frac{1}{x}\right)^{3} = 1^{4} \cdot \infty^{7} = \infty \logr{} \lim_{x \to 0^{+}} \frac{\sin^{4}{x}}{x^{7}} = \infty
+\lim_{x \to 0^{+}} \frac{1}{x^{3}} = 
+\left(\lim_{x \to 0^{+}} \frac{1}{x}\right)^{3} = \infty^{3} = \infty \logr{} \lim_{x \to 0^{+}} \frac{\sin^{4}{x}}{x^{7}} = \infty
 \]
+נסמן: $y = -x \logr{} y^{3} = -x^{3} \logr{} \tfrac{1}{y^{3}} = \tfrac{1}{-x^{3}}$. לפי מה שהוכחנו ולפי
 
 \subsection*{סעיף ג}
 נחשב את הגבול:
