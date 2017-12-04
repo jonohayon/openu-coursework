@@ -1,0 +1,223 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel,mathtools}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\logr}[1]{\xRightarrow[\text{#1}]{}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mC}{\mathbb{C}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ta}[3]{\R{טענה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+
+% Custom commands for this document
+\newcommand{\finv}[1]{\frac{1}{#1}}
+\DeclareMathOperator{\Ima}{Im}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+
+% Spacing
+\titlespacing\subsubsection{0pt}{5pt}{3pt}
+\setstretch{0.1}
+
+\title{ממ``''ן 41}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+
+%%%%% <Q1> %%%%%
+\section*{שאלה 1}
+\subsection*{סעיף א}
+לא נכון. דוגמה נגדית תהיה $f = h, g = k$ )כאשר הפונקציות $h, k$ הן הפונקציות המוגדרות בממן(. נוכל לחשב ולראות ש$h(0) = h(1) = 0$ ולכן היא לא חח``''ע, אך גם ש$(h \circ k)(x) = x$:
+\[
+(h \circ k)(x)
+= \begin{cases}
+k(x) & k(x) \le 0\\\\\\
+k(x) - 1 & k(x) > 0
+\end{cases}
+= \begin{cases}
+x & x \le 0\\\\\\
+x + 1 - 1 & x > 0
+\end{cases}
+= \begin{cases}
+x & x \le 0\\\\\\
+x & x > 0
+\end{cases} = x
+\]
+ולכן אם $(f \circ g) = id$, $f$ אינה בהכרח חח``''ע כנדרש.
+\br\qed
+
+\subsection*{סעיף ב}
+נכון. נניח בשלילה ש$g$ לא חחע, כלומר מתקיים
+\[
+\exists a, b \in \mR,\ g(a) = g(b) \land a \neq b
+\]
+נפעיל את $f$ על שני הצדדים ונקבל:
+\[
+f(g(a)) = f(g(b)) \equiv (f \circ g)(a) = (f \circ g)(b) \logr{$(f \circ g) = id$} a = b
+\]
+בסתירה להנחה. לפיכך, $g$ חחע כנדרש.
+\br\qed
+
+\subsection*{סעיף ג + ד}
+לא נכון. יהיו $f, g: \mR \to \mR$ מוגדרות באופן הבא: $f(x) = g(x) = \finv{x}$. שתי הפונקציות לא מוגדרות בנקודה $x = 0$, ולכן $\Ima{f} \neq \mR \land \Ima{g} \neq \mR$ ולכן לא על. נשים לב ש$(f \circ g) = id$:
+\[
+(f \circ g)(x) = f\left(\finv{x}\right) = \finv{\finv{x}} = x
+\]
+נוכל לשים לב שהדוגמה הזאת עובדת גם עבור המקרה הנדרש בסעיף ד, שכן גם $g(x)$ לא על במקרה זה. לפיכך, אם $(f \circ g) = id$, לא $f$ ולא $g$ בהכרח על כנדרש.
+\br\qed
+\clearpage
+
+\section*{שאלה 1 -- המשך}
+\subsection*{סעיף ה}
+לא נכון. ניתן בתור דוגמה נגדית את אותה הדוגמה מסעיף א. ראשית, נגדיר את פונקציית ההרכבה $k \circ h$:
+\[
+(k \circ h)(x) = \begin{cases}
+h(x) & h(x) \le 0\br
+h(x) - 1 & h(x) > 0
+\end{cases}
+\]
+אזי $(f \circ g)(x) = (h \circ k)(x) = x$ כפי שהראינו בסעיף א, אך מחישוב נובע $h(0) = h(1) = 0$, ולכן לפי ההגדרה, $(k \circ h)(0) = (k \circ h)(1) = 0$ ולא מתקיים $(k \circ h) = id$ כנדרש.
+\br\qed
+
+\subsection*{סעיף ו}
+נכון. נניח ש$g$ על. אזי לפי הנתון מתקיים $f(g(x)) = x \logr{} g(f(g(x))) = g(x)$. מכיוון ש$g$ על, לכל $y \in \mR$ קיים $x \in \mR$ כך ש$y = g(x)$. לפיכך, $g(f(y)) = y$ לכל $y$, כלומר $\forall y \in \mR, (g \circ f)(y) = y$ כנדרש.
+\br\qed
+\clearpage
+%%%%% </Q1> %%%%%
+
+%%%%% <Q2> %%%%%
+\section*{שאלה 2}
+\subsection*{סעיף א}
+יהי $0 < \varepsilon$. נבחר $\delta = \frac{1}{\pi}$. לפיכך, מתקיים
+\[
+0 < \abs*{x - \tfrac{2}{\pi}} < \delta \logr{} x \in N^{*}_{\delta}\left(\tfrac{2}{\pi}\right) = \left(\tfrac{1}{\pi}, \tfrac{3}{\pi}\right)
+\]
+לכן:
+\[
+\tfrac{1}{x} \in (\tfrac{\pi}{3}, \pi) \land \tfrac{1}{x} \neq \tfrac{\pi}{2}
+\logr{}
+\sin{\tfrac{1}{x}} \in \left(0, \sin{\tfrac{\pi}{3}}\right)  \land \sin{\tfrac{1}{x}} \neq 1\ (= \sin{\tfrac{\pi}{2}})
+\]
+ולכן $\sin{\tfrac{1}{x}} < 1$ ובפרט $0 < \sin{\tfrac{1}{x}} < 1$ )בטווח זה, $\sin{x} > 0$( ולכן
+\[
+\forall x \in N^{*}_{\delta}\left(\tfrac{2}{\pi}\right),\ \floor{\sin{\tfrac{1}{x}}} = 0
+\logr{} \abs*{\floor{\sin{\tfrac{1}{x}}}} = 0
+\logr{} \abs*{\floor{\sin{\tfrac{1}{x}}}} < \varepsilon
+\]
+לכל $0 < \varepsilon$ ולכן $f(x) \opr{$x \to \tfrac{2}{\pi}$} 0$ כנדרש.
+\br\qed
+
+\subsection*{סעיף ב}
+נסמן: $f(x) = \sqrt{2x - \sin{3x}}$. יהי $M_{1} \in \mR$. נבחר $M_{2} = \frac{M^{2}_{1} + 1}{2}$. אזי:
+\begin{align*}
+x > M_{2}
+& \logr{} x > \frac{M^{2}_{1} + 1}{2}\\
+\sin{x} \le 1 \text{\R{נימוק: }}& \logr{} x > \frac{M^{2}_{1} + \sin{3x}}{2}\\
+& \logr{} 2x > M^{2}_{1} + \sin{3x}\\
+& \logr{} 2x - \sin{3x} > M^{2}_{1}\\
+& \logr{} \sqrt{2x - \sin{3x}} > M_{1} \logr{} f(x) > M_{1}
+\end{align*}
+לכן, לפי \h{4}{55}{}, $f(x) \opr{$x \to \infty$} \infty$ כנדרש.
+\br\qed
+\clearpage
+%%%%% </Q2> %%%%%
+
+%%%%% <Q3> %%%%%
+\section*{שאלה 3}
+\subsection*{סעיף א1}
+נכתוב את ההגדרה בכתיב כמתים:
+\[
+p = \exists L \in \mR\-\forall 0 < \varepsilon\-\exists M \in \mR\-\forall M < x,\ \abs{f(x) - L} < \varepsilon
+\]
+נשלול:
+\[
+\neg p = \forall L \in \mR\-\exists 0 < \varepsilon\-\forall M \in \mR\-\exists M < x,\ \abs{f(x) - L} \ge \varepsilon
+\]
+ובעברית: לכל $L \in \mR$, קיים $0 < \varepsilon$ כך שלכל $M \in \mR$ קיים $x > M$ כך ש$\abs{f(x) - L} \ge \varepsilon$.
+\clearpage
+%%%%% </Q3> %%%%%
+
+%%%%% <Q4> %%%%%
+\section*{שאלה 4}
+\subsection*{סעיף א}
+נחשב את הגבול:
+\begin{align*}
+\lim_{x \to 0} \frac{1 - \cos{x}}{x^{2}}
+& = \lim_{x \to 0} \frac{(1 - \cos{x})(1 + \cos{x})}{x^{2}(1 + \cos{x})}\\
+& = \lim_{x \to 0} \frac{1 - \cos^{2}{x}}{x^{2}(1 + \cos{x})}\\
+& = \lim_{x \to 0} \frac{\sin^{2}{x}}{x^{2}(1 + \cos{x})}\\
+& = \left(\lim_{x \to 0} \frac{\sin{x}}{x}\right)^{2} \cdot \lim_{x \to 0} \frac{1}{1 + \cos{x}}\\
+\text{\R{\m{4}{54}{}}} & = \frac{1}{1 + \lim_{x \to 0} \cos{x}}\\
+\text{\R{\ta{4}{44}{}}} & = \framebox{$\dfrac{1}{2}$}\\
+\end{align*}
+וחישבנו את הגבול כנדרש. 
+\br\qed
+
+\subsection*{טענות עזר}
+נוכיח כי $\lim_{x \to \infty} \tfrac{1}{x} = 0$, כי $\lim_{x \to 0^{+}} \tfrac{1}{x} = \infty$ וכי $\lim_{x \to 0^{-}} \tfrac{1}{x} = -\infty$.
+
+ראשית, נוכיח כי $\lim_{x \to \infty} x = \infty$: יהי $M_{1} \in \mR$ ונבחר $M_{2} = M_{1}$. לפיכך, לכל $x > M_{1}$ מתקיים $x = f(x) > M_{2} = M_{1}$ וסיימנו. לפיכך, לפי \m{4}{35}{}ה מתקיים $\lim_{x \to \infty} \tfrac{1}{x} = 0$ כנדרש.
+
+שנית, נוכיח את הגבול השני בעזרת הגדרת הגבול לפי היינה: תהי $(x_{n})^{\infty}_{n = 1}$ סדרה אפסה החסומה מלרע ע``''י 0, כלומר $x_{n} > 0$ לכל $n$. לפיכך לפי \m{2}{34}{}ו, $\lim_{n \to \infty} \tfrac{1}{x_{n}} = \infty$. לכן, לפי \h{4}{15}{} מתקיים $\lim_{x \to 0^{+}} \tfrac{1}{x} = \infty$ כנדרש.
+
+לבסוף, נוכיח גם את הגבול האחרון בעזרת הגדרת הגבול לפי היינה: תהי $(x_{n})^{\infty}_{n = 1}$ סדרה אפסה החסומה מלעיל ע``''י 0, כלומר $x_{n} < 0$ לכל $n$. לפיכך, הסדרה $y_{n} = -x_{n}$ חסומה מלרע ע``''י 0, כלומר $y_{n} > 0$ לכל $n$. לפי הטענה שהראינו לעיל,
+\[
+\lim_{n \to \infty} \frac{1}{y_{n}} = \infty
+\logr{\ta{2}{93}{}} \lim_{n \to \infty} -\frac{1}{y_{n}} = -\infty
+\logr{} \lim_{n \to \infty} \frac{1}{-y_{n}} = \lim_{n \to \infty} \frac{1}{x_{n}} = -\infty
+\]
+ולכן הסדרה $\tfrac{1}{x_{n}}$ שואפת ל$-\infty$ ולכן לפי \h{4}{25}{}, מתקיים $\lim_{x \to 0^{-}} \tfrac{1}{x} = -\infty$ כנדרש.
+\br\qed
+
+בעמוד הבא נראה את החישובים לסעיפים ב וג.
+\clearpage
+\section*{שאלה 4 -- המשך}
+\subsection*{סעיף ב}
+נראה שהגבול אינו קיים. נפשט מעט את ביטוי הגבול:
+\begin{align*}
+\lim_{x \to x_{0}} \frac{\sin^{4}{x}}{x^{7}}
+& = \lim_{x \to x_{0}} \frac{\sin^{4}{x}}{x^{4}} \cdot \lim_{x \to x_{0}} \frac{1}{x^{3}}\\
+& = \left(\lim_{x \to x_{0}} \frac{\sin{x}}{x}\right)^{4} \cdot \left(\lim_{x \to x_{0}} \frac{1}{x}\right)^{3}\\
+\end{align*}
+לכן, לפי משפטים 54.4, 84.4, 53.4ג וטענת העזר מתקיים
+\[
+\left(\lim_{x \to 0^{+}} \frac{\sin{x}}{x}\right)^{4} \cdot \left(\lim_{x \to 0^{+}} \frac{1}{x}\right)^{3} = 1^{4} \cdot \infty^{7} = \infty \logr{} \lim_{x \to 0^{+}} \frac{\sin^{4}{x}}{x^{7}} = \infty
+\]
+
+\subsection*{סעיף ג}
+נחשב את הגבול:
+\begin{align*}
+\lim_{x \to \infty} \frac{-3x^{5} + 5x^{3} + 1}{5x^{5} + 3x^{3} - 1}
+& = \lim_{x \to \infty} \frac{\cancel{x^{5}}(-3 + \tfrac{5}{x^{2}} + \tfrac{1}{x^{5}})}{\cancel{x^{5}}(5 + \tfrac{3}{x^{2}} - \tfrac{1}{x^{5}})}\\
+& = \frac{-3 + \lim_{x \to \infty}\tfrac{5}{x^{2}} + \lim_{x \to \infty}\tfrac{1}{x^{5}}}{5 + \lim_{x \to \infty}\tfrac{3}{x^{2}} - \lim_{x \to \infty}\tfrac{1}{x^{5}}}\\
+\text{\R{לפי טענת העזר}} & = \frac{-3 + 5 \cdot 0 + 0}{5 + 3 \cdot 0 - 0} = \framebox{$\dfrac{-3}{5}$}
+\end{align*}
+וחישבנו את הגבול כנדרש.
+\br\qed
+%%%%% </Q4> %%%%%
+
+\end{document}

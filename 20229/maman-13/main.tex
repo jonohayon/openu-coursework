@@ -1,0 +1,125 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel,mathtools}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mC}{\mathbb{C}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+
+% Custom commands for this document
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\nimuk}[1]{#1 \text{\R{נימוק: }}}
+\newcommand{\mfr}[4]{\begin{bmatrix}\\#1 & #2\br #3 & #4\\\\\end{bmatrix}}
+\newcommand{\eon}{\mfr{1}{0}{0}{0}}
+\newcommand{\etw}{\mfr{0}{1}{0}{0}}
+\renewcommand{\eth}{\mfr{0}{0}{1}{0}}
+\newcommand{\efo}{\mfr{0}{0}{0}{1}}
+\def\M{\mfr{1}{2}{3}{5}}
+
+% Spacing
+\titlespacing\subsubsection{0pt}{5pt}{3pt}
+\setstretch{0.1}
+
+\title{ממן 31}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+
+%%%%% <Q1> %%%%%
+\section*{שאלה 1}
+\subsection*{סעיף א}
+ראשית, נפשט מעט את הביטוי של $f(A, B)$:
+\begin{align*}
+f(A, B)
+&= \tr{A^{t}MB}\\
+\nimuk{\tr{A} = \tr{A^{t}}} &= \tr{(B^{t}M^{t}A)^{t}}\\
+&= \tr{B^{t}M^{t}A}
+\end{align*}
+בנוסף, ידוע לנו שמתקיים $f(B, A) = \tr{B^{t}MA}$, כלומר עלינו למצוא תנאי ש$M$ תקיים על מנת ש$\tr{B^{t}M^{t}A} = \tr{B^{t}MA}$. תנאי זה הוא כמובן תנאי הסימטריות, כלומר $M = M^{t}$.
+
+לפיכך, $f(A, B) = f(B, A)$ אממ $M$ מטריצה סימטרית ומצאנו את התנאי הנדרש.
+\br\qed
+
+\subsection*{סעיף ב}
+נחשב )בעמוד הזה ובעמוד הבא(:
+\subsubsection*{שורה 1}
+\begin{eqnarray*}
+& f(e_{1}, e_{1}) = \tr{\eon \cdot \M \cdot \eon} = \tr\eon = 1\\\\
+& f(e_{1}, e_{2}) = \tr{\eon \cdot \M \cdot \etw} = \tr\mfr{0}{1}{0}{0} = 0\\\\
+& f(e_{1}, e_{3}) = \tr{\eon \cdot \M \cdot \eth} = \tr\mfr{2}{0}{0}{0} = 2\\\\
+& f(e_{1}, e_{4}) = \tr{\eon \cdot \M \cdot \efo} = \tr\mfr{0}{2}{0}{0} = 0\\\\
+& [A]^{R}_{1} = (f(e_{1}, e_{1}), f(e_{1}, e_{2}), f(e_{1}, e_{3}), f(e_{1}, e_{4})) = (1,0,2,0)
+\end{eqnarray*}
+\clearpage
+
+\section*{שאלה 1 -- המשך}
+\subsection*{סעיף ב}
+\textbf{שורה 2}
+\begin{eqnarray*}
+& f(e_{2}, e_{1}) = \tr{\eth \cdot \M \cdot \eon} = \tr\eth = 0\\\\
+& f(e_{2}, e_{2}) = \tr{\eth \cdot \M \cdot \etw} = \tr\efo = 1\\\\
+& f(e_{2}, e_{3}) = \tr{\eth \cdot \M \cdot \eth} = \tr\mfr{0}{0}{2}{0} = 0\\\\
+& f(e_{2}, e_{4}) = \tr{\eth \cdot \M \cdot \efo} = \tr\mfr{0}{0}{0}{2} = 2\\\\
+& [A]^{R}_{2} = (f(e_{2}, e_{1}), f(e_{2}, e_{2}), f(e_{2}, e_{3}), f(e_{2}, e_{4})) = (0,1,0,2)
+\end{eqnarray*}
+
+\textbf{שורה 3}
+\begin{eqnarray*}
+& f(e_{3}, e_{1}) = \tr{\etw \cdot \M \cdot \eon} = \tr\mfr{3}{0}{0}{0} = 3\\\\
+& f(e_{3}, e_{2}) = \tr{\etw \cdot \M \cdot \etw} = \tr\mfr{0}{3}{0}{0} = 0\\\\
+& f(e_{3}, e_{3}) = \tr{\etw \cdot \M \cdot \eth} = \tr\mfr{5}{0}{0}{0} = 5\\\\
+& f(e_{3}, e_{4}) = \tr{\etw \cdot \M \cdot \efo} = \tr\mfr{0}{5}{0}{0} = 0\\\\
+& [A]^{R}_{3} = (f(e_{3}, e_{1}), f(e_{3}, e_{2}), f(e_{3}, e_{3}), f(e_{3}, e_{4})) = (3,0,5,0)
+\end{eqnarray*}
+
+\textbf{שורה 4}
+\begin{eqnarray*}
+& f(e_{4}, e_{1}) = \tr{\efo \cdot \M \cdot \eon} = \tr\mfr{0}{0}{3}{0} = 0\\\\
+& f(e_{4}, e_{2}) = \tr{\efo \cdot \M \cdot \etw} = \tr\mfr{0}{0}{0}{3} = 3\\\\
+& f(e_{4}, e_{3}) = \tr{\efo \cdot \M \cdot \eth} = \tr\mfr{0}{0}{5}{0} = 0\\\\
+& f(e_{4}, e_{4}) = \tr{\efo \cdot \M \cdot \efo} = \tr\mfr{0}{5}{0}{5} = 5\\\\
+& [A]^{R}_{4} = (f(e_{4}, e_{1}), f(e_{4}, e_{2}), f(e_{4}, e_{3}), f(e_{4}, e_{4})) = (0,3,0,5)
+\end{eqnarray*}
+בעמוד הבא נראה את $[f]_{E}$.
+\clearpage
+
+\section*{שאלה 1 -- המשך}
+\subsection*{סעיף ב}
+כעת, לאחר שחישבנו את שורות $[f]_{E}$, נציב:
+\[
+[f]_{E} = \begin{bmatrix}\\\\\\
+1 & 0 & 2 & 0\br
+0 & 1 & 0 & 2\br
+3 & 0 & 5 & 0\br
+0 & 3 & 0 & 5\\\\\\\\
+\end{bmatrix}
+\]
+ומצאנו את המטריצה המייצגת לפי הבסיס הסטנדרטי כנדרש.
+\br\qed
+
+\end{document}
