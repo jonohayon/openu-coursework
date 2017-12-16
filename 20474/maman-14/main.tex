@@ -33,6 +33,7 @@
 \newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
 
 % Custom commands for this document
+\usepackage[inline]{enumitem}
 \newcommand{\finv}[1]{\frac{1}{#1}}
 \DeclareMathOperator{\Ima}{Im}
 \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
@@ -71,7 +72,7 @@ x & x > 0
 \br\qed
 
 \subsection*{סעיף ב}
-נכון. נניח בשלילה ש$g$ לא חחע, כלומר מתקיים
+נכון. נניח בשלילה ש$g$ לא חח``''ע, כלומר מתקיים
 \[
 \exists a, b \in \mR,\ g(a) = g(b) \land a \neq b
 \]
@@ -79,7 +80,7 @@ x & x > 0
 \[
 f(g(a)) = f(g(b)) \equiv (f \circ g)(a) = (f \circ g)(b) \logr{$(f \circ g) = id$} a = b
 \]
-בסתירה להנחה. לפיכך, $g$ חחע כנדרש.
+בסתירה להנחה. לפיכך, $g$ חח``''ע כנדרש.
 \br\qed
 \clearpage
 
@@ -172,7 +173,7 @@ x > M_{2}
 \subsection*{סעיף א2}
 ההגדרה: נגיד כי $\lim_{x \to \infty} f(x) = L$ אם לכל סדרה $(x_{n})^{\infty}_{n = 1}$ המקיימת $\lim_{n \to \infty}  x_{n} = \infty$, מתקיים $\lim_{n \to \infty} f(x_{n}) = L$.
 
-נשלול: נגיד כי ל$f(x)$ לא קיים גבול ממשי כש$x \to \infty$ אם קיימת סדרה $(x_{n})^{\infty}_{n = 1}$ כך שהסדרה $\left(f(x_{n})\right)^{\infty}_{n = 1}$ מתבדרת. שללנו את ההגדרה כנדרש.
+נשלול: נגיד כי ל$f(x)$ לא קיים גבול ממשי כש$x \to \infty$ אם קיימת סדרה $(x_{n})^{\infty}_{n = 1}$ המקיימת $\lim_{n \to \infty} x_{n} = \infty$ כך שהסדרה $\left(f(x_{n})\right)^{\infty}_{n = 1}$ מתבדרת במובן הצר. שללנו את ההגדרה כנדרש.
 \br\qed
 
 \subsection*{סעיף ב2}
@@ -210,19 +211,11 @@ x > M_{2}
 \br\qed
 
 \subsection*{טענות עזר}
-נוכיח כי $\lim_{x \to \infty} \tfrac{1}{x} = 0$, כי $\lim_{x \to 0^{+}} \tfrac{1}{x} = \infty$ וכי $\lim_{x \to 0^{-}} \tfrac{1}{x} = -\infty$.
+נוכיח כי $\lim_{x \to \infty} \tfrac{1}{x} = 0$ וכי $\lim_{x \to 0^{+}} \tfrac{1}{x} = \infty$.
 
 ראשית, נוכיח כי $\lim_{x \to \infty} x = \infty$: יהי $M_{1} \in \mR$ ונבחר $M_{2} = M_{1}$. לפיכך, לכל $x > M_{1}$ מתקיים $x = f(x) > M_{2} = M_{1}$ וסיימנו. לפיכך, לפי \m{4}{35}{}ה מתקיים $\lim_{x \to \infty} \tfrac{1}{x} = 0$ כנדרש.
 
 שנית, נוכיח את הגבול השני בעזרת הגדרת הגבול לפי היינה: תהי $(x_{n})^{\infty}_{n = 1}$ סדרה אפסה החסומה מלרע ע``''י 0, כלומר $x_{n} > 0$ לכל $n$. לפיכך לפי \m{2}{34}{}ו, $\lim_{n \to \infty} \tfrac{1}{x_{n}} = \infty$. לכן, לפי \h{4}{15}{} מתקיים $\lim_{x \to 0^{+}} \tfrac{1}{x} = \infty$ כנדרש.
-
-לבסוף, נוכיח גם את הגבול האחרון בעזרת הגדרת הגבול לפי היינה: תהי $(x_{n})^{\infty}_{n = 1}$ סדרה אפסה החסומה מלעיל ע``''י 0, כלומר $x_{n} < 0$ לכל $n$. לפיכך, הסדרה $y_{n} = -x_{n}$ חסומה מלרע ע``''י 0, כלומר $y_{n} > 0$ לכל $n$. לפי הטענה שהראינו לעיל,
-\[
-\lim_{n \to \infty} \frac{1}{y_{n}} = \infty
-\logr{\ta{2}{93}{}} \lim_{n \to \infty} -\frac{1}{y_{n}} = -\infty
-\logr{} \lim_{n \to \infty} \frac{1}{-y_{n}} = \lim_{n \to \infty} \frac{1}{x_{n}} = -\infty
-\]
-ולכן הסדרה $\tfrac{1}{x_{n}}$ שואפת ל$-\infty$ ולכן לפי \h{4}{25}{}, מתקיים $\lim_{x \to 0^{-}} \tfrac{1}{x} = -\infty$ כנדרש.
 \br\qed
 
 בעמוד הבא נראה את החישובים לסעיפים ב וג.
@@ -233,25 +226,157 @@ x > M_{2}
 \begin{align*}
 \lim_{x \to x_{0}} \frac{\sin^{4}{x}}{x^{7}}
 & = \lim_{x \to x_{0}} \frac{\sin^{4}{x}}{x^{4}} \cdot \lim_{x \to x_{0}} \frac{1}{x^{3}}\\
-& = \left(\lim_{x \to x_{0}} \frac{\sin{x}}{x}\right)^{4} \cdot \left(\lim_{x \to x_{0}} \frac{1}{x}\right)^{3}\\
-\text{\R{\m{4}{84}{}}} & = \left(\lim_{x \to x_{0}} \frac{1}{x}\right)^{3}\\
+& = \left(\lim_{x \to x_{0}} \frac{\sin{x}}{x}\right)^{4} \cdot \lim_{x \to x_{0}} \frac{1}{x^{3}}\\
+\text{\R{\m{4}{84}{}}} & = \lim_{x \to x_{0}} \frac{1}{x^{3}}\\
 \end{align*}
 לפיכך:
 \[
 \lim_{x \to 0^{+}} \frac{1}{x^{3}} = 
 \left(\lim_{x \to 0^{+}} \frac{1}{x}\right)^{3} = \infty^{3} = \infty \logr{} \lim_{x \to 0^{+}} \frac{\sin^{4}{x}}{x^{7}} = \infty
 \]
-נסמן: $y = -x \logr{} y^{3} = -x^{3} \logr{} \tfrac{1}{y^{3}} = \tfrac{1}{-x^{3}}$. לפי מה שהוכחנו ולפי
+כעת, נוכיח ש$\lim_{x \to 0^{-}} \tfrac{1}{x^{3}} = -\infty$ לפי \q{4}{57}{}ב. יהי $M \in \mR$ ונבחר $0 < \delta = \abs{M}$. בנוסף נוכל לראות כי מכיוון שאנו מתקרבים ל0 בסביבת $\delta$ \underline{\emph{נקובה}} משמאל, $M$ בהכרח שונה מ0. נניח בנוסף כי $-\delta < x < 0$ ונחלק למקרים:
 
+אם $M > 0$ אז $\delta = \abs{M} = M$ ולכן מתקיים:
+\begin{align*}
+-M < x < 0
+& \logr{} M > -x \logr{} M > \frac{1}{M} > \frac{1}{-x} > \frac{1}{x^{2}} > \frac{1}{x^{3}}\\
+& \logr{} M > \frac{1}{x^{3}} \logr{} f(x) < M
+\end{align*}
+אם $M < 0$ אז $\delta = \abs{M} = -M$ ולכן מתקיים:
+\begin{align*}
+M < x < 0
+& \logr{} M > \frac{1}{M} > \frac{1}{x} > \frac{1}{x^{3}}\\
+& \logr{} M > \frac{1}{x^{3}} \logr{} f(x) < M
+\end{align*}
+והראנו שמתקיים $f(x) < M$ לכל $x$ בסביבה שמאלית של 0 ולכן $\lim_{x \to 0^{-}} \tfrac{1}{x^{3}} = -\infty$. כעת הראינו שהגבול של $f(x)$ בנקודה 0 משמאל שונה מהגבול שלה בנקודה מימין ולכן לא קיים לה גבול כנדרש.
+\br\qed
+\clearpage
+
+\section*{שאלה 4 -- המשך}
 \subsection*{סעיף ג}
 נחשב את הגבול:
 \begin{align*}
 \lim_{x \to \infty} \frac{-3x^{5} + 5x^{3} + 1}{5x^{5} + 3x^{3} - 1}
 & = \lim_{x \to \infty} \frac{\cancel{x^{5}}(-3 + \tfrac{5}{x^{2}} + \tfrac{1}{x^{5}})}{\cancel{x^{5}}(5 + \tfrac{3}{x^{2}} - \tfrac{1}{x^{5}})}\\
 & = \frac{-3 + \lim_{x \to \infty}\tfrac{5}{x^{2}} + \lim_{x \to \infty}\tfrac{1}{x^{5}}}{5 + \lim_{x \to \infty}\tfrac{3}{x^{2}} - \lim_{x \to \infty}\tfrac{1}{x^{5}}}\\
-\text{\R{לפי טענת העזר}} & = \frac{-3 + 5 \cdot 0 + 0}{5 + 3 \cdot 0 - 0} = \framebox{$\dfrac{-3}{5}$}
+\text{\R{לפי טענת העזר}} & = \frac{-3 + 5 \cdot 0 + 0}{5 + 3 \cdot 0 - 0} = \framebox{$-\dfrac{3}{5}$}
 \end{align*}
 וחישבנו את הגבול כנדרש.
+\br\qed
+
+\subsection*{טענת עזר לסעיף ד}
+תהי $f: \mR \to \mR$ כך ש$\lim_{x \to -\infty} f(x)$ קיים. אזי $\lim_{x \to -\infty} f(x) = \lim_{x \to \infty} f(-x)$. נוכיח בעזרת הגדרת הגבול בסדרות:
+
+תהי $(x_{n})^{\infty}_{n = 1}$ סדרה כך ש$\lim_{n \to \infty} x_{n} = -\infty$ ונסמן $y_{n} = -x_{n}$. אזי לפי \ta{2}{93}{} מתקיים $\lim_{n \to \infty} -x_{n} = \infty$, או במילים אחרות, $\lim_{n \to \infty} y_{n} = \infty$.
+
+לפי הגדרת הגבול בסדרות, הגבול $\lim_{n \to \infty} f(x_{n}) = L$ קיים. בנוסף, מכיוון ש$x_{n} = -y_{n}$, גם הגבול $\lim_{n \to \infty} f(-y_{n})$ קיים ובפרט שווה ל$L$.
+
+לכן, לכל סדרה $(y_{n})^{\infty}_{n = 1}$ המקיימת $\lim_{n \to \infty} y_{n} = \infty$ מתקיים $\lim_{n \to \infty} f(-y_{n}) = L$ ולכן לפי הגדרת הגבול בסדרות מתקיים $\lim_{x \to \infty} f(-x) = \lim_{x \to -\infty} f(x)$ כנדרש.
+\br\qed
+
+\subsection*{סעיף ד}
+נסמן:
+\begin{align*}
+f(x) = \sqrt{x^{2} - \sin{x}} - x
+& \logr{} f(-x) = \sqrt{x^{2} + \sin{x}} + x\\
+& \logr{} g(x) = \sqrt{x} + \frac{x}{x^{2} + \sin{x}},\ h(x) = x^{2} + \sin{x}\\
+& \logr{} f(-x) = g(h(x))
+\end{align*}
+נראה ש$\lim_{x \to -\infty} f(x) = \infty$, אך לפי טענת העזר, די לנו לחשב את $\lim_{x \to \infty} g(h(x))$. בעמוד הבא ניעזר ב\m{4}{93}{} על מנת להראות שגבול זה אכן קיים.
+\clearpage
+
+\section*{שאלה 4 -- המשך}
+\subsection*{סעיף ד -- המשך}
+לפי \m{4}{93}{}, עלינו להראות שהגבולות הבאים קיימים:
+\[
+\lim_{x \to \infty} g(x) = \infty \qquad\lim_{t \to \infty} h(t) = \infty
+\]
+נראה זאת בעזרת אריתמטיקה:
+\begin{align*}
+\lim_{x \to \infty} g(x)
+& = \lim_{x \to \infty} \sqrt{x} + \frac{x}{x^{2} + \sin{x}}\\
+& = \lim_{x \to \infty} \sqrt{x} + \lim_{x \to \infty} \frac{x}{x^{2} + \sin{x}}\\
+& = \lim_{x \to \infty} \sqrt{x} + \lim_{x \to \infty} \frac{1}{x + \frac{\sin{x}}{x}}
+\end{align*}
+כעת, מכיוון ש$\sin{x}$ חסומה ו$\lim_{x \to \infty} \frac{1}{x} = 0$, מתקיים $\lim_{x \to \infty} \frac{\sin{x}}{x} = 0$ )חסומה כפול אפסה( ולכן $\lim_{x \to \infty} x + \frac{\sin{x}}{x} = \infty$ ולכן $\lim_{x \to \infty} \frac{1}{x + \frac{\sin{x}}{x}} = 0$. לפיכך,
+\[
+\lim_{x \to \infty} g(x) = \lim_{x \to \infty} \sqrt{x} + \lim_{x \to \infty} \frac{1}{x + \frac{\sin{x}}{x}} = \lim_{x \to \infty} \sqrt{x} = \infty
+\]
+כנדרש. כעת, נחשב את הגבול השני:
+\begin{align*}
+\lim_{t \to \infty} h(t)
+& = \lim_{t \to \infty} t^{2} + \sin{t}\\
+& = \lim_{t \to \infty} t^{2}\left(1 + \frac{\sin{t}}{t^{2}}\right)\\
+& = \lim_{t \to \infty} t^{2} \cdot \left(1 + \lim_{t \to \infty} \frac{\sin{t}}{t^{2}}\right)
+\end{align*}
+כעת, מכיוון ש$\sin{t}$ חסומה ו$\lim_{t \to \infty} \frac{1}{t^{2}} = 0$, מתקיים $\lim_{t \to \infty} \frac{\sin{t}}{t^{2}} = 0$ )חסומה כפול אפסה(. לפיכך,
+\[
+\lim_{t \to \infty} h(t) = \lim_{t \to \infty} t^{2} \cdot \left(1 + \lim_{t \to \infty} \frac{\sin{t}}{t^{2}}\right) = \lim_{t \to \infty} t^{2} = \infty
+\]
+כנדרש. לכן, לפי \m{4}{93}{} מתקיים $\lim_{x \to \infty} g(h(x)) = \infty$, כלומר $\lim_{x \to \infty} f(-x) = \infty$. לכן, לפי טענת העזר, $\lim_{x \to -\infty} f(x) = \infty$ וחישבנו את הגבול כנדרש.
+\br\qed
+\clearpage
+
+\section*{שאלה 4 -- המשך}
+\subsection*{סעיף ה -- $k = 0$}
+נראה ש$\lim_{x \to 0} \sin{\frac{x}{2}}\floor{\sin{x}} = 0$. ראשית, נוכיח את הגבול מימין. יהי $\varepsilon \in \mR$ ונבחר $\delta = \frac{\pi}{2}$. אזי מתקיים
+\begin{align*}
+\forall 0 < x < \frac{\pi}{2},\ 0 < \sin{x} < 1
+& \logr{} \floor{\sin{x}} = 0 \logr{} \floor{\sin{x}} \in N_{\varepsilon}(0)\\
+& \logr{} \lim_{x \to 0^{+}} \floor{\sin{x}} = 0\\
+& \logr{} \lim_{x \to 0^{+}} \sin{\frac{x}{2}} \cdot \lim_{x \to 0^{+}} \floor{\sin{x}} = 0 \cdot \lim_{x \to 0^{+}} \sin{\frac{x}{2}} = 0
+\end{align*}
+כעת, נוכיח את הגבול משמאל ונתחיל מהגבול משמאל של הפונקציה $g_{1}(x) = \floor{\sin{x}}$. יהי $\varepsilon \in \mR$ ונבחר $\delta = \frac{\pi}{2}$. לפיכך,
+\begin{align*}
+\forall -\frac{\pi}{2} < x < 0,\ -1 < \sin{x} < 0
+& \logr{} \floor{\sin{x}} = -1 \logr{} \floor{\sin{x}} \in N_{\varepsilon}(-1)\\
+& \logr{} \lim_{x \to 0^{-}} \floor{\sin{x}} = -1\\
+& \logr{} \lim_{x \to 0^{-}} \sin{\frac{x}{2}} \cdot \lim_{x \to 0^{-}} \floor{\sin{x}} = -\lim_{x \to 0^{-}} \sin{\frac{x}{2}}
+\end{align*}
+כעת, נשתמש ב\m{4}{93}{} על מנת להוכיח\; את\; הגבול\; הדרוש,\; כלומר\; עלינו\; להוכיח\quad את\quad הטענות\\\\\\ הבאות:
+\begin{center}
+\begin{enumerate*}
+\item $\sin{x} \opr{$x \to 0$} 0$
+\item $\frac{t}{2} \opr{$t \to 0$} 0$
+\item קיימת סביבה נקובה $N^{*}_{\delta}(0)$ כך ש$g(t)$ נמצא בתוכה
+\end{enumerate*}
+\end{center}
+הטענה הראשונה נמצאת ב\m{4}{44}{}, ואת הטענה השנייה נראה מאריתמטיקה:
+\[
+\lim_{t \to 0} \frac{t}{2} = \frac{1}{2} \lim_{t \to 0} t = \frac{1}{2} \cdot 0 = 0
+\]
+ובנוסף הראינו, לפי הגדרת הגבול, כי בהכרח קיימת סביבה נקובה המקיימת את התנאי הדרוש. לפיכך, לפי \m{4}{93}{} מתקיים:
+\[
+0 = \lim_{x \to 0} \sin{\frac{x}{2}} = -\lim_{x \to 0^{-}} \sin{\frac{x}{2}}
+\]
+ולכן מתקיים $\lim_{x \to 0} \sin{\frac{x}{2}} \floor{\sin{x}} = 0$ כנדרש.
+\br\qed
+\clearpage
+
+\section*{שאלה 4 -- המשך}
+\subsection*{סעיף ה -- $k = 1$}
+נתבונן בגבול $\lim_{x \to \frac{\pi}{2}} \floor{\sin{x}}$. נבחר $\delta = \frac{\pi}{2}$. עבור כל $0 < x < \pi$ חוץ מ$x = \frac{\pi}{2}$ מתקיים $0 < \sin{x} < 1$, ולכן גם $\floor{\sin{x}} = 0$. לכן, לכל $x \in N^{*}_{\delta}\left(\frac{\pi}{2}\right)$ מתקיים $\floor{\sin{x}} \in N_{\varepsilon}(0)$, כלומר $\lim_{x \to \frac{\pi}{2}} = 0$. לפיכך, מתקיים
+\[
+\lim_{x \to \frac{\pi}{2}} \sin{\frac{x}{2}}\floor{\sin{x}} = \lim_{x \to \frac{x}{2}} \sin{\frac{x}{2}} \cdot \lim_{x \to \frac{x}{2}} \floor{\sin{x}} = 0 \cdot \lim_{x \to \frac{x}{2}} \sin{\frac{x}{2}} = 0
+\]
+כנדרש.
+\br\qed
+
+\subsection*{סעיף ה -- $k = 2$}
+נתבונן בפונקציה $g_{1}(x) = \floor{\sin{x}}$. נוכיח ש$\lim_{x \to \pi^{+}}g_{1}(x) = -1$. נבחר $\delta = \pi$. אזי לכל $\pi < x < 2\pi$ מתקיים $-1 < \sin{x} < 0$, כלומר $\floor{\sin{x}} = -1$ ולכן $\lim_{x \to \pi^{+}} g_{1}(x) = -1$.
+כעת, נראה כי $\lim_{x \to \pi^{-}} g_{1}(x) = 0$. נבחר $\delta = \frac{\pi}{2}$. אזי לכל $\frac{\pi}{2} < x < \pi$ מתקיים $0 < \sin{x} < 1$, כלומר $\floor{\sin{x}} = 0$ ולכן $\lim_{x \to \pi^{-}} g_{1}(x) = 0$.
+
+בנוסף, נתבונן בפונקציה $g_{2}(x) = \sin{\frac{x}{2}}$. נוכיח כי $\lim_{x \to \pi} g_{2}(x) = 1$ בעזרת \m{4}{93}{}. ראשית, הפונקציה $\frac{t}{2} = \frac{1}{2}t$ הינה פונקציה לינארית ולכן $\lim_{t \to \pi} \frac{t}{2} = \frac{\pi}{2}$. בנוסף, לפי \q{4}{77}{} מתקיים $\lim_{x \to \frac{\pi}{2}} \sin{x} = 1$. לבסוף, ברור שקיימת סביבה נקובה $N^{*}_{\delta}(\frac{\pi}{2})$ כך ש$\frac{t}{2}$ נמצא בתוכה לפי הגדרת הגבול. לפיכך, $\lim_{t \to \pi} \sin{\frac{t}{2}} = 1$.
+
+כעת, נוכל להראות שהגבול של הפונקציה בשאלה אינו קיים. הגבול מימין הינו
+\[
+\lim_{x \to \pi^{+}} \sin{\frac{x}{2}}\floor{\sin{x}} = \lim_{x \to \pi^{+}} \sin{\frac{x}{2}} \cdot \lim_{x \to \pi^{+}} \floor{\sin{x}} = 1 \cdot -1 = -1
+\]
+והגבול משמאל הינו
+\[
+\lim_{x \to \pi^{-}} \sin{\frac{x}{2}}\floor{\sin{x}} = \lim_{x \to \pi^{-}} \sin{\frac{x}{2}} \cdot \lim_{x \to \pi^{-}} \floor{\sin{x}} = 1 \cdot 0 = 0
+\]
+כמובן ש$-1 \neq 0$ ולכן אין לפונקציה גבול בנקודה $\pi$ כנדרש.
 \br\qed
 %%%%% </Q4> %%%%%
 
