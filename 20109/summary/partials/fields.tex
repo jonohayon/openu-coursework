@@ -1,0 +1,33 @@
+\documentclass[../main.tex]{subfiles}
+
+\section*{שדות}
+\subsection*{הגדרה}
+תהי $\digamma$ קבוצה, $+_{\digamma}, \cdot_{\digamma}$ פעולות על $\digamma$. נגיד שהשלשה $(\digamma, +_{\digamma}, \cdot_{\digamma})$ נקראת שדה אם התכונות הבאות מתקיימות:
+\begin{itemize}
+\item הזוג $(\digamma, +_{\digamma})$ חבורה אבלית עם איבר ניטרלי המסומן ב$0$ או $0_{\digamma}$.
+\item הזוג $(\digamma, \cdot_{\digamma})$ חבורה אבלית עם איבר ניטרלי המסומן ב$1$ או $1_{\digamma}$.
+\item הפעולות מקיימות את תכונת הדיסטריבוטיביות )פילוג(: $a \cdot_{\digamma} (b +_{\digamma} c) = (a \cdot_{\digamma} b) +_{\digamma} (a \cdot_{\digamma} c)$
+\end{itemize}
+איבר בשדה נקרא סקלר )\L{Scalar}(.
+
+\subsection*{דוגמאות}
+השלשות $(\mR, +, \cdot)$ ו$(\mQ, +, \cdot)$ עם פעולות הכפל והחיבור הרגילות הן שדה.
+
+\subsection*{שדות סופיים}
+יהי $p$ מספר ראשוני. נסמן: $\mZ_{p} = \{0, \dots, p - 1\}$. נגדיר את הפעולות הבאות:
+\begin{itemize}
+\item שארית החילוק של $a + b$ ב$p$ $a +_{p} b = a \underset{\mod{p}}{+} b = $
+\item שארית החילוק של $ab$ ב$p$ $a \cdot_{p} b = a \underset{\mod{p}}{\cdot} b = $
+\end{itemize}
+מסתבר שהשלשה $(\mZ_{p}, +_{p}, \cdot_{p})$ מקיימת את תכונות השדה.
+\subsubsection*{שדות סופיים -- כדאי לזכור}
+\begin{enumerate}
+\item $\inv{(p - 1)} = p - 1$
+\item כאשר $p \ge 2$, $\inv{2} = \frac{p + 1}{2}$
+\item אם $\inv{a} = b$, אז:
+	\begin{enumerate}
+	\item $\inv{b} = a$
+	\item $\inv{(-a)} = -b$
+	\item $\inv{(-b)} = -a$
+	\end{enumerate}
+\end{enumerate}

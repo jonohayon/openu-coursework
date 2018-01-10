@@ -1,0 +1,76 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+\usepackage{subfiles}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\logr}[1]{\underset{\text{#1}}{\Longrightarrow}}
+\newcommand{\logl}[1]{\underset{\text{#1}}{\Longleftarrow}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mC}{\mathbb{C}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+
+% Custom commands for this document
+\newcommand{\definition}[2]{\textbf{#1:} #2.}
+
+% Spacing
+\titlespacing\section{0pt}{5pt}{8pt}
+\titlespacing\subsubsection{0pt}{5pt}{0pt}
+\setstretch{0.1}
+
+\title{אלגברה לינארית 1 -- סיכום\thanks{מבוסס על השיעורים של ד``''ר אסף שרון מסמסטר 7102ג בקמפוס רמת אביב}}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+
+% Fields - introduction to binary operators, groups, abelian groups
+\subfile{partials/groups}
+\clearpage
+
+% Fields - definition, finite fields
+\subfile{partials/fields}
+\clearpage
+
+\section*{$n$-יות}
+\subsection*{הגדרה}
+$n$-יה )קריא: אניה( סדורה היא רשימה של $n$ איברים מקבוצה $A$ המסומנת כך:
+\[
+(a_{1}, a_{2}, a_{3}, \ldots, a_{n})
+\]
+האיבר של $A$ המופיע במקום ה$i$ של $n$-יה מכונה הרכיב ה$i$ שלה ומסומן כך: $a_{i}$. אין צורך להקיף בסוגריים $n$-יה של איבר אחד, שכן היא איבר בודד מ$A$. נסמן את אוסף כל ה$n$-יות באורך $k$ מעל $A$ כך: $A^{k}$.
+
+\subsection*{שוויון $n$-יות}
+נאמר שה$n$-יה $(a_{1}, \ldots, a_{n})$ שווה ל$n$-יה $(b_{1}, \ldots, b_{m})$ אם ורק אם התנאים הבאים מתקיימים:
+\begin{enumerate}
+\item $n = m$
+\item $\forall 1 \le i \le n, a_{i} = b_{i}$
+\end{enumerate}
+
+\subsection*{חיבור $n$-יות}
+
+
+\end{document}

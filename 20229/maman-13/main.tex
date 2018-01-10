@@ -15,6 +15,7 @@
 \newcommand{\qed}{\R{$\blacksquare$}}
 \newcommand{\br}{\\\\\\\\\\\\}
 \newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\logr}{\Rightarrow}
 \newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
 \newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
 \newcommand{\mC}{\mathbb{C}}
@@ -32,16 +33,22 @@
 
 % Custom commands for this document
 \DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Sp}{Sp}
+\DeclareMathOperator{\Ima}{Im}
 \newcommand{\nimuk}[1]{#1 \text{\R{נימוק: }}}
 \newcommand{\mfr}[4]{\begin{bmatrix}\\#1 & #2\br #3 & #4\\\\\end{bmatrix}}
 \newcommand{\eon}{\mfr{1}{0}{0}{0}}
 \newcommand{\etw}{\mfr{0}{1}{0}{0}}
 \renewcommand{\eth}{\mfr{0}{0}{1}{0}}
 \newcommand{\efo}{\mfr{0}{0}{0}{1}}
+\newcommand{\tot}[1]{#1_{2\times2}}
+\def\dotp{\boldsymbol{\cdot}}
 \def\M{\mfr{1}{2}{3}{5}}
+\def\v{\vec{v}}
+\def\w{\vec{w}}
 
 % Spacing
-\titlespacing\subsubsection{0pt}{5pt}{3pt}
+\titlespacing\subsection{0pt}{5pt}{3pt}
 \setstretch{0.1}
 
 \title{ממן 31}
@@ -117,9 +124,83 @@ f(A, B)
 0 & 1 & 0 & 2\br
 3 & 0 & 5 & 0\br
 0 & 3 & 0 & 5\\\\\\\\
-\end{bmatrix}
+\end{bmatrix} = \mfr{I}{2I}{3I}{5I}
 \]
 ומצאנו את המטריצה המייצגת לפי הבסיס הסטנדרטי כנדרש.
 \br\qed
+
+\subsection*{סעיף ג}
+נסמן ב$f_{1}$ תבנית בילינארית סימטרית וב$f_{2}$ תבנית בילינארית אנטיסימטרית. עלינו למצוא $f_{1}, f_{2}$ כאלו המקיימות $f = f_{1} + f_{2}$. לפי \ms{01}{8}{}, די לנו למצוא שתי מטריצות $A, B \in M^{\mR}_{4\times4}$ המקיימות $A = A^{t}, B = -B^{t}$ שבעזרתן נוכל להגדיר את $f_{1}, f_{2}$ כך שמתקיים
+\[
+[f]_{E} = [f_{1} + f_{2}]_{E} = [f_{1}]_{E} + [f_{2}]_{E} = A + B
+\]
+
+נתבונן במטריצות הבלוקים הבאות:
+\[
+A = \mfr{I}{K}{K}{5I},\ B = \mfr{0}{M}{-M}{0} \logr A + B = \mfr{I}{K + M}{K - M}{5I}
+\]
+כעת, נמצא את $K, M$:
+\[
+K + M = 2I \land K - M = 3I \logr K = 2.5I, M = -0.5I
+\]
+ומצאנו את המטריצות שחיפשנו והן:
+\[
+A = \mfr{I}{2.5I}{2.5I}{5I},\ B = \mfr{0}{-0.5I}{0.5I}{0} \logr A + B = \mfr{I}{2I}{3I}{5I}
+\]
+נראה שהן אכן מקיימות את ההגבלות:
+\[
+A^{t} = \mfr{I^{t}}{2.5I^{t}}{2.5I^{t}}{5I^{t}} = \mfr{I}{2.5I}{2.5I}{5I} = A,\ -B^{t} = \mfr{0^{t}}{-(0.5I)^{t}}{-(-0.5I)^{t}}{0^{t}} = \mfr{0}{-0.5I}{0.5I}{0} = B
+\]
+
+ומצאנו שתי תבניות בילינאריות $f_{1}(v, u) = [v]^{t}_{E}A[u]_{E},\ f_{2}(v, u) = [v]^{t}_{E}B[u]_{E}$ המקיימות\\
+ $f = f_{1} + f_{2}$ כנדרש.
+\br\qed
+\clearpage
+%%%%% </Q1> %%%%%
+
+%%%%% <Q2> %%%%%
+\section*{שאלה 2}
+\subsection*{סימונים}
+יהי $B = \{\v_{1}, \ldots, \v_{n}\}$ בסיס ל$V$ ונסמן:
+\begin{align*}
+\vec{b}, \vec{c}\in \digamma^{n},\ T(\vec{x}) = \sum^{n}_{i=1}b_{i}x_{i} = \vec{b} \dotp [\vec{x}]_{B},\ S(\vec{y}) = \sum^{n}_{j=1}c_{j}y_{j} = \vec{c} \dotp [\vec{y}]_{B}
+\end{align*}
+כאשר $\dotp$ המכפלה הסקלרית. בנוסף, נסמן את המטריצה המייצגת של $f$ לפי $B$ ב$A$, כלומר $A = [f]_{B}$.
+\subsection*{כיוון א -- הצגה $\Leftarrow$ דרגה}
+נניח כי ההצגה של $f$ לפי $B$ היא $f(\vec{x}, \vec{y}) = T(\vec{x})S(\vec{y})$ ונוכיח כי $\rho(f) = 1$. ברור כי מתקיים
+\[
+\v_{i} = 0 \cdot \v_{1} + \ldots + 1 \cdot \v_{i} + \ldots + 0 \cdot \v_{n}
+\]
+ולכן $f(\v_{i}, \v_{j}) = T(\v_{i})S(\v_{j}) = b_{i}c_{j}$, כלומר
+\[
+A = \begin{bmatrix}\\
+b_{1}c_{1} & \dots & b_{1}c_{n}\br
+\vdots & \ddots & \vdots\br
+b_{n}c_{1} & \dots & b_{n}c_{n}\\\\\\
+\end{bmatrix} \logr
+[A]^{R}_{i} = b_{i} \cdot \vec{c}
+\]
+ולכן $R_{A} \subseteq \Sp{\{\vec{c}\}}$\footnote{$R_{A}$ -- מרחב השורות של $A$}, ולכן $\rho(f) \le 1$. אך מכיוון ש$f \neq 0$, בהכרח $\rho(f) \neq 0$ ולכן $\rho(f) = 1$ כנדרש.
+
+\subsection*{כיוון ב -- דרגה $\Leftarrow$ הצגה}
+נניח כי $\rho(A) = 1$. ידוע מלינארית 1 כי קיים $\w \in \digamma^{n}$ כך ש$C_{A} \subseteq \Sp\{\w\}$\footnote{$C_{A}$ -- מרחב העמודות של $A$} או $R_{A} \subseteq \Sp\{\w\}$. נחלק, אם כן, למקרים:\\
+אם $R_{A} \subseteq \Sp\{\w\}$, נוכל להניח בהכ כי $\w = \vec{c}$. לכן $\forall 1 \le i \le n \exists b_{i} \in \digamma,\ [A]^{R}_{i} = b_{i} \cdot \vec{c}$.\\
+אם $C_{A} \subseteq \Sp\{\w\}$, נוכל להניח בהכ כי $\w = \vec{b}$. לכן $\forall 1 \le i \le n \exists c_{i} \in \digamma,\ [A]^{C}_{i} = c_{i} \cdot \vec{b}$.
+
+בשני המקרים מתקבלת המטריצה הבאה:
+\[
+A = \begin{bmatrix}\\
+b_{1}c_{1} & \dots & b_{1}c_{n}\br
+\vdots & \ddots & \vdots\br
+b_{n}c_{1} & \dots & b_{n}c_{n}\\\\\\
+\end{bmatrix}
+\]
+לכן לפי \ms{01}{8}{} קיימת תבנית בילינארית המוגדרת באופן הבא:
+\[
+f(\vec{x}, \vec{y}) = [\vec{x}]^{t}_{B}A[\vec{y}]_{B} = \sum^{n}_{i=1}\sum^{n}_{j=1}b_{i}c_{j}x_{i}y_{j} = \left(\sum^{n}_{i=1}b_{i}x_{i}\right)\left(\sum^{n}_{j=1}c_{j}y_{j}\right) = T(\vec{x})S(\vec{y})
+\]
+והראינו את ההצגה כמכפלה של שתי תבניות לינאריות כנדרש.
+\br\qed
+%%%%% </Q2> %%%%%
 
 \end{document}

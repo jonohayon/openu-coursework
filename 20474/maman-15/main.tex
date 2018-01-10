@@ -30,11 +30,15 @@
 \newcommand{\m}[3]{\R{משפט #3#2.#1}}
 \newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
 \newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+\newcommand{\ta}[3]{\R{טענה #3#2.#1}}
+\newcommand{\lem}[3]{\R{למה #3#2.#1}}
 
 % Custom commands for this document
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
 
 % Spacing
-\titlespacing\subsubsection{0pt}{5pt}{3pt}
+\titlespacing\subsection{0pt}{5pt}{3pt}
 \setstretch{0.1}
 
 \title{ממ``''ן 51}
@@ -43,8 +47,60 @@
 \begin{document}
 \maketitle
 
+%%%%% <Q1> %%%%%
+\section*{שאלה 1}
+ראשית, נוכל לראות שהפונקציה $g(x) = \tan{\frac{\pi x}{2}}$ היא הרכבה של פונקציות הרציפות בתחום $\left(-\frac{\pi}{2}, \frac{\pi}{2}\right)$, שכן $\frac{\pi x}{2}$ פונקציה לינארית ולכן רציפה בכל נקודה ו$\tan$ רציפה בתחום זה לפי הגדרתה. לפיכך, $g(x)$ רציפה גם היא בתחום זה.
+
+נחלק למקרים. יהי $x_{0} \in \mR$. אם $x_{0} \not\in \mZ$, הפונקציה $\floor{x}$ רציפה ב$x_{0}$ וגם $g(x)$ רציפה בה. לכן לפי \m{5}{11}{} גם $f$ רציפה ב$x_{0}$ כנדרש.
+
+אם $x_{0} = 2m \in \mZ$, נחשב את ערך הפונקציה ב$x_{0}$ והגבולות החד צדדיים. הגבול מימין:
+\begin{align*}
+\lim_{x \to x_{0}^{+}} f(x)
+  = \lim_{x \to x_{0}^{+}} \floor{x} \tan{\frac{\pi x}{2}}
+& = \lim_{x \to x_{0}^{+}} \floor{x} \cdot \lim_{x \to x_{0}^{+}} \tan{\frac{\pi x}{2}}\\
+\text{(\R{$\tan$ מוגדרת לכל $x \neq -\frac{\pi}{2} + \pi n$ ורציפה שם})} & = \lim_{x \to x_{0}^{+}} \floor{x} \cdot \tan{\frac{\cancel{2}m\pi}{\cancel{2}}}\\
+\text{(\R{מחזוריות הטנגנס})}& = \lim_{x \to x_{0}^{+}} \floor{x} \cdot \tan{\pi} = 0
+\end{align*}
+הגבול משמאל:
+\begin{align*}
+\lim_{x \to x_{0}^{-}} f(x)
+  = \lim_{x \to x_{0}^{-}} \floor{x} \tan{\frac{\pi x}{2}}
+& = \lim_{x \to x_{0}^{-}} \floor{x} \cdot \lim_{x \to x_{0}^{+}} \tan{\frac{\pi x}{2}}\\
+\text{(\R{$\tan$ מוגדרת לכל $x \neq -\frac{\pi}{2} + \pi n$ ורציפה שם})} & = \lim_{x \to x_{0}^{-}} \floor{x} \cdot \tan{\frac{\cancel{2}m\pi}{\cancel{2}}}\\
+\text{(\R{מחזוריות הטנגנס})}& = \lim_{x \to x_{0}^{-}} \floor{x} \cdot \tan{\pi} = 0
+\end{align*}
+ערך הפונקציה:
+\[
+f(x_{0}) = \floor{x_{0}} \tan{\frac{\cancel{2}m\pi}{\cancel{2}}} = \floor{x_{0}} \tan{\pi} = 0
+\]
+ולכן
+\[
+\lim_{x \to x_{0}^{-}} f(x) = \lim_{x \to x_{0}^{+}} f(x) = f(x_{0})
+\]
+לכן $f$ רציפה מימין ומשמאל ב$x_{0}$ ולפי \ta{5}{81}{} רציפה ב$x_{0}$ כנדרש. נראה בעמוד הבא ש$2m + 1 \in \mZ$ נקודות אי רציפות מהמין השני של $f$.
+\clearpage
+
+\section*{שאלה 1 -- המשך}
+אם $x_{0} = 2m + 1 \in \mZ$, נשים לב ש$g(x)$ לא מוגדרת בנקודות מסוג זה, שכן $\tan$ לא מוגדרת בהן. נחשב, אם כן, את הגבולות החד צדדיים ונראה שזוהי נקודת אי רציפות מהמין השני. בנוסף, נשים לב שהגבולות החד צדדיים של $\floor{x}$ ב$x_{0}$ תמיד קיימים וממשיים )נקודות אי רציפות מהמין הראשון( ולכן די לנו לראות שהגבול של $g(x)$ לא קיים.
+%%%%% </Q1> %%%%%
+\clearpage
+
 %%%%% <Q2> %%%%%
 \section*{שאלה 2}
+\subsection*{סעיף א1}
+שלילת הטענה: הפונקציה $f$ אינה רציפה בנק' $x_{0}$ אמ``''מ קיים $\varepsilon > 0$ כך שלכל $\delta > 0$ מתקיים
+\[
+x \in N_{\delta}(x_{0}) \logr{} f(x) \not\in N_{\varepsilon}(f(x_{0})
+\]
+\qed
+
+\subsection*{סעיף א2}
+שלילת הטענה: הפונקציה $f$ אינה רציפה בנק $x_{0}$ אמ``''מ קיימת סדרה $(x_{n})^{\infty}_{n=1}$ המתכנסת לגבול $x_{0}$ כך שמתקיים
+\[
+\lim_{n \to \infty} f(x_{n}) \neq f(x_{0})
+\]
+\qed
+
 \subsection*{סעיף ב}
 נוכיח לפי הגדרת הגבול לפי היינה: תהי $(x_{n})^{\infty}_{n = 1}$ סדרה המקיימת $\lim_{n \to \infty} x_{n} = x_{0}$. נתון כי $g$ רציפה ב$x_{0}$ ולכן גם $\lim_{n \to \infty} g(x_{n}) = g(x_{0}) = 0$ )לפי הנתון(. בנוסף, פונקציית דיריכלה מקבלת שני ערכים )0 או 1( ולכן חסומה על ידיהם ולכן הסדרה $(D(x_{n}))^{\infty}_{n = 1}$ חסומה. נראה כי $\lim_{n \to \infty} f(x_{n}) = f(x_{0})$:
 \begin{align*}
@@ -56,6 +112,77 @@
 \end{align*}
 ולכן לפי הגדרת הגבול לפי היינה, $f(x) \opr{$x \to x_{0}$} f(x_{0})$ ו$f$ רציפה ב$x_{0}$ כנדרש.
 \br\qed
+
+\subsection*{סעיף ג1}
+\clearpage
+
+\section*{שאלה 2 -- המשך}
+\subsection*{סעיף ג2}
+נסמן ב$(a_{n})^{\infty}_{n=1}$ סדרה של מספרים אי-רציונלים המתכנסת ל$x_{0}$ וב$(b_{n})^{\infty}_{n=1}$ סדרה של מספרים רציונליים המתכנסת ל$x_{0}$ )קיימות סדרות כאלו לפי \lem{5}{9}{}(. אזי מתקיים:
+\begin{align*}
+\lim_{n \to \infty} f(a_{n})
+& = \lim_{n \to \infty} g(a_{n})D(a_{n})\\
+& = \lim_{n \to \infty} g(a_{n}) \cdot \lim_{n \to \infty} D(a_{n})\\
+& = \lim_{n \to \infty} g(a_{n}) \cdot 0 = g(x_{0}) \cdot 0 = 0
+\end{align*}
+וגם:
+\begin{align*}
+\lim_{n \to \infty} f(b_{n})
+& = \lim_{n \to \infty} g(b_{n})D(b_{n})\\
+& = \lim_{n \to \infty} g(b_{n}) \cdot \lim_{n \to \infty} D(b_{n})\\
+& = \lim_{n \to \infty} g(b_{n}) \cdot 1 = g(x_{0}) \cdot 1 = g(x_{0})
+\end{align*}
+נחלק למקרים:
+
+אם $x_{0} \in \mQ$ אז $f(x_{0}) = g(x_{0})$, אבל $g(x_{0}) \neq 0$ ומצאנו סדרה $(a_{n})$ המתכנסת ל$x_{0}$ כך ש$\lim_{n \to \infty} f(a_{n}) \neq f(x_{0})$.
+
+אם $x_{0} \not\in \mQ$ אז $f(x_{0}) = 0$, אבל $g(x_{0}) \neq 0$ ומצאנו סדרה $(b_{n})$ המתכנסת ל$x_{0}$ כך ש$\lim_{n \to \infty} f(b_{n}) \neq f(x_{0})$
+
+לכן $f$ לא רציפה בשום נקודה ב$\mR$ כנדרש.
+\br\qed
+\bigskip
+
+\subsection*{סעיף ג3}
+נניח בשלילה ש$f$ רציפה ב$x_{0}$ ונגיע לסתירה. נתבונן בפונקציה $h(x) = \frac{f(x)}{g(x)}$. נשים לב כי מתקיים:
+\[
+f(x_{0}) = g(x_{0})D(x_{0}) \logr{} D(x_{0}) = \frac{f(x_{0})}{g(x_{0}} = h(x_{0})
+\]
+מאריתמטיקה של פונקציות רציפות נובע כי $h$ רציפה ב$x_{0}$, אבל $h(x_{0}) = D(x_{0})$ ולפי \m{5}{01}{} פונקציה זו אינה רציפה באף נקודה בסתירה. לפיכך, $f$ לא רציפה ב$x_{0}$ כנדרש.
+\br\qed
 %%%%% </Q2> %%%%%
+\clearpage
+
+%%%%% <Q3> %%%%%
+\section*{שאלה 3}
+\textbf{הגדרה: }נגיד ש$f$ שומרת סימן ב$I$ אמ``''מ $\forall x \in I, f(x) < 0 \lor f(x) > 0$ )( וש$f$ אינה שומרת סימן ב$I$ אמ``''מ $\exists a, b \in I, f(a) < 0 \land f(b) > 0$.
+
+\textbf{סימון: }נסמן $I = (0, \infty)$.
+
+ראשית, נוכיח ש$f$ שומרת סימן ב$I$ על דרך השלילה. נניח בשלילה ש$f$ אינה שומרת סימן ב$I$, כלומר $\exists a, b \in I, f(a) < 0 \land f(b) > 0$ ונניח ב.ה.כ. ש$a < b$. נשים לב ש$[a, b] \subset [0, \infty)$ ולכן $f$ רציפה בו.
+לפי משפט ערך הביניים, קיים $0 < t \in (a, b)$ כך ש$f(t) = 0$, כלומר $0 = |f(t)| < t$, בסתירה לנתון ש$|f(x)| > x$ לכל $x \in I$. לפיכך, $f$ שומרת סימן ב$I$.
+
+נחלק, אם כן, למקרים:
+
+אם $f$ חיובית ב$I$, מתקיים $f(x) > x$ לכל $x > 0$ ולכן לפי קריטריון ההשוואה לאינסוף באנלוגיה לפונקציות, $\lim_{x \to \infty} f(x) = \infty$ כנדרש.
+
+אם $f$ שלילית ב$I$, מתקיים $-f(x) > x$ לכל $x > 0$. לפי קריטריון ההשוואה לאינסוף באנלוגיה לפונקציות, $\lim_{x \to \infty} -f(x) = \infty$, ולפי \m{4}{35}{}ז מתקיים $\lim_{x \to \infty} f(x) = -\infty$ כנדרש.
+\br\qed
+%%%%% </Q3> %%%%%
+\clearpage
+
+%%%%% <Q4> %%%%%
+\section*{שאלה 4}
+\subsection*{סעיף א}
+נשים לב ש$f$ מקבלת מינימום ב$[0, \infty)$ ולכן בהכרח $0 \le L$ )אחרת הטענה לא הייתה מתקיימת(. נפתח את הגדרת הגבול:
+\[
+\forall \varepsilon > 0 \exists M \in \mR \forall x > M, f(x) \in (L - \varepsilon, L + \varepsilon) = I
+\]
+יהי $\varepsilon > 0$ וניקח $M$ המתאים ל$\varepsilon$. נוכל להניח ש$M > 0$, שכן החל מנקודה מסויימת $x$ בהכרח יהיה חיובי. בנוסף, נשים לב ש$L$ הוא בדיוק אמצע הקטע $I$ ולכן $L \in I$. 
+
+נתבונן בקטע $(M, \infty)$. נוכל לשים לב שמכיוון ש$M$ חיובי, מתקיים $(M, \infty) \subset [0, \infty)$. בנוסף, מהגדרת הגבול נובע כי אם $x \in (M, \infty)$ אז $f(x) \in I$. לכן, בהכרח קיים $t \in (M, \infty)$ כך ש$f(t) \in (L - \varepsilon, L]$, כלומר $f(t) \le L$ כנדרש.
+
+לפיכך, קיים $x \in [0, \infty)$ כך ש$f(x) \le L$ כנדרש.
+\br\qed
+%%%%% </Q4> %%%%%
 
 \end{document}
