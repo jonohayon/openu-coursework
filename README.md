@@ -16,4 +16,5 @@ Stuff with [F] in their title are future courses that I'm signed up to.
  - [x] Discrete Math (20476), 2017c ![WIP](https://img.shields.io/badge/stage-WIP-orange.svg)
  - [x] Infinitesimal Calculus 1 (20474), 2018a ![WIP](https://img.shields.io/badge/stage-WIP-orange.svg)
  - [x] Linear Algebra 2 (20229), 2018a ![WIP](https://img.shields.io/badge/stage-WIP-orange.svg)
+ - [] [F] Infinitesimal Calculus 2 (20475), 2018b ![FUTURE](https://img.shields.io/badge/stage-FUTURE-blue.svg)
 

@@ -15,7 +15,7 @@
 \newcommand{\qed}{\R{$\blacksquare$}}
 \newcommand{\br}{\\\\\\\\\\\\\\}
 \newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
-\newcommand{\logr}[1]{\xRightarrow[\text{#1}]{}}
+\newcommand{\logr}{\Longrightarrow}
 \newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
 \newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
 \newcommand{\mC}{\mathbb{C}}
@@ -33,6 +33,7 @@
 \newcommand{\ta}[3]{\R{טענה #3#2.#1}}
 
 % Custom commands for this document
+\renewcommand{\sf}{\sin\frac{1}{n}}
 
 % Spacing
 \titlespacing\subsubsection{0pt}{5pt}{3pt}
@@ -44,79 +45,52 @@
 \begin{document}
 \maketitle
 
-%%%% <Q1> %%%%
-\section*{שאלה 1 -- טענת עזר}
-תהי $f$ כך ש$\lim_{t \to \infty} f(t) = x, 0 \neq x \in \mR$. נראה כי מתקיים
-\begin{equation}
-\lim_{t \to \infty} \left(1 + \frac{f(t)}{t}\right)^{t} = e^{x}
-\end{equation}
-ראשית, נעבור לסדרות. תהי $(x_{n})^{\infty}_{n=1}$ סדרה המקיימת $\lim_{n \to \infty} x_{n} = \infty$. אזי לפי היינה,
-\[
-\lim_{t \to \infty} \left(1 + \frac{f(t)}{t}\right)^{t} = \lim_{n \to \infty} \left(1 + \frac{f(x_{n})}{x_{n}}\right)^{x_{n}}
-\]
-נתבונן בסדרה $y_{n} = \frac{f(x_{n})}{x_{n}}$. נוכל לראות שמתקיים $\lim_{n \to \infty} y_{n} = 0$. נציב ב)1( ונראה כי
+%%%% <Q1a> %%%%
+\section*{שאלה 1א}
+ראשית, נחשב את גבול הסדרה $a_{n} = n\sin{\frac{1}{n}}$:
 \begin{align*}
-\lim_{n \to \infty} \left(1 + \frac{f(x_{n})}{x_{n}}\right)^{x_{n}}
-&= \lim_{n \to \infty} (1 + y_{n})^{\frac{f(x_{n})}{y_{n}}}\\
-&= \lim_{n \to \infty} \left((1 + y_{n})^\frac{1}{y_{n}}\right)^{f(x_{n})}\\
-\text{\R{\ta{6}{51}{}}} &= {\lim_{n \to \infty} (1 + y_{n})^\frac{1}{y_{n}}}^{\lim_{n \to \infty} f(x_{n})}\\
-\text{\R{היינה}} &= {\lim_{u \to 0} (1 + u)^\frac{1}{u}}^{\lim_{t \to \infty} f(t)}\\
-\text{\R{\ta{6}{81}{}}} &= e^{\lim_{t \to \infty} f(t)} = \framebox{$e^{x}$}
+1
+&= \lim_{x \to 0} \frac{\sin{x}}{x}\\
+\text{$x_{n} \opr{$n \to \infty$} 0$ \R{היינה: לכל}}
+&= \lim_{n \to \infty} \frac{\sin{x_{n}}}{x_{n}}\\
+\text{$x_{n} = \frac{1}{n}$ \R{בפרט עבור}}
+&= \lim_{n \to \infty} \frac{\sf}{\frac{1}{n}}\\
+&= \lim_{n \to \infty} n\sf
 \end{align*}
-והוכחנו כי מתקיים
-\[
-\lim_{t \to \infty} \left(1 + \frac{f(t)}{t}\right)^{t} = e^{x}
-\]
-כנדרש.
+לפיכך, הראינו כי $\lim_{n \to \infty} n\sf = 1$. כעת, נראה ש$\lim_{n \to \infty} \sf = 0$:
+\begin{align*}
+0
+&= \lim_{x \to 0} \sin{x}\\
+\text{$x_{n} \opr{$n \to \infty$} 0$ \R{היינה: לכל}}
+&= \lim_{n \to \infty} \sin{x_{n}}\\
+\text{$x_{n} = \frac{1}{n}$ \R{בפרט עבור}}
+&= \lim_{n \to \infty} \sf
+\end{align*}
+לפיכך הראינו כי $\lim_{n \to \infty} \sf = 0$. כעת, נראה כי הגבול הבא שווה ל$e$:
+\begin{align*}
+\lim_{n \to \infty} \left(1 + \sf\right)^{n}
+&= \lim_{n \to \infty} \left(1 + \sf\right)^{n \cdot \frac\sf\sf}\\
+&= \lim_{n \to \infty} \left(\left(1 + \sf\right)^{\frac{1}{\sf}}\right)^{n\sf}\\
+\text{\R{\ta{6}{51}{}}}
+&= \lim_{n \to \infty} \left(1 + \sf\right)^{\frac{1}{\sf}}\\
+\text{\R{היינה}}
+&= \lim_{x \to 0} (1 + x)^{\frac{1}{x}} = e
+\end{align*}
+לפיכך מתקיים $(1 + \sf)^{n} \opr{$n \to \infty$} e$ כנדרש.
 \br\qed
+%%%% </Q1a> %%%%
 \clearpage
 
-\section*{שאלה 1א -- הוכחה}
-ראשית, נזכר בהוכחה של הגבול המפורסם $\lim_{x \to 0} \frac{\sin{x}}{x} = 1$. בתור חלק מההוכחה, הוכח אי השוויון הבא עבור $x$ בקרבת 0:
-\[
-\cos{x} \le \frac{\sin{x}}{x} \le 1 \equiv x\cos{x} \le \sin{x} \le x
-\]
-כלומר, נוכל לראות שעבור $x$ בקרבת 0 מתקיים
-\begin{equation}
-(1 + x\cos{x})^{\frac{1}{x}}
-\le (1 + \sin{x})^{\frac{1}{x}}
-\le (1 + x)^{\frac{1}{x}}
-\end{equation}
-בנוסף, מכלל הסנדוויץ' נובע כי מתקיים
-\begin{equation}
-\lim_{x \to 0} (1 + x\cos{x})^{\frac{1}{x}}
-\le \lim_{x \to 0} (1 + \sin{x})^{\frac{1}{x}}
-\le \lim_{x \to 0} (1 + x)^{\frac{1}{x}}
-\end{equation}
-ידוע כי $\lim_{n \to \infty} \frac{1}{n} = 0$. מ)2(, )3( והיינה נובע כי
-\begin{equation}
-\lim_{n \to \infty} \left(1 + \frac{\cos{\frac{1}{n}}}{n}\right)^{n}
-\le \lim_{n \to \infty} \left(1 + \sin{\frac{1}{n}}\right)^{n}
-\le \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^{n}
-\end{equation}
-לפיכך, כל שעלינו הוא לחשב את הגבול הימני והשמאלי ולהשתמש בכלל הסנדוויץ'. הגבול הימני הוא כמובן הגבול הידוע $\lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^{n} = e$. בנוסף, מטענת העזר נובע כי
-\begin{equation}
-\lim_{n \to \infty} \left(1 + \frac{\cos{\frac{1}{n}}}{n}\right)^{n} = e^{\lim_{n \to \infty} \cos{\frac{1}{n}}}
-\end{equation}
-
-מכיוון ש$\cos$ רציפה בכל נקודה ו$\lim_{n \to \infty} \frac{1}{n} = 0$, מתקיים $\lim_{n \to \infty} \cos{\frac{1}{n}} = \cos{0} = 1$. לפיכך ולפי )5(,
-\[
-\lim_{n \to \infty} \left(1 + \frac{\cos{\frac{1}{n}}}{n}\right)^{n} = e^{\lim_{n \to \infty} \cos{\frac{1}{n}}} = e^{1} = e
-\]
-לכן, נוכל לכתוב את )4( מחדש בתור
-\[
-e \le \lim_{n \to \infty} \left(1 + \sin{\frac{1}{n}}\right)^{n} \le e
-\]
-ומכלל הסנדוויץ' נובע כי $\lim_{n \to \infty} \left(1 + \sin{\frac{1}{n}}\right)^{n} = e$ כנדרש.
-\br\qed
-
+%%%% <Q1b> %%%%
 \section*{שאלה 1ב}
 נתבונן בפונקציה $f(x) = \abs{x}^{x^{2}}$. נוכל לראות שמתקיים
 \[
-\lim_{x \to \infty} f(x)
+\lim_{x \to \infty} \abs{x}
+\le \lim_{x \to \infty} f(x)
 = \lim_{x \to \infty} \abs{x}^{x^{2}}
-= \infty
 \]
+בנוסף, ידוע כי $\lim_{x \to \infty} \abs{x} = \infty$. לכן, מקריטריון ההשוואה לאינסוף באנלוגיה לפונקציות נובע כי $\lim_{x \to \infty} f(x) = \infty$.
+
 מכך נובע כי
 \[
 0 = \lim_{x \to \infty} \frac{1}{\abs{x}^{x^{2}}}
@@ -135,6 +109,63 @@ e \le \lim_{n \to \infty} \left(1 + \sin{\frac{1}{n}}\right)^{n} \le e
 כנדרש.
 \br\qed
 %%%% </Q1> %%%%
+\clearpage
+
+%%%% <Q2a> %%%%
+\section*{שאלה 2א}
+נתבונן בגבול $\lim_{x \to \infty} e^{-x}$:
+\begin{equation}
+\lim_{x \to \infty} e^{x} = \infty \logr \lim_{x \to \infty} \frac{1}{e^{x}} = 0 = \lim_{x \to \infty} e^{-x}
+\end{equation}
+בנוסף, $\lim_{n \to \infty} \pi n = \infty$. לפיכך, לפי )6( ומהיינה מתקיים
+\[
+\lim_{n \to \infty} e^{-\pi n} = 0
+\]
+כעת נתבונן בשתי תת סדרות המכסות את $\sin^{2}{\pi n}$: $\sin^{2}{2\pi n}$ ו$\sin^{2}{2\pi n + \pi}$. נתבונן בגבולותיהן:
+\[
+\lim_{n \to \infty} \sin^{2}{2\pi n} \ueq{\R{מחזוריות $\sin$}} \sin^{2}{2\pi} = \sin^{2}{0} = 0
+\]
+בנוסף,
+\[
+\lim_{n \to \infty} \sin^{2}{2\pi n + \pi} \ueq{\R{מחזוריות $\sin$}} \sin^{2}{2\pi + \pi} = \sin^{2}{\pi} = 0
+\]
+מכיוון שתת סדרות אלו מכסות את $\sin^{2}{\pi n}$, מתקיים
+\[
+\lim_{n \to \infty} \sin^{2}{\pi n} = 0
+\]
+
+לפיכך, מתקיים
+\[
+0 = \lim_{n \to \infty} e^{-\pi n} + \lim_{n \to \infty} \sin^{2}{\pi n} = \lim_{n \to \infty} e^{-\pi n} + \sin^{2}{\pi n} = \lim_{n \to \infty} f(\pi n)
+\]
+והוכחנו כי $\lim_{n \to \infty} f(\pi n) = 0$ כנדרש.
+\br\qed
+%%%% </Q2a> %%%%
+\clearpage
+
+%%%% <Q2b> %%%%
+\section*{שאלה 2ב}
+נסמן $A = [0, \infty)$. ראשית נראה כי 0 חסם מלרע של $f(A)$. יהי $x \in A$. אזי:
+\[
+0 < e \logr 0 < \frac{1}{e} \logr 0 = 0^{x} < \left(\frac{1}{e}\right)^{x} = \frac{1}{e^{x}} = e^{-x} \logr 0 < e^{-x}
+\]
+בנוסף, ידוע כי לכל $y \in \mR$ מתקיים $0 \le y^{2}$. לפיכך, $0 \le \sin^{2}{x}$. לפיכך, עבור $x \in A$ מתקיים
+\[
+0 < e^{-x} + \sin^{2}{x}
+\]
+והוכחנו ש0 חסם מלרע של $f(A)$. כעת, מהסעיף הקודם נובע כי $\exists n \in \mN \forall c > 0, f(\pi n) < c$. בנוסף, מכיוון ש$f(\pi n) \opr{$n \to \infty$} 0$, אי שוויון זה נשמר לכל $n$ טבעי ולכן כל $c > 0$ אינו חסם מלרע של $f$. לפיכך $\inf f(A) = 0$ כנדרש.
+\br\qed
+%%%% </Q2b> %%%%
+
+%%%% <Q2c> %%%%
+\section*{שאלה 2ג}
+נניח ש$f$ מקבלת מינימום ב$A$, כלומר קיים $x_{0} \in A$ כך שלכל $x \in A$ מתקיים $f(x_{0}) \le f(x)$. לפיכך לפי \ta{3}{31}{} והסעיף הקודם מתקיים
+\[
+f(x_{0}) = 0 \logr e^{-x_{0}} + \sin^{2}{x} = 0 \logr \sin^{2}{x_{0}} = -e^{-x_{0}}
+\]
+אבל כפי שראינו בסעיף הקודם $e^{-x} > 0 \logr -e^{-x} < 0$ וגם $\sin^{2}{x} > 0$ והגענו לסתירה. לפיכך, לא קיים $x_{0}$ שכזה ולכן לא קיים $f(x_{0})$ המקיים את הטענה ולכן $f$ לא מקבלת מינימום ב$A$ כנדרש.
+\br\qed
+%%%% </Q2c> %%%%
 \clearpage
 
 %%%% <Q3a> %%%%
@@ -170,6 +201,7 @@ f^{\prime}(x)
 &= \left(\sin^{2}x\sin\frac{1}{x}\right)^{\prime}\\
 &= (\sin^{2}x)^{\prime}\sin\frac{1}{x} + \left(\sin\frac{1}{x}\right)^{\prime}\sin^{2}x\\
 &= 2\sin{x}\cos{x}\sin\frac{1}{x} - \frac{\cos\frac{1}{x}\sin^{2}x}{x^{2}}
+ = \sin{2x}\sin\frac{1}{x} - \frac{\cos\frac{1}{x}\sin^{2}x}{x^{2}}
 \end{align*}
 ומצאנו את הנגזרת של $f$ בכל $x \neq 0$. בעמוד הבא נראה ש$f$ גזירה ב0 ומתקיים $f^{\prime}(0) = 0$.
 \clearpage
@@ -190,7 +222,7 @@ f(0) = 0 \text{\R{נימוק: }} &= \lim_{h \to 0} \frac{f(h)}{h}\\
 \[
 f^{\prime}(x) =
 \begin{cases}
-2\sin{x}\cos{x}\sin\frac{1}{x} - \frac{\cos\frac{1}{x}\sin^{2}x}{x^{2}} & x \neq 0\br
+\sin{2x}\sin\frac{1}{x} - \frac{\cos\frac{1}{x}\sin^{2}x}{x^{2}} & x \neq 0\br
 0 & x = 0\\\\\\\\\\
 \end{cases}
 \]
@@ -203,9 +235,34 @@ f^{\prime}(x) =
 \section*{שאלה 3ב}
 \subsection*{תחום הגדרה}
 מכיוון ש$\abs{x}$ מוגדרת לכל $x \in \mR$ ו$\ln{x}$ מוגדרת לכל $x > 0$, הפונקציה $g(x) = \abs\ln{x}$ מוגדרת לכל $x > 0$.
+\br\qed
 \subsection*{תחום רציפות}
 מכיוון ש$\ln{x}$ רציפה בכל נקודה בתחום הגדרתה )כלומר בכל $x > 0$( ו$\abs{x}$ רציפה בכל $x \in \mR$, $g$ רציפה בכל $x > 0$, כלומר בכל נקודה בתחום הגדרתה.
+\br\qed
 \subsection*{תחום גזירות}
+ראשית, $g$ אינה גזירה בכל $x \le 0$, שכן היא אינה רציפה שם. הפונקציה $g$ הינה הרכבה של שתי פונקציות: $h(x) = \abs{x}, i(x) = \ln{x}$, כלומר $g(x) = h(i(x))$. לפיכך, לפי \m{7}{12}{}, $g$ גזירה ב$0 < x_{0}$ אמ``''מ $i$ גזירה ב$x_{0}$ ו$h$ גזירה ב$i(x)$. נראה, אם כן, ש$g$ גזירה בכל $0 < x \neq 1$. יהי $0 < x_{0}$ ונחלק למקרים:
+
+אם $0 < x_{0} < 1$, $i$ גזירה ב$x_{0}$ )שכן היא נמצאת בתחום ההגדרה שלה ו$i$ גזירה בכל נקודה בתחום הגדרתה(. בנוסף, $\ln{x_{0}} < 0$ ו$h$ גזירה ב$x_{0}$ )שכן היא גזירה בכל נקודה בתחום הגדרתה שאינה 0(. לפיכך, $g$ גזירה ב$x_{0}$ ולפי כלל השרשרת נגזרתה בנקודה זו היא:
+\[
+f^{\prime}(x_{0}) = -\ln{x} \cdot \frac{1}{x} = \frac{-\ln{x}}{x}
+\]
+
+אם $1 < x_{0}$, $i$ כמובן גזירה ב$x_{0}$. בנוסף, $0 < \ln{x_{0}}$ ו$h$ גזירה ב$i(x_{0})$. לפיכך, $g$ גם היא גזירה ב$x_{0}$ ולפי כלל השרשרת נגזרתה בנקודה זו היא:
+\[
+f^{\prime}(x_{0}) = \ln{x} \cdot \frac{1}{x} = \frac{\ln{x}}{x}
+\]
+
+נותר לנו כעת להוכיח ש$g$ אינה גזירה ב$x_{0} = 1$. כפי שנאמר לעיל, $g$ הינה הרכבה של $\abs{x} $ ושל $\ln{x}$ ולכן גזירה ב$1$ אממ $\ln{x}$ גזירה ב1 ו$\abs{x}$ גזירה ב$\ln{1}$. כפי שאנו יודעים, $\ln{x}$ גזירה ב1 שכן היא גזירה בכל נקודה בתחום הגדרתה, אבל $\ln{1} = 0$ ו$\abs{x}$ אינה גזירה ב0 ולכן $g$ לא גזירה ב1.
+
+לפיכך, $g$ גזירה בכל $0 < x \neq 1$ ונגזרתה היא:
+\[
+g(x) = \begin{cases}\\\\
+\frac{-\ln{x}}{x} & 0 < x < 1\br
+\frac{\ln{x}}{x} & 1 < x\\\\\\
+\end{cases}
+\]
+ומצאנו את תחום הגזירות של $g$ כנדרש.
+\br\qed
 %%%% </Q3b> %%%%
 \clearpage
 
@@ -233,5 +290,117 @@ f^{\prime}_{+}(0) = 0
 לפי הנתון, $f^{\prime}_{-}(0) = f^{\prime}_{+}(0) = 0$, כלומר הנגזרת הימנית והנגזרת השמאלית שוות ובפרט שוות ל0 ולכן $f^{\prime}(0) = 0$ כנדרש.
 \br\qed
 %%%% </Q4> %%%%
+\clearpage
+
+%%%% <Q5a1> %%%%
+\section*{שאלה 5א}
+\subsection*{רציפות משמאל ב0}
+נראה ש$f$ רציפה משמאל ב0. לפי הגדרת $f$, עבור $x < 0$ היא מתלכדת עם הפונקציה $g(x) = x + xe^{\frac{1}{x}}$. לפיכך, על מנת לחשב את הגבול של $f$ ב0 משמאל עלינו לחשב את הגבול של $g$ ב0 משמאל:
+\begin{align*}
+\lim_{x \to 0^{-}} g(x)
+&= \lim_{x \to 0^{-}} x + xe^{\frac{1}{x}}\\
+&= \lim_{x \to 0^{-}} x + \lim_{x \to 0^{-}} xe^{\frac{1}{x}}\\
+&= \lim_{x \to 0^{-}} xe^{\frac{1}{x}}\\
+\text{$t = -\frac{1}{x}, t \to \infty$ \R{הצבה:}}
+&= \lim_{t \to \infty} \frac{e^{-t}}{t}\\
+&= \lim_{t \to \infty} \frac{1}{t} \cdot \lim_{t \to \infty} e^{-t}\\
+&= 0 \cdot 0 = 0
+\end{align*}
+לפיכך,
+\[
+\lim_{x \to 0^{-}} f(x)
+ = \lim_{x \to 0^{-}} g(x)
+ = \lim_{x \to 0^{-}} x + xe^{\frac{1}{x}} = 0
+\]
+לפי הגדרת $f$ מתקיים $f(0) = 0$ ולכן $\lim_{x \to 0^{-}} f(x) = f(0)$ ו$f$ רציפה משמאל ב0 כנדרש.
+\br\qed
+%%%% </Q5a1> %%%%
+
+%%%% <Q5a2> %%%%
+\subsection*{רציפות מימין ב0 -- $a = 2$}
+נראה ש$f$ רציפה מימין כאשר  $a = 2$. לפי הגדרת $f$ היא מתלכדת עם $h(x) = \frac{2 - 2\cos{x}}{\sin{x}}$ עבור $x > 0$ ולכן עלינו לחשב את הגבול של $h$ ב0 מימין:
+\begin{align*}
+\lim_{x \to 0^{+}} h(x)
+&= \lim_{x \to 0^{+}} \frac{2 - 2\cos{x}}{\sin{x}}\\
+&= 2\lim_{x \to 0^{+}} \frac{1 - \cos{x}}{\sin{x}}\\
+&= 2\lim_{x \to 0^{+}} \frac{\sin^{\not2}{x}}{\cancel{\sin{x}}(1 + \cos{x})}\\
+&= 2\lim_{x \to 0^{+}} \sin{x} \cdot \frac{1}{1 + \lim_{x \to 0^{+}} \cos{x}}\\
+&= 2 \cdot 0 \cdot \frac{1}{2} = 0 = f(0)
+\end{align*}
+ומכיוון ש$\lim_{x \to 0^{+}} f(x) = f(0)$ כאשר $a = 2$, היא רציפה מימין ב0. בפרט מכיוון שהיא תמיד רציפה משמאל ב0 היא רציפה ב0 כאשר $a = 2$ כנדרש.
+\br\qed
+%%%% </Q5a2> %%%%
+\clearpage
+
+%%%% </Q5a3> %%%%
+\section*{שאלה 5א -- המשך}
+\subsection*{אי-רציפות מימין ב0 -- $a \neq 2$}
+נראה ש$f$ אינה רציפה מימין ב0 כאשר $a \neq 2$. נתבונן בגבולות הבא:
+\[
+\lim_{x \to 0^{+}} a - 2\cos{x} = a - 2\lim_{x \to 0^{+}} \cos{x} = a - 2
+\]
+גבול זה שונה מ0 כאשר $a \neq 2$, קטן מ0 כאשר $a < 2$ וגדול מ0 כאשר $a > 2$. בנוסף, מכיוון ש$\lim_{x \to 0} \sin{x} = 0$ מתקיים $\lim_{x \to 0^{+}} \frac{1}{\sin{x}} = \infty$. 
+
+נחלק למקרים. נתבונן בגבול של $h(x)$ במקרה שבו $a > 2$ ב0 מימין:
+\begin{align*}
+\lim_{x \to 0^{+}} h(x)
+&= \lim_{x \to 0^{+}} \frac{a - 2\cos{x}}{\sin{x}}\\
+&= \lim_{x \to 0^{+}} (a - 2\cos{x}) \cdot \lim_{x \to 0^{+}} \frac{1}{\sin{x}}\\
+&= (a - 2) \cdot \lim_{x \to 0^{+}} \frac{1}{\sin{x}}\\
+\text{$0 < k = a - 2$ \R{נסמן:}}&= k \cdot \lim_{x \to 0^{+}} \frac{1}{\sin{x}}\\
+&= k \cdot \infty = \infty
+\end{align*}
+לפיכך כאשר $a > 2$, $f$ הולכת לאינסוף כאשר $x \to 0$ מימין ובפרט לא הולכת ל0. לפיכך, $f$ לא רציפה מימין ב0 כאשר $a > 2$ ולכן לא רציפה ב0.
+
+אם $a < 2$ אז קיים $m \in \mR$ כך ש$-m = a - 2$, או $m = 2 - a$. בנוסף, לפי \m{4}{35}{}ז,  נתבונן, אם כן, בגבול מימין של $-h(x)$ כאשר $x \to 0$:
+\begin{align*}
+\lim_{x \to 0^{+}} -h(x)
+&= \lim_{x \to 0^{+}} \frac{2\cos{x} - a}{\sin{x}}\\
+&= \lim_{x \to 0^{+}} (2\cos{x} - a) \cdot \lim_{x \to 0^{+}} \frac{1}{\sin{x}}\\
+&= (2 - a) \cdot \lim_{x \to 0^{+}} \frac{1}{\sin{x}}\\
+\text{$0 < m = 2 - a$ \R{נסמן:}} &= m \cdot \lim_{x \to 0^{+}} \frac{1}{\sin{x}}\\
+&= m \cdot \infty  = \infty
+\end{align*}
+לפיכך לפי \m{4}{35}{}ז מתקיים $\lim_{x \to 0^{+}} f(x) = -\infty$ ובפרט הגבול אינו 0. לפיכך, $f$ אינה רציפה מימין ב0 כאשר $a < 2$ ולכן לא רציפה ב0.
+
+לפיכך, כאשר $a \neq 2$, $f$ אינה רציפה ב0 כנדרש.
+\br\qed
+%%%% </Q5a3> %%%%
+\clearpage
+
+%%%% <Q5b> %%%%
+\section*{שאלה 5ב}
+לפי הסעיף הקודם, $f$ רציפה ב0 אמ``''מ $a = 2$, ולכן היא אינה גזירה עבור כל $a \neq 2$. נראה שהיא כן גזירה ב$a = 2$. ראשית נגדיר מחדש את $f$:
+\[
+f(x) = \begin{cases}
+x + xe^{\frac{1}{x}} & x < 0\br
+0 & x = 0\br
+\frac{2 - 2\cos{x}}{\sin{x}} & x > 0
+\end{cases}
+\]
+נחשב את הנגזרת השמאלית של $f$ ב0:
+\begin{align*}
+f^{\prime}_{-}(0)
+&= \lim_{h \to 0^{-}} \frac{f(h)}{h}\\
+&= \lim_{h \to 0^{-}} \frac{\cancel{h}(1 + e^{\frac{1}{h}})}{\cancel{h}}\\
+&= 1 + \lim_{h \to 0^{-}} e^{\frac{1}{h}}\\
+\text{$t = -\frac{1}{h}, t \to \infty$ \R{הצבה:}}
+&= 1 + \lim_{t \to \infty} e^{-t} = 1
+\end{align*}
+לפיכך $f$ גזירה משמאל ב0 ובפרט ערך הנגזרת שלה בנקודה זו שווה ל1. נחשב את הנגזרת הימנית של $f$ ב0:
+\begin{align*}
+f^{\prime}_{+}(0)
+&= \lim_{h \to 0^{+}} \frac{f(h)}{h}\\
+&= \lim_{h \to 0^{+}} \frac{2 - 2\cos{h}}{h\sin{h}}\\
+&= 2\lim_{h \to 0^{+}} \frac{1 - \cos{h}}{h\sin{h}}\\
+&= 2\lim_{h \to 0^{+}} \frac{\sin^{\not2}{h}}{h\cancel{\sin{h}}(1 + \cos{h})}\\
+&= 2\lim_{h \to 0^{+}} \frac{\sin{h}}{h} \cdot \frac{1}{1 + \lim_{h \to 0^{+}} \cos{h}}\\
+&= 2 \cdot 1 \cdot \frac{1}{2} = 1
+\end{align*}
+לפיכך $f$ גזירה מימין ב0 ובפרט ערך נגזרתה הימנית בנקודה זו שווה ל1.
+
+לפיכך, מכיוון ש$f$ גזירה מימין ומשמאל ב0 ומתקיים $f^{\prime}_{-}(0) = f^{\prime}_{+}(0) = 1$, מתקיים $f^{\prime}(0) = 1$ ומצאנו את ערכי $a$ עבורם $f$ גזירה ב0 כנדרש.
+\br\qed
+%%%% </Q5b> %%%%
 
 \end{document}

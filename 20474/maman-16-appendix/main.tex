@@ -1,0 +1,164 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\logr}[1]{\Longrightarrow}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mC}{\mathbb{C}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+\newcommand{\ta}[3]{\R{טענה #3#2.#1}}
+
+% Custom commands for this document
+
+% Spacing
+\titlespacing\subsubsection{0pt}{5pt}{3pt}
+\setstretch{0.1}
+
+\title{נספח לממן 61-- הוכחות ארוכות ומייגעות}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+נספח זה כולל בתוכו שתי הוכחות ארוכות שכתבתי לשאלות 1א ו2ב בממן 61 של חשבון אינפינטסימלי 1. הוכחות אלו נכתבו במהלך הלילה / שעות הלימודים שלי בתיכון ולכן יכול להיות שהן אינן מדויקות. \textbf{נספח זה אינו חלק מהמטלה והוא צורף רק מכיוון שאני מעוניין לראות אם הוכחות אלו נכונות.} אשמח אם תבדוק אותן אם יש לך זמן.
+\end{abstract}
+
+\section*{השאלות}
+\subsection*{שאלה 1א}
+חשב את הגבול הבא:
+\[
+\lim_{n \to \infty} \left(1 + \sin\frac{1}{n}\right)^{n}
+\]
+\subsection*{שאלה 2ב}
+תהי $f(x) = e^{-x} + \sin^{2}{x}$. הוכח כי $\inf f\left([0, \infty)\right) = 0$.
+
+\clearpage
+
+\section*{פתרון -- שאלה 1א}
+\subsection*{טענת עזר}
+תהי $f$ כך ש$\lim_{t \to \infty} f(t) = x, 0 \neq x \in \mR$. נראה כי מתקיים
+\begin{equation}
+\lim_{t \to \infty} \left(1 + \frac{f(t)}{t}\right)^{t} = e^{x}
+\end{equation}
+ראשית, נעבור לסדרות. תהי $(x_{n})^{\infty}_{n=1}$ סדרה המקיימת $\lim_{n \to \infty} x_{n} = \infty$. אזי לפי היינה,
+\[
+\lim_{t \to \infty} \left(1 + \frac{f(t)}{t}\right)^{t} = \lim_{n \to \infty} \left(1 + \frac{f(x_{n})}{x_{n}}\right)^{x_{n}}
+\]
+נתבונן בסדרה $y_{n} = \frac{f(x_{n})}{x_{n}}$. נוכל לראות שמתקיים $\lim_{n \to \infty} y_{n} = 0$. נציב ב)1( ונראה כי
+\begin{align*}
+\lim_{n \to \infty} \left(1 + \frac{f(x_{n})}{x_{n}}\right)^{x_{n}}
+&= \lim_{n \to \infty} (1 + y_{n})^{\frac{f(x_{n})}{y_{n}}}\\
+&= \lim_{n \to \infty} \left((1 + y_{n})^\frac{1}{y_{n}}\right)^{f(x_{n})}\\
+\text{\R{\ta{6}{51}{}}} &= {\lim_{n \to \infty} (1 + y_{n})^\frac{1}{y_{n}}}^{\lim_{n \to \infty} f(x_{n})}\\
+\text{\R{היינה}} &= {\lim_{u \to 0} (1 + u)^\frac{1}{u}}^{\lim_{t \to \infty} f(t)}\\
+\text{\R{\ta{6}{81}{}}} &= e^{\lim_{t \to \infty} f(t)} = \framebox{$e^{x}$}
+\end{align*}
+והוכחנו כי מתקיים
+\[
+\lim_{t \to \infty} \left(1 + \frac{f(t)}{t}\right)^{t} = e^{x}
+\]
+כנדרש.
+\br\qed
+\clearpage
+
+\section*{פתרון -- שאלה 1א )המשך(}
+\subsection*{הוכחה}
+ראשית, נזכר בהוכחה של הגבול המפורסם $\lim_{x \to 0} \frac{\sin{x}}{x} = 1$. בתור חלק מההוכחה, הוכח אי השוויון הבא עבור $x$ בקרבת 0:
+\[
+\cos{x} \le \frac{\sin{x}}{x} \le 1 \equiv x\cos{x} \le \sin{x} \le x
+\]
+כלומר, נוכל לראות שעבור $x$ בקרבת 0 מתקיים
+\begin{equation}
+(1 + x\cos{x})^{\frac{1}{x}}
+\le (1 + \sin{x})^{\frac{1}{x}}
+\le (1 + x)^{\frac{1}{x}}
+\end{equation}
+בנוסף, מכלל הסנדוויץ' נובע כי מתקיים
+\begin{equation}
+\lim_{x \to 0} (1 + x\cos{x})^{\frac{1}{x}}
+\le \lim_{x \to 0} (1 + \sin{x})^{\frac{1}{x}}
+\le \lim_{x \to 0} (1 + x)^{\frac{1}{x}}
+\end{equation}
+ידוע כי $\lim_{n \to \infty} \frac{1}{n} = 0$. מ)2(, )3( והיינה נובע כי
+\begin{equation}
+\lim_{n \to \infty} \left(1 + \frac{\cos{\frac{1}{n}}}{n}\right)^{n}
+\le \lim_{n \to \infty} \left(1 + \sin{\frac{1}{n}}\right)^{n}
+\le \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^{n}
+\end{equation}
+לפיכך, כל שעלינו הוא לחשב את הגבול הימני והשמאלי ולהשתמש בכלל הסנדוויץ'. הגבול הימני הוא כמובן הגבול הידוע $\lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^{n} = e$. בנוסף, מטענת העזר נובע כי
+\begin{equation}
+\lim_{n \to \infty} \left(1 + \frac{\cos{\frac{1}{n}}}{n}\right)^{n} = e^{\lim_{n \to \infty} \cos{\frac{1}{n}}}
+\end{equation}
+
+מכיוון ש$\cos$ רציפה בכל נקודה ו$\lim_{n \to \infty} \frac{1}{n} = 0$, מתקיים $\lim_{n \to \infty} \cos{\frac{1}{n}} = \cos{0} = 1$. לפיכך ולפי )5(,
+\[
+\lim_{n \to \infty} \left(1 + \frac{\cos{\frac{1}{n}}}{n}\right)^{n} = e^{\lim_{n \to \infty} \cos{\frac{1}{n}}} = e^{1} = e
+\]
+לכן, נוכל לכתוב את )4( מחדש בתור
+\[
+e \le \lim_{n \to \infty} \left(1 + \sin{\frac{1}{n}}\right)^{n} \le e
+\]
+ומכלל הסנדוויץ' נובע כי $\lim_{n \to \infty} \left(1 + \sin{\frac{1}{n}}\right)^{n} = e$ כנדרש.
+\br\qed
+\clearpage
+
+\section*{פתרון -- שאלה 2ב}
+נסמן $A = [0, \infty)$ ונסמן $\inf_{S} f = \inf f(S)$ )כמו כן, $\min_{S} f = \min f(S)$(. ראשית נראה כי 0 חסם מלרע של $f(A)$. יהי $x \in A$. אזי:
+\[
+0 < e \logr 0 < \frac{1}{e} \logr 0 = 0^{x} < \left(\frac{1}{e}\right)^{x} = \frac{1}{e^{x}} = e^{-x} \logr 0 < e^{-x}
+\]
+בנוסף, ידוע כי לכל $y \in \mR$ מתקיים $0 \le y^{2}$. לפיכך, $0 \le \sin^{2}{x}$. לפיכך, עבור $x \in A$ מתקיים
+\[
+0 < e^{-x} + \sin^{2}{x}
+\]
+והוכחנו ש0 חסם מלרע של $f(A)$. כעת עלינו להראות שמתקיים $\inf_{A} f = 0$. נסמן $g(x) = e^{-x}$ ונתבונן בגבול $\lim_{x \to \infty} g(x)$. ידוע לנו שמתקיים
+\[
+\lim_{x \to \infty} e^{-x} = \frac{1}{\lim_{x \to \infty} e^{x}} = 0
+\]
+לפיכך לפי הגדרת הגבול באינסוף מתקיים
+\begin{align*}
+\forall \varepsilon > 0 \exists M \in \mR \forall x \in (M, \infty),\;e^{-x} \in N_{\varepsilon}(0)
+&\iff \forall \varepsilon > 0 \exists M \in \mR \forall x > M,\;e^{-x} < \varepsilon\\
+\text{\R{נבחר $M = 0$}} &\iff \forall \varepsilon > 0 \forall x > 0, e^{-x} < \varepsilon\\
+\text{\R{בפרט קיים $x > 0$ המקיים זאת}} &\iff \forall \varepsilon > 0 \exists x > 0, e^{-x} < \varepsilon
+\end{align*}
+בנוסף, $e^{-0} = e^{0} = 1$ ולכן לפי הגדרת האינפימום מתקיים $\inf_{A} g = 0$.
+
+בנוסף, ידוע כי $h(x) = \sin^{2}(x) \in [0, 1]$ ולכן $\min_{A} h = 0$ ובפרט $\inf_{A} h = 0$.
+
+כעת מהגדרת $f$ נובע כי
+\[
+f(A) = \left\{ e^{-x} + \sin^{2}{x} \mid x \in A \right\} = \left\{ e^{-x} \mid x \in A \right\} + \left\{ \sin^{2}{x} \mid x \in A \right\} = g(A) + h(A)
+\]
+לכן מתקיים
+\[
+\inf_{A} f = \inf_{A} g + \inf_{A} h = 0 + 0 = 0
+\]
+ והוכחנו כי $\inf_{A} f = 0$ כנדרש.
+\br\qed
+\end{document}
