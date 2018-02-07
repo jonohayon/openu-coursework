@@ -1,0 +1,185 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec,multicol}
+\usepackage{amsmath,amssymb,mathtools,commath,enumitem}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\logr}[1]{\xRightarrow[\text{#1}]{}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mC}{\mathbb{C}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+
+% Custom commands for this document
+\renewcommand{\b}[1]{\textbf{#1}}
+\newtheorem{axiom}{אקסיומה}
+\newtheorem{attribute}{תכונה}
+\newtheorem{theorem}{משפט}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\pq{\langle}{\rangle}
+\newenvironment{definition}{\textbf{הגדרה:}}{\\}
+\newenvironment{marking}{\textbf{סימון:} \begin{equation*}}{\end{equation*}}
+\newenvironment{examples}{\textbf{דוגמאות:} \begin{itemize}}{\end{itemize}}
+
+% Spacing
+\titlespacing\subsection{0pt}{5pt}{3pt}
+
+\title{חשבון אינפיניטסימלי 1 -- סיכום\thanks{נכתב לפי ההרצאות של אורי ברזנר באליאנס בסמסטר 8102א + תוספות מהספרים החדשים}}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+
+%%%%% <real-numbers> %%%%%
+\begin{multicols}{2}[
+\section*{המספרים הממשיים}
+\subsection*{אקסיומות השדה}
+השלשה $(\mR, \cdot, +)$ הינה \b{שדה} עם הפעולות $(\cdot, +)$ מעל $\mR$, כלומר מתקיימות התכונות הבאות:
+]
+\subsection*{פעולת הכפל )$\cdot$(}
+\begin{itemize}[leftmargin=*]
+\item קומוטטיביות )חילופיות(:\\
+$\forall x, y \in \mR, x \cdot y = y \cdot x$
+
+\item אסוציאטיביות )קיבוץ(:\\
+$\forall x, y, z \in \mR, x \cdot (y \cdot z) = (x \cdot y) \cdot z$
+
+\item קיום איבר ניטרלי )1(:\\
+$\forall x \in \mR, x \cdot 1 = 1 \cdot x = x$
+
+\item קיום איבר הופכי:\\
+$\forall 0 \neq x \in \mR\ \exists y \in \mR, x \cdot y = 1$
+\end{itemize}
+
+\columnbreak
+
+\subsection*{פעולת החיבור )$+$(}
+\begin{itemize}[leftmargin=*]
+\item קומוטטיביות )חילופיות(:\\
+$\forall x, y \in \mR, x + y = y + x$
+
+\item אסוציאטיביות )קיבוץ(:\\
+$\forall x, y, z \in \mR, x + (y + z) = (x + y) + z$
+
+\item קיום איבר ניטרלי )1(:\\
+$\forall x \in \mR, x + 0 = 0 + x = x$
+
+\item קיום איבר נגדי:\\
+$\forall x \in \mR\ \exists y \in \mR, x + y = 0$
+\end{itemize}
+\end{multicols}
+בנוסף, שתי הפעולות ביחד מקיימות את תכונת הדיסטריבוטיביות )פילוג(, המוגדרת כך:
+\[
+\forall x, y, z \in \mR, x \cdot (y + z) = x \cdot y + x \cdot z
+\]
+\clearpage
+
+\section*{המספרים הממשיים -- המשך}
+\subsection*{אקסיומות ותכונות}
+\begin{axiom}[אקסיומת השלמות]
+יהיו $A, B \subseteq \mR$ כך שלכל $a \in A$ ו$b \in B$ מתקיים $a \le b$. אזי קיים $c \in \mR$ כך ש$a \le c \le b$ לכל $a \in A, b \in B$.
+\end{axiom}
+
+\begin{attribute}[תכונת ארכימדס]
+לכל $x \in \mR$ קיים $n \in \mN$ כך ש$x < n$ $\Longleftarrow$ לכל $x \in \mR$ קיים $n \in \mN$ כך ש$\frac{1}{n} < x$.
+\end{attribute}
+
+\begin{attribute}[צפיפות הרציונליים בממשיים]
+לכל $x, y \in \mR$ )$x \neq y$( קיים $q \in \mQ$ כך ש$x < q < y$.
+\end{attribute}
+
+\subsection*{הערך השלם, הערך השברי ותכונותיהם}
+\begin{itemize}
+\item $\floor{x}$ -- הערך השלם ה``''תחתון``''
+\item $\ceil{x}$ -- הערך השלם ה``''עליון``''
+\item $\pq{x}$ -- החלק השברי, מוגדר כך: $\pq{x} = x - \floor{x}$
+\item $\forall x \in \mR, \floor{x} \le x < \floor{x} + 1$
+\item $\forall x \in \mR, x - 1 < \floor{x} \le x$
+\end{itemize}
+
+%%%%% </real-numbers> %%%%%
+
+%%%%% <sequences-1> %%%%%
+\section*{סדרות}
+\begin{definition}
+סדרה היא קבוצת מספרים )ממשיים(, המסודרת לפי $\mN$.
+\end{definition}
+
+\begin{marking}
+a_{1}, a_{2}, a_{3}, \ldots \equiv (a_{n})^{\infty}_{n = 1} \equiv (a_{n}) \text{\R{במקרים בהם ידוע ההקשר, }}
+\end{marking}
+
+\begin{examples}
+\item $a_{n} = 17\ (17, 17, 17, \ldots)$, סדרה קבועה
+\item $a_{n} = n\ (1, 2, 3, \ldots)$
+\item $a_{n} = \frac{1}{n}\ (1, \frac{1}{2}, \frac{1}{3}, \ldots)$, הסדרה ההרמונית, שואפת לאפס
+\end{examples}
+\clearpage
+
+\section*{גבול של סדרה}
+\begin{definition}
+תהי $(a_{n})$ סדרה. אזי $L$ ייקרא גבול הסדרה אם לכל $\varepsilon > 0$ קיים $N \in \mN$ כך שלכל $n > N$ מתקיים $\abs{a_{n} - L} < \varepsilon$ .
+\end{definition}
+בכתיב כמתים, ההגדרה נראית כך:
+\[
+\forall \varepsilon > 0 \exists N \in \mN \forall n > N, \abs{a_{n} - L} < \varepsilon
+\]
+שלילת ההגדרה נראית כך:
+\[
+\exists \varepsilon > 0 \forall N \in \mN \exists n > N, \abs{a_{n} - L} \ge \varepsilon
+\]
+שלילה זו למעשה מראה ש$L$ נתון אינו גבול של הסדרה. אם ברצוננו להראות שהסדרה מתבדרת )כלומר אין לה גבול(, נצטרך להראות שהביטוי מתקיים \underline{לכל} $L \in \mR$.
+
+\begin{marking}
+\lim_{n \to \infty} a_{n} = L,\ a_{n} \opr{$n \to \infty$} L
+\end{marking}
+
+\begin{theorem}[משפט הסנדוויץ']
+יהיו $(a_{n}), (b_{n}), (c_{n})$ שלוש סדרות כך ש$a_{n} \le b_{n} \le c_{n}$ כמעט לכל $n$ וגם $\lim_{n \to \infty} a_{n} = \lim_{n \to \infty} b_{n} = L$. אזי גם $b_{n}$ מתכנסת ו$\lim_{n \to \infty} b_{n} = L$.
+\end{theorem}
+
+\subsection*{סדרות חסומות, סדרות אפסות}
+\begin{definition}
+סדרה $(a_{n})$ תיקרא סדרה חסומה אם קיים $0 < M$ כך ש$\abs{a_{n}} < M$ .
+\end{definition}
+\begin{definition}
+סדרה $(a_{n})$ תיקרא סדרה אפסה אם $a_{n} \opr{$n \to \infty$} 0$.
+\end{definition}
+\begin{theorem}
+כל סדרה מתכנסת היא חסומה, כלומר אם סדרה אינה חסומה היא אינה מתכנסת. הערה: לא כל סדרה חסומה מתכנסת.
+\end{theorem}
+\begin{theorem}
+תהי $(a_{n})$ סדרה חסומה, $(b_{n})$ סדרה אפסה. אזי $\lim_{n \to \infty} a_{n}b_{n} = 0$.
+\end{theorem}
+
+\subsection*{אריתמטיקה של גבולות}
+יהיו $(a_{n}), (b_{n})$ סדרות כך שמתקיים $a_{n} \opr{$n \to \infty$} L,\ b_{n} \opr{$n \to \infty$} M$. אזי מתקיימים:
+\begin{eqnarray}
+\lim_{n \to \infty} (a_{n} + b_{n}) = L + M\\
+\lim_{n \to \infty} (a_{n} \cdot b_{n}) = L \cdot M
+\end{eqnarray}
+%%%%% </sequences-1> %%%%%
+
+\end{document}
