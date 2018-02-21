@@ -1,0 +1,72 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec,commath}
+\usepackage{amsmath,amssymb,cancel}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\logr}[1]{\underset{\text{#1}}{\Longrightarrow}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mC}{\mathbb{C}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{\frac{1}{#1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+
+% Custom commands for this document
+\newcommand{\defi}[3]{\int^{#2}_{#1} #3}
+
+% Spacing
+\titlespacing\subsubsection{0pt}{5pt}{3pt}
+\setstretch{0.1}
+
+\title{ממן 11}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+\clearpage
+
+\section*{שאלת הרשות}
+נסמן $f^{n}(x) = (f(x))^{n}$. תהי $f$ פונקציה רציפה ואי-שלילית בתחום $[0, 1]$. נוכיח כי הסדרה $a_{n} = \defi{0}{1}{f^{n}(x)dx}$ מתכנסת אמ``''מ $f(x) \le 1$ לכל $x$ בתחום.
+\subsection*{כיוון א}
+נניח כי $0 \le f(x) \le 1$ לכל $x \in [0, 1]$. נראה כעת באינדוקציה כי $0 \le f^{n + 1}(x) \le f^{n}(x) \le 1$ לכל $n$ טבעי:
+
+נוכיח את מקרה הבסיס בו $n = 1$. ידוע כי $0 \le f(x) \le 1$, ולכן נוכל לכפול את אי השוויון ב$f(x)$ ולקבל ש$0 \le f^{2}(x) \le f(x) \le 1$ כנדרש.\\
+נניח כעת כי הטענה נכונה עבור $n = k$ ונוכיח עבור $n = k + 1$:
+\[
+0 \le f^{k + 1}(x) \le f^{k}(x) \le 1 \logr{$0 \le f(x)$} f(x) \cdot f^{k + 1}(x) \le f(x) \cdot f^{k}(x) \le f(x) \logr{} 0 \le f^{k + 2}(x) \le f^{k + 1}(x) \le 1
+\]
+לכן לפי עקרון האינדוקציה השלמה מתקיים $0 \le f^{n + 1}(x) \le f^{n}(x) \le 1$ לכל $n$ טבעי.
+
+כעת, ממונוטוניות האינטגרל נובע כי $0 \le \defi{0}{1}{f^{n + 1}(x)dx} \le \defi{0}{1}{f^{n}(x)dx} \le 1$ לכל $n$ טבעי, כלומר לכל $n$ טבעי מתקיים $0 \le a_{n + 1} \le a_{n} \le 1$.לפיכך, הסדרה $(a_{n})$ מונוטונית יורדת וחסומה, ולכן ממשפט באינפי 1 נובע כי $(a_{n})$ מתכנסת כנדרש.
+
+\subsection*{כיוון ב}
+נניח כי $\lim_{n \to \infty} a_{n} =א L \in \mR$ ונניח בשלילה כי $f(x) > 1$ לכל $x$ בתחום. נגדיר את הסדרה $b_{n} = f^{n}(x)$. נראה כי $b_{n + 1} > b_{n} > 1$ לכל $n$ טבעי: ידוע כי $f(x) > 1$ לכל $x \in [0, 1]$. נכפול את אי השוויון ב$f(x)$ ונקבל $f^{2}(x) > f(x) > 1$. באינדוקציה נקבל כי $f^{n + 1}(x) > f^{n}(x) > 1$ לכל $n$ טבעי כנדרש. ממונוטוניות האינטגרל נובע כי $a_{n + 1} > a_{n}$ לכל $n$ טבעי ומכך נובע כי
+\[
+\abs{\frac{a_{n + 1}}{a_{n}}} > 1 \logr{} \lim_{n \to \infty} \abs{\frac{a_{n + 1}}{a_{n}}} > 1
+\]
+ולכן ממבחן המנה לגבולות נובע כי $\lim_{n \to \infty} a_{n} = \infty$, ובפרט $\lim_{n \to \infty} a_{n} \not\in \mR$, בסתירה להנחה. לפיכך, $f(x) \le 1$ לכל $x \in [0, 1]$ כנדרש.
+
+לכן, לסיכום, הוכחנו שהסדרה $a_{n} = \defi{0}{1}{f^{n}(x)dx}$ מתכנסת אמ``''מ $f(x) \le 1$ לכל $x \in [0, 1]$.
+\br\qed
+
+\end{document}
