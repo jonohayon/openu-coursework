@@ -1,0 +1,46 @@
+\documentclass[../main.tex]{subfiles}
+
+\section*{מינימום, מקסימום, אינפימום וסופרימום}
+\subsection*{מינימום ומקסימום}
+\begin{definition}
+תהי $A$ קבוצה סופית. המינימום של $A$ הוא איבר ב$A$ )נסמן ב$x$( כך שלכל $a \in A$ מתקיים $x \le a$. המקסימום של $A$ הוא איבר ב$A$ כך שלכל $a \in A$ מתקיים $x \ge a$. המינימום יסומן ב$\min{A}$ והמקסימום יסומן ב$\max{A}$.
+\end{definition}
+
+\subsection*{חסמים עליונים ותחתונים}
+\begin{definition}
+מספר $M \in \mR$ ייקרא חסם מלעיל/מלמעלה של קבוצה $A \subseteq \mR$ אם $\forall a \in A, a \le M$. בדומה $M$ ייקרא חסם מלרע/מלמטה אם $\forall a \in A, a \ge M$.
+\end{definition}\\
+נסמן ב$U_{A}$ את קבוצת כל החסמים מלמעלה של קבוצה נתונה $A$ וב$L_{A}$ את קבוצת החסמים מלמטה שלה, כלומר מתקיים
+\[
+U_{A} = \{ M \in \mR : \forall a \in A, a \le M \},\
+L_{A} = \{ m \in \mR : \forall a \in A, a \ge m \}
+\]
+מאקסיומת השלמות נובע כי קיים $M_{0} \in U_{A}$ כך ש$\forall a \in A \forall M \in U_{A}, a \le M_{0} \le M$. מכך נובע ש$M_{0}$ גם חסם מלעיל של $A$ אך קטן מכל $M \in U_{A}$ ולכן מתקיים $M_{0} = \min{U_{A}}$. $M_{0}$ הנ``''ל נקרא הסופרימום )החסם העליון( של $A$ ומסומן $M_{0} = \sup{A}$.
+
+באופן שקול, קיים $m_{0} \in L_{A}$ כך ש$m_{0} = \min{L_{A}}$ והוא נקרא האינפימום )החסם התחתון( של $A$ ומסומן $m_{0} = \inf{A}$. במקרה שבו לקבוצה קיים מקסימום מתקיים $\sup{A} = \max{A}$ ובאופן דומה אם יש לה מינימום, $\inf{A} = \min{A}$.
+
+\begin{theorem}[הגדרה שקולה להגדרת החסם העליון]
+תהי $A \subseteq \mR$ קבוצה ו$s$ חסם מלעיל שלה. אזי התנאים הבאים שקולים:
+  \begin{itemize}
+	\item $s = \sup{A}$
+	\item $\forall \varepsilon > 0 \exists a \in A, s - \varepsilon < a$
+  \end{itemize}
+\end{theorem}
+
+\begin{theorem}[הגדרה שקולה להגדרת החסם התחתון]
+תהי $A \subseteq \mR$ קבוצה ו$s$ חסם מלרע שלה. אזי התנאים הבאים שקולים:
+  \begin{itemize}
+	\item $s = \inf{A}$
+	\item $\forall \varepsilon > 0 \exists a \in A, a < s + \varepsilon$
+  \end{itemize}
+\end{theorem}
+
+\begin{theorem}[אפיון החסמים בעזרת סדרות]
+תהי $A \subseteq \mR$ קבוצה חסומה מלעיל/מלרע ויהי $m$ חסם מלעיל/מלרע של $A$. אזי $m$ הוא החסם העליון/התחתון של $A$ אמ``''מ קיימת סדרה של איברי $A$ כך ש$\lim_{n \to \infty} a_{n} = m$.
+\end{theorem}
+
+\begin{attribute}
+אם $A, B$ קבוצות חסומות מלעיל אז $\sup{A + B} = \sup{A} + \sup{B}$. אם $A \subset B$ אז $\sup{A} \le \sup{B}$. מתקיים $\inf({-A}) = -\sup{A}$.
+\end{attribute}
+
+\footnotetext[1]{אפיון החסם התחתון בעזרת סדרות וההגדרה השקולה נמצאות בספר בתור שאלות ולא בתור משפטים, כלומר במבחן עלינו לכתוב ``''לפי טענה שהוכחה בספר``'' על מנת להשתמש בהן.}

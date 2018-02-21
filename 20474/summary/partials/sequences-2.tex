@@ -1,0 +1,32 @@
+\documentclass[../main.tex]{subfiles}
+
+\section*{גבול של סדרה -- המשך}
+\subsection*{התכנסות במובן הרחב}
+\begin{definition}
+סדרה תיקרא מתכנסת ל$\infty$ אם לכל $M \in \mR$ קיים $N \in \mN$ כך שלכל $n > N$ מתקיים $a_{n} > M$. סדרה תיקרא מתכנסת ל$-\infty$ אם לכל $M \in \mR$ קיים $N \in \mN$ כך שלכל $n > N$ מתקיים $a_{n} < M$. סדרה נקראת מתכנסת במובן הרחב אם היא מתכנסת ל$\pm\infty$.
+\end{definition}
+
+\begin{theorem}[סדרות הממוצעים]
+תהי $(a_{n})$ סדרה מתכנסת במובן הצר או במובן הרחב, ותהי $(A_{n})$ סדרת הממוצעים הממוצעים החשבוניים של איברי $a_{n}$, $(G_{n})$ סדרת הממוצעים ההנדסיים של $a_{n}$ ו$(H_{n})$ סדרת הממוצעים ההרמוניים של $a_{n}$. אזי סדרות הממוצעים מתכנסות לאותו הגבול של $a_{n}$.
+\end{theorem}
+
+\subsection*{מבחן המנה לגבול של סדרה}
+תהי $(a_{n})$ סדרה.
+\begin{itemize}
+\item אם קיים $0 \le r < 1$ כך ש$\abs{\frac{a_{n + 1}}{a_{n}}} < r$ כמעט לכל $n$, אז $\lim_{n \to \infty} a_{n} = 0$.
+\item אם $\lim_{n \to \infty} \abs{\frac{a_{n + 1}}{a_{n}}} < 1$ אז $\lim_{n \to \infty} a_{n} = 0$.
+\item אם $a_{n} > 0$ לכל $n$, ומתקיים $\lim_{n \to \infty} \abs{\frac{a_{n + 1}}{a_{n}}} > 1$ )גם במובן הרחב(, אז $\lim_{n \to \infty} a_{n} = \infty$.
+\end{itemize}
+
+\subsection*{אריתמטיקה של גבולות אינסופיים}
+יהיו $(a_{n}), (b_{n})$ סדרות, $a_{n} \opr{} \infty$. אזי:
+\begin{itemize}
+\item אם $b_{n} \opr{} \infty$ או $b_{n} \opr{} B \in \mR$ אז $(a_{n} + b_{n}) \opr{} \infty$.
+\item אם $b_{n} \opr{} B > 0$ או $b_{n} \opr{} \infty$ אז $(a_{n} \cdot b_{n}) \opr{} \infty$.
+\item אם $b_{n} = \frac{1}{a_{n}}$ אז $b_{n} \opr{} 0$.
+\item אם $b_{n} \opr{} 0$ וגם $b_{n} > 0$ לכל $n$ אז $\frac{1}{b_{n}} \opr{} \infty$.
+\end{itemize}
+
+\begin{theorem}[גבול של הזזה]
+תהי $(a_{n})$ סדרה המתכנסת במובן הצר/רחב ויהי $k \in \mN$. אזי סדרת ההזזה $b_{n} = a_{n + k}$ מתכנסת לאותו הגבול.
+\end{theorem}

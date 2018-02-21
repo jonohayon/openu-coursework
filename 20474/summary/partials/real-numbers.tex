@@ -1,0 +1,76 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{multicols}{2}[
+\section*{המספרים הממשיים}
+\subsection*{אקסיומות השדה}
+השלשה $(\mR, \cdot, +)$ הינה \b{שדה} עם הפעולות $(\cdot, +)$ מעל $\mR$, כלומר מתקיימות התכונות הבאות:
+]
+\subsection*{פעולת הכפל )$\cdot$(}
+\begin{itemize}[leftmargin=*]
+\item קומוטטיביות )חילופיות(:\\
+$\forall x, y \in \mR, x \cdot y = y \cdot x$
+
+\item אסוציאטיביות )קיבוץ(:\\
+$\forall x, y, z \in \mR, x \cdot (y \cdot z) = (x \cdot y) \cdot z$
+
+\item קיום איבר ניטרלי )1(:\\
+$\forall x \in \mR, x \cdot 1 = 1 \cdot x = x$
+
+\item קיום איבר הופכי:\\
+$\forall 0 \neq x \in \mR\ \exists y \in \mR, x \cdot y = 1$
+\end{itemize}
+
+\columnbreak
+
+\subsection*{פעולת החיבור )$+$(}
+\begin{itemize}[leftmargin=*]
+\item קומוטטיביות )חילופיות(:\\
+$\forall x, y \in \mR, x + y = y + x$
+
+\item אסוציאטיביות )קיבוץ(:\\
+$\forall x, y, z \in \mR, x + (y + z) = (x + y) + z$
+
+\item קיום איבר ניטרלי )1(:\\
+$\forall x \in \mR, x + 0 = 0 + x = x$
+
+\item קיום איבר נגדי:\\
+$\forall x \in \mR\ \exists y \in \mR, x + y = 0$
+\end{itemize}
+\end{multicols}
+בנוסף, שתי הפעולות ביחד מקיימות את תכונת הדיסטריבוטיביות )פילוג(, המוגדרת כך:
+\[
+\forall x, y, z \in \mR, x \cdot (y + z) = x \cdot y + x \cdot z
+\]
+\clearpage
+
+\section*{המספרים הממשיים -- המשך}
+\subsection*{אקסיומות ותכונות}
+\begin{axiom}[אקסיומת השלמות]
+יהיו $A, B \subseteq \mR$ כך שלכל $a \in A$ ו$b \in B$ מתקיים $a \le b$. אזי קיים $c \in \mR$ כך ש$a \le c \le b$ לכל $a \in A, b \in B$.
+\end{axiom}
+
+\begin{attribute}[תכונת ארכימדס]
+לכל $x \in \mR$ קיים $n \in \mN$ כך ש$x < n$ $\Longleftarrow$ לכל $x \in \mR$ קיים $n \in \mN$ כך ש$\frac{1}{n} < x$.
+\end{attribute}
+
+\begin{attribute}[צפיפות הרציונליים בממשיים]
+לכל $x, y \in \mR$ )$x \neq y$( קיים $q \in \mQ$ כך ש$x < q < y$.
+\end{attribute}
+
+\subsection*{הערך השלם, הערך השברי ותכונותיהם}
+\begin{itemize}
+\item $\floor{x}$ -- הערך השלם ה``''תחתון``''
+\item $\ceil{x}$ -- הערך השלם ה``''עליון``''
+\item $\pq{x}$ -- החלק השברי, מוגדר כך: $\pq{x} = x - \floor{x}$
+\item $\forall x \in \mR, \floor{x} \le x < \floor{x} + 1$
+\item $\forall x \in \mR, x - 1 < \floor{x} \le x$
+\end{itemize}
+
+\subsection*{אי שוויונות שימושיים}
+\begin{itemize}
+\item אי שוויון ברנולי:
+$\forall -1 \le x \in \mR\ \forall n \in \mN,\ (1 + x)^{n} \ge 1 + nx$
+
+\item אי שוויון המשולש:
+$\forall a, b \in \mR,\ \abs{a + b} \le \abs{a} + \abs{b}$
+\end{itemize}

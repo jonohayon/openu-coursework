@@ -13,8 +13,14 @@ Stuff with [F] in their title are future courses that I'm signed up to.
  - [x] Ashnav (04101), 2017a ![DONE](https://img.shields.io/badge/stage-DONE-brightgreen.svg)
  - [ ] Introduction to computer science and the Java programming language (20441), 2017b ![DONE](https://img.shields.io/badge/stage-DONE-brightgreen.svg)
  - [x] Linear Algebra 1 (20109), 2017c ![TESTED](https://img.shields.io/badge/stage-TESTED-yellow.svg)
- - [x] Discrete Math (20476), 2017c ![WIP](https://img.shields.io/badge/stage-WIP-orange.svg)
- - [x] Infinitesimal Calculus 1 (20474), 2018a ![WIP](https://img.shields.io/badge/stage-WIP-orange.svg)
+ - [x] Discrete Math (20476), 2017c ![DONE](https://img.shields.io/badge/stage-DONE-brightgreen.svg)
+ - [x] Infinitesimal Calculus 1 (20474), 2018a ![TESTED](https://img.shields.io/badge/stage-TESTED-yellow.svg)
  - [x] Linear Algebra 2 (20229), 2018a ![WIP](https://img.shields.io/badge/stage-WIP-orange.svg)
- - [] [F] Infinitesimal Calculus 2 (20475), 2018b ![FUTURE](https://img.shields.io/badge/stage-FUTURE-blue.svg)
+ - [x] Infinitesimal Calculus 2 (20475), 2018b ![WIP](https://img.shields.io/badge/stage-WIP-orange.svg)
 
+## Grades
+ - 04101 - 91
+ - 20441 - 86
+ - 20109 - Unknown yet
+ - 20476 - 85
+ - 20474 - Unknown yet
