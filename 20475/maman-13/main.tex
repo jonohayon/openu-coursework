@@ -1,0 +1,232 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec,commath}
+\usepackage{amsmath,amssymb,cancel}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\logr}[1]{\underset{\text{#1}}{\Longrightarrow}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mC}{\mathbb{C}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{\frac{1}{#1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+\renewcommand{\l}[3]{\R{למה #3#2.#1}}
+
+% Custom commands for this document
+\newcommand{\defi}[3]{\int_{#1}^{#2} #3}
+% \newcommand{\evi}[3]{\left.#1\right\rvert_{#2}^{#3}}
+\newcommand{\evi}[3]{\eval[2]{\;#1\;}_{#2}^{#3}}
+\newcommand{\sub}[2]{\begin{bmatrix} #1\br #2\end{bmatrix}}
+\newcommand{\subo}[1]{\begin{bmatrix} #1\end{bmatrix}}
+
+% Spacing
+\titlespacing\subsection{0pt}{3pt}{3pt}
+\setstretch{0.2}
+
+\title{ממן 31}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+בממן זה החלטתי להחליף את שאלה 5 בשאלת הרשות.
+\end{abstract}
+\clearpage
+
+%%%%% <Q1a> %%%%%
+\section*{שאלה 1א}
+ראשית, נפשט את האינטגרנד בעזרת הצבה ונפרק את האינטגרל לשלושה אינטגרלים שונים:
+\[
+I = \defi{-1}{\infty}{x^{2}\cos{x^{5}}dx}
+= \sub{t = x^{5}}{dx = \frac{1}{5t^{\frac{2}{5}}}dt}
+= \frac{1}{5} \defi{-1}{\infty}{\frac{\cancel{t^{\frac{2}{5}}}\cos{t}}{t^{\frac{\not4}{5}}}dt}
+= \frac{1}{5}
+	\underbrace{
+		\defi{-1}{0}{\frac{\cos{t}}{t^{\frac{2}{5}}}dt}
+	}_{I_{1}} +
+	\frac{1}{5}
+	\underbrace{
+		\defi{0}{\pi}{\frac{\cos{t}}{t^{\frac{2}{5}}}dt}
+	}_{I_{2}} +
+	\frac{1}{5}
+	\underbrace{
+		\defi{\pi}{\infty}{\frac{\cos{t}}{t^{\frac{2}{5}}}dt}
+	}_{I_{3}}
+\]
+כעת, על מנת להראות את ההתכנסות של $I$, עלינו להראות את ההתכנסות של כל אחד מהאינטגרלים $I_{1}, I_{2}$ ו$I_{3}$. נתחיל בהוכחת טענת עזר:
+\subsection*{טענת עזר}
+נתבונן בפונקציות $f, g$ הבאות:
+\[
+\abs{f(u)} = \abs{\frac{\cos{u}}{u^{\frac{2}{5}}}} = \frac{\abs{\cos{u}}}{u^{\frac{2}{5}}}, g(u) = \frac{1}{u^{\frac{2}{5}}}
+\]
+נרצה להוכיח טענת עזר שתשמש אותנו בהוכחת ההתכנסות של $I_{1}$ ו$I_{2}$ -- יהי $0 < b \in \mR$. נוכיח ש$\defi{0}{b}{f(u)du}$ מתכנס בהחלט בתחום. מתקיים כמובן $0 \le \abs{\cos{u}} \le 1$ לכל $u \in \mR$ ולכן גם $0 \le \abs{f(u)} \le g(u)$ לכל $u \in (0, b]$. כעת, מכיוון ש$\frac{2}{5} < 1$, לפי \l{3}{2}{} מתקיים ש$\defi{0}{b}{g(u)du}$ מתכנס. לכן לפי מבחן ההשוואה $\defi{0}{b}{f(t)dt}$ מתכנס בהחלט כנדרש.
+
+\subsection*{האינטגרלים הראשונים -- $I_{1}, I_{2}$}
+ראשית, נבצע הצבה:
+\[
+\defi{-1}{0}{\frac{\cos{t}}{t^{\frac{2}{5}}}dt}
+= \sub{u = -t}{dt = -du}
+= -\defi{1}{0}{\frac{\cos({-u})}{(-u)^{\frac{2}{5}}}du}
+= \defi{0}{1}{\frac{\cos{u}}{u^{\frac{2}{5}}}du}
+\]
+מטענת העזר נוכל לראות שאם נבחר $b = 1$ נקבל ש$I_{1}$ מתכנס בהחלט ולפיכך מתכנס כנדרש. כעת, אם נבחר $b = \pi$ נקבל שלפי מבחן ההשוואה $I_{2}$ מתכנס בהחלט ולפיכך מתכנס כנדרש.
+
+\subsection*{האינטגרל השלישי -- $I_{3}$}
+נרצה להשתמש במבחן דיריכלה עבור הוכחת התכנסות $I_{3}$ עם $f(t) = t^{-\frac{2}{5}}$ ו$g(t) = \cos{t}$ בתחום $[\pi, \infty)$. נראה שתנאי המשפט מתקיימים: ראשית, נגזור את $f$: $f^{\prime}(t) = -\frac{2}{5}t^{-\frac{7}{5}}$, אשר היא כמובן פונקציה רציפה. בנוסף כמובן שמתקיים $\lim_{t \to \infty} f(t) = 0$. כעת נתבונן ב$G(t)$:
+\[
+G(t) = \defi{\pi}{t}{g(x)dx} = \evi{-\sin{x}}{x = t}{x = \pi} = -\sin{t}
+\]
+כמובן שמתקיים $\abs{G(t)} \le 1$ לכל $t \in [\pi, \infty)$ ולכן היא חסומה בקטע. כעת, מכיוון שמתקיימים כל תנאי המשפט, האינטגרל $\defi{\pi}{\infty}{f(t)g(t)dt}$ מתכנס, כלומר $I_{3}$ מתכנס כנדרש.
+
+מכיוון ש$I_{1}, I_{2}, I_{3}$ מתכנסים מתקיים ש$I$ מתכנס בתנאי כנדרש.
+\br\qed
+\clearpage
+%%%%% </Q1a> %%%%%
+
+%%%%% <Q1b> %%%%%
+\section*{שאלה 1ב}
+נגדיר:
+\[
+f(x) = \frac{\sin({x^{2} - 1})}{(x - 1)^{2}}, g(x) = \frac{1}{x - 1}
+\]
+נחשב את הגבול $\lim_{x \to 1} \frac{f(x)}{g(x)}$:
+\[
+\lim_{x \to 1} \frac{f(x)}{g(x)}
+= \lim_{x \to 1} \frac{\sin({x^{2} - 1})(x + 1)}{x^{2} - 1}
+= \subo{t = x^{2} - 1}{}
+= \lim_{t \to 0} \frac{\sin{t}}{t} \cdot \lim_{x \to 1} (x + 1) = 2
+\]
+לכל $x \in (1, 2]$ מתקיים $f(x) > 0 \land g(x) > 0$ וגם האינטגרל $\defi{1}{2}{g(x)dx} = \defi{1}{2}{\frac{1}{x - 1}dx}$ מתבדר ולכן כל תנאי \m{3}{5}{} מתקיימים והאינטגרל $\defi{1}{2}{f(x)dx}$ מתדבר.
+
+לכן, גם האינטגרל $\defi{0}{\infty}{f(x)dx} = \defi{0}{\infty}{\frac{\sin({x^{2} - 1})}{(x - 1)^{2}}dx}$ מתדבר כנדרש.
+\br\qed
+\clearpage
+%%%%% </Q1b> %%%%%
+
+%%%%% <Q2> %%%%%
+\section*{שאלה 2}
+\subsection*{גבול עזר}
+ראשית, נחשב את הגבול הבא אשר יעזור לנו בפתרון השאלה:
+\[
+\lim_{x \to 0} \frac{x - \sin{x}}{x^{3}}
+\ueq{L'H}
+\lim_{x \to 0} \frac{1 - \cos{x}}{3x^{2}}
+\ueq{L'H}
+\lim_{x \to 0} \frac{\sin{x}}{6x}
+= \frac{1}{6} \lim_{x \to 0} \frac{\sin{x}}{x} = \frac{1}{6}
+\]
+בנוסף, מכיוון ש$\lim_{x \to \infty} \frac{1}{x} = 0$ ו$\sin{x}$ חסומה, נקבל מכלל האפסה כפול חסומה מאינפי 1 ש$\lim_{x \to \infty} \frac{\sin{x}}{x} = 0$.
+
+\subsection*{פתרון השאלה}
+נסמן $f(x) = \frac{x - \sin{x}}{x^{\alpha} + x^{\beta}}$ ונוכל לראות שמתקיים $f(x) > 0$ לכל $x > 0$. ראשית, נפצל את האינטגרל לשניים ונמצא את התנאים עבור שניהם:
+\[
+I = \defi{0}{\infty}{f(x)dx}
+= \underbrace{\defi{0}{1}{f(x)dx}}_{I_{1}} +
+\underbrace{\defi{1}{\infty}{f(x)dx}}_{I_{2}}
+\]
+כעת, נעבור לבדיקות ההתכנסות לערכי $\alpha, \beta \in \mR$ המקיימים $\beta > \alpha$:
+
+\subsubsection*{התכנסות $I_{1}$}
+על מנת להוכיח את התכנסות $I_{1}$ נרצה להשתמש במבחן ההשוואה הגבולי. ניקח $g(x) = \frac{x^{3}}{x^{\alpha}} = \frac{1}{x^{3 - \alpha}}$ ונחשב את הגבול $\lim_{x \to 0} \frac{f(x)}{g(x)}$:
+\[
+\lim_{x \to 0} \frac{f(x)}{g(x)}
+= \lim_{x \to 0} \frac{x^{\alpha}(x - \sin{x})}{x^{3}(x^{\alpha} + x^{\beta})}
+= \lim_{x \to 0} \frac{x - \sin{x}}{x^{3}} \cdot \lim_{x \to 0} \frac{1}{1 + x^{\beta - \alpha}}
+= \frac{1}{6}
+\]
+כעת, לפי \l{3}{2}{} נוכל לראות ש$\defi{0}{1}{g(x)dx}$ מתכנס אמ``''מ $\alpha - 3 < 1$, או אם $\alpha < 4$. לכן ממבחן ההשוואה הגבולי נקבל ש$I_{1}$ מתכנס אמ``''מ $\alpha < 4$ כנדרש.
+
+\subsection*{התכנסות $I_{2}$}
+נרצה להוכיח את התכנסות $I_{2}$ גם בעזרת מבחן ההשוואה הגבולי. ניקח $h(x) = \frac{x}{x^{\beta}} = \frac{1}{x^{\beta - 1}}$ ונחשב את הגבול $\lim_{x \to \infty} \frac{f(x)}{h(x)}$:
+\[
+\lim_{x \to \infty} \frac{f(x)}{h(x)}
+= \lim_{x \to \infty} \frac{x^{\beta}(x - \sin{x})}{x(x^{\alpha} + x^{\beta})}
+= \left(1 - \lim_{x \to \infty} \frac{\sin{x}}{x}\right) \cdot \lim_{x \to \infty} \frac{1}{1 + x^{\alpha - \beta}} = 1
+\]
+לפי \l{3}{21}{} נראה ש$\defi{1}{\infty}{h(x)dx}$ מתכנס אמ``''מ $\beta - 1 > 1$, כלומר אם $\beta > 2$. לכן נקבל ממבחן ההשוואה הגבולי ש$I_{2}$ מתכנס אממ $\beta > 2$ כנדרש.
+
+לסיכום, אם נאחד את שתי התנאים ונניח כי $\beta > \alpha$, נקבל כי $I$ מתכנס אמ``''מ $\beta > 2$ וגם $\alpha < 4$ כנדרש.
+\br\qed
+\clearpage
+%%%%% </Q2> %%%%%
+
+%%%%% <Q3> %%%%%
+\section*{שאלה 3}
+מהנתון $\lim_{x \to \infty} x^{2}f(x) = 1$ נקבל שקיים $x_{0} > 0$ כך ש$f(x) > 0$ לכל $x \in (x_{0}, \infty)$. בנוסף, אם נבחר $g(x) = \frac{1}{x^{2}}$ נקבל ש$\lim_{x \to \infty} \frac{f(x)}{g(x)} = 1$.
+
+לכן, מכיוון ש$\defi{x_{0}}{\infty}{\frac{dx}{x^{2}}}$ מתכנס, לפי מבחן ההשוואה הגבולי נקבל ש$\defi{x_{0}}{\infty}{f(x)dx}$ מתכנס. נסמן: $\defi{x_{0}}{\infty}{f(x)dx} = F \in \mR$. כעת, נתבונן בגבול שאנו צריכים לחשב:
+\[
+\lim_{n \to \infty} \defi{0}{1}{f(nx)dx}
+= \sub{t = nx}{dx = \frac{1}{n}dt}
+= \lim_{n \to \infty} \defi{0}{n}{\frac{1}{n}f(t)dt}
+= \lim_{n \to \infty} \frac{1}{n}\defi{0}{n}{f(t)dt}
+\]
+מהיינה נקבל ש$\lim_{n \to \infty} \defi{0}{n}{f(t)dt} = F$ וכמובן $\lim_{n \to \infty} \frac{1}{n} = 0$, ולכן מתקיים:
+\[
+\lim_{n \to \infty} \defi{0}{1}{f(nx)dx}
+= \lim_{n \to \infty} \frac{1}{n}\defi{0}{n}{f(t)dt}
+= F \cdot 0 = 0
+\]
+וחישבנו את הגבול בשאלה כנדרש.
+\br\qed
+%%%%% </Q3> %%%%%
+
+%%%%% <Q4> %%%%%
+\section*{שאלה 4}
+נרצה להשתמש במבחן דיריכלה על מנת להוכיח את ההתכנסות. נסמן $g(x) = f^{\prime}(x)\sin({f(x)})$. נשים לב כי מתקיים
+\[
+f^{\prime}(x)\sin({f(x)}) = \left(-\cos(f(x))\right)^{\prime} \logr{} \int g(x)dx = -\cos(f(x)) + C
+\]
+ולכן $g$ רציפה ב$[a, \infty)$, הפונקציה $G(x) = \defi{a}{x}{g(t)dt}$ מקיימת
+\[
+G(x) = \evi{-\cos(f(x))}{a}{t} = \cos(f(a)) - \cos(f(t))
+\]
+ולכן כמובן חסומה )מכיוון ש$\cos$ חסומה ו$\cos(f(a))$ קבוע( ב$[a, \infty)$. כעת, נתבונן ב$h(x) = \frac{1}{f(x)}$. נגזור:
+\[
+h^{\prime}(x) = -\frac{f^{\prime}(x)}{f^{2}(x)}
+\]
+לכן מאינפי 1 נקבל ש$h$ מונוטונית יורדת בתחום, וכמובן ש$h^{\prime}$ רציפה בתחום )כי $f, f^{\prime}, x^{2}$ רציפות בתחום ו$h^{\prime}$ הנה מנה והרכבה שלהן(. בנוסף, מהנתון נקבל ש$\lim_{x \to \infty} h(x) = \frac{1}{\lim_{x \to \infty} f(x)} = 0$, ולכן ממבחן דיריכלה נקבל כי $\defi{a}{\infty}{h(x)f(x)dx}$ מתכנס, או כלומר שהאינטגרל
+\[
+\defi{a}{\infty}{\frac{f^{\prime}(x)}{f(x)}\sin(f(x))dx}
+\]
+מתכנס כנדרש.
+\br\qed
+\clearpage
+%%%%% </Q4> %%%%%
+
+%%%%% <Q6> %%%%%
+\section*{שאלת הרשות}
+נניח בשלילה שהטענה לא נכונה. אזי קיים $\varepsilon > 0$ כך שלכל $M \in \mR$ קיים $c > M$ המקיים $\abs{f(c)} \ge \varepsilon$. מהנתון $f$ רציפה במ``''ש ולכן קיים $\delta \in (0, c - M)$ כך שלכל $a < x < y < x + \delta$ מתקיים $\abs{f(y) - f(x)} < \frac{\varepsilon}{2}$.
+
+לפיכך נסיק מאי-שוויון המשולש שלכל $x \in (c - \delta, c + \delta)$ מתקיים $\abs{f(x)} \ge \abs{f(c)} - \abs{f(x) - f(c)} > \varepsilon - \frac{\varepsilon}{2} = \frac{\varepsilon}{2}$. לכן לפי משפט הערך הממוצע קיים $x_{0} \in [c - \delta, c + \delta]$ כך שמתקיים
+\[
+\abs{\defi{c - \delta}{c + \delta}{f(x)dx}} = \abs{2\delta \cdot f(x_{0})} \ge 2\delta \cdot \frac{\varepsilon}{2} = \delta\epsilon
+\]
+
+לפיכך, קיבלנו כי קיים $\varepsilon_{1} = \delta\epsilon$ כך שלכל $M$ קיימים $c + \delta > c - \delta > M$ כך ש$\abs{\defi{c - \delta}{c + \delta}{f(x)dx}} \ge \varepsilon_{1}$ ולכן לפי מבחן קושי האינטגרל $\defi{a}{\infty}{f(x)dx}$ מתבדר, בסתירה לנתון.
+
+הגענו לסתירה והוכחנו את נכונות הטענה בשאלה בדרך השלילה כנדרש.
+\br\qed
+%%%%% </Q6> %%%%%
+
+\end{document}

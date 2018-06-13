@@ -32,7 +32,8 @@
 \newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
 
 % Custom commands for this document
-\newcommand{\defi}[3]{\int^{#2}_{#1} #3}
+\newcommand{\defi}[3]{\int_{#1}^{#2} #3}
+\newcommand{\evi}[3]{\left.#1\right\rvert_{#2}^{#3}}
 
 % Spacing
 \titlespacing\subsubsection{0pt}{5pt}{3pt}
@@ -44,7 +45,126 @@
 \begin{document}
 \maketitle
 \clearpage
+\section*{שאלה 1}
+נסמן $f(x) = \frac{1}{p(x)}$ ונראה שהיא רציפה בתחום $[2, 4]$. פונקציה זו הינה פונקציה רציונלית, ולכן ידוע מאינפי 1 שהיא רציפה בכל נקודה שבה היא מוגדרת, כלומר בכל נקודה $x$ שבה $p(x) \neq 0$. נוכל לראות, על ידי הצבה, שמתקיים $p(2) = 7 \land p(4) = 71$. כעת נגזור את $p$ ונראה שהיא עולה בתחום זה ולכן לא מתאפסת בו:
+\[
+p(x) = x^{3} + (x - 1)^{2} - 2
+\logr{}
+p^{\prime}(x) = 3x^{2} + 2x - 2
+\]
+כמובן שלכל $x > 2$ מתקיים $3x^{2} + 2x > 2$ ולכן $\forall x \in [2, \infty), p^{\prime}(x) > 0$ ובפרט לכל $x$ בתחום $[2, 4]$. לכן, $\forall x \in [2, 4], p(x) \ge p(2)$ ו$f$ מוגדרת שם.
 
+לפיכך, $f$ רציפה ב$[2, 4]$ ואף גזירה בו )לפי אינפי 1(. כעת, נחפש את נקודות הקיצון של הפונקציה בתחום זה. ראשית, על מנת למצוא נקודות חשודות, נגזור את הפונקציה:
+\[
+f(x) = \frac{1}{x^{3} + (x - 1)^{2} - 2}
+\logr{}
+f^{\prime}(x) = -\frac{3x^{2} + 2x - 2}{(x^{3} + (x - 1)^{2} - 2)^{2}}
+\]
+כעת, נשווה ל0 ונפתור את הפולינום:
+\begin{align*}
+f^{\prime}(x) = 0
+&\iff -3x^{2} - 2x + 2 = 0\\
+&\iff x = -\frac{2 + \sqrt{28}}{6} \lor x = -\frac{2 - \sqrt{28}}{6}\\
+&\iff x = -\frac{1 + \sqrt{7}}{3} \lor x = -\frac{1 - \sqrt{7}}{3}
+\end{align*}
+שני הפתרונות הללו אינם בתחום $[2, 4]$, לכן אין לפונקציה נקודות חשודות בתחום ונקודות הקיצון בתחום נמצאות בקצוות הקטע. בנוסף, מכיוון ש$\forall x \in [2, 4], f^{\prime}(x) < 0$, מאינפי 1 נוכל לדעת ש$f$ יורדת ולכן נקבל שנקודת המקסימום היא $f(2) = \frac{1}{7}$, כלומר מתקיים $\forall x \in [2, 4], f(x) \le \frac{1}{7}$. לכן ממונוטוניות האינטגרל נקבל
+\begin{align*}
+\defi{2}{4}{f(x)dx} \le \defi{2}{4}{\frac{1}{7}dx}
+& \logr{}
+\defi{2}{4}{f(x)dx} \le \frac{1}{7}\defi{2}{4}{dx}\\
+& \logr{}
+\defi{2}{4}{f(x)dx} \le \frac{1}{7}(4 - 2) = \frac{2}{7}\\
+& \logr{}
+\defi{2}{4}{f(x)dx} \le \frac{2}{7}
+\end{align*}
+כנדרש.
+\br\qed
+\clearpage
+\section*{שאלה 4}
+ראשית, נסמן: $f(x) = \ln({e^{x} + x^{2}}), I(t) = \defi{0}{t}{f(x)dx}$. כעת, נראה כי $\lim_{t \to \infty} f(t) = \infty$ וכי $\lim_{t \to \infty} I(t) = \infty$:
+\begin{align*}
+& \forall t \in (0, \infty) \forall x \in [0, t], 0 < e^{x} \le e^{x} + x^{2}\\
+\text{\R{עולה ממש} $\ln$} & \logr{} x = x\ln{e} = \ln{e^{x}} \le \ln({e^{x} + x^{2}}) = f(x)
+\logr{} \underbrace{x \le f(x)}_{(1)}
+\end{align*}
+כעת כמובן ש$x \opr{$x \to \infty$} \infty$ ולכן מקריטריון ההשוואה לאינסוף מתקיים $f(x) \opr{$x \to \infty$} \infty$. בנוסף מ)1( וממונוטוניות האינטגרל נובע כי מתקיים
+\begin{align*}
+\forall t \in (0, \infty), \defi{0}{t}{xdx} \le \defi{0}{t}{f(x)dx}
+& \logr{} \evi{\frac{x^{2}}{2}}{x=0}{x=t} \le \defi{0}{t}{f(x)dx}\\
+& \logr{} \frac{t^{2}}{2} - \frac{0^{2}}{2} \le \defi{0}{t}{f(x)dx}\\
+& \logr{} \frac{1}{2} \lim_{t \to \infty} t^{2} \le \lim_{t \to \infty} \defi{0}{t}{f(x)dx} = \lim_{t \to \infty} I(t)
+\end{align*}
+בנוסף, כמובן ש$\lim_{t \to \infty} t^{2} = \infty$ ו$0 < \frac{1}{2}$ ולכן $\frac{1}{2} \lim_{t \to \infty} t^{2} = \infty$ ולכן מקריטריון ההשוואה לאינסוף מתקיים $\lim_{t \to \infty} I(t) = \infty$.
+
+כעת, מ\m{1}{33}{} נובע כי מתקיים $I^{\prime}(t) = f(t)$ ומכיוון ש$f$ הינה הרכבה של פונקציות הגזירות בתחום הגדרתן )כל $\mR$( מתקיים $I^{\prime\prime}(t) = f^{\prime}(t)$. נחשב את $f^{\prime}(t)$ לפי כלל השרשרת:
+\[
+f(t) = \ln({e^{t} + t^{2}}) \logr{} f^{\prime}(t) = \frac{e^{t} + 2t}{e^{t} + t^{2}} = I^{\prime\prime}(t)
+\]
+כעת נחשב את הגבול:
+\begin{align*}
+\lim_{t \to \infty} \frac{1}{t^{2}} \defi{0}{t}{\ln({e^{x} + x^{2}})dx} \ueq{L'H$^{1}$}
+& \lim_{t \to \infty} \frac{1}{2t} I^{\prime}(t)
+\ueq{L'H} \lim_{t \to \infty} \frac{1}{2} f^{\prime}(t)\\
+& = \frac{1}{2} \lim_{t \to \infty} \frac{e^{t} + 2t}{e^{t} + t^{2}}
+\ueq{L'H$^{2}$} \frac{1}{2} \lim_{t \to \infty} \frac{e^{t} + 2}{e^{t} + 2t}\\
+& \ueq{L'H$^{2}$} \frac{1}{2} \lim_{t \to \infty} \frac{e^{t}}{e^{t} + 2} \ueq{L'H$^{2}$} \frac{1}{2} \lim_{t \to \infty} \frac{e^{t}}{e^{t}} = \frac{1}{2}
+\end{align*}
+\[
+\logr{} \lim_{t \to \infty} \frac{1}{t^{2}}\defi{0}{t}{\ln({e^{x} + x^{2}})dx} = \frac{1}{2}
+\]
+וחישבנו את הגבול בשאלה כנדרש.
+\br\qed
+
+\footnotetext[1]{
+הקיצור \L{L'H} נועד על מנת לסמן את כלל לופיטל שנקרא באנגלית \L{L'\^Hospital's Rule}, עבור המקרה $\frac{\infty}{\infty}$.
+}
+
+\footnotetext[2]{
+שתי הפונקציות במונה ובמכנה הינן חיבור של פונקציות גזירות ולכן גזירות בעצמן ובנוסף שואפות ל$\infty$ כאשר $t \to \infty$.
+}
+
+\clearpage
+\section*{שאלה 5}
+יהיו $a, b \in \mR$ ונניח בה``''כ שמתקיים $a < b$. ראשית, נסמן: $F_{a}(x) = \defi{a}{x}{f(x)dx}, F_{b}(x) = \defi{b}{x}{f(x)dx}$. נשים לב שלפי הגדרת האינטגרל מתקיים $\defi{x}{b}{f(x)dx} = -F_{b}(x)$, כלומר עלינו לחפש נקודה המקיימת $F_{a}(x) + F_{b}(x) = 0$. נשים לב ששתי הפונקציות הללו הינן אינטגרלים בלתי מסויימים של $f$ בתחום $[a, b]$ ולכן לפי \m{1}{23}{} שתיהן רציפות.
+
+נגדיר, אם כן, את הפונקציה $G(x) = F_{a}(x) + F_{b}(x)$ )פונקציה זו רציפה בקטע $[a, b]$ בתור חיבור של פונקציות הרציפות בתחום זה(. נתבונן בערכי הפונקציה בנקודות $a, b$:
+\begin{align*}
+& G(a) = F_{a}(a) + F_{b}(a) = \cancel{\defi{a}{a}{f(x)dx}} + \defi{b}{a}{f(x)dx} = -\defi{a}{b}{f(x)dx}\\\\
+& G(b) = F_{a}(b) + F_{b}(b) = \defi{a}{b}{f(x)dx} + \cancel{\defi{b}{b}{f(x)dx}} = \defi{a}{b}{f(x)dx} = -G(a)
+\end{align*}
+מכיוון שפונקציה זו הינה רציפה ו$G(a) \cdot G(b) < 0$, ממשפט ערך הביניים נובע כי קיימת נקודה $c \in (a, b)$ כך ש$G(c) = 0$, ולכן
+\[
+F_{a}(c) + F_{b}(c) = 0
+\logr{} \defi{a}{c}{f(x)dx} = -\defi{b}{c}{f(x)dx}
+\logr{} \defi{a}{c}{f(x)dx} = \defi{c}{b}{f(x)dx}
+\]
+ומצאנו נקודה בקטע המקיימת את התנאי כנדרש.
+\br\qed
+
+\section*{שאלה 6}
+נוכיח שהטענה אינה נכונה בדרך השלילה.
+
+נניח כי היא נכונה -- כלומר, מתקיים $\forall x \in [-5, 5], f(x) \le g(x)$. מהנתון, נוכל לראות כי מתקיים
+
+\[
+\defi{-5}{-2}{g(x)dx} > \defi{-5}{-5}{g(x)dx} = \defi{-5}{-2}{g(x)dx} + \defi{-2}{5}{g(x)dx}
+\logr{}
+\defi{-2}{5}{g(x)dx} < 0
+\]
+בנוסף, מהנחתנו וממונוטוניות האינטגרל נובע כי מתקיים
+\[
+\defi{-2}{5}{f(x)dx} \le \defi{-2}{5}{g(x)dx} < 0
+\logr{}
+\defi{-2}{5}{f(x)dx} < 0
+\]
+כעת, מהנתון נוכל לראות שמתקיים
+\[
+\defi{-2}{5}{f(x)dx} = \defi{-2}{2}{f(x)dx} + \defi{2}{5}{f(x)dx} = \pi - 3
+\]
+כמובן ש$\pi > 3$ ולכן $\pi - 3 > 0$, כלומר $\defi{-2}{5}{f(x)dx} > 0$ והגענו לסתירה. לכן הטענה אינה נכונה כנדרש.
+\br\qed
+
+\clearpage
 \section*{שאלת הרשות}
 נסמן $f^{n}(x) = (f(x))^{n}$. תהי $f$ פונקציה רציפה ואי-שלילית בתחום $[0, 1]$. נוכיח כי הסדרה $a_{n} = \defi{0}{1}{f^{n}(x)dx}$ מתכנסת אמ``''מ $f(x) \le 1$ לכל $x$ בתחום.
 \subsection*{כיוון א}
@@ -60,13 +180,108 @@
 כעת, ממונוטוניות האינטגרל נובע כי $0 \le \defi{0}{1}{f^{n + 1}(x)dx} \le \defi{0}{1}{f^{n}(x)dx} \le 1$ לכל $n$ טבעי, כלומר לכל $n$ טבעי מתקיים $0 \le a_{n + 1} \le a_{n} \le 1$.לפיכך, הסדרה $(a_{n})$ מונוטונית יורדת וחסומה, ולכן ממשפט באינפי 1 נובע כי $(a_{n})$ מתכנסת כנדרש.
 
 \subsection*{כיוון ב}
-נניח כי $\lim_{n \to \infty} a_{n} =א L \in \mR$ ונניח בשלילה כי $f(x) > 1$ לכל $x$ בתחום. נגדיר את הסדרה $b_{n} = f^{n}(x)$. נראה כי $b_{n + 1} > b_{n} > 1$ לכל $n$ טבעי: ידוע כי $f(x) > 1$ לכל $x \in [0, 1]$. נכפול את אי השוויון ב$f(x)$ ונקבל $f^{2}(x) > f(x) > 1$. באינדוקציה נקבל כי $f^{n + 1}(x) > f^{n}(x) > 1$ לכל $n$ טבעי כנדרש. ממונוטוניות האינטגרל נובע כי $a_{n + 1} > a_{n}$ לכל $n$ טבעי ומכך נובע כי
-\[
-\abs{\frac{a_{n + 1}}{a_{n}}} > 1 \logr{} \lim_{n \to \infty} \abs{\frac{a_{n + 1}}{a_{n}}} > 1
-\]
-ולכן ממבחן המנה לגבולות נובע כי $\lim_{n \to \infty} a_{n} = \infty$, ובפרט $\lim_{n \to \infty} a_{n} \not\in \mR$, בסתירה להנחה. לפיכך, $f(x) \le 1$ לכל $x \in [0, 1]$ כנדרש.
+נניח בשלילה כי קיימת נקודה $x_{0} \in [0, 1]$ וקיים $M > 1$ כך ש$f(x_{0}) > M$. מכיוון ש$f$ רציפה, קיימת $\delta > 0$ כך שלכל $x \in (x_{0} - \delta, x_{0} + \delta)$ מתקיים $f(x) > M$ ולכן לכל $n \in \mN$, מתקיים $f^{n}(x) > M^{n}$. כעת, ממונוטוניות האינטגרל נובע כי 
+\begin{eqnarray*}
+\forall n \in \mN, \defi{x_{0} - \delta}{x_{0} + \delta}{M^{n}dx} \le \defi{x_{0} - \delta}{x_{0} + \delta}{f^{n}(x)dx}
+& \iff M^{n}(x_{0} + \delta - x_{0} + \delta) \le \defi{x_{0} - \delta}{x_{0} + \delta}{f^{n}(x)dx}\\
+\iff 2\delta M^{n} \le \defi{x_{0} - \delta}{x_{0} + \delta}{f^{n}(x)dx}
+\end{eqnarray*}
+בנוסף, מכיוון שלכל $x \in [0, 1]$ מתקיים $f^{n}(x) \ge 0$ לכל $n \in \mN$, מתקיים $\defi{a}{b}{f(x)dx} \ge 0$ לכל $n \in \mN$ ולכל $a, b \in [0, 1]$. לפיכך, נוכל לראות כי לכל $n \in \mN$ מתקיים:
+\begin{align*}
+& \defi{0}{x_{0} - \delta}{f^{n}(x)dx} + \defi{x_{0} + \delta}{1}{f^{n}(x)dx} \ge 0\\
+& \logr{} \defi{0}{x_{0} - \delta}{f^{n}(x)dx} + \defi{x_{0} - \delta}{x_{0} + \delta}{f^{n}(x)dx} + \defi{x_{0} + \delta}{1}{f^{n}(x)dx} \ge \defi{x_{0} - \delta}{x_{0} + \delta}{f^{n}(x)dx}\\
+& \logr{} \defi{x_{0} - \delta}{x_{0} + \delta}{f^{n}(x)dx} \le a_{n}
+\logr{} 2\delta M^{n} \le a_{n}
+\end{align*}
+מכיוון ש$M > 1$, כמובן ש$\lim_{n \to \infty} 2\delta M^{n} = \infty$ ולכן מקריטריון ההשוואה לאינסוף נובע כי $\lim_{n \to \infty} a_{n} = \infty$, בסתירה לנתון. לפיכך, לא קיימת $x_{0} \in [0, 1]$ כך ש$f(x) > 1$, כלומר $\forall x \in [0, 1], f(x) \le 1$ כנדרש.
+\br\qed
+\clearpage
 
-לכן, לסיכום, הוכחנו שהסדרה $a_{n} = \defi{0}{1}{f^{n}(x)dx}$ מתכנסת אמ``''מ $f(x) \le 1$ לכל $x \in [0, 1]$.
+\section*{שאלה 7}
+\subsection*{סעיף א}
+ראשית, אנו יודעים ש$f$ אינטגרבילית רימן בקטע $[a, b]$ מכיוון שהיא רציפה בו. כעת, לפי \h{1}{53}{} מתקיים $\sigma \opr{$\lambda \to 0$} \defi{a}{b}{f(x)dx}$ לכל חלוקה אשר פרמטר החלוקה שלה שואף ל0. בפרט, אם נתבונן בחלוקה הרגולרית )כלומר החלוקה בה מתקיים $x_{i} = a + \frac{i(b - a)}{n}$( מתקיים ש$\Delta x_{i}$ הינו קבוע:
+\begin{align*}
+\forall 1 \le i \le n, \Delta x_{i} &= \cancel{a} + \frac{i(b - a)}{n} - \cancel{a} - \frac{(i - 1)(b - a)}{n}\\
+&= \cancel{\frac{i(b - a)}{n}} - \cancel{\frac{i(b - a)}{n}} + \frac{b - a}{n}\\
+&= \frac{b - a}{n} \logr{} \forall 1 \le i \le n, \Delta x_{i} = \frac{b - a}{n}
+\end{align*}
+לכן מכיוון שפרמטר זה הינו קבוע, מתקיים לפי הגדרת פרמטר החלוקה $\lambda(P) = \frac{b - a}{n}$. כעת, נכתוב את $\sigma$ )נבחר את הנקודות $\xi_{i} = x_{i}$ בכל אחד מקטעי החלוקה(:
+\[
+\sigma = \sum^{n}_{i = 1} f(x_{i}) \Delta x_{i} = \sum^{n}_{i = 1} f\left(a + \frac{i(b - a)}{n}\right) \frac{b - a}{n} = \frac{b - a}{n} \sum^{n}_{i = 1} f\left(a + \frac{i(b - a)}{n}\right)
+\]
+בנוסף, בגלל ש$a, b$ קבועים, מתקיים $\lambda \to 0$ אמ``''מ $n \to \infty$ ולכן לפי הגדרת האינטגרל לפי רימן מתקיים:
+\[
+\defi{a}{b}{f(x)dx} = \lim_{n \to \infty} \frac{b - a}{n} \sum^{n}_{i = 1} f\left(a + \frac{i(b - a)}{n}\right)
+\]
+כנדרש.
+\br\qed
+
+\subsection*{סעיף ב}
+נניח כי $f$ רציפה בקטע $[0, 1]$. לפי סעיף א, נוכל לראות כי אם נבחר $a = 0, b = 1$ מתקיים
+\[
+\defi{0}{1}{f(x)dx} = \lim_{n \to \infty} \frac{1}{n} \sum^{n}_{i = 1} f\left(\frac{i}{n}\right)
+\]
+כנדרש.
+\br\qed
+\clearpage
+
+\section*{שאלה 7 -- המשך}
+\subsection*{סעיף ג}
+\subsubsection*{תת-סעיף 1}
+ראשית, נפשט את הביטוי:
+\begin{align*}
+a_{n}
+&= \frac{n}{n^{2} + 1} + \frac{n}{n^{2} + 4} + \frac{n}{n^{2} + 9} + \dots + \frac{n}{n^{2} + (n - 1)^{2}}\\
+&= \sum^{n - 1}_{i = 1} \frac{n}{n^{2} + i^{2}}
+= \sum^{n - 1}_{i = 1} \frac{\cancel{n}}{\cancel{n}(n + \frac{i^{2}}{n})}
+= \sum^{n - 1}_{i = 1} \frac{1}{n(1 + \frac{i^{2}}{n^{2}})}\\
+&= \frac{1}{n} \sum^{n}_{i = 2} \frac{1}{1 + (\frac{i}{n})^{2}}
+= \frac{1}{n}(\sum^{n}_{i = 1} \frac{1}{1 + (\frac{i}{n})^{2}} - \frac{1}{1 + \frac{1}{n^{2}}})\\
+&= \frac{1}{n}\sum^{n}_{i = 1} \frac{1}{1 + (\frac{i}{n})^{2}} - \frac{1}{n + \frac{1}{n^{3}}}
+\end{align*}
+נוכל לראות כי $\lim_{n \to \infty} n + \frac{1}{n^{3}} = \infty$ ולכן $\lim_{n \to \infty} \frac{1}{n + \frac{1}{n^{3}}} = 0$.
+
+כעת, נסמן $f(x) = \frac{1}{1 + x^{2}}$ ונחשב את הגבול:
+\begin{align*}
+\lim_{n \to \infty} a_{n}
+&= \lim_{n \to \infty} \frac{1}{n}\sum^{n}_{i = 1} \frac{1}{1 + (\frac{i}{n})^{2}} - \frac{1}{n + \frac{1}{n^{3}}}
+= \lim_{n \to \infty} \frac{1}{n}\sum^{n}_{i = 1} \frac{1}{1 + (\frac{i}{n})^{2}} - \lim_{n \to \infty} \frac{1}{n + \frac{1}{n^{3}}}\\
+&= \lim_{n \to \infty} \frac{1}{n}\sum^{n}_{i = 1} f\left(\frac{i}{n}\right) - \lim_{n \to \infty} \frac{1}{n + \frac{1}{n^{3}}}
+= \lim_{n \to \infty} \frac{1}{n}\sum^{n}_{i = 1} f\left(\frac{i}{n}\right)\\
+\text{\R{לפי סעיף ב}} &= \defi{0}{1}{f(x)dx} = \evi{\arctan(x)}{x=0}{x=1}
+= \arctan{1} - \arctan{0} = \frac{\pi}{4}
+\end{align*}
+ולכן $a_{n} \opr{$n \to \infty$} \frac{\pi}{4}$ כנדרש.
+\br\qed
+\clearpage
+
+\section*{שאלה 7 -- המשך}
+\subsection*{סעיף ג}
+\subsubsection*{תת-סעיף 2}
+כמו בשאלה הקודמת, ננקוט בפישוט הביטוי תחילה:
+\[
+b_{n}
+= \sum^{n}_{i = 1} \frac{1}{\sqrt{n^{2} + 2in}}
+= \sum^{n}_{i = 1} \frac{1}{\sqrt{n^{2}(1 + \frac{2i}{n})}}
+= \sum^{n}_{i = 1} \frac{1}{n\sqrt{1 + 2\frac{i}{n}}}
+= \frac{1}{n}\sum^{n}_{i = 1} \frac{1}{\sqrt{1 + 2(\frac{i}{n})}}
+\]
+כעת, נסמן $g(x) = \frac{1}{\sqrt{1 + 2x}}$ ונחשב את הגבול:
+\begin{align*}
+\lim_{n \to \infty} b_{n}
+&= \lim_{n \to \infty} \frac{1}{n}\sum^{n}_{i = 1} \frac{1}{\sqrt{1 + 2(\frac{i}{n})}}
+= \lim_{n \to \infty} \frac{1}{n}\sum^{n}_{i = 1} g\left(\frac{i}{n}\right)\\
+\text{\R{לפי סעיף ב}} &= \defi{0}{1}{g(x)dx}
+= \defi{0}{1}{\frac{1}{\sqrt{1 + 2x}}dx}
+= \defi{0}{1}{\frac{2}{2\sqrt{1 + 2x}}dx}
+\end{align*}
+נפתור את האינטגרל בעזרת שיטת ההצבה. נבחר $u = 1 + 2x$ ונראה שמתקיים $du = 2dx$. נציב ונקבל
+\[
+\defi{x=0}{x=1}{\frac{2}{2\sqrt{1 + 2x}}dx}
+= \defi{u=1}{u=3}{\frac{1}{2\sqrt{u}}du}
+= \evi{\sqrt{u}}{u=1}{u=3} = \sqrt{3} - 1
+\]
+לכן מתקיים $b_{n} \opr{$n \to \infty$} \sqrt{3} - 1$ כנדרש.
 \br\qed
 
 \end{document}

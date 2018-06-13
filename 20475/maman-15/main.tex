@@ -1,0 +1,183 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel,commath,mathtools}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\logr}[1]{\Rightarrow}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\uop}[2]{\underset{\text{#2}}{#1}}
+\newcommand{\mC}{\mathbb{C}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+\renewcommand{\l}[3]{\R{למה #3#2.#1}}
+
+% Custom commands for this document
+\newcommand{\defi}[3]{\int_{#1}^{#2} #3}
+% \newcommand{\evi}[3]{\left.#1\right\rvert_{#2}^{#3}}
+\newcommand{\evi}[3]{\eval[2]{\;#1\;}_{#3}^{#2}}
+\newcommand{\sub}[2]{\begin{bmatrix} #1\br #2\end{bmatrix}}
+\newcommand{\subo}[1]{\begin{bmatrix} #1\end{bmatrix}}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+
+% Spacing
+\titlespacing\subsubsection{0pt}{3pt}{3pt}
+\setstretch{0.2}
+\title{ממן 51}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+\clearpage
+
+%%%%% <Q1> %%%%%
+\section*{שאלה 1}
+בשאלה זו בחרתי להחליף את סעיף ב בסעיף הרשות.
+\subsection*{סעיף א}
+נניח ש$(a_{n})$ מתכנסת ונסמן $\lim_{n \to \infty} a_{n} = L$. אזי מתקיים $L = \cos{L}$, אבל $0$ בוודאי לא מקיים את המשוואה הזאת )שכן $\cos{0} = 1$( ולכן $L \neq 0$. לכן אם $(a_{n})$ מתכנסת גבולה שונה מ0 ולכן הטור בשאלה מתבדר לפי התנאי ההכרחי כנדרש.
+\br\qed
+
+\subsection*{סעיף רשות}
+נסמן: $a_{n} = \sin{\frac{1}{n}} - \ln\left(1 + \frac{1}{n}\right)$. נתבונן בפיתוחי מקלורן עבור $\sin{x}, \ln({1 + x})$ ב$x = \frac{1}{n}$:
+\[
+\sin{\frac{1}{n}} = \frac{1}{n} + R_{2}\left(\frac{1}{n}\right),
+\ln\left(1 + \frac{1}{n}\right) = \frac{1}{n} - \frac{1}{2n^{2}} + Q_{2}\left(\frac{1}{n}\right)
+\]
+לכן מתקיים:
+\[
+\sum^{\infty}_{n = 1} a_{n} = \sum^{\infty}_{n = 1} \frac{1}{2n^{2}} + R_{2}\left(\frac{1}{n}\right) - Q_{2}\left(\frac{1}{n}\right)
+\]
+כעת, מ\m{4}{7}{} נקבל
+\[
+\lim_{n \to \infty} \frac{\abs{a_{n}}}{\frac{1}{n^{2}}}
+= \lim_{n \to \infty} \abs{\frac{1}{2} + \underbrace{\frac{R_{2}(n^{-1})}{n^{-2}}}_{\to 0} - \underbrace{\frac{Q_{2}(n^{-1})}{n^{-2}}}_{\to 0}} = \frac{1}{2}
+\]
+ולכן לפי מבחן ההשוואה הגבולי הטור מתכנס בהחלט כנדרש.
+\br\qed
+\clearpage
+%%%%% </Q1> %%%%%
+
+%%%%% <Q2> %%%%%
+\section*{שאלה 2}
+ראשית, נוכל להיווכח שמכיוון ש$\forall x \in \mR, 0 \le \abs{x}$, מתקיים $\overbrace{0 \le \abs{a_{n}} \le b_{n}}^{I}$ ולכן ממבחן ההשוואה הטור $\sum^{\infty}_{n = 1} a_{n}$ מתכנס בהחלט ובפרט מתכנס. נתבונן בסדרת הסכומים החלקיים של הטור:
+\[
+\abs{P_{m}} = \abs{\sum^{m}_{n = 1} a_{n}}
+\uop{\le}{\R{אי שוויון המשולש}}
+\sum^{m}_{n = 1} \abs{a_{n}} \le \sum^{m}_{n = 1} b_{n} = Q_{m}
+\]
+מ$I$ נובע כי $\forall n \in \mN, b_{n} \ge 0$ ולכן $\forall m \in \mN, Q_{m} \le S$. לפיכך נוכל לראות שמתקיים $\abs{P_{m}} \le S$ , כלומר $\forall m \in \mN, P_{m} \le S$. לפיכך מאינפי 1 נקבל כי $\sum^{\infty}_{n = 1} a_{n} = \lim_{m \to \infty} P_{m} \le S$ כנדרש.
+\br\qed
+%%%%% </Q2> %%%%%
+
+%%%%% <Q3> %%%%%
+\section*{שאלה 3}
+ראשית, נסמן: $a_{n} = \frac{(2n)!}{n!\alpha^{n}n^{n}}$ ונתבונן בגבול של $\frac{a_{n + 1}}{a_{n}}$:
+\begin{align*}
+\lim_{n \to \infty} \frac{a_{n + 1}}{a_{n}}
+&= \lim_{n \to \infty} \frac{(2n + 2)(2n + 1)\cancel{(2n)!(n!)}}{(n + 1)\cancel{(n!)(2n)!}} \cdot \frac{\cancel{\alpha^{n}}n^{n}}{\cancel{\alpha^{n}}\alpha(n + 1)^{n + 1}}\\
+&= \lim_{n \to \infty} \frac{2\cancel{(n + 1)}(2n + 1)}{\cancel{(n + 1)}(n + 1)} \cdot \frac{1}{\alpha} \cdot \left(\left(\frac{n + 1}{n}\right)^{n}\right)^{-1}\\
+&= \frac{1}{\alpha} \lim_{n \to \infty} \underbrace{\frac{\cancel{n}(4 + \frac{2}{n})}{\cancel{n}(1 + \frac{1}{n})}}_{\to 4} \cdot \underbrace{\left(\left(1 + \frac{1}{n}\right)^{n}\right)^{-1}}_{\to \frac{1}{e}} = \frac{4}{\alpha e}
+\end{align*}
+ולכן מתקיים $\lim_{n \to \infty} \frac{a_{n + 1}}{a_{n}} = \frac{4}{\alpha e}$. לפיכך, לפי מבחן המנה **71.5 הטור מתכנס אם $\alpha \in (\frac{4}{e}, \infty)$ ומתבדר אם $\alpha \in (-\infty, \frac{4}{e})$. לכן מתקיים $A = (\frac{4}{e}, \infty)$ ו$\inf{A} = \frac{4}{e}$ כנדרש.
+\br\qed
+%%%%% </Q3> %%%%%
+
+%%%%% <Q4> %%%%%
+\section*{שאלה 4}
+כיוון א: ידוע כי $\sum^{\infty}_{n = 1} a_{n}$ מתכנס. לכן, גם $\sum^{\infty}_{n = 1} a_{n + 1}$ מתכנס ולכן גם $\sum^{\infty}_{n = 1} a_{n} + a_{n + 1}$ מתכנס )\m{5}{9}{}(.
+
+כיוון ב: נניח כי $\sum^{\infty}_{n = 1} a_{n} + a_{n + 1}$ מתכנס. ניווכח שמתקיים
+\[
+Q_{k} = \sum^{k}_{n = 1} a_{n} + a_{n + 1}
+= \left(\sum^{k}_{n = 1} a_{n} - a_{1} + a_{k + 1}\right) + \sum^{k}_{n = 1} a_{n}
+= 2\sum^{k}_{n = 1} a_{n} - a_{1} + a_{k + 1} = 2P_{k} - a_{1} + a_{k + 1}
+\]
+לכן מתקיים $P_{k} = \frac{1}{2}(Q_{k} + a_{1} - a_{k + 1})$. מהנתון נקבל כי $\lim_{k \to \infty} a_{k + 1} = 0$ ולכן נקבל כי $\sum^{\infty}_{n = 1} a_{n} = \lim_{k \to \infty} P_{k} = \frac{1}{2}\sum^{\infty}_{n = 1}(a_{n} + a_{n + 1}) + \frac{a_{1}}{2}$ כנדרש.
+\qed
+\clearpage
+%%%%% </Q4> %%%%%
+
+%%%%% <Q5> %%%%%
+\section*{שאלה 5}
+ראשית, נתבונן באיבר הכללי של הטור:
+\[
+1 - \frac{a_{n}}{a_{n + 1}}
+= \frac{a_{n + 1} - a_{n}}{a_{n + 1}}
+= \frac{1}{a_{n + 1}}(a_{n + 1} - a_{n})
+\]
+כעת, מכיוון שנתון ש$(a_{n})$ מונוטונית עולה וחסומה, קיים לה גבול סופי $L$, ולכן הגבול של $\frac{1}{a_{n + 1}}$ הוא $\frac{1}{L}$. בנוסף, מאינפי 1 נובע כי סדרה זו חסומה, מכיוון שמונוטונית יורדת ושואפת למספר סופי. לכן $\left(\frac{1}{a_{n + 1}}\right)$ סדרה מונוטונית וחסומה. בנוסף, נתבונן בסכום החלקי הבא:
+\[
+P_{l}
+= \sum^{l}_{n = 1} a_{n + 1} - a_{n}
+= \cancel{\left(\sum^{l}_{n = 1} a_{n}\right)} + a_{l + 1} - a_{1} - \cancel{\left(\sum^{l}_{n = 1} a_{n}\right)}
+= a_{l + 1} - a_{1}
+\]
+לכן, מכיוון ש$(a_{n})$ מתכנסת לגבול $L$, נקבל ש$P_{l}$ מתכנסת לגבול $L - a_{1}$, כלומר הטור $\sum^{\infty}_{n = 1} a_{n + 1} - a_{n}$ מתכנס. לכן לפי מבחן אבל הטור $\sum^{\infty}_{n = 1} \frac{1}{a_{n + 1}}(a_{n + 1} - a_{n})$ מתכנס. לפיכך, מתקיים שהטור $\sum^{\infty}_{n = 1}(1 - \frac{a_{n}}{a_{n + 1}})$ מתכנס כנדרש.
+\br\qed
+%%%%% </Q5> %%%%%
+
+%%%%% <Q6> %%%%%
+\section*{שאלה 6א}
+הטענה נכונה. ידוע לנו כי $\arctan{x}$ הינה פונקציה מונוטונית עולה וחסומה ב$[0, \infty)$. לכן הסדרה $\arctan{n}$ הינה סדרה מונוטונית וחסומה. לפיכך, מכיוון ש$\sum^{\infty}_{n = 1} a_{n}$ מתכנס, ממבחן אבל נקבל כי הטור $\sum^{\infty}_{n = 1} a_{n}\arctan{n}$ מתכנס כנדרש.
+\br\qed
+
+\section*{שאלה 6ד}
+הטענה אינה נכונה. לפי הנתון ו\m{5}{62}{}, הטור של $a_{n}$ מתכנס בהחלט ובנוסף מתקיים $\sum^{\infty}_{n = 1} b_{n} = \sum^{\infty}_{n = 1} a_{n} = x$, כלומר עלינו למצוא $x$ המקיים
+\[
+x = 2 + x \land x = 2x
+\]
+קיים רק $x$ אחד המקיים $x = 2x$ וזהו $x = 0$, אבל $0 + 2 = 2 \neq 0$ ולכן הוא לא מקיים את שתי המשוואות. לפיכך, לא קיים $x$ שכזה, כלומר בהכרח $\sum^{\infty}_{n = 1} b_{n} \neq \sum^{\infty}_{n = 1} a_{n}$ בסתירה ל\m{5}{62}{} כנדרש.
+\br\qed
+\clearpage
+
+\section*{שאלה 6ה}
+בחרתי להחליף את סעיף ג בשאלה זו בסעיף הרשות.
+
+נתבונן בפונקציה $f(x) = \cos(2\pi x)$. נתבונן באינטגרל בשאלה:
+\[
+I_{n} = \defi{n}{n + 1}{f(x)dx}
+= \sub{u = 2\pi x}{\frac{1}{2\pi}du = dx}
+= \frac{1}{2\pi}\left(\evi{\sin{u}}{u = 2\pi(n + 1)}{u = 2\pi n}\right)
+= \frac{1}{2\pi}(0 - 0) = 0
+\]
+לכן בוודאי $\sum^{\infty}_{n = 1} I_{n} = 0$. נתבונן באינטגרל הבא:
+\[
+\defi{n}{n + \frac{1}{4}}{f(x)dx}
+= \sub{u = 2\pi x}{\frac{1}{2\pi}du = dx}
+= \frac{1}{2\pi}\left(\evi{\sin{u}}{u = 2\pi n + \frac{\pi}{2}}{u = 2\pi n}\right)
+= \frac{1}{2\pi}(1 + 0) = \frac{1}{2\pi}
+\]
+לכן קיים $\epsilon = \frac{1}{4\pi}$ כך שלכל $M > 0$ קיימים $r = \ceil{M}, s = \ceil{M} +  \frac{1}{4}$ )כמובן שמתקיים $\ceil{M} \ge M$ ולכן $s, r \in [M, \infty)$( כך שמתקיים
+\[
+\abs{\defi{r}{s}{f(x)dx}}
+= \abs{\defi{\ceil{M}}{\ceil{M} + \frac{1}{4}}{f(x)dx}}
+= \abs{\frac{1}{2\pi}} > \frac{1}{4\pi} = \epsilon
+\]
+בסתירה למבחן קושי )\m{3}{51}{}(. לכן $\defi{0}{\infty}{f(x)dx}$ מתבדר והטענה אינה נכונה כנדרש.
+\br\qed
+%%%%% </Q6> %%%%%
+
+
+\end{document}
