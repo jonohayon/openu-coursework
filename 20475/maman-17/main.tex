@@ -1,0 +1,349 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel,commath,mathtools}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\logr}[1]{\Rightarrow}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\uop}[2]{\underset{\text{#2}}{#1}}
+\newcommand{\mC}{\mathbb{C}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+\renewcommand{\l}[3]{\R{למה #3#2.#1}}
+
+% Custom commands for this document
+\newcommand{\defi}[3]{\int_{#1}^{#2} #3}
+% \newcommand{\evi}[3]{\left.#1\right\rvert_{#2}^{#3}}
+\newcommand{\evi}[3]{\eval[2]{\;#1\;}_{#3}^{#2}}
+\newcommand{\sub}[4]{\begin{bmatrix} #1 = #2\br #1 \opr{$(x, y) \to #3$} #4\end{bmatrix}}
+\newcommand{\subo}[1]{\begin{bmatrix} #1\end{bmatrix}}
+\renewcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdt}[3]{\dfrac{\partial^{2} #1}{\partial #2 \partial #3}}
+\newcommand{\pdn}[3]{\dfrac{\partial^{#3} #1}{\partial #2^{#3}}}
+\newcommand{\pdd}[2]{\dfrac{\partial #1}{\partial #2}}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\newtheorem{lemma}{טענת עזר}
+
+% Spacing
+\titlespacing\subsubsection{0pt}{3pt}{3pt}
+\setstretch{0.2}
+\title{ממן 71}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+\renewcommand{\abstractname}{סימונים כלליים וסעיפי רשות}
+\begin{abstract}
+אני משתמש בסימון הבא בשביל לסמן ווקטורים: $\vec{x}, \vec{v} \in \mR^{2}$ וכדומה. בנוסף, מתקיים $\vec{0} = (0, 0)$. לעתים אשתמש בסימון הבא על מנת לקצר את כתיבת הגבול: במקום הסימון $\lim_{(x, y) \to (0, 0)}$ אשתמש ב$\lim_{\vec{v} \to \vec{0}}$.
+
+בנוסף, הסימון $\ueq{L'H}$ אומר כי השוויון מתקיים לפי כלל לופיטל, בדרך כלל בגבולות מהצורה ``''$\frac{0}{0}$``'' )ואני מציין כאשר מדובר במקרה אחר(.\br
+
+בעת חישוב הקריטריון לנקודת קיצון בנקודה $\vec{p}$ )הנמצא ב\m{7}{27}{}(, אשתמש בשיטה הבאה:
+
+אסמן
+\[
+A = \pdn{f}{x}{2}(\vec{p}), B = \pdt{f}{x}{y}(\vec{p}) = \pdt{f}{y}{x}(\vec{p}), C = \pdn{f}{y}{2}(\vec{p})
+\]
+ואחשב את הדטרמיננטה של המטריצה הבאה:
+\[
+D = \begin{bmatrix}
+\pdn{f}{x}{2}(\vec{p}) & \pdt{f}{x}{y}(\vec{p})\br
+\pdt{f}{y}{x}(\vec{p}) & \pdn{f}{y}{2}(\vec{p})
+\end{bmatrix}
+\logr{}
+\det{D} = AC - B^{2}
+\]
+ולכן אוכל להשוות את $-\det{D}$ ל0 וכך לראות האם הנקודה היא נקודת קיצון. בנוסף, בחרתי להחליף את סעיף ב' בשאלה 5 בסעיף הרשות.
+\end{abstract}
+\clearpage
+
+%%%%% <Q1> %%%%%
+\section*{שאלה 1א}
+ראשית, נסמן:
+\[
+f(x, y) = \frac{x^{3} + y^{3}}{\sqrt{x^{2} + y^{2} + 25} - 5},
+g(x, y) = \frac{x^{3} + y^{3}}{x^{2} + y^{2}}
+\]
+נוכיח טענת עזר:
+\begin{lemma}
+יהיו $a, b \in \mR\backslash\{0\}$. אזי מתקיים: $\abs{\frac{a^{3}}{a^{2} + b^{2}}} \le \abs{a}$ . הוכחה:
+\[
+\forall a, b \in \mR\backslash\{0\},
+\frac{b^{2}}{a^{2}} \ge 0 \logr{}
+\abs{1 + \frac{b^{2}}{a^{2}}} \ge 1 \logr{} \abs{\frac{a^{2}}{a^{2} + b^{2}}} = \abs{1 + \frac{b^{2}}{a^{2}}}^{-1} \le 1 \logr{} \abs{\frac{a^{3}}{a^{2} + b^{2}}} = \abs{a} \cdot \abs{\frac{a^{2}}{a^{2} + b^{2}}} \le \abs{a}
+\]
+\end{lemma}
+כעת, מטענת העזר נובע כי מתקיים $\forall x, y \in \mR\backslash\{0\}, 0 \le \abs{g(x, y)} \le \abs{x} + \abs{y}$. כמובן שמתקיים השוויון $\lim_{(x, y) \to \vec{0}} \abs{x} + \abs{y} = 0$ ולכן ממשפט הסנדוויץ' נקבל כי $\lim_{\vec{v} \to \vec{0}} g(\vec{v}) = 0$.
+
+כעת, נפשט את הביטוי ל$f(\vec{v})$:
+\begin{align*}
+f(x, y)
+&= \frac{x^{3} + y^{3}}{\sqrt{x^{2} + y^{2} + 25} - 5}
+= \frac{(x^{3} + y^{3})(\sqrt{x^{2} + y^{2} + 25} + 5)}{(\sqrt{x^{2} + y^{2} + 25} - 5)(\sqrt{x^{2} + y^{2} + 25} + 5)}\\
+&= \frac{x^{3} + y^{3}}{x^{2} + y^{2} + \cancel{25 - 25}}(\sqrt{x^{2} + y^{2} + 25} + 5)
+= g(x, y) \cdot (\sqrt{x^{2} + y^{2} + 25} + 5)
+\end{align*}
+כעת, מרציפות ב$\vec{0}$ נקבל כי מתקיים
+\[
+\lim_{(x, y) \to \vec{0}} \sqrt{x^{2} + y^{2} + 25} + 5 = \sqrt{25} + 5 = 10
+\]
+ולכן מתקיים 
+\[
+\lim_{\vec{v} \to \vec{0}} f(\vec{v})
+= \lim_{\vec{v} \to \vec{0}} g(\vec{v}) \cdot \lim_{(x, y) \to \vec{0}} \sqrt{x^{2} + y^{2} + 25} + 5
+= 0 \cdot 10 = 0
+\]
+והגבול קיים בנקודה ובפרט שווה ל0 כנדרש.
+\br\qed
+\clearpage
+
+\section*{שאלה 1ב}
+נסמן:
+\[
+f(x, y) = \left(1 + \sin(x^{2} + y^{2})\right)^{\frac{x + 2}{x^{2} + y^{2}}},
+g(x, y) = (x + 2) \cdot \frac{\ln\left(1 + \sin(x^{2} + y^{2})\right)}{x^{2} + y^{2}}
+\]
+כעת, נוכל לראות כי למעשה מתקיים $\forall \vec{v} \in \mR^{2}, f(\vec{v}) = e^{g(\vec{v})}$. לכן, מרציפות הפונקציה $e^{x}$ על מנת למצוא את הגבול של $f$ בראשית עלינו למצוא את הגבול של $g$ בראשית ולהציב. אם כן, נעשה זאת:
+\begin{align*}
+\lim_{\vec{v} \to \vec{0}} g(\vec{v})
+&= \lim_{(x, y) \to \vec{0}} (x + 2) \cdot \lim_{(x, y) \to \vec{0}} \frac{\ln\left(1 + \sin(x^{2} + y^{2})\right)}{x^{2} + y^{2}}\\
+&= 2\lim_{(x, y) \to \vec{0}} \frac{\ln\left(1 + \sin(x^{2} + y^{2})\right)}{x^{2} + y^{2}}
+= \sub{t}{x^{2} + y^{2}}{\vec{0}}{0}\\
+&= 2\lim_{t \to 0} \frac{\ln\left(1 + \sin{t}\right)}{t}
+\ueq{L'H} 2\lim_{t \to 0} \frac{\cos{t}}{1 + \sin{t}} \cdot 1 = 2 \cdot \frac{1}{1} \cdot 1 = \framebox{$2$}
+\end{align*}
+לכן, מתקיים $\lim_{\vec{v} \to \vec{0}} f(\vec{v}) = e^{\lim_{\vec{v} \to \vec{0}} g(\vec{v})} = e^{2}$ כנדרש.
+\br\qed
+
+\section*{שאלה 1ג}
+נראה שהגבול אינו קיים. נסמן:
+\[
+f(x, y) = \frac{x^{4} - y^{4}}{x^{4} + y^{4}}
+\]
+נניח בשלילה כי הגבול כן קיים. כעת, נתבונן בסדרות הנקודות הבאות:
+\[
+\vec{p_{n}} = \left(0, \frac{1}{n}\right),
+\vec{q_{n}} = \left(\frac{1}{n}, 0\right)
+\]
+מתקיים כמובן $\vec{p_{n}} \opr{$n \to \infty$} \vec{0}$ וגם $\vec{q_{n}} \opr{$n \to \infty$} \vec{0}$. נציב בפונקציה ונקבל:
+\[
+f(\vec{p_{n}}) = \frac{0^{4} - \left(\frac{1}{n}\right)^{4}}{0^{4} + \left(\frac{1}{n}\right)^{4}} = -1 \opr{$n \to \infty$} -1,
+f(\vec{q_{n}}) = \frac{\left(\frac{1}{n}\right)^{4} - 0^{4}}{\left(\frac{1}{n}\right)^{4} + 0^{4}} = 1 \opr{$n \to \infty$} 1
+\]
+מכיוון ש$-1 \neq 1$ מתקיים $\lim_{n \to \infty} f(\vec{p_{n}}) \neq \lim_{n \to \infty} f(\vec{q_{n}})$ והגבול בנקודה לא קיים כנדרש.
+\br\qed
+\clearpage
+
+\section*{שאלה 1ד}
+ראשית, נוכל לראות כי מתקיים $0 \le \abs{\arctan{x}} \le \frac{\pi}{2}$ ולכן גם $0 \le \arctan^{4}{x} \le \frac{\pi^{4}}{16}$. כעת, מכיוון ש$0 \le \cos{x}^{2} \le 1$ נקבל:
+\[
+\frac{-1 + y^{2}}{y^{2} + \frac{\pi^{4}}{16}} \le \frac{\cos^{2}{x} - 1 + y^{2}}{y^{2} + \arctan^{4}{x}} \le \frac{y^{2}}{y^{2}}
+\]
+%%%%% </Q1> %%%%%
+\clearpage
+
+%%%%% <Q2> %%%%%
+\section*{שאלה 2א}
+אם $y \neq 0$, נקבל כי $f$ רציפה בנקודה בתור הרכבה וכפל של פונקציות רציפות. נתבונן בנקודות מהצורה $(x, 0)$ כך ש$x \neq 0$:
+יהי $c \neq 0$. נתבונן בסדרת הנקודות $\vec{p_{n}} = (c, \frac{1}{\pi n + \frac{\pi}{2}})$. מתקיים כמובן $p_{n} \opr{$n \to \infty$} (c, 0)$, אבל אם נציב ב$f$ נקבל כי מתקיים
+\[
+f(\vec{p_{n}}) = c\sin(\pi n + \frac{\pi}{2}) = (-1)^{n}c
+\]
+ולכן $\lim_{n \to \infty} f(\vec{p_{n}})$ לא קיים. לפיכך, הגבול $\lim_{\vec{v} \to (c, 0)} f(\vec{v})$ לא קיים ו$f$ אינה רציפה בנקודות מהסוג $(x, 0)$ כאשר $x \neq 0$.
+נתבונן, אם כן, בנקודה $(0, 0)$: ידוע כי $\abs{\sin{\frac{1}{y}}} \le 1$ ולכן מתקיים $\abs{f(\vec{v})} \le \abs{x}$, ומכלל הסנדוויץ' נקבל כי $\lim_{\vec{v} \to \vec{0}} f(\vec{v}) = 0$. בנוסף, מהגדרת הפונקציה נקבל כי $f(\vec{0}) = \lim_{\vec{v} \to \vec{0}} f(\vec{v})$ ולכן הפונקציה רציפה ב$\vec{0}$.
+
+לכן, נקבל כי תחום הרציפות של $f$ הוא $A = \left\{(x, y) | y \neq 0 \lor x = y = 0 \right\}$ כנדרש.
+\br\qed
+
+\section*{שאלה 2ב סעיף 1}
+נתבונן בפונקציה הבאה:
+\[
+g(x)
+= \frac{f(x, 0) - f(0, 0)}{x}
+= \frac{\sqrt[4]{x^{4}}}{x}
+= \frac{\abs{x}}{x}
+= \begin{cases}\\
+-1 & x < 0\br
+1 & x > 0\\
+\end{cases}
+\]
+ובפרט מתקיים $1 = \lim_{x \to 0^{+}} g(x) \neq \lim_{x \to 0^{-}} = -1$, אבל הנגזרת החלקית לפי $x$ ב$\vec{0}$ מוגדרת לפי $\lim_{x \to 0} g(x)$ ומכיוון שהגבול אינו קיים כך גם הנגזרת החלקית לפי $x$ ולכן לפי \m{7}{36}{} נקבל כי $f$ אינה דיפרנציאבילית ב$\vec{0}$ כנדרש. \qed
+
+\section*{שאלה 2ב סעיף 2}
+נתבונן בהגדרת הנגזרת החלקית:
+\begin{eqnarray*}
+&f_{x}(\vec{0})
+= \lim_{x \to 0} \dfrac{f(x, 0) - f(\vec{0})}{x}
+= \lim_{x \to 0} \dfrac{x^{2}}{x} = \lim_{x \to 0} x = 0\\
+&f_{y}(\vec{0})
+= \lim_{y \to 0} \dfrac{f(0, y) - f(\vec{0})}{y}
+= \lim_{y \to 0} \dfrac{y^{2}}{y} = \lim_{y \to 0} y = 0
+\end{eqnarray*}
+נתבונן בהגדרת הדיפרנציאביליות )\m{7}{26}{}(, עבור $A = B = 0$:
+\begin{eqnarray*}
+&d((x, y), \vec{0}) = \sqrt{x^{2} + y^{2}} \quad\quad r(x, y) = f(x, y) - f(0, 0) - Ax - By = \sqrt{x^{4} + y^{4}}\\
+&\Downarrow\\
+&\dfrac{r(x, y)}{d((x, y), \vec{0})} = \sqrt{\dfrac{x^{4} + y^{4}}{x^{2} + y^{2}}} \le \dfrac{x^{2} + y^{2}}{\sqrt{x^{2} + y^{2}}} = \sqrt{x^{2} + y^{2}} \opr{$(x, y) \to \vec{0}$} = 0
+\end{eqnarray*}
+לכן מכלל הסנדוויץ' נקבל כי $r(x, y) = o(d((x, y), \vec{0}))$ ולכן $f$ דיפרנציאבילית בנקודה $\vec{0}$ כנדרש. \qed
+%%%%% </Q2> %%%%%
+\clearpage
+
+%%%%% <Q3> %%%%%
+\section*{שאלה 3א}
+נגזור חלקית את $f$ לפי כלל השרשרת:
+\[
+\pd{f}{x} = \cos{x} + h^{\prime}(\sin{y} - \sin{x}) \cdot (-\cos{x}) \quad\quad
+\pd{f}{y} = h^{\prime}(\sin{y} - \sin{x}) \cdot \cos{y}
+\]
+כעת, נוכל לראות כי מתקיים
+\begin{align*}
+\pd{f}{x} \cdot \cos{y}
+&= \cos{x}\cos{y} - h^{\prime}(\sin{y} - \sin{x}) \cos{x}\cos{y}\\
+&= \cos{x}\cos{y} - \pd{f}{y} \cdot \cos{x}
+\end{align*}
+ולכן מתקיים
+\[
+\pd{f}{x} \cdot \cos{y} + \pd{f}{y} \cdot \cos{x} = \cos{x}\cos{y}
+\]
+כנדרש.
+\br\qed
+
+\section*{שאלה 3ג}
+ראשית, נניח כי קיימות שתי פונקציות, $w, h : \mR \to \mR$ כך ש$w(t)$ מסמל את רוחב המלבן ברגע $t$ ו$h(t)$ מסמל את אורך המלבן ברגע $t$. כעת, מנתוני השאלה ידוע לנו כי קיים $t_{0}$ כך ש$w, h$ גזירות ב$t_{0}$ ואף מתקיים:
+\[
+\begin{matrix}
+w(t_{0}) = 6 \;&\; h(t_{0}) = 15\br
+w^{\prime}(t_{0}) = 2 \;&\; h^{\prime}(t_{0}) = 3
+\end{matrix}
+\]
+כעת, על מנת לקבל את השטח של המלבן ברגע $t$, נגדיר את הפונקציה הבאה:
+\[
+S(t) = f(w(t), h(t)) = w(t) \cdot h(t)
+\]
+כאשר $f(x, y) = xy$. למעשה, עלינו למצוא את $S^{\prime}(t_{0})$. נגזור את הפונקציה לפי כלל השרשרת ונקבל:
+\begin{align*}
+S^{\prime}(t)
+&= f_{x}(w(t), h(t))w^{\prime}(t) + f_{y}(w(t), h(t))h^{\prime}(t)\\
+&= h(t)w^{\prime}(t) + w(t)h^{\prime}(t)
+\end{align*}
+נציב $t = t_{0}$ ונקבל כי $S^{\prime}(t_{0}) = 15 * 2 + 6 * 3 = 48$ וקיבלנו כי שטח המלבן משתנה ב$48$ מ``''ר לשנייה ברגע $t_{0}$ כנדרש.
+\br\qed
+\clearpage
+
+\section*{שאלה 3ב}
+ראשית, נחשב את הנגזרות החלקיות של $x(u, v) = \frac{u}{v}, y(u, v) = \frac{v}{u}$ לפי כל אחד מהמשתנים:
+\[
+\begin{matrix}
+\pdd{x}{u}(u, v) = \dfrac{1}{v} \quad&\quad \pdd{y}{u}(u, v) = -\dfrac{v}{u^{2}}\br
+\pdd{x}{v}(u, v) = -\dfrac{u}{v^{2}} \quad&\quad \pdd{y}{v}(u, v) = \dfrac{1}{u}
+\end{matrix}
+\]
+
+נגדיר: $\forall (u, v) \in \mR^{2}, z(u, v) = f(x(u, v), y(u, v))$. כעת, נחשב את הנגזרות החלקיות של $z$ לפי כלל השרשרת. נתחיל מהנגזרת החלקית לפי $u$:
+\begin{align*}
+\forall \vec{v} = (u, v) \in \mR^{2}, \pd{z}{u}(\vec{v})
+&= \pd{f}{x}(x(\vec{v}), y(\vec{v})) \cdot \pd{x}{u}(\vec{v}) + \pd{f}{y}(x(\vec{v}), y(\vec{v})) \cdot \pd{y}{u}(\vec{v})\\
+&= \pd{f}{x}\left(\frac{u}{v}, \frac{v}{u}\right) \pd{x}{u}(u, v) + \pd{f}{y}\left(\frac{u}{v}, \frac{v}{u}\right) \pd{y}{u}(u, v)\\
+&= \frac{1}{v}\pd{f}{x}\left(\frac{u}{v}, \frac{v}{u}\right) - \frac{v}{u^{2}}\pd{f}{y}\left(\frac{u}{v}, \frac{v}{u}\right)
+\end{align*}
+ולפי $v$:
+\begin{align*}
+\forall \vec{v} = (u, v) \in \mR^{2}, \pd{z}{v}(\vec{v})
+&= \pd{f}{x}(x(\vec{v}), y(\vec{v})) \cdot \pd{x}{v}(\vec{v}) + \pd{f}{y}(x(\vec{v}), y(\vec{v})) \cdot \pd{y}{v}(\vec{v})\\
+&= \pd{f}{x}\left(\frac{u}{v}, \frac{v}{u}\right) \pd{x}{v}(u, v) + \pd{f}{y}\left(\frac{u}{v}, \frac{v}{u}\right) \pd{y}{v}(u, v)\\
+&= \frac{1}{u}\pd{f}{y}\left(\frac{u}{v}, \frac{v}{u}\right) - \frac{u}{v^{2}}\pd{f}{x}\left(\frac{u}{v}, \frac{v}{u}\right)
+\end{align*}
+כעת, נוכל לראות כי מתקיים
+\begin{align*}
+u\pd{z}{u}
+&= \frac{u}{v}\pd{f}{x}\left(\frac{u}{v}, \frac{v}{u}\right) - \frac{v}{u}\pd{f}{y}\left(\frac{u}{v}, \frac{v}{u}\right)\\
+&= x(u, v)\pd{f}{x}\left(\frac{u}{v}, \frac{v}{u}\right) - y(u, v)\pd{f}{y}\left(\frac{u}{v}, \frac{v}{u}\right)
+\end{align*}
+וגם כי מתקיים
+\begin{align*}
+v\pd{z}{v}
+&= \frac{v}{u}\pd{f}{y}\left(\frac{u}{v}, \frac{v}{u}\right) - \frac{u}{v}\pd{f}{x}\left(\frac{u}{v}, \frac{v}{u}\right)\\
+&= y(u, v)\pd{f}{y}\left(\frac{u}{v}, \frac{v}{u}\right) - x(u, v)\pd{f}{x}\left(\frac{u}{v}, \frac{v}{u}\right)
+= -u\pd{z}{u}
+\end{align*}
+מכך נובע כי לכל $u, v \neq 0$ מתקיים
+\[
+u\pd{z}{u} + v\pd{z}{v} = 0
+\]
+כנדרש.
+\br\qed
+\clearpage
+%%%%% </Q3> %%%%%
+
+%%%%% <Q5> %%%%%
+\section*{שאלה 5א}
+נסמן: $\vec{p} = (x_{0}, y_{0})$. ראשית, נמצא את הנגזרות החלקיות של $h$ מסדר ראשון:
+\[
+\pd{h}{x} = f^{\prime}(x)g(y)\quad\quad\quad \pd{h}{y} = f(x)g^{\prime}(y)
+\]
+ומסדר שני:
+\[
+\begin{matrix}
+\pdn{h}{x}{2} = f^{\prime\prime}(x)g(y) \quad&\quad \pdn{h}{y}{2} = g^{\prime\prime}(y)f(x)\br
+\pdt{h}{x}{y} = f^{\prime}(x)g^{\prime}(y) \quad&\quad \pdt{h}{y}{x} = f^{\prime}(x)g^{\prime}(y)
+\end{matrix}
+\]
+כעת, נשים לב שנובע מהנתון כי $\pd{h}{x}(\vec{p}) = \pd{h}{y}(\vec{p}) = 0$ ולכן היא נקודה חשודה בהיותה נקודת קיצון. נמצא את $D$:
+\begin{eqnarray*}
+& D
+= \begin{bmatrix}
+\pdn{h}{x}{2}(\vec{p}) & \pdt{h}{x}{y}(\vec{p})\br
+\pdt{h}{y}{x}(\vec{p}) & \pdn{h}{y}{2}(\vec{p})
+\end{bmatrix}
+= \begin{bmatrix}
+f^{\prime\prime}(x_{0})g(y_{0}) & 0\br
+0 & g^{\prime\prime}(y_{0})f(x_{0})
+\end{bmatrix}\\\\
+& \Big\Downarrow\\\\
+& \det{D}
+= f^{\prime\prime}(x_{0})g(y_{0})g^{\prime\prime}(y_{0})f(x_{0})
+= f^{\prime\prime}(x_{0})f(x_{0}) \cdot g^{\prime\prime}(y_{0})g(y_{0})
+\end{eqnarray*}
+לכן, מהנתון נקבל כי $\det{D} > 0$, או $-\det{D} < 0$, ולפי \m{7}{27}{} נוכל לראות כי $\vec{p}$ נקודת קיצון של $h$ כנדרש.
+\br\qed
+
+\section*{שאלה 5 רשות}
+נסמן: $h(t) = f(t, 3t - 2)$. לפי הנתון בשאלה, ידוע לנו כי $\forall t \in \mR, h(t) = 2018$ ומכיוון שזוהי פונקציה קבועה נקבל כי $h^{\prime}(t) = 0$. נגזור כעת לפי כלל השרשרת מ\m{7}{66}{} ונקבל:
+\[
+h^{\prime}(t) = f_{x}(t, 3t - 2) + 3f_{y}(t, 3t - 2)
+\]
+נוכל לשים לב שמתקיים $\evi{(t, 3t - 2)}{}{t=1} = (1, 1)$ ולכן נקבל כי מתקיים
+\begin{eqnarray*}
+&0 = h^{\prime}(1) = f_{x}(1, 1) + 3f_{y}(1, 1)\\\\
+&\Big\Downarrow\\
+&f_{y}(1, 1) = -\dfrac{1}{3}
+\end{eqnarray*}
+ומצאנו את $f_{y}(1, 1)$ כנדרש.
+\br\qed
+%%%%% </Q5> %%%%%
+
+\end{document}

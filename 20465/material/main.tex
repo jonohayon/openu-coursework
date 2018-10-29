@@ -1,0 +1,60 @@
+\documentclass[11pt, oneside]{book}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\logr}[1]{\xRightarrow[\text{#1}]{}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mC}{\mathbb{C}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+
+% Custom commands for this document
+
+% Spacing
+\titlespacing\subsubsection{0pt}{5pt}{3pt}
+
+\title{מעבדה בתכנות מערכות}
+\author{יונתן אוחיון}
+\date{9102א}
+
+\begin{document}
+\maketitle
+
+\section*{פרטי המנחה}
+שאדי
+
+מייל: \L{jazshadi@hotmail.com}, טלפון: 0520545450
+
+\section*{קימפול בעזרת \L{gcc}}
+ע``''מ לקמפל קוד \L{C} בעזרת \L{gcc} עלינו להריץ את הפקודה הבאה:
+\begin{center}
+\L{
+	gcc -ansi -Wall -pedantic -o $<$output filename$>$ $<$inputs...$>$
+}
+\end{center}
+
+
+\end{document}

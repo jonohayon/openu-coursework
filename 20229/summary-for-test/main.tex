@@ -1,0 +1,72 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\logr}[1]{\xRightarrow[\text{#1}]{}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mC}{\mathbb{C}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+
+% Custom commands for this document
+\DeclareMathOperator{\tr}{tr}
+
+% Spacing
+\titlespacing\subsubsection{0pt}{5pt}{3pt}
+\setstretch{0.1}
+
+\title{סיכום לקראת המבחן בלינארית 2}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+
+\clearpage
+
+\section*{פתרון לשאלה 2ב}
+השאלה: תהי $A \in M_{5 \times 5}^{\mR}$ המקיימת $\tr{A} = 0, \rho(A) = 1$. מצאו את הפולינום האופייני שלה ואת הפולינום המינימלי שלה. האם $A$ בהכרח לכסינה מעל $\mR$?
+
+התשובה שלי:
+
+מלינארית 1 נקבל כי $A$ לא הפיכה ולכן $\det{A} = 0$. לכן, 0 ע``''ע של $A$ והריבוב הגיאומטרי שלו )נסמן - $g_{0}$( הינו
+\[
+g_{0} = 5 - \rho(-A) = 5 - \rho(A) = 4
+\]
+כעת, נסמן את הריבוב האלגברי של 0 ב$a_{0}$. ידוע כי $g_{0} \le a_{0} \le n$ ולכן נקבל כי
+\[
+4 \le a_{0} \le 5
+\]
+כלומר, $a_{0} = 4$ או $a_{0} = 5$. נניח בשלילה כי $a_{0} = 4$. אזי נקבל כי מכיוון ש$P_{A}(\lambda)$ פולינום מתוקן ממעלה 5, יש לו עוד שורש שונה מ0. נסמן את השורש הזה ב$t$. לכן נוכל לראות כי מתקיים
+\[
+P_{A}(\lambda) = \lambda^{4}(\lambda - t) = \lambda^{5} - \lambda^{4}t
+\]
+מלינארית 1 ידוע כי המקדם של $\lambda^{4}$ שווה ל$-\tr{A}$, כלומר מתקיים $t = -\tr{A} = 0$ אבל $t \neq 0$ ולכן $a_{0} \neq 4$. לפיכך, נקבל כי $a_{0} = 5$ והפ``''א של $A$ הינו
+\[
+P_{A}(\lambda) = \lambda^{5}
+\]
+בנוסף, מכיוון ש$4 = g_{0} \neq a_{0} = 5$, המטריצה $A$ בהכרח אינה לכסינה מעל $\mR$. כעת, נחפש את הפולינום המינימלי של $A$. ידוע לנו כי $\rho(A) = 1$ ולכן הפולינום $m(t) = t$ אינו הפ``''מ של $A$.
+
+\end{document}

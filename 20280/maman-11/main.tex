@@ -1,0 +1,73 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{amsmath,amssymb,cancel}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\logr}{\Rightarrow}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mC}{\mathbb{C}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+
+% Custom commands for this document
+
+% Spacing
+% \titlespacing\subsubsection{0pt}{5pt}{3pt}
+% \setstretch{0.1}
+
+\title{ממן 11}
+\author{יונתן אוחיון}
+
+\begin{document}
+\maketitle
+\newpage
+
+\section*{שאלה 1א}
+ראשית, נמצא את הפתרון הכללי של המד``''ר הנתונה:
+\begin{align*}
+y^{\prime} = \tan{y}
+& \logr \frac{dy}{dt} = \frac{\sin{y}}{\cos{y}}\\
+& \logr \frac{\cos{y}dy}{\sin{y}} = dt\\
+& \logr \int \frac{\cos{y}dy}{\sin{y}} = \int dt\\
+& \logr \ln(\sin{y}) = t + C
+\logr \framebox{$y(t) = \arcsin(C e^{t})$}
+\end{align*}
+התמונה של הפתרון שמצאנו היא $[-\frac{\pi}{2}, \frac{\pi}{2}]$, אבל ערך ההתחלה הנתון לא נמצא בו. לכן, ע``''מ לקבל פתרון כביל לערך ההתחלה )שנמצא בקטע $[-2.5\pi, -1.5\pi]$(, נחסר $2\pi$ ונקבל את הפתרון הכללי המתאים לבעיית ערך ההתחלה שלנו:
+\[
+y(t) = \arcsin(Ce^{t}) - 2\pi
+\]
+נציב את תנאי ההתחלה, נפתור ל$C$ ונקבל
+\[
+y(0) = \arcsin(C) - 2\pi = \frac{-13\pi}{6}
+\logr \arcsin(C) = \frac{-\pi}{6}
+\logr C = -\frac{1}{2}
+\]
+ולכן הפתרון לבעיית ההתחלה הוא:
+\[
+y(t) = \arcsin\left(\frac{-e^{t}}{2}\right) - 2\pi
+\]
+כנדרש.
+\\\qed
+\end{document}
