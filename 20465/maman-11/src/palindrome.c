@@ -16,14 +16,14 @@ int palindrome (char s[]) {
   int j = len - 1;
 
   while (i < j) {
-    if (isspace(s[i])) {
+    if (isspace(s[i])) { // If s[i] is a space, go to the next character
       i++;
-    } else if (isspace(s[j])) {
+    } else if (isspace(s[j])) { // If s[j] is a space, go to the character before it
       j--;
-    } else if (s[i] == s[j]) {
+    } else if (s[i] == s[j]) { // If s[i] matches s[j], continue to check the rest of the string
       i++;
       j--;
-    } else {
+    } else { // If we've completed checking the string, return false
       return 0;
     }
   }
