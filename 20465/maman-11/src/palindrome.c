@@ -5,7 +5,10 @@
 #define MAX_STR_LEN 80
 
 /**
- * Checks whether a string s is a palindrome.
+ * Checked whether a given string is a palindrome, i.e. s = reverse(s), without respect to spaces.
+ * The algorithm iterates over the string, checking the leftmost character against the rightmost character,
+ * and skips all of the spaces, tabs, newlines and carrige returns (using the isspace function from ctype.h).
+ * @param s The given string to check the "palindromity" of
  */
 int palindrome (char s[]) {
   int len = strlen(s);
