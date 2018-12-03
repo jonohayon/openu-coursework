@@ -42,16 +42,15 @@ void print_set (int *arr) {
   printf("Set items: ");
 
   for (i = 0; i < SET_LENGTH; i++) {
-    printf("%d, ", arr[i]);
+    printf("%d ", arr[i]);
   }
 
   printf("\n");
 }
 
 int main (void) {
-  int numbers[SET_LENGTH * sizeof(int)];
+  int numbers[SET_LENGTH * sizeof(int)] = {'\0'};
 
-  printf("Please enter your numbers:\n");
   get_set(numbers);
 
   print_set(numbers);
