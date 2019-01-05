@@ -1,0 +1,90 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[parfill]{parskip}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{graphicx,titlesec}
+\usepackage{fancyvrb}
+\usepackage{amsmath,amssymb,cancel}
+
+% Hebrew Stuff
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{hebfont}
+
+% Custom commands
+\newcommand{\qed}{\R{$\blacksquare$}}
+\newcommand{\br}{\\\\\\\\\\\\\\}
+\newcommand{\opr}[1]{\xrightarrow[\text{#1}]{}}
+\newcommand{\logr}[1]{\xRightarrow[\text{#1}]{}}
+\newcommand{\bidiarrow}[1]{\underset{\text{#1}}{\leftrightarrow}}
+\newcommand{\ueq}[1]{\underset{\text{#1}}{=}}
+\newcommand{\mC}{\mathbb{C}}
+\newcommand{\mR}{\mathbb{R}}
+\newcommand{\mN}{\mathbb{N}}
+\newcommand{\mZ}{\mathbb{Z}}
+\newcommand{\mQ}{\mathbb{Q}}
+\newcommand{\inv}[1]{#1^{-1}}
+
+% Custom text commands (for Hebrew)
+\newcommand{\q}[3]{\R{שאלה #3#2.#1}}
+\newcommand{\m}[3]{\R{משפט #3#2.#1}}
+\newcommand{\h}[3]{\R{הגדרה #3#2.#1}}
+\newcommand{\ms}[3]{\R{מסקנה #3#2.#1}}
+
+% Custom commands for this document
+
+% Spacing
+\titlespacing\subsubsection{0pt}{0pt}{3pt}
+\setstretch{0.9}
+
+\title{הסבר על קטע הקוד הנתון}
+\author{יונתן אוחיון, ת``''ז: 347811523}
+
+\begin{document}
+\maketitle
+קטע הקוד הנתון )מוקף בפונקציה המשתמשת במצביעים(:
+\begin{otherlanguage}{english}
+\begin{Verbatim}[
+	frame=single,
+	framesep=2.5mm
+]
+void swap (int *A, int *B) {
+  *A ^= *B;
+  *B ^= *A;
+  *A ^= *B;
+}
+\end{Verbatim}
+\end{otherlanguage}
+
+\subsubsection*{הסבר}
+קטע הקוד שלעיל מבצע החלפה בין שני משתנים בעזרת פעולת ה\L{XOR} וללא צורך במשתנים נוספים. דבר זה מתאפשר באמצעות תכונותיה של פעולת ה\L{XOR}, אשר מקיימת את תכונות הקומוטטיביות )כלומר מתקיים \L{\verb!A^B == B^A!}(, האסוציאטיביות )\L{\verb!A^(B^C) == (A^B)^C!}( וקיום איבר ניטרלי )\L{\verb!A^0 == A,A^A == 0!}(. הפעולה עובדת באופן הבא: בהינתן שני משתנים \L{\verb!A, B!} יתקיים
+\begin{otherlanguage}{english}
+\begin{Verbatim}[
+	frame=single,
+	framesep=2.5mm
+]
+Initial values: A = a, B = b
+Procedure:
+  1. A = A ^ B = a ^ b, B = b
+  2. B = B ^ A = b ^ (a ^ b) = (b ^ b) ^ a = a, A = a ^ b
+  3. A = A ^ B = (a ^ b) ^ a = b ^ (a ^ a) = b
+Final values: A = b, B = a
+\end{Verbatim}
+\end{otherlanguage}
+
+\subsubsection*{דוגמה מספרית}
+נפעיל את הפעולה על שני מספרים: \L{\verb!A = 5, B = 6!} )בהצגה בינארית(:
+\begin{otherlanguage}{english}
+\begin{Verbatim}[
+	frame=single,
+	framesep=2.5mm
+]
+1. A = A ^ B = 101 ^ 110 = 011, B = 110
+2. B = B ^ A = 110 ^ 011 = 101, A = 011
+3. A = A ^ B = 011 ^ 101 = 110, B = 101
+\end{Verbatim}
+\end{otherlanguage}
+ערכם הסופי של המשתנים בהצגה בינארית הינו \L{\verb!A = 110, B = 101!} ובבסיס 01 \L{\verb!A = 6, B = 5!}. כפי שניתן לראות, כל משתנה קיבל את ערכו ההתחלתי של המשתנה השני.
+
+\end{document}

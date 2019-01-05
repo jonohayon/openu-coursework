@@ -1,0 +1,30 @@
+#ifndef time_h
+#define time_h
+
+#define SECS_IN_YEAR 31536000 /* 365*24*60*60 */
+#define SECS_IN_MONTH_30 2592000 /* For 30 days months */
+#define SECS_IN_MONTH_31 2678400 /* For 31 days months */
+#define SECS_IN_FEBRUARY 2419200 /* For 28 days months (February) */
+#define SECS_IN_DAY 86400 /* 24*60*60 */
+#define SECS_IN_HOUR 3600 /* 60*60 */
+
+typedef enum {
+  JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC
+} Month;
+
+int secsInMonth (Month month);
+
+typedef struct {
+  signed int year; /* Adding support to B.C. */
+  Month month;
+  unsigned int day;
+
+  unsigned int hour;
+  unsigned int minute;
+  unsigned int sec;
+} time;
+
+int isBefore (time date1, time date2);
+unsigned int time_diff (time date1, time date2);
+
+#endif
